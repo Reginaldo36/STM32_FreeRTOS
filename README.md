@@ -1,54 +1,41 @@
-https://github.com/tuanhe/Stm32_GCC_FreeRTOS10.2.1/tree/master
-# STM32 Makefile FreeRTOS 10.2.1
+# Objetivo:
+Este projeto faz parte de trabalho de conclusão de curso
+de Engenharia da Computação. Sendo uma continuação do
+projeto de pesquisa (2021 - 2022) de tema: "Introdução
+ao desenvolvimento de sistemas embarcados baseados nos
+microcontroladores ARM STM32".
 
+Trabalho de conclusão de curso (2023): "Estudo da
+aplicação de um sistema operacional de tempo real em
+microcontroladores ARM".
 
-## 项目参考 
-(转自：将Freertos9.0版本更新到最新版本.源作者makefile写的清晰明了，值得学习！)   
-https://github.com/freelamb/stm32f10x_makefile_freertos   
+### Universidade: UNILINS.
+### Aluno: Reginaldo Junior.
 
+### Licensa: GNU GPL_V2 quando possível.
 
-## 环境
-开发平台:archlinux
-编译器：arm-none-eab-gcc
-项目管理:makefile
+Sistema operacional: Debian 12 - sid 
+Suíte de compilação: GNU Toolchain 
 
-## 使用
-### 编译工程
+#### Opções do Makefile 
 ```
 $ make
-```
-
-### 清除编译输出
-
-```
 $ make clean
-```
-
-### 通过stlink下载程序到MCU
-```
 $ make flash
-```
-
-### 擦除程序
-```
 $ make erase
-```
-
 
 ```
 
-## st-link Debug
-
-start debug
+#### st-link Depuração: 
+execute no diretório source
 ```
 $ st-util
+
+$ arm-none-eabi-gdb --eval-command="target extended-remote :4242" *.elf
 ```
 
-open shell in project root dir
-```
-$ arm-none-eabi-gdb *.elf
 
-GNU gdb (GNU Tools for ARM Embedded Processors) 7.10.1.20160923-cvs
+GNU gdb (GNU Tools for ARM Embedded Processors) 
 Copyright (C) 2015 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 This is free software: you are free to change and redistribute it.
@@ -63,18 +50,9 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from z2_cmcc_b_app.elf...done.
-...
-(gdb) target extended-remote :4242
-...
-```
-
-Clion configure debug reference
-
-http://www.jianshu.com/p/4635a2380698
-
-## Example
-
 mcu: STM32F103C8T6
 
-GPIOB11--Led
 
+Notas e referências:
+A estrutura do projeto tem como base:
+    <https://github.com/tuanhe/Stm32_GCC_FreeRTOS10.2.1/tree/master>
