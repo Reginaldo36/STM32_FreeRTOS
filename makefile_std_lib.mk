@@ -19,9 +19,10 @@ SRC  += $(STM32F1_CORE_DIR)/core_cm3.c
 # use libraries, please add or remove when you use or remove it.
 SRC  += $(STM32F1_SRC_DIR)/stm32f10x_rcc.c
 SRC  += $(STM32F1_SRC_DIR)/stm32f10x_gpio.c
-SRC  += $(STM32F1_SRC_DIR)/stm32f10x_exti.c
 SRC  += $(STM32F1_SRC_DIR)/stm32f10x_usart.c
-SRC  += $(STM32F1_SRC_DIR)/misc.c
+# SRC  += $(STM32F1_SRC_DIR)/misc.c
+# SRC  += $(STM32F1_SRC_DIR)/stm32f10x_adc.c
+# SRC  += $(STM32F1_SRC_DIR)/stm32f10x_exti.c
 
 # include directories
 INCLUDE_DIRS += $(STM32F1_CORE_DIR)

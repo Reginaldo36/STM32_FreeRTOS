@@ -1085,16 +1085,8 @@ typedef struct
   __IO uint32_t APB1ENR;
   __IO uint32_t BDCR;
   __IO uint32_t CSR;
-
-#ifdef STM32F10X_CL  
   __IO uint32_t AHBRSTR;
   __IO uint32_t CFGR2;
-#endif /* STM32F10X_CL */ 
-
-#if defined (STM32F10X_LD_VL) || defined (STM32F10X_MD_VL) || defined (STM32F10X_HD_VL)   
-  uint32_t RESERVED0;
-  __IO uint32_t CFGR2;
-#endif /* STM32F10X_LD_VL || STM32F10X_MD_VL || STM32F10X_HD_VL */ 
 } RCC_TypeDef;
 
 /** 
