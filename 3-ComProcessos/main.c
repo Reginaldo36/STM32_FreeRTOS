@@ -15,6 +15,7 @@ static QueueHandle_t xQueue;
 
 static void task1(void *args __attribute((unused))) {
 	while(1){
+
 	}
 }
 
