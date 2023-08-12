@@ -26,7 +26,7 @@ GPIO_InitTypeDef GPIO_InitStruct;
   * @brief	Initialize the LCD 16x2 with 4-bit I/O mode.
   * @param	Display, cursor underline, and cursor blink settings. See
   * 				LCD display and cursor attributes define in lcd16x2.h file.
-  * @retval	None
+  * @retval	Reginaldo_Jr
   ******************************************************************************
   */
 void lcd16x2_init(uint8_t disp_attr)
@@ -42,14 +42,14 @@ void lcd16x2_init(uint8_t disp_attr)
 	GPIO_InitStruct.GPIO_Pin = LCD16X2_PIN_RS | LCD16X2_PIN_RW | 
 		LCD16X2_PIN_EN;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(LCD16X2_GPIO_CONTROL, &GPIO_InitStruct);
 	
 	// Configure I/O for data lines as output
 	GPIO_InitStruct.GPIO_Pin = LCD16X2_PIN_D4 | LCD16X2_PIN_D5 | 
 		LCD16X2_PIN_D6 | LCD16X2_PIN_D7;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(LCD16X2_GPIO_DATA, &GPIO_InitStruct);
 
 	// Delay power on 

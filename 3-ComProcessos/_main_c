@@ -23,9 +23,9 @@ int main(void)
 		// Display custom char
 		lcd16x2_put_custom_char(0, 0, 0);
 		lcd16x2_puts(" Battery Low");
-		DelayMs(500);
+		// DelayMs(500);
 		// Clear display
 		lcd16x2_clrscr();
-		DelayMs(500);
+		// DelayMs(500);
 	}
 }
