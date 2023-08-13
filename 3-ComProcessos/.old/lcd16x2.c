@@ -9,6 +9,7 @@
 
 /** Includes ---------------------------------------------------------------- */
 #include "lcd16x2.h"
+#include	"Me.h"
 
 /** Private function prototypes --------------------------------------------- */
 static void lcd16x2_toggle_e(void);
@@ -32,7 +33,7 @@ GPIO_InitTypeDef GPIO_InitStruct;
 void lcd16x2_init(uint8_t disp_attr)
 {
 	// Delay initialization
-	DelayInit();
+//DelayInit();
 	
 	// GPIO clock for control and data lines
 	RCC_APB2PeriphClockCmd(LCD16X2_RCC_GPIO_CONTROL, ENABLE);
@@ -53,30 +54,35 @@ void lcd16x2_init(uint8_t disp_attr)
 	GPIO_Init(LCD16X2_GPIO_DATA, &GPIO_InitStruct);
 
 	// Delay power on 
-	DelayUs(LCD16X2_DELAY_POWER_ON);
+	// Delay_Us(LCD16X2_DELAY_POWER_ON);
+	Delay(LCD16X2_DELAY_POWER_ON);
 	
 	// Initialize 8-bit mode first
 	LCD16X2_GPIO_D5->BSRR = LCD16X2_PIN_D5;	// Function set
 	LCD16X2_GPIO_D4->BSRR = LCD16X2_PIN_D4;	// 8-bit mode
 	lcd16x2_toggle_e();
 	// Delay, busy flag can't be checked here
-	DelayUs(LCD16X2_DELAY_INIT);
+	// Delay_Us(LCD16X2_DELAY_INIT);
+	Delay(LCD16X2_DELAY_INIT);
 	
 	// Repeat last command
 	lcd16x2_toggle_e();
 	// Delay, busy flag can't be checked here
-	DelayUs(LCD16X2_DELAY_INIT_REP);
+	// Delay_Us(LCD16X2_DELAY_INIT_REP);
+	Delay(LCD16X2_DELAY_INIT_REP);
 	
 	// Repeat last command for third time
 	lcd16x2_toggle_e();
 	// Delay, busy flag can't be checked here
-	DelayUs(LCD16X2_DELAY_INIT_REP);
+	// Delay_Us(LCD16X2_DELAY_INIT_REP);
+	Delay(LCD16X2_DELAY_INIT_REP);
 	
 	// Initialize 4-bit mode
 	LCD16X2_GPIO_D5->BSRR = LCD16X2_PIN_D5;	// Function set
 	LCD16X2_GPIO_D4->BRR = LCD16X2_PIN_D4;	// 4-bit mode
 	lcd16x2_toggle_e();
-	DelayUs(LCD16X2_DELAY_INIT_4BIT);
+	// Delay_Us(LCD16X2_DELAY_INIT_4BIT);
+	Delay(LCD16X2_DELAY_INIT_4BIT);
 	
 	/* From now the LCD only accepts 4 bit I/O */
 	
@@ -469,7 +475,8 @@ static void lcd16x2_toggle_e()
 	// EN pin = HIGH
 	LCD16X2_GPIO_EN->BSRR = LCD16X2_PIN_EN;
 	// Pulse length in us
-	DelayUs(LCD16X2_DELAY_ENABLE_PULSE);
+	// Delay_Us(LCD16X2_DELAY_ENABLE_PULSE);
+	Delay(LCD16X2_DELAY_ENABLE_PULSE);
 	// EN pin = LOW
 	LCD16X2_GPIO_EN->BRR = LCD16X2_PIN_EN;
 }
@@ -563,7 +570,8 @@ static uint8_t lcd16x2_read(uint8_t rs)
 	// EN pin = HIGH
 	LCD16X2_GPIO_EN->BSRR = LCD16X2_PIN_EN;
 	// Pulse length in us
-	DelayUs(LCD16X2_DELAY_ENABLE_PULSE);
+	// Delay_Us(LCD16X2_DELAY_ENABLE_PULSE);
+	Delay(LCD16X2_DELAY_ENABLE_PULSE);
 	/* Read high nibble first */
 	if (LCD16X2_GPIO_D4->IDR & LCD16X2_PIN_D4) data |= 0x10;	
 	if (LCD16X2_GPIO_D5->IDR & LCD16X2_PIN_D5) data |= 0x20;
@@ -573,12 +581,14 @@ static uint8_t lcd16x2_read(uint8_t rs)
 	LCD16X2_GPIO_EN->BRR = LCD16X2_PIN_EN;
 	
 	// EN pin LOW delay
-	DelayUs(LCD16X2_DELAY_ENABLE_PULSE);
+	// Delay_Us(LCD16X2_DELAY_ENABLE_PULSE);
+	Delay(LCD16X2_DELAY_ENABLE_PULSE);
 	
 	// EN pin = HIGH
 	LCD16X2_GPIO_EN->BSRR = LCD16X2_PIN_EN;
 	// Pulse length in us
-	DelayUs(LCD16X2_DELAY_ENABLE_PULSE);
+	// Delay_Us(LCD16X2_DELAY_ENABLE_PULSE);
+	Delay(LCD16X2_DELAY_ENABLE_PULSE);
 	/* Read low nibble */
 	if (LCD16X2_GPIO_D4->IDR & LCD16X2_PIN_D4) data |= 0x01;
 	if (LCD16X2_GPIO_D5->IDR & LCD16X2_PIN_D5) data |= 0x02;
@@ -603,7 +613,8 @@ static uint8_t lcd16x2_wait_busy()
 	while (lcd16x2_read(0) & (LCD16X2_BUSY_FLAG));
 	
 	// Delay needed for address counter is updated after busy flag is cleared
-	DelayUs(LCD16X2_DELAY_BUSY_FLAG);
+	// Delay_Us(LCD16X2_DELAY_BUSY_FLAG);
+	Delay(LCD16X2_DELAY_BUSY_FLAG);
 	
 	// Read and return address counter
 	return lcd16x2_read(0);

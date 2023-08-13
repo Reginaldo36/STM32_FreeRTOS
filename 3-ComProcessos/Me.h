@@ -9,6 +9,8 @@ void Delay ( __IO u32 T );
 void enable_TIM3_delay (void);
 void ADC1_configure();
 
+#define DelayUs(X) Delay(X)
+
 void ADC1_configure(){
 	RCC->APB2ENR |= 1UL<<2 ; // Hab. GPIOA
 	GPIOA->CRL &= ~(0x0F << 4); // Define A1 Input Analogic
@@ -102,7 +104,8 @@ void enable_TIM3_delay (void) {
    RCC->APB1ENR |= 1<<1 ;
    TIM3->CR1 = 0x0000;
    //TIM3->ARR = 21699;
-   TIM3->ARR = 250-1; // 10µs
+   // TIM3->ARR = 250-1; // 10µs
+   TIM3->ARR = 720-1; // 10µs
    // para obter o período de 868µs
 /*https://www.vishay.com/docs/80071/dataform.pdf PAG 2
  * https://controllerstech.com/ir-remote-with-stm32/
