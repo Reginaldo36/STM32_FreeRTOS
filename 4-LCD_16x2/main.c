@@ -1,3 +1,19 @@
+/*
+ * Projeto LCD
+ *		Modificações necessárias: 
+ *		  FreeRTOSConfig:
+ *			 TICK_RATE_HZ definido em (100000)Hz -> 1µs
+ *
+ *	Clock do sistema: 
+ *		72Mhz
+ *	
+ *	Lib construída para Arduíno UNO:
+ *		myLcd.h
+ *			#define delayMicroseconds(X)   vTaskDelay(X)
+ *			#define delay(X)  vTaskDelay(X)
+ *
+ * */
+
 // FreeRTOS: 
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -29,7 +45,15 @@ static void task1(void *args __attribute((unused))) {
   disp_cmd(0x0C);
 
   disp_text("abcdABCDEF012",0,0);
+  u8 cont = (char) 1;
 	while(1){
+
+		cont &= 0xffff;
+		cont ++;
+		disp_text("CONTADOR: ", 1, 0);
+		disp_number( cont, 1, 11);
+		__delay_ms(1000);
+		
 	}
 }
 
@@ -39,7 +63,7 @@ static void task2(void *args __attribute ((unused))){
 
 	while(1){
 		GPIOC->ODR	^= (1<<13);
-		__delay(50);
+		__delay_ms(50);
 	}
 }
 
