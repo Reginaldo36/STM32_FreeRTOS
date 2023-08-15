@@ -191,9 +191,9 @@ void send_nibble(unsigned char nib, char rsel)
 
   /* -- Pulse Enable -- */
   set_bit(reg1,EN);                            /* seta EN */
-  delayMicroseconds(1200);                     /* aguarda 1200µs */
+  delayMicroseconds(120);                     /* aguarda 1200µs */
   clr_bit(reg1,EN);                            /* limpa EN */
-  delayMicroseconds(1200);                             /* aguarda 1200µs */
+  delayMicroseconds(120);                             /* aguarda 1200µs */
 
 } /* end send nibble */
 

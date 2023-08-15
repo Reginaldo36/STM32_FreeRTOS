@@ -38,7 +38,7 @@
 #define      D6		   6                    //pino de dados DB6 do LCD
 #define      D7		   7                    //pino de dados DB7 do LCD
 
-#define delayMicroseconds(X)	vTaskDelay(X*100)
+#define delayMicroseconds(X)	 vTaskDelay(X)
 #define delay(X)	vTaskDelay(X)
 
 /* ========================================================================= */

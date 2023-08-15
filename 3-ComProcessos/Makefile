@@ -1,5 +1,5 @@
 # Define algoritmo de alocação de processos na memória:
-HEAP_x		:= heap_2.c 
+HEAP_x		:= heap_4.c 
 
 # Nome dos arquivos processados:
 TARGET		:= OUT
