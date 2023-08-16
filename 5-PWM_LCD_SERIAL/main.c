@@ -11,12 +11,6 @@
  *		myLcd.h
  *			#define delayMicroseconds(X)   vTaskDelay(X)
  *			#define delay(X)  vTaskDelay(X)
- *
- * Pinos do LCD 16x2:
- *		GPIOA
- *			RS -> P2		| EN -> P3
- *			D4	-> P4		| D5 -> P5
- *			D6 -> P6		| D7 -> P7
  * */
 //
 // FreeRTOS: 
@@ -30,11 +24,12 @@
 #define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO ))
 #define __delay( TEMPO ) vTaskDelay( TEMPO )
 
-// LCD 16x2
 #include "stm32f10x.h"
 #include "Me.h"
+// LCD 16x2
 #include "myLcd.h"
 #include "Serial.h"
+#include "PWM.h"
 
 //#include "adc.h"
 
@@ -44,6 +39,7 @@
 #define HEX 16
 
 static QueueHandle_t fila_ADC; 
+static QueueHandle_t LCD_Flag_queue; 
 
 static void task1(void *args __attribute((unused))) {
 	RCC->APB2ENR |= (1<<2);
@@ -104,7 +100,7 @@ static void task3(void *args __attribute ((unused))){
 			itoa((u32) dados_recebidos, num_char, HEX); // Base: 2 8 10 16
 
 			USARTSend( num_char );
-			__delay_ms(100);
+			__delay_ms(1);
 		}
 		else
 			USARTSend("\r\nValor não amostrado ou transmitido!! \r\n");
@@ -128,16 +124,83 @@ static void task4(void *args __attribute ((unused))){
 	}
 }
 
+static void task5(void *args __attribute ((unused))){
+	configure_PWM_TIM4();
+
+	if (!(RCC->APB2ENR << 3))
+		RCC->APB2ENR	|= (1<<3); 
+	
+	GPIOB->CRH	|= 0x444 << 16 ; // Hab 12, 13, 14 como I_fl
+
+	u8 menu_select = 0;
+	u8 menu_enter = 0;
+	u8 fila_flag; 
+	u8 PWD_Value=(u8) 0x0fff / 2;
+	while(1){
+		if (GPIOB->IDR & (1<<12))
+			menu_select ++; 
+			
+		if (GPIOB->IDR & (1<<13))
+			menu_select --; 
+	
+		if (GPIOB->IDR & (1<<13)){
+			if (menu_enter == 0)
+				menu_enter ++;
+			if (menu_enter == 1)
+				menu_enter = 0;
+		}
+
+/*
+		fila_flag = 0;
+		xQueueSend(LCD_Flag_queue, &fila_flag, 0);
+*/		
+
+		switch (menu_select){
+			case 0 :	
+					if (menu_enter){
+						
+						
+
+						disp_text("1 - Valor PWM:", 0,0);
+						disp_text("   :_ ",1,0);
+
+						//disp_number( , 1,7 );
+					}
+
+				break;
+
+			case 1 :	
+				
+				break;
+
+			case 2 :	
+					
+				break;
+
+			default : 
+				menu_select = 0;
+
+/*
+				fila_flag = 1;
+				xQueueSend(LCD_Flag_queue, &fila_flag, 0);
+*/
+		}
+		
+	}
+}
+
 int main(void) {
 	fila_ADC = xQueueCreate(5 /* Tamanho máximo da fila. */,
 								sizeof(u32) /* Largura máxima da fila. */);
-
+	LCD_Flag_queue = xQueueCreate(2, sizeof(u8));
+	
 	set_system_clock_to_72Mhz();
 
 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
 	xTaskCreate(task3, "USArt", 100 , NULL, 4 , NULL);
 	xTaskCreate(task4, "ADC", 100 , NULL, 4 , NULL);
+	xTaskCreate(task5, "Contrast", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); // inicia o escalonador de
 								  // processos.

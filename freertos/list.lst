@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccHTCD0s.s 			page 1
+ARM GAS  /tmp/ccMdawIA.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -14,82 +14,25 @@ ARM GAS  /tmp/ccHTCD0s.s 			page 1
   11              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
   12              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
   13              		.file	"list.c"
-  14              	@ GNU C17 (GNU Arm Embedded Toolchain 10.3-2021.10) version 10.3.1 20210824 (release) (arm-none-eab
-  15              	@	compiled by GNU C version 4.8.4, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl ve
+  14              	@ GNU C17 (Arch Repository) version 13.2.0 (arm-none-eabi)
+  15              	@	compiled by GNU C version 13.2.1 20230730, GMP version 6.2.1, MPFR version 4.2.0-p12, MPC version
   16              	
-  17              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-  18              	@ options passed:  -I . -I ../5-PWM_LCD_SERIAL
-  19              	@ -I ../stm32f10x_lib/CMSIS/CM3/CoreSupport
-  20              	@ -I ../stm32f10x_lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x
-  21              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/inc
-  22              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver -I ../freertos/include
-  23              	@ -I ../freertos/portable/GCC/ARM_CM3 -imultilib thumb/v7-m/nofp
-  24              	@ -iprefix /usr/bin/../lib/gcc/arm-none-eabi/10.3.1/
-  25              	@ -isysroot /usr/bin/../arm-none-eabi -D__USES_INITFINI__ -D STM32F10X_MD
-  26              	@ -D USE_STDPERIPH_DRIVER -D HSE_VALUE=8000000 -D RUN_FROM_FLASH=1
-  27              	@ ../freertos/list.c -mcpu=cortex-m3 -mthumb -mfloat-abi=soft
-  28              	@ -mlibarch=armv7-m -march=armv7-m -auxbase-strip ../freertos/list.o -g
-  29              	@ -gdwarf-2 -Os -Wall -fomit-frame-pointer -fverbose-asm
-  30              	@ options enabled:  -faggressive-loop-optimizations -fallocation-dce
-  31              	@ -fauto-inc-dec -fbranch-count-reg -fcaller-saves -fcode-hoisting
-  32              	@ -fcombine-stack-adjustments -fcompare-elim -fcprop-registers
-  33              	@ -fcrossjumping -fcse-follow-jumps -fdefer-pop
-  34              	@ -fdelete-null-pointer-checks -fdevirtualize -fdevirtualize-speculatively
-  35              	@ -fdwarf2-cfi-asm -fearly-inlining -feliminate-unused-debug-symbols
-  36              	@ -feliminate-unused-debug-types -fexpensive-optimizations
-  37              	@ -fforward-propagate -ffp-int-builtin-inexact -ffunction-cse -fgcse
-  38              	@ -fgcse-lm -fgnu-unique -fguess-branch-probability -fhoist-adjacent-loads
-  39              	@ -fident -fif-conversion -fif-conversion2 -findirect-inlining -finline
-  40              	@ -finline-atomics -finline-functions -finline-functions-called-once
-  41              	@ -finline-small-functions -fipa-bit-cp -fipa-cp -fipa-icf
-  42              	@ -fipa-icf-functions -fipa-icf-variables -fipa-profile -fipa-pure-const
-  43              	@ -fipa-ra -fipa-reference -fipa-reference-addressable -fipa-sra
-  44              	@ -fipa-stack-alignment -fipa-vrp -fira-hoist-pressure
-  45              	@ -fira-share-save-slots -fira-share-spill-slots
-  46              	@ -fisolate-erroneous-paths-dereference -fivopts -fkeep-static-consts
-  47              	@ -fleading-underscore -flifetime-dse -flra-remat -fmath-errno
-  48              	@ -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
-  49              	@ -fomit-frame-pointer -foptimize-sibling-calls -fpartial-inlining
-  50              	@ -fpeephole -fpeephole2 -fplt -fprefetch-loop-arrays -freg-struct-return
-  51              	@ -freorder-blocks -freorder-functions -frerun-cse-after-loop
-  52              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
-  53              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
-  54              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
-  55              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
-  56              	@ -fsection-anchors -fsemantic-interposition -fshow-column
-  57              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
-ARM GAS  /tmp/ccHTCD0s.s 			page 2
-
-
-  58              	@ -fsplit-wide-types -fssa-backprop -fssa-phiopt -fstdarg-opt
-  59              	@ -fstore-merging -fstrict-aliasing -fstrict-volatile-bitfields
-  60              	@ -fsync-libcalls -fthread-jumps -ftoplevel-reorder -ftrapping-math
-  61              	@ -ftree-bit-ccp -ftree-builtin-call-dce -ftree-ccp -ftree-ch
-  62              	@ -ftree-coalesce-vars -ftree-copy-prop -ftree-cselim -ftree-dce
-  63              	@ -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
-  64              	@ -ftree-loop-distribute-patterns -ftree-loop-if-convert -ftree-loop-im
-  65              	@ -ftree-loop-ivcanon -ftree-loop-optimize -ftree-parallelize-loops=
-  66              	@ -ftree-phiprop -ftree-pre -ftree-pta -ftree-reassoc -ftree-scev-cprop
-  67              	@ -ftree-sink -ftree-slsr -ftree-sra -ftree-switch-conversion
-  68              	@ -ftree-tail-merge -ftree-ter -ftree-vrp -funit-at-a-time -fvar-tracking
-  69              	@ -fvar-tracking-assignments -fverbose-asm -fzero-initialized-in-bss
-  70              	@ -masm-syntax-unified -mbe32 -mfix-cortex-m3-ldrd -mlittle-endian
-  71              	@ -mpic-data-is-text-relative -msched-prolog -mthumb -munaligned-access
-  72              	@ -mvectorize-with-neon-quad
-  73              	
-  74              		.text
-  75              	.Ltext0:
-  76              		.cfi_sections	.debug_frame
-  77              		.align	1
-  78              		.global	vListInitialise
-  79              		.syntax unified
-  80              		.thumb
-  81              		.thumb_func
-  82              		.type	vListInitialise, %function
-  83              	vListInitialise:
-  84              	.LVL0:
-  85              	.LFB5:
-  86              		.file 1 "../freertos/list.c"
+  17              	@ warning: GMP header version 6.2.1 differs from library version 6.3.0.
+  18              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  19              	@ options passed: -mcpu=cortex-m3 -mthumb -mfloat-abi=soft -march=armv7-m -g -gdwarf-2 -Os -fomit-f
+  20              		.text
+  21              	.Ltext0:
+  22              		.cfi_sections	.debug_frame
+  23              		.file 1 "../freertos/list.c"
+  24              		.align	1
+  25              		.global	vListInitialise
+  26              		.syntax unified
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	vListInitialise, %function
+  30              	vListInitialise:
+  31              	.LVL0:
+  32              	.LFB5:
    1:../freertos/list.c **** /*
    2:../freertos/list.c ****  * FreeRTOS Kernel V10.2.1
    3:../freertos/list.c ****  * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
@@ -115,12 +58,12 @@ ARM GAS  /tmp/ccHTCD0s.s 			page 1
   23:../freertos/list.c ****  * http://aws.amazon.com/freertos
   24:../freertos/list.c ****  *
   25:../freertos/list.c ****  * 1 tab == 4 spaces!
+ARM GAS  /tmp/ccMdawIA.s 			page 2
+
+
   26:../freertos/list.c ****  */
   27:../freertos/list.c **** 
   28:../freertos/list.c **** 
-ARM GAS  /tmp/ccHTCD0s.s 			page 3
-
-
   29:../freertos/list.c **** #include <stdlib.h>
   30:../freertos/list.c **** #include "FreeRTOS.h"
   31:../freertos/list.c **** #include "list.h"
@@ -131,251 +74,250 @@ ARM GAS  /tmp/ccHTCD0s.s 			page 1
   36:../freertos/list.c **** 
   37:../freertos/list.c **** void vListInitialise( List_t * const pxList )
   38:../freertos/list.c **** {
-  87              		.loc 1 38 1 view -0
-  88              		.cfi_startproc
-  89              		@ args = 0, pretend = 0, frame = 0
-  90              		@ frame_needed = 0, uses_anonymous_args = 0
-  91              		@ link register save eliminated.
+  33              		.loc 1 38 1 view -0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 0, uses_anonymous_args = 0
+  37              		@ link register save eliminated.
   39:../freertos/list.c **** 	/* The list structure contains a list item which is used to mark the
   40:../freertos/list.c **** 	end of the list.  To initialise the list the list end is inserted
   41:../freertos/list.c **** 	as the only list entry. */
   42:../freertos/list.c **** 	pxList->pxIndex = ( ListItem_t * ) &( pxList->xListEnd );			/*lint !e826 !e740 !e9087 The mini lis
-  92              		.loc 1 42 2 view .LVU1
-  93              	@ ../freertos/list.c:46: 	pxList->xListEnd.xItemValue = portMAX_DELAY;
+  38              		.loc 1 42 2 view .LVU1
+  39              	@ ../freertos/list.c:46: 	pxList->xListEnd.xItemValue = portMAX_DELAY;
   43:../freertos/list.c **** 
   44:../freertos/list.c **** 	/* The list end value is the highest possible value in the list to
   45:../freertos/list.c **** 	ensure it remains at the end of the list. */
   46:../freertos/list.c **** 	pxList->xListEnd.xItemValue = portMAX_DELAY;
-  94              		.loc 1 46 30 is_stmt 0 view .LVU2
-  95 0000 4FF0FF32 		mov	r2, #-1	@ tmp115,
-  96              	@ ../freertos/list.c:42: 	pxList->pxIndex = ( ListItem_t * ) &( pxList->xListEnd );			/*lint !e826 
+  40              		.loc 1 46 30 is_stmt 0 view .LVU2
+  41 0000 4FF0FF32 		mov	r2, #-1	@ tmp116,
+  42              	@ ../freertos/list.c:42: 	pxList->pxIndex = ( ListItem_t * ) &( pxList->xListEnd );			/*lint !e826 
   42:../freertos/list.c **** 
-  97              		.loc 1 42 37 view .LVU3
-  98 0004 00F10803 		add	r3, r0, #8	@ _1, pxList,
-  99              	@ ../freertos/list.c:50: 	pxList->xListEnd.pxNext = ( ListItem_t * ) &( pxList->xListEnd );	/*lint 
+  43              		.loc 1 42 37 view .LVU3
+  44 0004 00F10803 		add	r3, r0, #8	@ _1, pxList,
+  45              	@ ../freertos/list.c:50: 	pxList->xListEnd.pxNext = ( ListItem_t * ) &( pxList->xListEnd );	/*lint 
   47:../freertos/list.c **** 
   48:../freertos/list.c **** 	/* The list end next and previous pointers point to itself so we know
   49:../freertos/list.c **** 	when the list is empty. */
   50:../freertos/list.c **** 	pxList->xListEnd.pxNext = ( ListItem_t * ) &( pxList->xListEnd );	/*lint !e826 !e740 !e9087 The mi
- 100              		.loc 1 50 26 view .LVU4
- 101 0008 C0E90223 		strd	r2, r3, [r0, #8]	@ tmp115, _1, pxList,
- 102              	@ ../freertos/list.c:42: 	pxList->pxIndex = ( ListItem_t * ) &( pxList->xListEnd );			/*lint !e826 
+  46              		.loc 1 50 26 view .LVU4
+  47 0008 C0E90223 		strd	r2, r3, [r0, #8]	@ tmp116, _1, pxList,
+  48              	@ ../freertos/list.c:42: 	pxList->pxIndex = ( ListItem_t * ) &( pxList->xListEnd );			/*lint !e826 
   42:../freertos/list.c **** 
- 103              		.loc 1 42 18 view .LVU5
- 104 000c 4360     		str	r3, [r0, #4]	@ _1, pxList_2(D)->pxIndex
+  49              		.loc 1 42 18 view .LVU5
+  50 000c 4360     		str	r3, [r0, #4]	@ _1, pxList_2(D)->pxIndex
   46:../freertos/list.c **** 
- 105              		.loc 1 46 2 is_stmt 1 view .LVU6
+  51              		.loc 1 46 2 is_stmt 1 view .LVU6
   51:../freertos/list.c **** 	pxList->xListEnd.pxPrevious = ( ListItem_t * ) &( pxList->xListEnd );/*lint !e826 !e740 !e9087 The
- 106              		.loc 1 51 2 view .LVU7
- 107              	@ ../freertos/list.c:51: 	pxList->xListEnd.pxPrevious = ( ListItem_t * ) &( pxList->xListEnd );/*li
- 108              		.loc 1 51 30 is_stmt 0 view .LVU8
- 109 000e 0361     		str	r3, [r0, #16]	@ _1, pxList_2(D)->xListEnd.pxPrevious
+  52              		.loc 1 51 2 view .LVU7
+  53              	@ ../freertos/list.c:51: 	pxList->xListEnd.pxPrevious = ( ListItem_t * ) &( pxList->xListEnd );/*li
+  54              		.loc 1 51 30 is_stmt 0 view .LVU8
+  55 000e 0361     		str	r3, [r0, #16]	@ _1, pxList_2(D)->xListEnd.pxPrevious
   52:../freertos/list.c **** 
   53:../freertos/list.c **** 	pxList->uxNumberOfItems = ( UBaseType_t ) 0U;
- 110              		.loc 1 53 2 is_stmt 1 view .LVU9
- 111              	@ ../freertos/list.c:53: 	pxList->uxNumberOfItems = ( UBaseType_t ) 0U;
- 112              		.loc 1 53 26 is_stmt 0 view .LVU10
- 113 0010 0023     		movs	r3, #0	@ tmp116,
- 114 0012 0360     		str	r3, [r0]	@ tmp116, pxList_2(D)->uxNumberOfItems
+  56              		.loc 1 53 2 is_stmt 1 view .LVU9
+  57              	@ ../freertos/list.c:53: 	pxList->uxNumberOfItems = ( UBaseType_t ) 0U;
+  58              		.loc 1 53 26 is_stmt 0 view .LVU10
+ARM GAS  /tmp/ccMdawIA.s 			page 3
+
+
+  59 0010 0023     		movs	r3, #0	@ tmp117,
+  60 0012 0360     		str	r3, [r0]	@ tmp117, pxList_2(D)->uxNumberOfItems
   54:../freertos/list.c **** 
-ARM GAS  /tmp/ccHTCD0s.s 			page 4
-
-
   55:../freertos/list.c **** 	/* Write known values into the list if
   56:../freertos/list.c **** 	configUSE_LIST_DATA_INTEGRITY_CHECK_BYTES is set to 1. */
   57:../freertos/list.c **** 	listSET_LIST_INTEGRITY_CHECK_1_VALUE( pxList );
- 115              		.loc 1 57 48 is_stmt 1 view .LVU11
+  61              		.loc 1 57 48 is_stmt 1 view .LVU11
   58:../freertos/list.c **** 	listSET_LIST_INTEGRITY_CHECK_2_VALUE( pxList );
- 116              		.loc 1 58 48 view .LVU12
- 117              	@ ../freertos/list.c:59: }
+  62              		.loc 1 58 48 view .LVU12
+  63              	@ ../freertos/list.c:59: }
   59:../freertos/list.c **** }
- 118              		.loc 1 59 1 is_stmt 0 view .LVU13
- 119 0014 7047     		bx	lr	@
- 120              		.cfi_endproc
- 121              	.LFE5:
- 122              		.size	vListInitialise, .-vListInitialise
- 123              		.align	1
- 124              		.global	vListInitialiseItem
- 125              		.syntax unified
- 126              		.thumb
- 127              		.thumb_func
- 128              		.type	vListInitialiseItem, %function
- 129              	vListInitialiseItem:
- 130              	.LVL1:
- 131              	.LFB6:
+  64              		.loc 1 59 1 is_stmt 0 view .LVU13
+  65 0014 7047     		bx	lr	@
+  66              		.cfi_endproc
+  67              	.LFE5:
+  68              		.size	vListInitialise, .-vListInitialise
+  69              		.align	1
+  70              		.global	vListInitialiseItem
+  71              		.syntax unified
+  72              		.thumb
+  73              		.thumb_func
+  74              		.type	vListInitialiseItem, %function
+  75              	vListInitialiseItem:
+  76              	.LVL1:
+  77              	.LFB6:
   60:../freertos/list.c **** /*-----------------------------------------------------------*/
   61:../freertos/list.c **** 
   62:../freertos/list.c **** void vListInitialiseItem( ListItem_t * const pxItem )
   63:../freertos/list.c **** {
- 132              		.loc 1 63 1 is_stmt 1 view -0
- 133              		.cfi_startproc
- 134              		@ args = 0, pretend = 0, frame = 0
- 135              		@ frame_needed = 0, uses_anonymous_args = 0
- 136              		@ link register save eliminated.
+  78              		.loc 1 63 1 is_stmt 1 view -0
+  79              		.cfi_startproc
+  80              		@ args = 0, pretend = 0, frame = 0
+  81              		@ frame_needed = 0, uses_anonymous_args = 0
+  82              		@ link register save eliminated.
   64:../freertos/list.c **** 	/* Make sure the list item is not recorded as being on a list. */
   65:../freertos/list.c **** 	pxItem->pxContainer = NULL;
- 137              		.loc 1 65 2 view .LVU15
- 138              	@ ../freertos/list.c:65: 	pxItem->pxContainer = NULL;
- 139              		.loc 1 65 22 is_stmt 0 view .LVU16
- 140 0016 0023     		movs	r3, #0	@ tmp114,
- 141 0018 0361     		str	r3, [r0, #16]	@ tmp114, pxItem_2(D)->pvContainer
+  83              		.loc 1 65 2 view .LVU15
+  84              	@ ../freertos/list.c:65: 	pxItem->pxContainer = NULL;
+  85              		.loc 1 65 22 is_stmt 0 view .LVU16
+  86 0016 0023     		movs	r3, #0	@ tmp115,
+  87 0018 0361     		str	r3, [r0, #16]	@ tmp115, pxItem_2(D)->pvContainer
   66:../freertos/list.c **** 
   67:../freertos/list.c **** 	/* Write known values into the list item if
   68:../freertos/list.c **** 	configUSE_LIST_DATA_INTEGRITY_CHECK_BYTES is set to 1. */
   69:../freertos/list.c **** 	listSET_FIRST_LIST_ITEM_INTEGRITY_CHECK_VALUE( pxItem );
- 142              		.loc 1 69 57 is_stmt 1 view .LVU17
+  88              		.loc 1 69 57 is_stmt 1 view .LVU17
   70:../freertos/list.c **** 	listSET_SECOND_LIST_ITEM_INTEGRITY_CHECK_VALUE( pxItem );
- 143              		.loc 1 70 58 view .LVU18
- 144              	@ ../freertos/list.c:71: }
+  89              		.loc 1 70 58 view .LVU18
+  90              	@ ../freertos/list.c:71: }
   71:../freertos/list.c **** }
- 145              		.loc 1 71 1 is_stmt 0 view .LVU19
- 146 001a 7047     		bx	lr	@
- 147              		.cfi_endproc
- 148              	.LFE6:
- 149              		.size	vListInitialiseItem, .-vListInitialiseItem
- 150              		.align	1
- 151              		.global	vListInsertEnd
- 152              		.syntax unified
- 153              		.thumb
- 154              		.thumb_func
-ARM GAS  /tmp/ccHTCD0s.s 			page 5
+  91              		.loc 1 71 1 is_stmt 0 view .LVU19
+  92 001a 7047     		bx	lr	@
+  93              		.cfi_endproc
+  94              	.LFE6:
+  95              		.size	vListInitialiseItem, .-vListInitialiseItem
+  96              		.align	1
+  97              		.global	vListInsertEnd
+ARM GAS  /tmp/ccMdawIA.s 			page 4
 
 
- 155              		.type	vListInsertEnd, %function
- 156              	vListInsertEnd:
- 157              	.LVL2:
- 158              	.LFB7:
+  98              		.syntax unified
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	vListInsertEnd, %function
+ 102              	vListInsertEnd:
+ 103              	.LVL2:
+ 104              	.LFB7:
   72:../freertos/list.c **** /*-----------------------------------------------------------*/
   73:../freertos/list.c **** 
   74:../freertos/list.c **** void vListInsertEnd( List_t * const pxList, ListItem_t * const pxNewListItem )
   75:../freertos/list.c **** {
- 159              		.loc 1 75 1 is_stmt 1 view -0
- 160              		.cfi_startproc
- 161              		@ args = 0, pretend = 0, frame = 0
- 162              		@ frame_needed = 0, uses_anonymous_args = 0
- 163              		@ link register save eliminated.
+ 105              		.loc 1 75 1 is_stmt 1 view -0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109              		@ link register save eliminated.
   76:../freertos/list.c **** ListItem_t * const pxIndex = pxList->pxIndex;
- 164              		.loc 1 76 1 view .LVU21
- 165              	@ ../freertos/list.c:76: ListItem_t * const pxIndex = pxList->pxIndex;
- 166              		.loc 1 76 20 is_stmt 0 view .LVU22
- 167 001c 4368     		ldr	r3, [r0, #4]	@ pxIndex, pxList_6(D)->pxIndex
- 168              	.LVL3:
+ 110              		.loc 1 76 1 view .LVU21
+ 111              	@ ../freertos/list.c:76: ListItem_t * const pxIndex = pxList->pxIndex;
+ 112              		.loc 1 76 20 is_stmt 0 view .LVU22
+ 113 001c 4368     		ldr	r3, [r0, #4]	@ pxIndex, pxList_5(D)->pxIndex
+ 114              	.LVL3:
   77:../freertos/list.c **** 
   78:../freertos/list.c **** 	/* Only effective when configASSERT() is also defined, these tests may catch
   79:../freertos/list.c **** 	the list data structures being overwritten in memory.  They will not catch
   80:../freertos/list.c **** 	data errors caused by incorrect configuration or use of FreeRTOS. */
   81:../freertos/list.c **** 	listTEST_LIST_INTEGRITY( pxList );
- 169              		.loc 1 81 35 is_stmt 1 view .LVU23
+ 115              		.loc 1 81 35 is_stmt 1 view .LVU23
   82:../freertos/list.c **** 	listTEST_LIST_ITEM_INTEGRITY( pxNewListItem );
- 170              		.loc 1 82 47 view .LVU24
+ 116              		.loc 1 82 47 view .LVU24
   83:../freertos/list.c **** 
   84:../freertos/list.c **** 	/* Insert a new list item into pxList, but rather than sort the list,
   85:../freertos/list.c **** 	makes the new list item the last item to be removed by a call to
   86:../freertos/list.c **** 	listGET_OWNER_OF_NEXT_ENTRY(). */
   87:../freertos/list.c **** 	pxNewListItem->pxNext = pxIndex;
- 171              		.loc 1 87 2 view .LVU25
- 172              	@ ../freertos/list.c:88: 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
+ 117              		.loc 1 87 2 view .LVU25
+ 118              	@ ../freertos/list.c:88: 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
   88:../freertos/list.c **** 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
- 173              		.loc 1 88 37 is_stmt 0 view .LVU26
- 174 001e 9A68     		ldr	r2, [r3, #8]	@ _1, pxIndex_7->pxPrevious
- 175              	@ ../freertos/list.c:87: 	pxNewListItem->pxNext = pxIndex;
+ 119              		.loc 1 88 37 is_stmt 0 view .LVU26
+ 120 001e 9A68     		ldr	r2, [r3, #8]	@ _1, pxIndex_6->pxPrevious
+ 121              	@ ../freertos/list.c:87: 	pxNewListItem->pxNext = pxIndex;
   87:../freertos/list.c **** 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
- 176              		.loc 1 87 24 view .LVU27
- 177 0020 4B60     		str	r3, [r1, #4]	@ pxIndex, pxNewListItem_8(D)->pxNext
- 178              		.loc 1 88 2 is_stmt 1 view .LVU28
- 179              	@ ../freertos/list.c:88: 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
- 180              		.loc 1 88 28 is_stmt 0 view .LVU29
- 181 0022 8A60     		str	r2, [r1, #8]	@ _1, pxNewListItem_8(D)->pxPrevious
+ 122              		.loc 1 87 24 view .LVU27
+ 123 0020 4B60     		str	r3, [r1, #4]	@ pxIndex, pxNewListItem_7(D)->pxNext
+ 124              		.loc 1 88 2 is_stmt 1 view .LVU28
+ 125              	@ ../freertos/list.c:88: 	pxNewListItem->pxPrevious = pxIndex->pxPrevious;
+ 126              		.loc 1 88 28 is_stmt 0 view .LVU29
+ 127 0022 8A60     		str	r2, [r1, #8]	@ _1, pxNewListItem_7(D)->pxPrevious
   89:../freertos/list.c **** 
   90:../freertos/list.c **** 	/* Only used during decision coverage testing. */
   91:../freertos/list.c **** 	mtCOVERAGE_TEST_DELAY();
- 182              		.loc 1 91 25 is_stmt 1 view .LVU30
+ 128              		.loc 1 91 25 is_stmt 1 view .LVU30
   92:../freertos/list.c **** 
   93:../freertos/list.c **** 	pxIndex->pxPrevious->pxNext = pxNewListItem;
- 183              		.loc 1 93 2 view .LVU31
- 184              	@ ../freertos/list.c:93: 	pxIndex->pxPrevious->pxNext = pxNewListItem;
- 185              		.loc 1 93 30 is_stmt 0 view .LVU32
- 186 0024 9A68     		ldr	r2, [r3, #8]	@ pxIndex_7->pxPrevious, pxIndex_7->pxPrevious
- 187 0026 5160     		str	r1, [r2, #4]	@ pxNewListItem, _2->pxNext
+ 129              		.loc 1 93 2 view .LVU31
+ 130              	@ ../freertos/list.c:93: 	pxIndex->pxPrevious->pxNext = pxNewListItem;
+ 131              		.loc 1 93 30 is_stmt 0 view .LVU32
+ARM GAS  /tmp/ccMdawIA.s 			page 5
+
+
+ 132 0024 5160     		str	r1, [r2, #4]	@ pxNewListItem, _1->pxNext
   94:../freertos/list.c **** 	pxIndex->pxPrevious = pxNewListItem;
-ARM GAS  /tmp/ccHTCD0s.s 			page 6
-
-
- 188              		.loc 1 94 2 is_stmt 1 view .LVU33
- 189              	@ ../freertos/list.c:94: 	pxIndex->pxPrevious = pxNewListItem;
- 190              		.loc 1 94 22 is_stmt 0 view .LVU34
- 191 0028 9960     		str	r1, [r3, #8]	@ pxNewListItem, pxIndex_7->pxPrevious
+ 133              		.loc 1 94 2 is_stmt 1 view .LVU33
+ 134              	@ ../freertos/list.c:94: 	pxIndex->pxPrevious = pxNewListItem;
+ 135              		.loc 1 94 22 is_stmt 0 view .LVU34
+ 136 0026 9960     		str	r1, [r3, #8]	@ pxNewListItem, pxIndex_6->pxPrevious
   95:../freertos/list.c **** 
   96:../freertos/list.c **** 	/* Remember which list the item is in. */
   97:../freertos/list.c **** 	pxNewListItem->pxContainer = pxList;
- 192              		.loc 1 97 2 is_stmt 1 view .LVU35
- 193              	@ ../freertos/list.c:99: 	( pxList->uxNumberOfItems )++;
+ 137              		.loc 1 97 2 is_stmt 1 view .LVU35
+ 138              	@ ../freertos/list.c:99: 	( pxList->uxNumberOfItems )++;
   98:../freertos/list.c **** 
   99:../freertos/list.c **** 	( pxList->uxNumberOfItems )++;
- 194              		.loc 1 99 10 is_stmt 0 view .LVU36
- 195 002a 0368     		ldr	r3, [r0]	@ _3, pxList_6(D)->uxNumberOfItems
- 196              	.LVL4:
- 197              	@ ../freertos/list.c:97: 	pxNewListItem->pxContainer = pxList;
+ 139              		.loc 1 99 10 is_stmt 0 view .LVU36
+ 140 0028 0368     		ldr	r3, [r0]	@ _2, pxList_5(D)->uxNumberOfItems
+ 141              	.LVL4:
+ 142              	@ ../freertos/list.c:97: 	pxNewListItem->pxContainer = pxList;
   97:../freertos/list.c **** 
- 198              		.loc 1 97 29 view .LVU37
- 199 002c 0861     		str	r0, [r1, #16]	@ pxList, pxNewListItem_8(D)->pvContainer
- 200              		.loc 1 99 2 is_stmt 1 view .LVU38
- 201              	@ ../freertos/list.c:99: 	( pxList->uxNumberOfItems )++;
- 202              		.loc 1 99 29 is_stmt 0 view .LVU39
- 203 002e 0133     		adds	r3, r3, #1	@ _4, _3,
- 204 0030 0360     		str	r3, [r0]	@ _4, pxList_6(D)->uxNumberOfItems
- 205              	@ ../freertos/list.c:100: }
+ 143              		.loc 1 97 29 view .LVU37
+ 144 002a 0861     		str	r0, [r1, #16]	@ pxList, pxNewListItem_7(D)->pvContainer
+ 145              		.loc 1 99 2 is_stmt 1 view .LVU38
+ 146              	@ ../freertos/list.c:99: 	( pxList->uxNumberOfItems )++;
+ 147              		.loc 1 99 29 is_stmt 0 view .LVU39
+ 148 002c 0133     		adds	r3, r3, #1	@ _3, _2,
+ 149 002e 0360     		str	r3, [r0]	@ _3, pxList_5(D)->uxNumberOfItems
+ 150              	@ ../freertos/list.c:100: }
  100:../freertos/list.c **** }
- 206              		.loc 1 100 1 view .LVU40
- 207 0032 7047     		bx	lr	@
- 208              		.cfi_endproc
- 209              	.LFE7:
- 210              		.size	vListInsertEnd, .-vListInsertEnd
- 211              		.align	1
- 212              		.global	vListInsert
- 213              		.syntax unified
- 214              		.thumb
- 215              		.thumb_func
- 216              		.type	vListInsert, %function
- 217              	vListInsert:
- 218              	.LVL5:
- 219              	.LFB8:
+ 151              		.loc 1 100 1 view .LVU40
+ 152 0030 7047     		bx	lr	@
+ 153              		.cfi_endproc
+ 154              	.LFE7:
+ 155              		.size	vListInsertEnd, .-vListInsertEnd
+ 156              		.align	1
+ 157              		.global	vListInsert
+ 158              		.syntax unified
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	vListInsert, %function
+ 162              	vListInsert:
+ 163              	.LVL5:
+ 164              	.LFB8:
  101:../freertos/list.c **** /*-----------------------------------------------------------*/
  102:../freertos/list.c **** 
  103:../freertos/list.c **** void vListInsert( List_t * const pxList, ListItem_t * const pxNewListItem )
  104:../freertos/list.c **** {
- 220              		.loc 1 104 1 is_stmt 1 view -0
- 221              		.cfi_startproc
- 222              		@ args = 0, pretend = 0, frame = 0
- 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		.loc 1 104 1 is_stmt 1 view -0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
  105:../freertos/list.c **** ListItem_t *pxIterator;
- 224              		.loc 1 105 1 view .LVU42
+ 169              		.loc 1 105 1 view .LVU42
  106:../freertos/list.c **** const TickType_t xValueOfInsertion = pxNewListItem->xItemValue;
- 225              		.loc 1 106 1 view .LVU43
- 226              	@ ../freertos/list.c:104: {
+ 170              		.loc 1 106 1 view .LVU43
+ 171              	@ ../freertos/list.c:104: {
  104:../freertos/list.c **** ListItem_t *pxIterator;
- 227              		.loc 1 104 1 is_stmt 0 view .LVU44
- 228 0034 30B5     		push	{r4, r5, lr}	@
- 229              	.LCFI0:
- 230              		.cfi_def_cfa_offset 12
-ARM GAS  /tmp/ccHTCD0s.s 			page 7
+ 172              		.loc 1 104 1 is_stmt 0 view .LVU44
+ 173 0032 30B5     		push	{r4, r5, lr}	@
+ARM GAS  /tmp/ccMdawIA.s 			page 6
 
 
- 231              		.cfi_offset 4, -12
- 232              		.cfi_offset 5, -8
- 233              		.cfi_offset 14, -4
- 234              	@ ../freertos/list.c:106: const TickType_t xValueOfInsertion = pxNewListItem->xItemValue;
- 235              		.loc 1 106 18 view .LVU45
- 236 0036 0C68     		ldr	r4, [r1]	@ xValueOfInsertion, pxNewListItem_9(D)->xItemValue
- 237              	.LVL6:
+ 174              	.LCFI0:
+ 175              		.cfi_def_cfa_offset 12
+ 176              		.cfi_offset 4, -12
+ 177              		.cfi_offset 5, -8
+ 178              		.cfi_offset 14, -4
+ 179              	@ ../freertos/list.c:106: const TickType_t xValueOfInsertion = pxNewListItem->xItemValue;
+ 180              		.loc 1 106 18 view .LVU45
+ 181 0034 0C68     		ldr	r4, [r1]	@ xValueOfInsertion, pxNewListItem_9(D)->xItemValue
+ 182              	.LVL6:
  107:../freertos/list.c **** 
  108:../freertos/list.c **** 	/* Only effective when configASSERT() is also defined, these tests may catch
  109:../freertos/list.c **** 	the list data structures being overwritten in memory.  They will not catch
  110:../freertos/list.c **** 	data errors caused by incorrect configuration or use of FreeRTOS. */
  111:../freertos/list.c **** 	listTEST_LIST_INTEGRITY( pxList );
- 238              		.loc 1 111 35 is_stmt 1 view .LVU46
+ 183              		.loc 1 111 35 is_stmt 1 view .LVU46
  112:../freertos/list.c **** 	listTEST_LIST_ITEM_INTEGRITY( pxNewListItem );
- 239              		.loc 1 112 47 view .LVU47
+ 184              		.loc 1 112 47 view .LVU47
  113:../freertos/list.c **** 
  114:../freertos/list.c **** 	/* Insert the new list item into the list, sorted in xItemValue order.
  115:../freertos/list.c **** 
@@ -386,19 +328,19 @@ ARM GAS  /tmp/ccHTCD0s.s 			page 1
  120:../freertos/list.c **** 	the iteration loop below will not end.  Therefore the value is checked
  121:../freertos/list.c **** 	first, and the algorithm slightly modified if necessary. */
  122:../freertos/list.c **** 	if( xValueOfInsertion == portMAX_DELAY )
- 240              		.loc 1 122 2 view .LVU48
- 241              	@ ../freertos/list.c:122: 	if( xValueOfInsertion == portMAX_DELAY )
- 242              		.loc 1 122 4 is_stmt 0 view .LVU49
- 243 0038 631C     		adds	r3, r4, #1	@, xValueOfInsertion,
- 244 003a 0AD1     		bne	.L5		@,
+ 185              		.loc 1 122 2 view .LVU48
+ 186              	@ ../freertos/list.c:122: 	if( xValueOfInsertion == portMAX_DELAY )
+ 187              		.loc 1 122 4 is_stmt 0 view .LVU49
+ 188 0036 631C     		adds	r3, r4, #1	@, xValueOfInsertion,
+ 189 0038 0AD1     		bne	.L5		@,
  123:../freertos/list.c **** 	{
  124:../freertos/list.c **** 		pxIterator = pxList->xListEnd.pxPrevious;
- 245              		.loc 1 124 3 is_stmt 1 view .LVU50
- 246              	@ ../freertos/list.c:124: 		pxIterator = pxList->xListEnd.pxPrevious;
- 247              		.loc 1 124 14 is_stmt 0 view .LVU51
- 248 003c 0369     		ldr	r3, [r0, #16]	@ pxIterator, pxList_11(D)->xListEnd.pxPrevious
- 249              	.LVL7:
- 250              	.L6:
+ 190              		.loc 1 124 3 is_stmt 1 view .LVU50
+ 191              	@ ../freertos/list.c:124: 		pxIterator = pxList->xListEnd.pxPrevious;
+ 192              		.loc 1 124 14 is_stmt 0 view .LVU51
+ 193 003a 0369     		ldr	r3, [r0, #16]	@ pxIterator, pxList_11(D)->xListEnd.pxPrevious
+ 194              	.LVL7:
+ 195              	.L6:
  125:../freertos/list.c **** 	}
  126:../freertos/list.c **** 	else
  127:../freertos/list.c **** 	{
@@ -416,11 +358,11 @@ ARM GAS  /tmp/ccHTCD0s.s 			page 1
  139:../freertos/list.c **** 			   https://www.freertos.org/RTOS-Cortex-M3-M4.html and the definition
  140:../freertos/list.c **** 			   of configMAX_SYSCALL_INTERRUPT_PRIORITY on
  141:../freertos/list.c **** 			   https://www.freertos.org/a00110.html
+ARM GAS  /tmp/ccMdawIA.s 			page 7
+
+
  142:../freertos/list.c **** 			3) Calling an API function from within a critical section or when
  143:../freertos/list.c **** 			   the scheduler is suspended, or calling an API function that does
-ARM GAS  /tmp/ccHTCD0s.s 			page 8
-
-
  144:../freertos/list.c **** 			   not end in "FromISR" from an interrupt.
  145:../freertos/list.c **** 			4) Using a queue or semaphore before it has been initialised or
  146:../freertos/list.c **** 			   before the scheduler has been started (are interrupts firing
@@ -435,1275 +377,1277 @@ ARM GAS  /tmp/ccHTCD0s.s 			page 1
  155:../freertos/list.c **** 	}
  156:../freertos/list.c **** 
  157:../freertos/list.c **** 	pxNewListItem->pxNext = pxIterator->pxNext;
- 251              		.loc 1 157 2 is_stmt 1 view .LVU52
- 252              	@ ../freertos/list.c:157: 	pxNewListItem->pxNext = pxIterator->pxNext;
- 253              		.loc 1 157 36 is_stmt 0 view .LVU53
- 254 003e 5A68     		ldr	r2, [r3, #4]	@ _3, pxIterator_7->pxNext
- 255              	@ ../freertos/list.c:157: 	pxNewListItem->pxNext = pxIterator->pxNext;
- 256              		.loc 1 157 24 view .LVU54
- 257 0040 4A60     		str	r2, [r1, #4]	@ _3, pxNewListItem_9(D)->pxNext
+ 196              		.loc 1 157 2 is_stmt 1 view .LVU52
+ 197              	@ ../freertos/list.c:157: 	pxNewListItem->pxNext = pxIterator->pxNext;
+ 198              		.loc 1 157 36 is_stmt 0 view .LVU53
+ 199 003c 5A68     		ldr	r2, [r3, #4]	@ _3, pxIterator_7->pxNext
+ 200              	@ ../freertos/list.c:157: 	pxNewListItem->pxNext = pxIterator->pxNext;
+ 201              		.loc 1 157 24 view .LVU54
+ 202 003e 4A60     		str	r2, [r1, #4]	@ _3, pxNewListItem_9(D)->pxNext
  158:../freertos/list.c **** 	pxNewListItem->pxNext->pxPrevious = pxNewListItem;
- 258              		.loc 1 158 2 is_stmt 1 view .LVU55
- 259              	@ ../freertos/list.c:158: 	pxNewListItem->pxNext->pxPrevious = pxNewListItem;
- 260              		.loc 1 158 36 is_stmt 0 view .LVU56
- 261 0042 9160     		str	r1, [r2, #8]	@ pxNewListItem, _3->pxPrevious
+ 203              		.loc 1 158 2 is_stmt 1 view .LVU55
+ 204              	@ ../freertos/list.c:158: 	pxNewListItem->pxNext->pxPrevious = pxNewListItem;
+ 205              		.loc 1 158 36 is_stmt 0 view .LVU56
+ 206 0040 9160     		str	r1, [r2, #8]	@ pxNewListItem, _3->pxPrevious
  159:../freertos/list.c **** 	pxNewListItem->pxPrevious = pxIterator;
- 262              		.loc 1 159 2 is_stmt 1 view .LVU57
- 263              	@ ../freertos/list.c:159: 	pxNewListItem->pxPrevious = pxIterator;
- 264              		.loc 1 159 28 is_stmt 0 view .LVU58
- 265 0044 8B60     		str	r3, [r1, #8]	@ pxIterator, pxNewListItem_9(D)->pxPrevious
+ 207              		.loc 1 159 2 is_stmt 1 view .LVU57
+ 208              	@ ../freertos/list.c:159: 	pxNewListItem->pxPrevious = pxIterator;
+ 209              		.loc 1 159 28 is_stmt 0 view .LVU58
+ 210 0042 8B60     		str	r3, [r1, #8]	@ pxIterator, pxNewListItem_9(D)->pxPrevious
  160:../freertos/list.c **** 	pxIterator->pxNext = pxNewListItem;
- 266              		.loc 1 160 2 is_stmt 1 view .LVU59
- 267              	@ ../freertos/list.c:160: 	pxIterator->pxNext = pxNewListItem;
- 268              		.loc 1 160 21 is_stmt 0 view .LVU60
- 269 0046 5960     		str	r1, [r3, #4]	@ pxNewListItem, pxIterator_7->pxNext
+ 211              		.loc 1 160 2 is_stmt 1 view .LVU59
+ 212              	@ ../freertos/list.c:160: 	pxIterator->pxNext = pxNewListItem;
+ 213              		.loc 1 160 21 is_stmt 0 view .LVU60
+ 214 0044 5960     		str	r1, [r3, #4]	@ pxNewListItem, pxIterator_7->pxNext
  161:../freertos/list.c **** 
  162:../freertos/list.c **** 	/* Remember which list the item is in.  This allows fast removal of the
  163:../freertos/list.c **** 	item later. */
  164:../freertos/list.c **** 	pxNewListItem->pxContainer = pxList;
- 270              		.loc 1 164 2 is_stmt 1 view .LVU61
- 271              	@ ../freertos/list.c:166: 	( pxList->uxNumberOfItems )++;
+ 215              		.loc 1 164 2 is_stmt 1 view .LVU61
+ 216              	@ ../freertos/list.c:166: 	( pxList->uxNumberOfItems )++;
  165:../freertos/list.c **** 
  166:../freertos/list.c **** 	( pxList->uxNumberOfItems )++;
- 272              		.loc 1 166 10 is_stmt 0 view .LVU62
- 273 0048 0368     		ldr	r3, [r0]	@ _4, pxList_11(D)->uxNumberOfItems
- 274              	.LVL8:
- 275              	@ ../freertos/list.c:164: 	pxNewListItem->pxContainer = pxList;
+ 217              		.loc 1 166 10 is_stmt 0 view .LVU62
+ 218 0046 0368     		ldr	r3, [r0]	@ _4, pxList_11(D)->uxNumberOfItems
+ 219              	.LVL8:
+ 220              	@ ../freertos/list.c:164: 	pxNewListItem->pxContainer = pxList;
  164:../freertos/list.c **** 
- 276              		.loc 1 164 29 view .LVU63
- 277 004a 0861     		str	r0, [r1, #16]	@ pxList, pxNewListItem_9(D)->pvContainer
- 278              		.loc 1 166 2 is_stmt 1 view .LVU64
- 279              	@ ../freertos/list.c:166: 	( pxList->uxNumberOfItems )++;
- 280              		.loc 1 166 29 is_stmt 0 view .LVU65
- 281 004c 0133     		adds	r3, r3, #1	@ _5, _4,
- 282 004e 0360     		str	r3, [r0]	@ _5, pxList_11(D)->uxNumberOfItems
- 283              	@ ../freertos/list.c:167: }
-ARM GAS  /tmp/ccHTCD0s.s 			page 9
+ 221              		.loc 1 164 29 view .LVU63
+ 222 0048 0861     		str	r0, [r1, #16]	@ pxList, pxNewListItem_9(D)->pvContainer
+ 223              		.loc 1 166 2 is_stmt 1 view .LVU64
+ 224              	@ ../freertos/list.c:166: 	( pxList->uxNumberOfItems )++;
+ 225              		.loc 1 166 29 is_stmt 0 view .LVU65
+ 226 004a 0133     		adds	r3, r3, #1	@ _5, _4,
+ARM GAS  /tmp/ccMdawIA.s 			page 8
 
 
+ 227 004c 0360     		str	r3, [r0]	@ _5, pxList_11(D)->uxNumberOfItems
+ 228              	@ ../freertos/list.c:167: }
  167:../freertos/list.c **** }
- 284              		.loc 1 167 1 view .LVU66
- 285 0050 30BD     		pop	{r4, r5, pc}	@
- 286              	.LVL9:
- 287              	.L5:
+ 229              		.loc 1 167 1 view .LVU66
+ 230 004e 30BD     		pop	{r4, r5, pc}	@
+ 231              	.LVL9:
+ 232              	.L5:
  150:../freertos/list.c **** 		{
- 288              		.loc 1 150 3 is_stmt 1 view .LVU67
- 289              	@ ../freertos/list.c:150: 		for( pxIterator = ( ListItem_t * ) &( pxList->xListEnd ); pxIterator->p
+ 233              		.loc 1 150 3 is_stmt 1 view .LVU67
+ 234              	@ ../freertos/list.c:150: 		for( pxIterator = ( ListItem_t * ) &( pxList->xListEnd ); pxIterator->p
  150:../freertos/list.c **** 		{
- 290              		.loc 1 150 19 is_stmt 0 view .LVU68
- 291 0052 00F10802 		add	r2, r0, #8	@ _1, pxList,
- 292              	.LVL10:
- 293              	.L7:
+ 235              		.loc 1 150 19 is_stmt 0 view .LVU68
+ 236 0050 00F10802 		add	r2, r0, #8	@ _1, pxList,
+ 237              	.LVL10:
+ 238              	.L7:
  150:../freertos/list.c **** 		{
- 294              		.loc 1 150 61 is_stmt 1 discriminator 1 view .LVU69
- 295 0056 1346     		mov	r3, r2	@ pxIterator, _1
- 296              	@ ../freertos/list.c:150: 		for( pxIterator = ( ListItem_t * ) &( pxList->xListEnd ); pxIterator->p
+ 239              		.loc 1 150 92 is_stmt 1 discriminator 1 view .LVU69
+ 240 0054 1346     		mov	r3, r2	@ pxIterator, _1
+ 241              	@ ../freertos/list.c:150: 		for( pxIterator = ( ListItem_t * ) &( pxList->xListEnd ); pxIterator->p
  150:../freertos/list.c **** 		{
- 297              		.loc 1 150 71 is_stmt 0 discriminator 1 view .LVU70
- 298 0058 5268     		ldr	r2, [r2, #4]	@ _1, pxIterator_6->pxNext
- 299              	.LVL11:
- 300              	@ ../freertos/list.c:150: 		for( pxIterator = ( ListItem_t * ) &( pxList->xListEnd ); pxIterator->p
+ 242              		.loc 1 150 71 is_stmt 0 discriminator 1 view .LVU70
+ 243 0056 5268     		ldr	r2, [r2, #4]	@ _1, pxIterator_6->pxNext
+ 244              	.LVL11:
+ 245              	@ ../freertos/list.c:150: 		for( pxIterator = ( ListItem_t * ) &( pxList->xListEnd ); pxIterator->p
  150:../freertos/list.c **** 		{
- 301              		.loc 1 150 3 discriminator 1 view .LVU71
- 302 005a 1568     		ldr	r5, [r2]	@ _1->xItemValue, _1->xItemValue
- 303 005c A542     		cmp	r5, r4	@ _1->xItemValue, xValueOfInsertion
- 304 005e FAD9     		bls	.L7		@,
- 305 0060 EDE7     		b	.L6		@
- 306              		.cfi_endproc
- 307              	.LFE8:
- 308              		.size	vListInsert, .-vListInsert
- 309              		.align	1
- 310              		.global	uxListRemove
- 311              		.syntax unified
- 312              		.thumb
- 313              		.thumb_func
- 314              		.type	uxListRemove, %function
- 315              	uxListRemove:
- 316              	.LVL12:
- 317              	.LFB9:
+ 246              		.loc 1 150 92 discriminator 1 view .LVU71
+ 247 0058 1568     		ldr	r5, [r2]	@ _1->xItemValue, _1->xItemValue
+ 248 005a A542     		cmp	r5, r4	@ _1->xItemValue, xValueOfInsertion
+ 249 005c FAD9     		bls	.L7		@,
+ 250 005e EDE7     		b	.L6		@
+ 251              		.cfi_endproc
+ 252              	.LFE8:
+ 253              		.size	vListInsert, .-vListInsert
+ 254              		.align	1
+ 255              		.global	uxListRemove
+ 256              		.syntax unified
+ 257              		.thumb
+ 258              		.thumb_func
+ 259              		.type	uxListRemove, %function
+ 260              	uxListRemove:
+ 261              	.LVL12:
+ 262              	.LFB9:
  168:../freertos/list.c **** /*-----------------------------------------------------------*/
  169:../freertos/list.c **** 
  170:../freertos/list.c **** UBaseType_t uxListRemove( ListItem_t * const pxItemToRemove )
  171:../freertos/list.c **** {
- 318              		.loc 1 171 1 is_stmt 1 view -0
- 319              		.cfi_startproc
- 320              		@ args = 0, pretend = 0, frame = 0
- 321              		@ frame_needed = 0, uses_anonymous_args = 0
- 322              		@ link register save eliminated.
+ 263              		.loc 1 171 1 is_stmt 1 view -0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267              		@ link register save eliminated.
  172:../freertos/list.c **** /* The list item knows which list it is in.  Obtain the list from the list
  173:../freertos/list.c **** item. */
  174:../freertos/list.c **** List_t * const pxList = pxItemToRemove->pxContainer;
- 323              		.loc 1 174 1 view .LVU73
- 324              	@ ../freertos/list.c:174: List_t * const pxList = pxItemToRemove->pxContainer;
- 325              		.loc 1 174 16 is_stmt 0 view .LVU74
- 326 0062 0369     		ldr	r3, [r0, #16]	@ pxList, pxItemToRemove_8(D)->pvContainer
- 327              	.LVL13:
-ARM GAS  /tmp/ccHTCD0s.s 			page 10
+ 268              		.loc 1 174 1 view .LVU73
+ 269              	@ ../freertos/list.c:174: List_t * const pxList = pxItemToRemove->pxContainer;
+ 270              		.loc 1 174 16 is_stmt 0 view .LVU74
+ARM GAS  /tmp/ccMdawIA.s 			page 9
 
 
+ 271 0060 0369     		ldr	r3, [r0, #16]	@ pxList, pxItemToRemove_8(D)->pvContainer
+ 272              	.LVL13:
  175:../freertos/list.c **** 
  176:../freertos/list.c **** 	pxItemToRemove->pxNext->pxPrevious = pxItemToRemove->pxPrevious;
- 328              		.loc 1 176 2 is_stmt 1 view .LVU75
- 329              	@ ../freertos/list.c:176: 	pxItemToRemove->pxNext->pxPrevious = pxItemToRemove->pxPrevious;
- 330              		.loc 1 176 53 is_stmt 0 view .LVU76
- 331 0064 D0E90112 		ldrd	r1, r2, [r0, #4]	@ _1, _2, pxItemToRemove,
- 332              	@ ../freertos/list.c:176: 	pxItemToRemove->pxNext->pxPrevious = pxItemToRemove->pxPrevious;
- 333              		.loc 1 176 37 view .LVU77
- 334 0068 8A60     		str	r2, [r1, #8]	@ _2, _1->pxPrevious
+ 273              		.loc 1 176 2 is_stmt 1 view .LVU75
+ 274              	@ ../freertos/list.c:176: 	pxItemToRemove->pxNext->pxPrevious = pxItemToRemove->pxPrevious;
+ 275              		.loc 1 176 53 is_stmt 0 view .LVU76
+ 276 0062 D0E90112 		ldrd	r1, r2, [r0, #4]	@ _1, _2, pxItemToRemove,
+ 277              	@ ../freertos/list.c:176: 	pxItemToRemove->pxNext->pxPrevious = pxItemToRemove->pxPrevious;
+ 278              		.loc 1 176 37 view .LVU77
+ 279 0066 8A60     		str	r2, [r1, #8]	@ _2, _1->pxPrevious
  177:../freertos/list.c **** 	pxItemToRemove->pxPrevious->pxNext = pxItemToRemove->pxNext;
- 335              		.loc 1 177 2 is_stmt 1 view .LVU78
- 336              	@ ../freertos/list.c:177: 	pxItemToRemove->pxPrevious->pxNext = pxItemToRemove->pxNext;
- 337              		.loc 1 177 37 is_stmt 0 view .LVU79
- 338 006a 5160     		str	r1, [r2, #4]	@ _1, _2->pxNext
+ 280              		.loc 1 177 2 is_stmt 1 view .LVU78
+ 281              	@ ../freertos/list.c:177: 	pxItemToRemove->pxPrevious->pxNext = pxItemToRemove->pxNext;
+ 282              		.loc 1 177 37 is_stmt 0 view .LVU79
+ 283 0068 5160     		str	r1, [r2, #4]	@ _1, _2->pxNext
  178:../freertos/list.c **** 
  179:../freertos/list.c **** 	/* Only used during decision coverage testing. */
  180:../freertos/list.c **** 	mtCOVERAGE_TEST_DELAY();
- 339              		.loc 1 180 25 is_stmt 1 view .LVU80
+ 284              		.loc 1 180 25 is_stmt 1 view .LVU80
  181:../freertos/list.c **** 
  182:../freertos/list.c **** 	/* Make sure the index is left pointing to a valid item. */
  183:../freertos/list.c **** 	if( pxList->pxIndex == pxItemToRemove )
- 340              		.loc 1 183 2 view .LVU81
- 341              	@ ../freertos/list.c:183: 	if( pxList->pxIndex == pxItemToRemove )
- 342              		.loc 1 183 4 is_stmt 0 view .LVU82
- 343 006c 5968     		ldr	r1, [r3, #4]	@ pxList_9->pxIndex, pxList_9->pxIndex
- 344 006e 8142     		cmp	r1, r0	@ pxList_9->pxIndex, pxItemToRemove
+ 285              		.loc 1 183 2 view .LVU81
+ 286              	@ ../freertos/list.c:183: 	if( pxList->pxIndex == pxItemToRemove )
+ 287              		.loc 1 183 4 is_stmt 0 view .LVU82
+ 288 006a 5968     		ldr	r1, [r3, #4]	@ pxList_9->pxIndex, pxList_9->pxIndex
+ 289 006c 8142     		cmp	r1, r0	@ pxList_9->pxIndex, pxItemToRemove
  184:../freertos/list.c **** 	{
  185:../freertos/list.c **** 		pxList->pxIndex = pxItemToRemove->pxPrevious;
- 345              		.loc 1 185 3 is_stmt 1 view .LVU83
- 346              	@ ../freertos/list.c:185: 		pxList->pxIndex = pxItemToRemove->pxPrevious;
- 347              		.loc 1 185 19 is_stmt 0 view .LVU84
- 348 0070 08BF     		it	eq
- 349 0072 5A60     		streq	r2, [r3, #4]	@ _2, pxList_9->pxIndex
+ 290              		.loc 1 185 3 is_stmt 1 view .LVU83
+ 291              	@ ../freertos/list.c:185: 		pxList->pxIndex = pxItemToRemove->pxPrevious;
+ 292              		.loc 1 185 19 is_stmt 0 view .LVU84
+ 293 006e 08BF     		it	eq
+ 294 0070 5A60     		streq	r2, [r3, #4]	@ _2, pxList_9->pxIndex
  186:../freertos/list.c **** 	}
  187:../freertos/list.c **** 	else
  188:../freertos/list.c **** 	{
  189:../freertos/list.c **** 		mtCOVERAGE_TEST_MARKER();
- 350              		.loc 1 189 27 is_stmt 1 view .LVU85
+ 295              		.loc 1 189 27 is_stmt 1 view .LVU85
  190:../freertos/list.c **** 	}
  191:../freertos/list.c **** 
  192:../freertos/list.c **** 	pxItemToRemove->pxContainer = NULL;
- 351              		.loc 1 192 2 view .LVU86
- 352              	@ ../freertos/list.c:192: 	pxItemToRemove->pxContainer = NULL;
- 353              		.loc 1 192 30 is_stmt 0 view .LVU87
- 354 0074 0022     		movs	r2, #0	@ tmp122,
- 355 0076 0261     		str	r2, [r0, #16]	@ tmp122, pxItemToRemove_8(D)->pvContainer
+ 296              		.loc 1 192 2 view .LVU86
+ 297              	@ ../freertos/list.c:192: 	pxItemToRemove->pxContainer = NULL;
+ 298              		.loc 1 192 30 is_stmt 0 view .LVU87
+ 299 0072 0022     		movs	r2, #0	@ tmp123,
+ 300 0074 0261     		str	r2, [r0, #16]	@ tmp123, pxItemToRemove_8(D)->pvContainer
  193:../freertos/list.c **** 	( pxList->uxNumberOfItems )--;
- 356              		.loc 1 193 2 is_stmt 1 view .LVU88
- 357              	@ ../freertos/list.c:193: 	( pxList->uxNumberOfItems )--;
- 358              		.loc 1 193 10 is_stmt 0 view .LVU89
- 359 0078 1A68     		ldr	r2, [r3]	@ _4, pxList_9->uxNumberOfItems
- 360              	@ ../freertos/list.c:193: 	( pxList->uxNumberOfItems )--;
- 361              		.loc 1 193 29 view .LVU90
- 362 007a 013A     		subs	r2, r2, #1	@ _5, _4,
- 363 007c 1A60     		str	r2, [r3]	@ _5, pxList_9->uxNumberOfItems
+ 301              		.loc 1 193 2 is_stmt 1 view .LVU88
+ 302              	@ ../freertos/list.c:193: 	( pxList->uxNumberOfItems )--;
+ 303              		.loc 1 193 10 is_stmt 0 view .LVU89
+ 304 0076 1A68     		ldr	r2, [r3]	@ _4, pxList_9->uxNumberOfItems
+ 305              	@ ../freertos/list.c:193: 	( pxList->uxNumberOfItems )--;
+ 306              		.loc 1 193 29 view .LVU90
+ 307 0078 013A     		subs	r2, r2, #1	@ _5, _4,
+ 308 007a 1A60     		str	r2, [r3]	@ _5, pxList_9->uxNumberOfItems
+ARM GAS  /tmp/ccMdawIA.s 			page 10
+
+
  194:../freertos/list.c **** 
  195:../freertos/list.c **** 	return pxList->uxNumberOfItems;
-ARM GAS  /tmp/ccHTCD0s.s 			page 11
-
-
- 364              		.loc 1 195 2 is_stmt 1 view .LVU91
- 365              	@ ../freertos/list.c:195: 	return pxList->uxNumberOfItems;
- 366              		.loc 1 195 15 is_stmt 0 view .LVU92
- 367 007e 1868     		ldr	r0, [r3]	@ <retval>, pxList_9->uxNumberOfItems
- 368              	.LVL14:
- 369              	@ ../freertos/list.c:196: }
+ 309              		.loc 1 195 2 is_stmt 1 view .LVU91
+ 310              	@ ../freertos/list.c:195: 	return pxList->uxNumberOfItems;
+ 311              		.loc 1 195 15 is_stmt 0 view .LVU92
+ 312 007c 1868     		ldr	r0, [r3]	@ <retval>, pxList_9->uxNumberOfItems
+ 313              	.LVL14:
+ 314              	@ ../freertos/list.c:196: }
  196:../freertos/list.c **** }
- 370              		.loc 1 196 1 view .LVU93
- 371 0080 7047     		bx	lr	@
- 372              		.cfi_endproc
- 373              	.LFE9:
- 374              		.size	uxListRemove, .-uxListRemove
- 375              	.Letext0:
- 376              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 377              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 378              		.file 4 "../freertos/portable/GCC/ARM_CM3/portmacro.h"
- 379              		.file 5 "../freertos/include/list.h"
- 380              		.section	.debug_info,"",%progbits
- 381              	.Ldebug_info0:
- 382 0000 07030000 		.4byte	0x307
- 383 0004 0200     		.2byte	0x2
- 384 0006 00000000 		.4byte	.Ldebug_abbrev0
- 385 000a 04       		.byte	0x4
- 386 000b 01       		.uleb128 0x1
- 387 000c 34010000 		.4byte	.LASF37
- 388 0010 0C       		.byte	0xc
- 389 0011 26000000 		.4byte	.LASF38
- 390 0015 D2010000 		.4byte	.LASF39
- 391 0019 00000000 		.4byte	.Ltext0
- 392 001d 82000000 		.4byte	.Letext0
- 393 0021 00000000 		.4byte	.Ldebug_line0
- 394 0025 02       		.uleb128 0x2
- 395 0026 04       		.byte	0x4
- 396 0027 07       		.byte	0x7
- 397 0028 EE000000 		.4byte	.LASF0
- 398 002c 03       		.uleb128 0x3
- 399 002d 04       		.byte	0x4
- 400 002e 05       		.byte	0x5
- 401 002f 696E7400 		.ascii	"int\000"
- 402 0033 02       		.uleb128 0x2
- 403 0034 08       		.byte	0x8
- 404 0035 05       		.byte	0x5
- 405 0036 13020000 		.4byte	.LASF1
- 406 003a 02       		.uleb128 0x2
- 407 003b 08       		.byte	0x8
- 408 003c 04       		.byte	0x4
- 409 003d 60020000 		.4byte	.LASF2
- 410 0041 02       		.uleb128 0x2
- 411 0042 01       		.byte	0x1
- 412 0043 06       		.byte	0x6
- 413 0044 7C020000 		.4byte	.LASF3
- 414 0048 02       		.uleb128 0x2
- 415 0049 01       		.byte	0x1
- 416 004a 08       		.byte	0x8
- 417 004b 60000000 		.4byte	.LASF4
- 418 004f 02       		.uleb128 0x2
- 419 0050 02       		.byte	0x2
-ARM GAS  /tmp/ccHTCD0s.s 			page 12
+ 315              		.loc 1 196 1 view .LVU93
+ 316 007e 7047     		bx	lr	@
+ 317              		.cfi_endproc
+ 318              	.LFE9:
+ 319              		.size	uxListRemove, .-uxListRemove
+ 320              	.Letext0:
+ 321              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 322              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 323              		.file 4 "../freertos/portable/GCC/ARM_CM3/portmacro.h"
+ 324              		.file 5 "../freertos/include/list.h"
+ 325              		.section	.debug_info,"",%progbits
+ 326              	.Ldebug_info0:
+ 327 0000 07030000 		.4byte	0x307
+ 328 0004 0200     		.2byte	0x2
+ 329 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 330 000a 04       		.byte	0x4
+ 331 000b 01       		.uleb128 0x1
+ 332 000c A2000000 		.4byte	.LASF37
+ 333 0010 0C       		.byte	0xc
+ 334 0011 26000000 		.4byte	.LASF38
+ 335 0015 2A010000 		.4byte	.LASF39
+ 336 0019 00000000 		.4byte	.Ltext0
+ 337 001d 80000000 		.4byte	.Letext0
+ 338 0021 00000000 		.4byte	.Ldebug_line0
+ 339 0025 02       		.uleb128 0x2
+ 340 0026 08       		.byte	0x8
+ 341 0027 07       		.byte	0x7
+ 342 0028 C7010000 		.4byte	.LASF0
+ 343 002c 02       		.uleb128 0x2
+ 344 002d 04       		.byte	0x4
+ 345 002e 07       		.byte	0x7
+ 346 002f 98010000 		.4byte	.LASF1
+ 347 0033 03       		.uleb128 0x3
+ 348 0034 04       		.byte	0x4
+ 349 0035 05       		.byte	0x5
+ 350 0036 696E7400 		.ascii	"int\000"
+ 351 003a 02       		.uleb128 0x2
+ 352 003b 08       		.byte	0x8
+ 353 003c 05       		.byte	0x5
+ 354 003d FC010000 		.4byte	.LASF2
+ 355 0041 02       		.uleb128 0x2
+ 356 0042 08       		.byte	0x8
+ 357 0043 04       		.byte	0x4
+ 358 0044 49020000 		.4byte	.LASF3
+ 359 0048 02       		.uleb128 0x2
+ 360 0049 01       		.byte	0x1
+ 361 004a 06       		.byte	0x6
+ 362 004b 65020000 		.4byte	.LASF4
+ARM GAS  /tmp/ccMdawIA.s 			page 11
 
 
- 420 0051 05       		.byte	0x5
- 421 0052 31020000 		.4byte	.LASF5
- 422 0056 02       		.uleb128 0x2
- 423 0057 02       		.byte	0x2
- 424 0058 07       		.byte	0x7
- 425 0059 8F000000 		.4byte	.LASF6
- 426 005d 02       		.uleb128 0x2
- 427 005e 04       		.byte	0x4
- 428 005f 05       		.byte	0x5
- 429 0060 57020000 		.4byte	.LASF7
- 430 0064 04       		.uleb128 0x4
- 431 0065 BD000000 		.4byte	.LASF11
- 432 0069 02       		.byte	0x2
- 433 006a 4F       		.byte	0x4f
- 434 006b 19       		.byte	0x19
- 435 006c 70000000 		.4byte	0x70
- 436 0070 02       		.uleb128 0x2
- 437 0071 04       		.byte	0x4
- 438 0072 07       		.byte	0x7
- 439 0073 6E000000 		.4byte	.LASF8
- 440 0077 02       		.uleb128 0x2
- 441 0078 08       		.byte	0x8
- 442 0079 07       		.byte	0x7
- 443 007a 1D010000 		.4byte	.LASF9
- 444 007e 05       		.uleb128 0x5
- 445 007f 04       		.byte	0x4
- 446 0080 02       		.uleb128 0x2
- 447 0081 01       		.byte	0x1
- 448 0082 08       		.byte	0x8
- 449 0083 21020000 		.4byte	.LASF10
- 450 0087 04       		.uleb128 0x4
- 451 0088 4E020000 		.4byte	.LASF12
- 452 008c 03       		.byte	0x3
- 453 008d 30       		.byte	0x30
- 454 008e 14       		.byte	0x14
- 455 008f 64000000 		.4byte	0x64
- 456 0093 04       		.uleb128 0x4
- 457 0094 BB010000 		.4byte	.LASF13
- 458 0098 04       		.byte	0x4
- 459 0099 39       		.byte	0x39
- 460 009a 17       		.byte	0x17
- 461 009b 70000000 		.4byte	0x70
- 462 009f 06       		.uleb128 0x6
- 463 00a0 93000000 		.4byte	0x93
- 464 00a4 04       		.uleb128 0x4
- 465 00a5 0C000000 		.4byte	.LASF14
- 466 00a9 04       		.byte	0x4
- 467 00aa 3F       		.byte	0x3f
- 468 00ab 13       		.byte	0x13
- 469 00ac 87000000 		.4byte	0x87
- 470 00b0 07       		.uleb128 0x7
- 471 00b1 A4000000 		.4byte	0xa4
- 472 00b5 08       		.uleb128 0x8
- 473 00b6 55000000 		.4byte	.LASF20
- 474 00ba 14       		.byte	0x14
- 475 00bb 05       		.byte	0x5
- 476 00bc 8C       		.byte	0x8c
-ARM GAS  /tmp/ccHTCD0s.s 			page 13
+ 363 004f 02       		.uleb128 0x2
+ 364 0050 01       		.byte	0x1
+ 365 0051 08       		.byte	0x8
+ 366 0052 60000000 		.4byte	.LASF5
+ 367 0056 02       		.uleb128 0x2
+ 368 0057 02       		.byte	0x2
+ 369 0058 05       		.byte	0x5
+ 370 0059 1A020000 		.4byte	.LASF6
+ 371 005d 02       		.uleb128 0x2
+ 372 005e 02       		.byte	0x2
+ 373 005f 07       		.byte	0x7
+ 374 0060 8F000000 		.4byte	.LASF7
+ 375 0064 02       		.uleb128 0x2
+ 376 0065 04       		.byte	0x4
+ 377 0066 05       		.byte	0x5
+ 378 0067 40020000 		.4byte	.LASF8
+ 379 006b 04       		.uleb128 0x4
+ 380 006c 67010000 		.4byte	.LASF11
+ 381 0070 02       		.byte	0x2
+ 382 0071 4F       		.byte	0x4f
+ 383 0072 19       		.byte	0x19
+ 384 0073 77000000 		.4byte	0x77
+ 385 0077 02       		.uleb128 0x2
+ 386 0078 04       		.byte	0x4
+ 387 0079 07       		.byte	0x7
+ 388 007a 6E000000 		.4byte	.LASF9
+ 389 007e 05       		.uleb128 0x5
+ 390 007f 04       		.byte	0x4
+ 391 0080 02       		.uleb128 0x2
+ 392 0081 01       		.byte	0x1
+ 393 0082 08       		.byte	0x8
+ 394 0083 0A020000 		.4byte	.LASF10
+ 395 0087 04       		.uleb128 0x4
+ 396 0088 37020000 		.4byte	.LASF12
+ 397 008c 03       		.byte	0x3
+ 398 008d 30       		.byte	0x30
+ 399 008e 14       		.byte	0x14
+ 400 008f 6B000000 		.4byte	0x6b
+ 401 0093 04       		.uleb128 0x4
+ 402 0094 E5010000 		.4byte	.LASF13
+ 403 0098 04       		.byte	0x4
+ 404 0099 39       		.byte	0x39
+ 405 009a 17       		.byte	0x17
+ 406 009b 77000000 		.4byte	0x77
+ 407 009f 06       		.uleb128 0x6
+ 408 00a0 93000000 		.4byte	0x93
+ 409 00a4 04       		.uleb128 0x4
+ 410 00a5 0C000000 		.4byte	.LASF14
+ 411 00a9 04       		.byte	0x4
+ 412 00aa 3F       		.byte	0x3f
+ 413 00ab 13       		.byte	0x13
+ 414 00ac 87000000 		.4byte	0x87
+ 415 00b0 07       		.uleb128 0x7
+ 416 00b1 A4000000 		.4byte	0xa4
+ 417 00b5 08       		.uleb128 0x8
+ 418 00b6 55000000 		.4byte	.LASF20
+ 419 00ba 14       		.byte	0x14
+ARM GAS  /tmp/ccMdawIA.s 			page 12
 
 
- 477 00bd 08       		.byte	0x8
- 478 00be 0E010000 		.4byte	0x10e
- 479 00c2 09       		.uleb128 0x9
- 480 00c3 39000000 		.4byte	.LASF15
- 481 00c7 05       		.byte	0x5
- 482 00c8 8F       		.byte	0x8f
- 483 00c9 21       		.byte	0x21
- 484 00ca A4000000 		.4byte	0xa4
- 485 00ce 02       		.byte	0x2
- 486 00cf 23       		.byte	0x23
- 487 00d0 00       		.uleb128 0
- 488 00d1 09       		.uleb128 0x9
- 489 00d2 E7000000 		.4byte	.LASF16
- 490 00d6 05       		.byte	0x5
- 491 00d7 90       		.byte	0x90
- 492 00d8 2A       		.byte	0x2a
- 493 00d9 0E010000 		.4byte	0x10e
- 494 00dd 02       		.byte	0x2
- 495 00de 23       		.byte	0x23
- 496 00df 04       		.uleb128 0x4
- 497 00e0 09       		.uleb128 0x9
- 498 00e1 43020000 		.4byte	.LASF17
- 499 00e5 05       		.byte	0x5
- 500 00e6 91       		.byte	0x91
- 501 00e7 2A       		.byte	0x2a
- 502 00e8 0E010000 		.4byte	0x10e
- 503 00ec 02       		.byte	0x2
- 504 00ed 23       		.byte	0x23
- 505 00ee 08       		.uleb128 0x8
- 506 00ef 09       		.uleb128 0x9
- 507 00f0 4D000000 		.4byte	.LASF18
- 508 00f4 05       		.byte	0x5
- 509 00f5 92       		.byte	0x92
- 510 00f6 09       		.byte	0x9
- 511 00f7 7E000000 		.4byte	0x7e
- 512 00fb 02       		.byte	0x2
- 513 00fc 23       		.byte	0x23
- 514 00fd 0C       		.uleb128 0xc
- 515 00fe 09       		.uleb128 0x9
- 516 00ff 00000000 		.4byte	.LASF19
- 517 0103 05       		.byte	0x5
- 518 0104 93       		.byte	0x93
- 519 0105 25       		.byte	0x25
- 520 0106 4F010000 		.4byte	0x14f
- 521 010a 02       		.byte	0x2
- 522 010b 23       		.byte	0x23
- 523 010c 10       		.uleb128 0x10
- 524 010d 00       		.byte	0
- 525 010e 0A       		.uleb128 0xa
- 526 010f 04       		.byte	0x4
- 527 0110 B5000000 		.4byte	0xb5
- 528 0114 08       		.uleb128 0x8
- 529 0115 8F020000 		.4byte	.LASF21
- 530 0119 14       		.byte	0x14
- 531 011a 05       		.byte	0x5
- 532 011b A4       		.byte	0xa4
- 533 011c 10       		.byte	0x10
-ARM GAS  /tmp/ccHTCD0s.s 			page 14
+ 420 00bb 05       		.byte	0x5
+ 421 00bc 8C       		.byte	0x8c
+ 422 00bd 08       		.byte	0x8
+ 423 00be 0E010000 		.4byte	0x10e
+ 424 00c2 09       		.uleb128 0x9
+ 425 00c3 39000000 		.4byte	.LASF15
+ 426 00c7 05       		.byte	0x5
+ 427 00c8 8F       		.byte	0x8f
+ 428 00c9 21       		.byte	0x21
+ 429 00ca A4000000 		.4byte	0xa4
+ 430 00ce 02       		.byte	0x2
+ 431 00cf 23       		.byte	0x23
+ 432 00d0 00       		.uleb128 0
+ 433 00d1 09       		.uleb128 0x9
+ 434 00d2 91010000 		.4byte	.LASF16
+ 435 00d6 05       		.byte	0x5
+ 436 00d7 90       		.byte	0x90
+ 437 00d8 2A       		.byte	0x2a
+ 438 00d9 0E010000 		.4byte	0x10e
+ 439 00dd 02       		.byte	0x2
+ 440 00de 23       		.byte	0x23
+ 441 00df 04       		.uleb128 0x4
+ 442 00e0 09       		.uleb128 0x9
+ 443 00e1 2C020000 		.4byte	.LASF17
+ 444 00e5 05       		.byte	0x5
+ 445 00e6 91       		.byte	0x91
+ 446 00e7 2A       		.byte	0x2a
+ 447 00e8 0E010000 		.4byte	0x10e
+ 448 00ec 02       		.byte	0x2
+ 449 00ed 23       		.byte	0x23
+ 450 00ee 08       		.uleb128 0x8
+ 451 00ef 09       		.uleb128 0x9
+ 452 00f0 4D000000 		.4byte	.LASF18
+ 453 00f4 05       		.byte	0x5
+ 454 00f5 92       		.byte	0x92
+ 455 00f6 09       		.byte	0x9
+ 456 00f7 7E000000 		.4byte	0x7e
+ 457 00fb 02       		.byte	0x2
+ 458 00fc 23       		.byte	0x23
+ 459 00fd 0C       		.uleb128 0xc
+ 460 00fe 09       		.uleb128 0x9
+ 461 00ff 00000000 		.4byte	.LASF19
+ 462 0103 05       		.byte	0x5
+ 463 0104 93       		.byte	0x93
+ 464 0105 25       		.byte	0x25
+ 465 0106 4F010000 		.4byte	0x14f
+ 466 010a 02       		.byte	0x2
+ 467 010b 23       		.byte	0x23
+ 468 010c 10       		.uleb128 0x10
+ 469 010d 00       		.byte	0
+ 470 010e 0A       		.uleb128 0xa
+ 471 010f 04       		.byte	0x4
+ 472 0110 B5000000 		.4byte	0xb5
+ 473 0114 08       		.uleb128 0x8
+ 474 0115 78020000 		.4byte	.LASF21
+ 475 0119 14       		.byte	0x14
+ 476 011a 05       		.byte	0x5
+ARM GAS  /tmp/ccMdawIA.s 			page 13
 
 
- 534 011d 4F010000 		.4byte	0x14f
- 535 0121 09       		.uleb128 0x9
- 536 0122 C8000000 		.4byte	.LASF22
- 537 0126 05       		.byte	0x5
- 538 0127 A7       		.byte	0xa7
- 539 0128 17       		.byte	0x17
- 540 0129 9F000000 		.4byte	0x9f
- 541 012d 02       		.byte	0x2
- 542 012e 23       		.byte	0x23
- 543 012f 00       		.uleb128 0
- 544 0130 09       		.uleb128 0x9
- 545 0131 3B020000 		.4byte	.LASF23
- 546 0135 05       		.byte	0x5
- 547 0136 A8       		.byte	0xa8
- 548 0137 23       		.byte	0x23
- 549 0138 A8010000 		.4byte	0x1a8
- 550 013c 02       		.byte	0x2
- 551 013d 23       		.byte	0x23
- 552 013e 04       		.uleb128 0x4
- 553 013f 09       		.uleb128 0x9
- 554 0140 44000000 		.4byte	.LASF24
- 555 0144 05       		.byte	0x5
- 556 0145 A9       		.byte	0xa9
- 557 0146 11       		.byte	0x11
- 558 0147 9C010000 		.4byte	0x19c
- 559 014b 02       		.byte	0x2
- 560 014c 23       		.byte	0x23
- 561 014d 08       		.uleb128 0x8
- 562 014e 00       		.byte	0
- 563 014f 0A       		.uleb128 0xa
- 564 0150 04       		.byte	0x4
- 565 0151 14010000 		.4byte	0x114
- 566 0155 04       		.uleb128 0x4
- 567 0156 C7010000 		.4byte	.LASF25
- 568 015a 05       		.byte	0x5
- 569 015b 96       		.byte	0x96
- 570 015c 1B       		.byte	0x1b
- 571 015d B5000000 		.4byte	0xb5
- 572 0161 08       		.uleb128 0x8
- 573 0162 6C020000 		.4byte	.LASF26
- 574 0166 0C       		.byte	0xc
- 575 0167 05       		.byte	0x5
- 576 0168 98       		.byte	0x98
- 577 0169 08       		.byte	0x8
- 578 016a 9C010000 		.4byte	0x19c
- 579 016e 09       		.uleb128 0x9
- 580 016f 39000000 		.4byte	.LASF15
- 581 0173 05       		.byte	0x5
- 582 0174 9B       		.byte	0x9b
- 583 0175 21       		.byte	0x21
- 584 0176 A4000000 		.4byte	0xa4
- 585 017a 02       		.byte	0x2
- 586 017b 23       		.byte	0x23
- 587 017c 00       		.uleb128 0
- 588 017d 09       		.uleb128 0x9
- 589 017e E7000000 		.4byte	.LASF16
- 590 0182 05       		.byte	0x5
-ARM GAS  /tmp/ccHTCD0s.s 			page 15
+ 477 011b A4       		.byte	0xa4
+ 478 011c 10       		.byte	0x10
+ 479 011d 4F010000 		.4byte	0x14f
+ 480 0121 09       		.uleb128 0x9
+ 481 0122 72010000 		.4byte	.LASF22
+ 482 0126 05       		.byte	0x5
+ 483 0127 A7       		.byte	0xa7
+ 484 0128 17       		.byte	0x17
+ 485 0129 9F000000 		.4byte	0x9f
+ 486 012d 02       		.byte	0x2
+ 487 012e 23       		.byte	0x23
+ 488 012f 00       		.uleb128 0
+ 489 0130 09       		.uleb128 0x9
+ 490 0131 24020000 		.4byte	.LASF23
+ 491 0135 05       		.byte	0x5
+ 492 0136 A8       		.byte	0xa8
+ 493 0137 23       		.byte	0x23
+ 494 0138 A8010000 		.4byte	0x1a8
+ 495 013c 02       		.byte	0x2
+ 496 013d 23       		.byte	0x23
+ 497 013e 04       		.uleb128 0x4
+ 498 013f 09       		.uleb128 0x9
+ 499 0140 44000000 		.4byte	.LASF24
+ 500 0144 05       		.byte	0x5
+ 501 0145 A9       		.byte	0xa9
+ 502 0146 11       		.byte	0x11
+ 503 0147 9C010000 		.4byte	0x19c
+ 504 014b 02       		.byte	0x2
+ 505 014c 23       		.byte	0x23
+ 506 014d 08       		.uleb128 0x8
+ 507 014e 00       		.byte	0
+ 508 014f 0A       		.uleb128 0xa
+ 509 0150 04       		.byte	0x4
+ 510 0151 14010000 		.4byte	0x114
+ 511 0155 04       		.uleb128 0x4
+ 512 0156 F1010000 		.4byte	.LASF25
+ 513 015a 05       		.byte	0x5
+ 514 015b 96       		.byte	0x96
+ 515 015c 1B       		.byte	0x1b
+ 516 015d B5000000 		.4byte	0xb5
+ 517 0161 08       		.uleb128 0x8
+ 518 0162 55020000 		.4byte	.LASF26
+ 519 0166 0C       		.byte	0xc
+ 520 0167 05       		.byte	0x5
+ 521 0168 98       		.byte	0x98
+ 522 0169 08       		.byte	0x8
+ 523 016a 9C010000 		.4byte	0x19c
+ 524 016e 09       		.uleb128 0x9
+ 525 016f 39000000 		.4byte	.LASF15
+ 526 0173 05       		.byte	0x5
+ 527 0174 9B       		.byte	0x9b
+ 528 0175 21       		.byte	0x21
+ 529 0176 A4000000 		.4byte	0xa4
+ 530 017a 02       		.byte	0x2
+ 531 017b 23       		.byte	0x23
+ 532 017c 00       		.uleb128 0
+ 533 017d 09       		.uleb128 0x9
+ARM GAS  /tmp/ccMdawIA.s 			page 14
 
 
- 591 0183 9C       		.byte	0x9c
- 592 0184 2A       		.byte	0x2a
- 593 0185 0E010000 		.4byte	0x10e
- 594 0189 02       		.byte	0x2
- 595 018a 23       		.byte	0x23
- 596 018b 04       		.uleb128 0x4
- 597 018c 09       		.uleb128 0x9
- 598 018d 43020000 		.4byte	.LASF17
- 599 0191 05       		.byte	0x5
- 600 0192 9D       		.byte	0x9d
- 601 0193 2A       		.byte	0x2a
- 602 0194 0E010000 		.4byte	0x10e
- 603 0198 02       		.byte	0x2
- 604 0199 23       		.byte	0x23
- 605 019a 08       		.uleb128 0x8
- 606 019b 00       		.byte	0
- 607 019c 04       		.uleb128 0x4
- 608 019d 17000000 		.4byte	.LASF27
- 609 01a1 05       		.byte	0x5
- 610 01a2 9F       		.byte	0x9f
- 611 01a3 20       		.byte	0x20
- 612 01a4 61010000 		.4byte	0x161
- 613 01a8 0A       		.uleb128 0xa
- 614 01a9 04       		.byte	0x4
- 615 01aa 55010000 		.4byte	0x155
- 616 01ae 07       		.uleb128 0x7
- 617 01af A8010000 		.4byte	0x1a8
- 618 01b3 04       		.uleb128 0x4
- 619 01b4 B6000000 		.4byte	.LASF28
- 620 01b8 05       		.byte	0x5
- 621 01b9 AB       		.byte	0xab
- 622 01ba 03       		.byte	0x3
- 623 01bb 14010000 		.4byte	0x114
- 624 01bf 0B       		.uleb128 0xb
- 625 01c0 01       		.byte	0x1
- 626 01c1 95020000 		.4byte	.LASF40
- 627 01c5 01       		.byte	0x1
- 628 01c6 AA       		.byte	0xaa
- 629 01c7 0D       		.byte	0xd
- 630 01c8 01       		.byte	0x1
- 631 01c9 93000000 		.4byte	0x93
- 632 01cd 62000000 		.4byte	.LFB9
- 633 01d1 82000000 		.4byte	.LFE9
- 634 01d5 02       		.byte	0x2
- 635 01d6 7D       		.byte	0x7d
- 636 01d7 00       		.sleb128 0
- 637 01d8 01       		.byte	0x1
- 638 01d9 06020000 		.4byte	0x206
- 639 01dd 0C       		.uleb128 0xc
- 640 01de 80000000 		.4byte	.LASF41
- 641 01e2 01       		.byte	0x1
- 642 01e3 AA       		.byte	0xaa
- 643 01e4 2E       		.byte	0x2e
- 644 01e5 AE010000 		.4byte	0x1ae
- 645 01e9 04000000 		.4byte	.LLST4
- 646 01ed 00000000 		.4byte	.LVUS4
- 647 01f1 0D       		.uleb128 0xd
-ARM GAS  /tmp/ccHTCD0s.s 			page 16
+ 534 017e 91010000 		.4byte	.LASF16
+ 535 0182 05       		.byte	0x5
+ 536 0183 9C       		.byte	0x9c
+ 537 0184 2A       		.byte	0x2a
+ 538 0185 0E010000 		.4byte	0x10e
+ 539 0189 02       		.byte	0x2
+ 540 018a 23       		.byte	0x23
+ 541 018b 04       		.uleb128 0x4
+ 542 018c 09       		.uleb128 0x9
+ 543 018d 2C020000 		.4byte	.LASF17
+ 544 0191 05       		.byte	0x5
+ 545 0192 9D       		.byte	0x9d
+ 546 0193 2A       		.byte	0x2a
+ 547 0194 0E010000 		.4byte	0x10e
+ 548 0198 02       		.byte	0x2
+ 549 0199 23       		.byte	0x23
+ 550 019a 08       		.uleb128 0x8
+ 551 019b 00       		.byte	0
+ 552 019c 04       		.uleb128 0x4
+ 553 019d 17000000 		.4byte	.LASF27
+ 554 01a1 05       		.byte	0x5
+ 555 01a2 9F       		.byte	0x9f
+ 556 01a3 20       		.byte	0x20
+ 557 01a4 61010000 		.4byte	0x161
+ 558 01a8 0A       		.uleb128 0xa
+ 559 01a9 04       		.byte	0x4
+ 560 01aa 55010000 		.4byte	0x155
+ 561 01ae 07       		.uleb128 0x7
+ 562 01af A8010000 		.4byte	0x1a8
+ 563 01b3 04       		.uleb128 0x4
+ 564 01b4 23010000 		.4byte	.LASF28
+ 565 01b8 05       		.byte	0x5
+ 566 01b9 AB       		.byte	0xab
+ 567 01ba 03       		.byte	0x3
+ 568 01bb 14010000 		.4byte	0x114
+ 569 01bf 0B       		.uleb128 0xb
+ 570 01c0 01       		.byte	0x1
+ 571 01c1 7E020000 		.4byte	.LASF40
+ 572 01c5 01       		.byte	0x1
+ 573 01c6 AA       		.byte	0xaa
+ 574 01c7 0D       		.byte	0xd
+ 575 01c8 01       		.byte	0x1
+ 576 01c9 93000000 		.4byte	0x93
+ 577 01cd 60000000 		.4byte	.LFB9
+ 578 01d1 80000000 		.4byte	.LFE9
+ 579 01d5 02       		.byte	0x2
+ 580 01d6 7D       		.byte	0x7d
+ 581 01d7 00       		.sleb128 0
+ 582 01d8 01       		.byte	0x1
+ 583 01d9 06020000 		.4byte	0x206
+ 584 01dd 0C       		.uleb128 0xc
+ 585 01de 80000000 		.4byte	.LASF41
+ 586 01e2 01       		.byte	0x1
+ 587 01e3 AA       		.byte	0xaa
+ 588 01e4 2E       		.byte	0x2e
+ 589 01e5 AE010000 		.4byte	0x1ae
+ 590 01e9 04000000 		.4byte	.LLST4
+ARM GAS  /tmp/ccMdawIA.s 			page 15
 
 
- 648 01f2 88020000 		.4byte	.LASF29
- 649 01f6 01       		.byte	0x1
- 650 01f7 AE       		.byte	0xae
- 651 01f8 10       		.byte	0x10
- 652 01f9 0C020000 		.4byte	0x20c
- 653 01fd 27000000 		.4byte	.LLST5
- 654 0201 25000000 		.4byte	.LVUS5
- 655 0205 00       		.byte	0
- 656 0206 0A       		.uleb128 0xa
- 657 0207 04       		.byte	0x4
- 658 0208 B3010000 		.4byte	0x1b3
- 659 020c 07       		.uleb128 0x7
- 660 020d 06020000 		.4byte	0x206
- 661 0211 0E       		.uleb128 0xe
- 662 0212 01       		.byte	0x1
- 663 0213 B0020000 		.4byte	.LASF33
- 664 0217 01       		.byte	0x1
- 665 0218 67       		.byte	0x67
- 666 0219 06       		.byte	0x6
- 667 021a 01       		.byte	0x1
- 668 021b 34000000 		.4byte	.LFB8
- 669 021f 62000000 		.4byte	.LFE8
- 670 0223 3A000000 		.4byte	.LLST1
- 671 0227 01       		.byte	0x1
- 672 0228 71020000 		.4byte	0x271
- 673 022c 0F       		.uleb128 0xf
- 674 022d 88020000 		.4byte	.LASF29
- 675 0231 01       		.byte	0x1
- 676 0232 67       		.byte	0x67
- 677 0233 22       		.byte	0x22
- 678 0234 0C020000 		.4byte	0x20c
- 679 0238 01       		.byte	0x1
- 680 0239 50       		.byte	0x50
- 681 023a 0F       		.uleb128 0xf
- 682 023b A2020000 		.4byte	.LASF30
- 683 023f 01       		.byte	0x1
- 684 0240 67       		.byte	0x67
- 685 0241 3D       		.byte	0x3d
- 686 0242 AE010000 		.4byte	0x1ae
- 687 0246 01       		.byte	0x1
- 688 0247 51       		.byte	0x51
- 689 0248 0D       		.uleb128 0xd
- 690 0249 26020000 		.4byte	.LASF31
- 691 024d 01       		.byte	0x1
- 692 024e 69       		.byte	0x69
- 693 024f 0D       		.byte	0xd
- 694 0250 A8010000 		.4byte	0x1a8
- 695 0254 62000000 		.4byte	.LLST2
- 696 0258 5A000000 		.4byte	.LVUS2
- 697 025c 0D       		.uleb128 0xd
- 698 025d 0B010000 		.4byte	.LASF32
- 699 0261 01       		.byte	0x1
- 700 0262 6A       		.byte	0x6a
- 701 0263 12       		.byte	0x12
- 702 0264 B0000000 		.4byte	0xb0
- 703 0268 99000000 		.4byte	.LLST3
- 704 026c 97000000 		.4byte	.LVUS3
-ARM GAS  /tmp/ccHTCD0s.s 			page 17
+ 591 01ed 00000000 		.4byte	.LVUS4
+ 592 01f1 0D       		.uleb128 0xd
+ 593 01f2 71020000 		.4byte	.LASF29
+ 594 01f6 01       		.byte	0x1
+ 595 01f7 AE       		.byte	0xae
+ 596 01f8 10       		.byte	0x10
+ 597 01f9 0C020000 		.4byte	0x20c
+ 598 01fd 2D000000 		.4byte	.LLST5
+ 599 0201 2B000000 		.4byte	.LVUS5
+ 600 0205 00       		.byte	0
+ 601 0206 0A       		.uleb128 0xa
+ 602 0207 04       		.byte	0x4
+ 603 0208 B3010000 		.4byte	0x1b3
+ 604 020c 07       		.uleb128 0x7
+ 605 020d 06020000 		.4byte	0x206
+ 606 0211 0E       		.uleb128 0xe
+ 607 0212 01       		.byte	0x1
+ 608 0213 99020000 		.4byte	.LASF33
+ 609 0217 01       		.byte	0x1
+ 610 0218 67       		.byte	0x67
+ 611 0219 06       		.byte	0x6
+ 612 021a 01       		.byte	0x1
+ 613 021b 32000000 		.4byte	.LFB8
+ 614 021f 60000000 		.4byte	.LFE8
+ 615 0223 40000000 		.4byte	.LLST1
+ 616 0227 01       		.byte	0x1
+ 617 0228 71020000 		.4byte	0x271
+ 618 022c 0F       		.uleb128 0xf
+ 619 022d 71020000 		.4byte	.LASF29
+ 620 0231 01       		.byte	0x1
+ 621 0232 67       		.byte	0x67
+ 622 0233 22       		.byte	0x22
+ 623 0234 0C020000 		.4byte	0x20c
+ 624 0238 01       		.byte	0x1
+ 625 0239 50       		.byte	0x50
+ 626 023a 0F       		.uleb128 0xf
+ 627 023b 8B020000 		.4byte	.LASF30
+ 628 023f 01       		.byte	0x1
+ 629 0240 67       		.byte	0x67
+ 630 0241 3D       		.byte	0x3d
+ 631 0242 AE010000 		.4byte	0x1ae
+ 632 0246 01       		.byte	0x1
+ 633 0247 51       		.byte	0x51
+ 634 0248 0D       		.uleb128 0xd
+ 635 0249 0F020000 		.4byte	.LASF31
+ 636 024d 01       		.byte	0x1
+ 637 024e 69       		.byte	0x69
+ 638 024f 0D       		.byte	0xd
+ 639 0250 A8010000 		.4byte	0x1a8
+ 640 0254 68000000 		.4byte	.LLST2
+ 641 0258 60000000 		.4byte	.LVUS2
+ 642 025c 0D       		.uleb128 0xd
+ 643 025d B5010000 		.4byte	.LASF32
+ 644 0261 01       		.byte	0x1
+ 645 0262 6A       		.byte	0x6a
+ 646 0263 12       		.byte	0x12
+ 647 0264 B0000000 		.4byte	0xb0
+ARM GAS  /tmp/ccMdawIA.s 			page 16
 
 
- 705 0270 00       		.byte	0
- 706 0271 10       		.uleb128 0x10
- 707 0272 01       		.byte	0x1
- 708 0273 D8000000 		.4byte	.LASF34
- 709 0277 01       		.byte	0x1
- 710 0278 4A       		.byte	0x4a
- 711 0279 06       		.byte	0x6
- 712 027a 01       		.byte	0x1
- 713 027b 1C000000 		.4byte	.LFB7
- 714 027f 34000000 		.4byte	.LFE7
- 715 0283 02       		.byte	0x2
- 716 0284 7D       		.byte	0x7d
- 717 0285 00       		.sleb128 0
- 718 0286 01       		.byte	0x1
- 719 0287 BC020000 		.4byte	0x2bc
- 720 028b 0F       		.uleb128 0xf
- 721 028c 88020000 		.4byte	.LASF29
- 722 0290 01       		.byte	0x1
- 723 0291 4A       		.byte	0x4a
- 724 0292 25       		.byte	0x25
- 725 0293 0C020000 		.4byte	0x20c
- 726 0297 01       		.byte	0x1
- 727 0298 50       		.byte	0x50
- 728 0299 0F       		.uleb128 0xf
- 729 029a A2020000 		.4byte	.LASF30
- 730 029e 01       		.byte	0x1
- 731 029f 4A       		.byte	0x4a
- 732 02a0 40       		.byte	0x40
- 733 02a1 AE010000 		.4byte	0x1ae
- 734 02a5 01       		.byte	0x1
- 735 02a6 51       		.byte	0x51
- 736 02a7 0D       		.uleb128 0xd
- 737 02a8 3B020000 		.4byte	.LASF23
- 738 02ac 01       		.byte	0x1
- 739 02ad 4C       		.byte	0x4c
- 740 02ae 14       		.byte	0x14
- 741 02af AE010000 		.4byte	0x1ae
- 742 02b3 B0000000 		.4byte	.LLST0
- 743 02b7 AC000000 		.4byte	.LVUS0
- 744 02bb 00       		.byte	0
- 745 02bc 10       		.uleb128 0x10
- 746 02bd 01       		.byte	0x1
- 747 02be A2000000 		.4byte	.LASF35
- 748 02c2 01       		.byte	0x1
- 749 02c3 3E       		.byte	0x3e
- 750 02c4 06       		.byte	0x6
- 751 02c5 01       		.byte	0x1
- 752 02c6 16000000 		.4byte	.LFB6
- 753 02ca 1C000000 		.4byte	.LFE6
- 754 02ce 02       		.byte	0x2
- 755 02cf 7D       		.byte	0x7d
- 756 02d0 00       		.sleb128 0
- 757 02d1 01       		.byte	0x1
- 758 02d2 E5020000 		.4byte	0x2e5
- 759 02d6 0F       		.uleb128 0xf
- 760 02d7 B4010000 		.4byte	.LASF36
- 761 02db 01       		.byte	0x1
-ARM GAS  /tmp/ccHTCD0s.s 			page 18
+ 648 0268 9F000000 		.4byte	.LLST3
+ 649 026c 9D000000 		.4byte	.LVUS3
+ 650 0270 00       		.byte	0
+ 651 0271 10       		.uleb128 0x10
+ 652 0272 01       		.byte	0x1
+ 653 0273 82010000 		.4byte	.LASF34
+ 654 0277 01       		.byte	0x1
+ 655 0278 4A       		.byte	0x4a
+ 656 0279 06       		.byte	0x6
+ 657 027a 01       		.byte	0x1
+ 658 027b 1C000000 		.4byte	.LFB7
+ 659 027f 32000000 		.4byte	.LFE7
+ 660 0283 02       		.byte	0x2
+ 661 0284 7D       		.byte	0x7d
+ 662 0285 00       		.sleb128 0
+ 663 0286 01       		.byte	0x1
+ 664 0287 BC020000 		.4byte	0x2bc
+ 665 028b 0F       		.uleb128 0xf
+ 666 028c 71020000 		.4byte	.LASF29
+ 667 0290 01       		.byte	0x1
+ 668 0291 4A       		.byte	0x4a
+ 669 0292 25       		.byte	0x25
+ 670 0293 0C020000 		.4byte	0x20c
+ 671 0297 01       		.byte	0x1
+ 672 0298 50       		.byte	0x50
+ 673 0299 0F       		.uleb128 0xf
+ 674 029a 8B020000 		.4byte	.LASF30
+ 675 029e 01       		.byte	0x1
+ 676 029f 4A       		.byte	0x4a
+ 677 02a0 40       		.byte	0x40
+ 678 02a1 AE010000 		.4byte	0x1ae
+ 679 02a5 01       		.byte	0x1
+ 680 02a6 51       		.byte	0x51
+ 681 02a7 0D       		.uleb128 0xd
+ 682 02a8 24020000 		.4byte	.LASF23
+ 683 02ac 01       		.byte	0x1
+ 684 02ad 4C       		.byte	0x4c
+ 685 02ae 14       		.byte	0x14
+ 686 02af AE010000 		.4byte	0x1ae
+ 687 02b3 B6000000 		.4byte	.LLST0
+ 688 02b7 B2000000 		.4byte	.LVUS0
+ 689 02bb 00       		.byte	0
+ 690 02bc 10       		.uleb128 0x10
+ 691 02bd 01       		.byte	0x1
+ 692 02be 0F010000 		.4byte	.LASF35
+ 693 02c2 01       		.byte	0x1
+ 694 02c3 3E       		.byte	0x3e
+ 695 02c4 06       		.byte	0x6
+ 696 02c5 01       		.byte	0x1
+ 697 02c6 16000000 		.4byte	.LFB6
+ 698 02ca 1C000000 		.4byte	.LFE6
+ 699 02ce 02       		.byte	0x2
+ 700 02cf 7D       		.byte	0x7d
+ 701 02d0 00       		.sleb128 0
+ 702 02d1 01       		.byte	0x1
+ 703 02d2 E5020000 		.4byte	0x2e5
+ 704 02d6 0F       		.uleb128 0xf
+ARM GAS  /tmp/ccMdawIA.s 			page 17
 
 
- 762 02dc 3E       		.byte	0x3e
- 763 02dd 2E       		.byte	0x2e
- 764 02de AE010000 		.4byte	0x1ae
- 765 02e2 01       		.byte	0x1
- 766 02e3 50       		.byte	0x50
- 767 02e4 00       		.byte	0
- 768 02e5 11       		.uleb128 0x11
- 769 02e6 01       		.byte	0x1
- 770 02e7 FB000000 		.4byte	.LASF42
- 771 02eb 01       		.byte	0x1
- 772 02ec 25       		.byte	0x25
- 773 02ed 06       		.byte	0x6
- 774 02ee 01       		.byte	0x1
- 775 02ef 00000000 		.4byte	.LFB5
- 776 02f3 16000000 		.4byte	.LFE5
- 777 02f7 02       		.byte	0x2
- 778 02f8 7D       		.byte	0x7d
- 779 02f9 00       		.sleb128 0
- 780 02fa 01       		.byte	0x1
- 781 02fb 0F       		.uleb128 0xf
- 782 02fc 88020000 		.4byte	.LASF29
- 783 0300 01       		.byte	0x1
- 784 0301 25       		.byte	0x25
- 785 0302 26       		.byte	0x26
- 786 0303 0C020000 		.4byte	0x20c
- 787 0307 01       		.byte	0x1
- 788 0308 50       		.byte	0x50
- 789 0309 00       		.byte	0
- 790 030a 00       		.byte	0
- 791              		.section	.debug_abbrev,"",%progbits
- 792              	.Ldebug_abbrev0:
- 793 0000 01       		.uleb128 0x1
- 794 0001 11       		.uleb128 0x11
- 795 0002 01       		.byte	0x1
- 796 0003 25       		.uleb128 0x25
- 797 0004 0E       		.uleb128 0xe
- 798 0005 13       		.uleb128 0x13
- 799 0006 0B       		.uleb128 0xb
- 800 0007 03       		.uleb128 0x3
- 801 0008 0E       		.uleb128 0xe
- 802 0009 1B       		.uleb128 0x1b
- 803 000a 0E       		.uleb128 0xe
- 804 000b 11       		.uleb128 0x11
- 805 000c 01       		.uleb128 0x1
- 806 000d 12       		.uleb128 0x12
- 807 000e 01       		.uleb128 0x1
- 808 000f 10       		.uleb128 0x10
- 809 0010 06       		.uleb128 0x6
- 810 0011 00       		.byte	0
- 811 0012 00       		.byte	0
- 812 0013 02       		.uleb128 0x2
- 813 0014 24       		.uleb128 0x24
- 814 0015 00       		.byte	0
- 815 0016 0B       		.uleb128 0xb
- 816 0017 0B       		.uleb128 0xb
- 817 0018 3E       		.uleb128 0x3e
- 818 0019 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccHTCD0s.s 			page 19
+ 705 02d7 DE010000 		.4byte	.LASF36
+ 706 02db 01       		.byte	0x1
+ 707 02dc 3E       		.byte	0x3e
+ 708 02dd 2E       		.byte	0x2e
+ 709 02de AE010000 		.4byte	0x1ae
+ 710 02e2 01       		.byte	0x1
+ 711 02e3 50       		.byte	0x50
+ 712 02e4 00       		.byte	0
+ 713 02e5 11       		.uleb128 0x11
+ 714 02e6 01       		.byte	0x1
+ 715 02e7 A5010000 		.4byte	.LASF42
+ 716 02eb 01       		.byte	0x1
+ 717 02ec 25       		.byte	0x25
+ 718 02ed 06       		.byte	0x6
+ 719 02ee 01       		.byte	0x1
+ 720 02ef 00000000 		.4byte	.LFB5
+ 721 02f3 16000000 		.4byte	.LFE5
+ 722 02f7 02       		.byte	0x2
+ 723 02f8 7D       		.byte	0x7d
+ 724 02f9 00       		.sleb128 0
+ 725 02fa 01       		.byte	0x1
+ 726 02fb 0F       		.uleb128 0xf
+ 727 02fc 71020000 		.4byte	.LASF29
+ 728 0300 01       		.byte	0x1
+ 729 0301 25       		.byte	0x25
+ 730 0302 26       		.byte	0x26
+ 731 0303 0C020000 		.4byte	0x20c
+ 732 0307 01       		.byte	0x1
+ 733 0308 50       		.byte	0x50
+ 734 0309 00       		.byte	0
+ 735 030a 00       		.byte	0
+ 736              		.section	.debug_abbrev,"",%progbits
+ 737              	.Ldebug_abbrev0:
+ 738 0000 01       		.uleb128 0x1
+ 739 0001 11       		.uleb128 0x11
+ 740 0002 01       		.byte	0x1
+ 741 0003 25       		.uleb128 0x25
+ 742 0004 0E       		.uleb128 0xe
+ 743 0005 13       		.uleb128 0x13
+ 744 0006 0B       		.uleb128 0xb
+ 745 0007 03       		.uleb128 0x3
+ 746 0008 0E       		.uleb128 0xe
+ 747 0009 1B       		.uleb128 0x1b
+ 748 000a 0E       		.uleb128 0xe
+ 749 000b 11       		.uleb128 0x11
+ 750 000c 01       		.uleb128 0x1
+ 751 000d 12       		.uleb128 0x12
+ 752 000e 01       		.uleb128 0x1
+ 753 000f 10       		.uleb128 0x10
+ 754 0010 06       		.uleb128 0x6
+ 755 0011 00       		.byte	0
+ 756 0012 00       		.byte	0
+ 757 0013 02       		.uleb128 0x2
+ 758 0014 24       		.uleb128 0x24
+ 759 0015 00       		.byte	0
+ 760 0016 0B       		.uleb128 0xb
+ 761 0017 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccMdawIA.s 			page 18
 
 
- 819 001a 03       		.uleb128 0x3
- 820 001b 0E       		.uleb128 0xe
- 821 001c 00       		.byte	0
- 822 001d 00       		.byte	0
- 823 001e 03       		.uleb128 0x3
- 824 001f 24       		.uleb128 0x24
- 825 0020 00       		.byte	0
- 826 0021 0B       		.uleb128 0xb
- 827 0022 0B       		.uleb128 0xb
- 828 0023 3E       		.uleb128 0x3e
- 829 0024 0B       		.uleb128 0xb
- 830 0025 03       		.uleb128 0x3
- 831 0026 08       		.uleb128 0x8
- 832 0027 00       		.byte	0
- 833 0028 00       		.byte	0
- 834 0029 04       		.uleb128 0x4
- 835 002a 16       		.uleb128 0x16
- 836 002b 00       		.byte	0
- 837 002c 03       		.uleb128 0x3
- 838 002d 0E       		.uleb128 0xe
- 839 002e 3A       		.uleb128 0x3a
- 840 002f 0B       		.uleb128 0xb
- 841 0030 3B       		.uleb128 0x3b
- 842 0031 0B       		.uleb128 0xb
- 843 0032 39       		.uleb128 0x39
- 844 0033 0B       		.uleb128 0xb
- 845 0034 49       		.uleb128 0x49
- 846 0035 13       		.uleb128 0x13
- 847 0036 00       		.byte	0
- 848 0037 00       		.byte	0
- 849 0038 05       		.uleb128 0x5
- 850 0039 0F       		.uleb128 0xf
- 851 003a 00       		.byte	0
- 852 003b 0B       		.uleb128 0xb
- 853 003c 0B       		.uleb128 0xb
- 854 003d 00       		.byte	0
- 855 003e 00       		.byte	0
- 856 003f 06       		.uleb128 0x6
- 857 0040 35       		.uleb128 0x35
- 858 0041 00       		.byte	0
- 859 0042 49       		.uleb128 0x49
- 860 0043 13       		.uleb128 0x13
- 861 0044 00       		.byte	0
- 862 0045 00       		.byte	0
- 863 0046 07       		.uleb128 0x7
- 864 0047 26       		.uleb128 0x26
- 865 0048 00       		.byte	0
- 866 0049 49       		.uleb128 0x49
- 867 004a 13       		.uleb128 0x13
- 868 004b 00       		.byte	0
- 869 004c 00       		.byte	0
- 870 004d 08       		.uleb128 0x8
- 871 004e 13       		.uleb128 0x13
- 872 004f 01       		.byte	0x1
- 873 0050 03       		.uleb128 0x3
- 874 0051 0E       		.uleb128 0xe
- 875 0052 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccHTCD0s.s 			page 20
+ 762 0018 3E       		.uleb128 0x3e
+ 763 0019 0B       		.uleb128 0xb
+ 764 001a 03       		.uleb128 0x3
+ 765 001b 0E       		.uleb128 0xe
+ 766 001c 00       		.byte	0
+ 767 001d 00       		.byte	0
+ 768 001e 03       		.uleb128 0x3
+ 769 001f 24       		.uleb128 0x24
+ 770 0020 00       		.byte	0
+ 771 0021 0B       		.uleb128 0xb
+ 772 0022 0B       		.uleb128 0xb
+ 773 0023 3E       		.uleb128 0x3e
+ 774 0024 0B       		.uleb128 0xb
+ 775 0025 03       		.uleb128 0x3
+ 776 0026 08       		.uleb128 0x8
+ 777 0027 00       		.byte	0
+ 778 0028 00       		.byte	0
+ 779 0029 04       		.uleb128 0x4
+ 780 002a 16       		.uleb128 0x16
+ 781 002b 00       		.byte	0
+ 782 002c 03       		.uleb128 0x3
+ 783 002d 0E       		.uleb128 0xe
+ 784 002e 3A       		.uleb128 0x3a
+ 785 002f 0B       		.uleb128 0xb
+ 786 0030 3B       		.uleb128 0x3b
+ 787 0031 0B       		.uleb128 0xb
+ 788 0032 39       		.uleb128 0x39
+ 789 0033 0B       		.uleb128 0xb
+ 790 0034 49       		.uleb128 0x49
+ 791 0035 13       		.uleb128 0x13
+ 792 0036 00       		.byte	0
+ 793 0037 00       		.byte	0
+ 794 0038 05       		.uleb128 0x5
+ 795 0039 0F       		.uleb128 0xf
+ 796 003a 00       		.byte	0
+ 797 003b 0B       		.uleb128 0xb
+ 798 003c 0B       		.uleb128 0xb
+ 799 003d 00       		.byte	0
+ 800 003e 00       		.byte	0
+ 801 003f 06       		.uleb128 0x6
+ 802 0040 35       		.uleb128 0x35
+ 803 0041 00       		.byte	0
+ 804 0042 49       		.uleb128 0x49
+ 805 0043 13       		.uleb128 0x13
+ 806 0044 00       		.byte	0
+ 807 0045 00       		.byte	0
+ 808 0046 07       		.uleb128 0x7
+ 809 0047 26       		.uleb128 0x26
+ 810 0048 00       		.byte	0
+ 811 0049 49       		.uleb128 0x49
+ 812 004a 13       		.uleb128 0x13
+ 813 004b 00       		.byte	0
+ 814 004c 00       		.byte	0
+ 815 004d 08       		.uleb128 0x8
+ 816 004e 13       		.uleb128 0x13
+ 817 004f 01       		.byte	0x1
+ 818 0050 03       		.uleb128 0x3
+ARM GAS  /tmp/ccMdawIA.s 			page 19
 
 
- 876 0053 0B       		.uleb128 0xb
- 877 0054 3A       		.uleb128 0x3a
- 878 0055 0B       		.uleb128 0xb
- 879 0056 3B       		.uleb128 0x3b
- 880 0057 0B       		.uleb128 0xb
- 881 0058 39       		.uleb128 0x39
- 882 0059 0B       		.uleb128 0xb
- 883 005a 01       		.uleb128 0x1
- 884 005b 13       		.uleb128 0x13
- 885 005c 00       		.byte	0
- 886 005d 00       		.byte	0
- 887 005e 09       		.uleb128 0x9
- 888 005f 0D       		.uleb128 0xd
- 889 0060 00       		.byte	0
- 890 0061 03       		.uleb128 0x3
- 891 0062 0E       		.uleb128 0xe
- 892 0063 3A       		.uleb128 0x3a
- 893 0064 0B       		.uleb128 0xb
- 894 0065 3B       		.uleb128 0x3b
- 895 0066 0B       		.uleb128 0xb
- 896 0067 39       		.uleb128 0x39
- 897 0068 0B       		.uleb128 0xb
- 898 0069 49       		.uleb128 0x49
- 899 006a 13       		.uleb128 0x13
- 900 006b 38       		.uleb128 0x38
- 901 006c 0A       		.uleb128 0xa
- 902 006d 00       		.byte	0
- 903 006e 00       		.byte	0
- 904 006f 0A       		.uleb128 0xa
- 905 0070 0F       		.uleb128 0xf
- 906 0071 00       		.byte	0
- 907 0072 0B       		.uleb128 0xb
- 908 0073 0B       		.uleb128 0xb
- 909 0074 49       		.uleb128 0x49
- 910 0075 13       		.uleb128 0x13
- 911 0076 00       		.byte	0
- 912 0077 00       		.byte	0
- 913 0078 0B       		.uleb128 0xb
- 914 0079 2E       		.uleb128 0x2e
- 915 007a 01       		.byte	0x1
- 916 007b 3F       		.uleb128 0x3f
- 917 007c 0C       		.uleb128 0xc
- 918 007d 03       		.uleb128 0x3
- 919 007e 0E       		.uleb128 0xe
- 920 007f 3A       		.uleb128 0x3a
- 921 0080 0B       		.uleb128 0xb
- 922 0081 3B       		.uleb128 0x3b
- 923 0082 0B       		.uleb128 0xb
- 924 0083 39       		.uleb128 0x39
- 925 0084 0B       		.uleb128 0xb
- 926 0085 27       		.uleb128 0x27
- 927 0086 0C       		.uleb128 0xc
- 928 0087 49       		.uleb128 0x49
- 929 0088 13       		.uleb128 0x13
- 930 0089 11       		.uleb128 0x11
- 931 008a 01       		.uleb128 0x1
- 932 008b 12       		.uleb128 0x12
-ARM GAS  /tmp/ccHTCD0s.s 			page 21
+ 819 0051 0E       		.uleb128 0xe
+ 820 0052 0B       		.uleb128 0xb
+ 821 0053 0B       		.uleb128 0xb
+ 822 0054 3A       		.uleb128 0x3a
+ 823 0055 0B       		.uleb128 0xb
+ 824 0056 3B       		.uleb128 0x3b
+ 825 0057 0B       		.uleb128 0xb
+ 826 0058 39       		.uleb128 0x39
+ 827 0059 0B       		.uleb128 0xb
+ 828 005a 01       		.uleb128 0x1
+ 829 005b 13       		.uleb128 0x13
+ 830 005c 00       		.byte	0
+ 831 005d 00       		.byte	0
+ 832 005e 09       		.uleb128 0x9
+ 833 005f 0D       		.uleb128 0xd
+ 834 0060 00       		.byte	0
+ 835 0061 03       		.uleb128 0x3
+ 836 0062 0E       		.uleb128 0xe
+ 837 0063 3A       		.uleb128 0x3a
+ 838 0064 0B       		.uleb128 0xb
+ 839 0065 3B       		.uleb128 0x3b
+ 840 0066 0B       		.uleb128 0xb
+ 841 0067 39       		.uleb128 0x39
+ 842 0068 0B       		.uleb128 0xb
+ 843 0069 49       		.uleb128 0x49
+ 844 006a 13       		.uleb128 0x13
+ 845 006b 38       		.uleb128 0x38
+ 846 006c 0A       		.uleb128 0xa
+ 847 006d 00       		.byte	0
+ 848 006e 00       		.byte	0
+ 849 006f 0A       		.uleb128 0xa
+ 850 0070 0F       		.uleb128 0xf
+ 851 0071 00       		.byte	0
+ 852 0072 0B       		.uleb128 0xb
+ 853 0073 0B       		.uleb128 0xb
+ 854 0074 49       		.uleb128 0x49
+ 855 0075 13       		.uleb128 0x13
+ 856 0076 00       		.byte	0
+ 857 0077 00       		.byte	0
+ 858 0078 0B       		.uleb128 0xb
+ 859 0079 2E       		.uleb128 0x2e
+ 860 007a 01       		.byte	0x1
+ 861 007b 3F       		.uleb128 0x3f
+ 862 007c 0C       		.uleb128 0xc
+ 863 007d 03       		.uleb128 0x3
+ 864 007e 0E       		.uleb128 0xe
+ 865 007f 3A       		.uleb128 0x3a
+ 866 0080 0B       		.uleb128 0xb
+ 867 0081 3B       		.uleb128 0x3b
+ 868 0082 0B       		.uleb128 0xb
+ 869 0083 39       		.uleb128 0x39
+ 870 0084 0B       		.uleb128 0xb
+ 871 0085 27       		.uleb128 0x27
+ 872 0086 0C       		.uleb128 0xc
+ 873 0087 49       		.uleb128 0x49
+ 874 0088 13       		.uleb128 0x13
+ 875 0089 11       		.uleb128 0x11
+ARM GAS  /tmp/ccMdawIA.s 			page 20
 
 
- 933 008c 01       		.uleb128 0x1
- 934 008d 40       		.uleb128 0x40
- 935 008e 0A       		.uleb128 0xa
- 936 008f 9742     		.uleb128 0x2117
- 937 0091 0C       		.uleb128 0xc
- 938 0092 01       		.uleb128 0x1
- 939 0093 13       		.uleb128 0x13
- 940 0094 00       		.byte	0
- 941 0095 00       		.byte	0
- 942 0096 0C       		.uleb128 0xc
- 943 0097 05       		.uleb128 0x5
- 944 0098 00       		.byte	0
- 945 0099 03       		.uleb128 0x3
- 946 009a 0E       		.uleb128 0xe
- 947 009b 3A       		.uleb128 0x3a
- 948 009c 0B       		.uleb128 0xb
- 949 009d 3B       		.uleb128 0x3b
- 950 009e 0B       		.uleb128 0xb
- 951 009f 39       		.uleb128 0x39
- 952 00a0 0B       		.uleb128 0xb
- 953 00a1 49       		.uleb128 0x49
- 954 00a2 13       		.uleb128 0x13
- 955 00a3 02       		.uleb128 0x2
- 956 00a4 06       		.uleb128 0x6
- 957 00a5 B742     		.uleb128 0x2137
- 958 00a7 06       		.uleb128 0x6
- 959 00a8 00       		.byte	0
- 960 00a9 00       		.byte	0
- 961 00aa 0D       		.uleb128 0xd
- 962 00ab 34       		.uleb128 0x34
- 963 00ac 00       		.byte	0
- 964 00ad 03       		.uleb128 0x3
- 965 00ae 0E       		.uleb128 0xe
- 966 00af 3A       		.uleb128 0x3a
- 967 00b0 0B       		.uleb128 0xb
- 968 00b1 3B       		.uleb128 0x3b
- 969 00b2 0B       		.uleb128 0xb
- 970 00b3 39       		.uleb128 0x39
- 971 00b4 0B       		.uleb128 0xb
- 972 00b5 49       		.uleb128 0x49
- 973 00b6 13       		.uleb128 0x13
- 974 00b7 02       		.uleb128 0x2
- 975 00b8 06       		.uleb128 0x6
- 976 00b9 B742     		.uleb128 0x2137
- 977 00bb 06       		.uleb128 0x6
- 978 00bc 00       		.byte	0
- 979 00bd 00       		.byte	0
- 980 00be 0E       		.uleb128 0xe
- 981 00bf 2E       		.uleb128 0x2e
- 982 00c0 01       		.byte	0x1
- 983 00c1 3F       		.uleb128 0x3f
- 984 00c2 0C       		.uleb128 0xc
- 985 00c3 03       		.uleb128 0x3
- 986 00c4 0E       		.uleb128 0xe
- 987 00c5 3A       		.uleb128 0x3a
- 988 00c6 0B       		.uleb128 0xb
- 989 00c7 3B       		.uleb128 0x3b
-ARM GAS  /tmp/ccHTCD0s.s 			page 22
+ 876 008a 01       		.uleb128 0x1
+ 877 008b 12       		.uleb128 0x12
+ 878 008c 01       		.uleb128 0x1
+ 879 008d 40       		.uleb128 0x40
+ 880 008e 0A       		.uleb128 0xa
+ 881 008f 9742     		.uleb128 0x2117
+ 882 0091 0C       		.uleb128 0xc
+ 883 0092 01       		.uleb128 0x1
+ 884 0093 13       		.uleb128 0x13
+ 885 0094 00       		.byte	0
+ 886 0095 00       		.byte	0
+ 887 0096 0C       		.uleb128 0xc
+ 888 0097 05       		.uleb128 0x5
+ 889 0098 00       		.byte	0
+ 890 0099 03       		.uleb128 0x3
+ 891 009a 0E       		.uleb128 0xe
+ 892 009b 3A       		.uleb128 0x3a
+ 893 009c 0B       		.uleb128 0xb
+ 894 009d 3B       		.uleb128 0x3b
+ 895 009e 0B       		.uleb128 0xb
+ 896 009f 39       		.uleb128 0x39
+ 897 00a0 0B       		.uleb128 0xb
+ 898 00a1 49       		.uleb128 0x49
+ 899 00a2 13       		.uleb128 0x13
+ 900 00a3 02       		.uleb128 0x2
+ 901 00a4 06       		.uleb128 0x6
+ 902 00a5 B742     		.uleb128 0x2137
+ 903 00a7 06       		.uleb128 0x6
+ 904 00a8 00       		.byte	0
+ 905 00a9 00       		.byte	0
+ 906 00aa 0D       		.uleb128 0xd
+ 907 00ab 34       		.uleb128 0x34
+ 908 00ac 00       		.byte	0
+ 909 00ad 03       		.uleb128 0x3
+ 910 00ae 0E       		.uleb128 0xe
+ 911 00af 3A       		.uleb128 0x3a
+ 912 00b0 0B       		.uleb128 0xb
+ 913 00b1 3B       		.uleb128 0x3b
+ 914 00b2 0B       		.uleb128 0xb
+ 915 00b3 39       		.uleb128 0x39
+ 916 00b4 0B       		.uleb128 0xb
+ 917 00b5 49       		.uleb128 0x49
+ 918 00b6 13       		.uleb128 0x13
+ 919 00b7 02       		.uleb128 0x2
+ 920 00b8 06       		.uleb128 0x6
+ 921 00b9 B742     		.uleb128 0x2137
+ 922 00bb 06       		.uleb128 0x6
+ 923 00bc 00       		.byte	0
+ 924 00bd 00       		.byte	0
+ 925 00be 0E       		.uleb128 0xe
+ 926 00bf 2E       		.uleb128 0x2e
+ 927 00c0 01       		.byte	0x1
+ 928 00c1 3F       		.uleb128 0x3f
+ 929 00c2 0C       		.uleb128 0xc
+ 930 00c3 03       		.uleb128 0x3
+ 931 00c4 0E       		.uleb128 0xe
+ 932 00c5 3A       		.uleb128 0x3a
+ARM GAS  /tmp/ccMdawIA.s 			page 21
 
 
- 990 00c8 0B       		.uleb128 0xb
- 991 00c9 39       		.uleb128 0x39
- 992 00ca 0B       		.uleb128 0xb
- 993 00cb 27       		.uleb128 0x27
- 994 00cc 0C       		.uleb128 0xc
- 995 00cd 11       		.uleb128 0x11
- 996 00ce 01       		.uleb128 0x1
- 997 00cf 12       		.uleb128 0x12
- 998 00d0 01       		.uleb128 0x1
- 999 00d1 40       		.uleb128 0x40
- 1000 00d2 06       		.uleb128 0x6
- 1001 00d3 9742     		.uleb128 0x2117
- 1002 00d5 0C       		.uleb128 0xc
- 1003 00d6 01       		.uleb128 0x1
- 1004 00d7 13       		.uleb128 0x13
- 1005 00d8 00       		.byte	0
- 1006 00d9 00       		.byte	0
- 1007 00da 0F       		.uleb128 0xf
- 1008 00db 05       		.uleb128 0x5
- 1009 00dc 00       		.byte	0
- 1010 00dd 03       		.uleb128 0x3
- 1011 00de 0E       		.uleb128 0xe
- 1012 00df 3A       		.uleb128 0x3a
- 1013 00e0 0B       		.uleb128 0xb
- 1014 00e1 3B       		.uleb128 0x3b
- 1015 00e2 0B       		.uleb128 0xb
- 1016 00e3 39       		.uleb128 0x39
- 1017 00e4 0B       		.uleb128 0xb
- 1018 00e5 49       		.uleb128 0x49
- 1019 00e6 13       		.uleb128 0x13
- 1020 00e7 02       		.uleb128 0x2
- 1021 00e8 0A       		.uleb128 0xa
- 1022 00e9 00       		.byte	0
- 1023 00ea 00       		.byte	0
- 1024 00eb 10       		.uleb128 0x10
- 1025 00ec 2E       		.uleb128 0x2e
- 1026 00ed 01       		.byte	0x1
- 1027 00ee 3F       		.uleb128 0x3f
- 1028 00ef 0C       		.uleb128 0xc
- 1029 00f0 03       		.uleb128 0x3
- 1030 00f1 0E       		.uleb128 0xe
- 1031 00f2 3A       		.uleb128 0x3a
- 1032 00f3 0B       		.uleb128 0xb
- 1033 00f4 3B       		.uleb128 0x3b
- 1034 00f5 0B       		.uleb128 0xb
- 1035 00f6 39       		.uleb128 0x39
- 1036 00f7 0B       		.uleb128 0xb
- 1037 00f8 27       		.uleb128 0x27
- 1038 00f9 0C       		.uleb128 0xc
- 1039 00fa 11       		.uleb128 0x11
- 1040 00fb 01       		.uleb128 0x1
- 1041 00fc 12       		.uleb128 0x12
- 1042 00fd 01       		.uleb128 0x1
- 1043 00fe 40       		.uleb128 0x40
- 1044 00ff 0A       		.uleb128 0xa
- 1045 0100 9742     		.uleb128 0x2117
- 1046 0102 0C       		.uleb128 0xc
-ARM GAS  /tmp/ccHTCD0s.s 			page 23
+ 933 00c6 0B       		.uleb128 0xb
+ 934 00c7 3B       		.uleb128 0x3b
+ 935 00c8 0B       		.uleb128 0xb
+ 936 00c9 39       		.uleb128 0x39
+ 937 00ca 0B       		.uleb128 0xb
+ 938 00cb 27       		.uleb128 0x27
+ 939 00cc 0C       		.uleb128 0xc
+ 940 00cd 11       		.uleb128 0x11
+ 941 00ce 01       		.uleb128 0x1
+ 942 00cf 12       		.uleb128 0x12
+ 943 00d0 01       		.uleb128 0x1
+ 944 00d1 40       		.uleb128 0x40
+ 945 00d2 06       		.uleb128 0x6
+ 946 00d3 9742     		.uleb128 0x2117
+ 947 00d5 0C       		.uleb128 0xc
+ 948 00d6 01       		.uleb128 0x1
+ 949 00d7 13       		.uleb128 0x13
+ 950 00d8 00       		.byte	0
+ 951 00d9 00       		.byte	0
+ 952 00da 0F       		.uleb128 0xf
+ 953 00db 05       		.uleb128 0x5
+ 954 00dc 00       		.byte	0
+ 955 00dd 03       		.uleb128 0x3
+ 956 00de 0E       		.uleb128 0xe
+ 957 00df 3A       		.uleb128 0x3a
+ 958 00e0 0B       		.uleb128 0xb
+ 959 00e1 3B       		.uleb128 0x3b
+ 960 00e2 0B       		.uleb128 0xb
+ 961 00e3 39       		.uleb128 0x39
+ 962 00e4 0B       		.uleb128 0xb
+ 963 00e5 49       		.uleb128 0x49
+ 964 00e6 13       		.uleb128 0x13
+ 965 00e7 02       		.uleb128 0x2
+ 966 00e8 0A       		.uleb128 0xa
+ 967 00e9 00       		.byte	0
+ 968 00ea 00       		.byte	0
+ 969 00eb 10       		.uleb128 0x10
+ 970 00ec 2E       		.uleb128 0x2e
+ 971 00ed 01       		.byte	0x1
+ 972 00ee 3F       		.uleb128 0x3f
+ 973 00ef 0C       		.uleb128 0xc
+ 974 00f0 03       		.uleb128 0x3
+ 975 00f1 0E       		.uleb128 0xe
+ 976 00f2 3A       		.uleb128 0x3a
+ 977 00f3 0B       		.uleb128 0xb
+ 978 00f4 3B       		.uleb128 0x3b
+ 979 00f5 0B       		.uleb128 0xb
+ 980 00f6 39       		.uleb128 0x39
+ 981 00f7 0B       		.uleb128 0xb
+ 982 00f8 27       		.uleb128 0x27
+ 983 00f9 0C       		.uleb128 0xc
+ 984 00fa 11       		.uleb128 0x11
+ 985 00fb 01       		.uleb128 0x1
+ 986 00fc 12       		.uleb128 0x12
+ 987 00fd 01       		.uleb128 0x1
+ 988 00fe 40       		.uleb128 0x40
+ 989 00ff 0A       		.uleb128 0xa
+ARM GAS  /tmp/ccMdawIA.s 			page 22
 
 
- 1047 0103 01       		.uleb128 0x1
- 1048 0104 13       		.uleb128 0x13
- 1049 0105 00       		.byte	0
- 1050 0106 00       		.byte	0
- 1051 0107 11       		.uleb128 0x11
- 1052 0108 2E       		.uleb128 0x2e
- 1053 0109 01       		.byte	0x1
- 1054 010a 3F       		.uleb128 0x3f
- 1055 010b 0C       		.uleb128 0xc
- 1056 010c 03       		.uleb128 0x3
- 1057 010d 0E       		.uleb128 0xe
- 1058 010e 3A       		.uleb128 0x3a
- 1059 010f 0B       		.uleb128 0xb
- 1060 0110 3B       		.uleb128 0x3b
- 1061 0111 0B       		.uleb128 0xb
- 1062 0112 39       		.uleb128 0x39
- 1063 0113 0B       		.uleb128 0xb
- 1064 0114 27       		.uleb128 0x27
- 1065 0115 0C       		.uleb128 0xc
- 1066 0116 11       		.uleb128 0x11
- 1067 0117 01       		.uleb128 0x1
- 1068 0118 12       		.uleb128 0x12
- 1069 0119 01       		.uleb128 0x1
- 1070 011a 40       		.uleb128 0x40
- 1071 011b 0A       		.uleb128 0xa
- 1072 011c 9742     		.uleb128 0x2117
- 1073 011e 0C       		.uleb128 0xc
- 1074 011f 00       		.byte	0
- 1075 0120 00       		.byte	0
- 1076 0121 00       		.byte	0
- 1077              		.section	.debug_loc,"",%progbits
- 1078              	.Ldebug_loc0:
- 1079              	.LVUS4:
- 1080 0000 00       		.uleb128 0
- 1081 0001 00       		.uleb128 .LVU93
- 1082 0002 00       		.uleb128 .LVU93
- 1083 0003 00       		.uleb128 0
- 1084              	.LLST4:
- 1085 0004 62000000 		.4byte	.LVL12-.Ltext0
- 1086 0008 80000000 		.4byte	.LVL14-.Ltext0
- 1087 000c 0100     		.2byte	0x1
- 1088 000e 50       		.byte	0x50
- 1089 000f 80000000 		.4byte	.LVL14-.Ltext0
- 1090 0013 82000000 		.4byte	.LFE9-.Ltext0
- 1091 0017 0400     		.2byte	0x4
- 1092 0019 F3       		.byte	0xf3
- 1093 001a 01       		.uleb128 0x1
- 1094 001b 50       		.byte	0x50
- 1095 001c 9F       		.byte	0x9f
- 1096 001d 00000000 		.4byte	0
- 1097 0021 00000000 		.4byte	0
- 1098              	.LVUS5:
- 1099 0025 00       		.uleb128 .LVU75
- 1100 0026 00       		.uleb128 0
- 1101              	.LLST5:
- 1102 0027 64000000 		.4byte	.LVL13-.Ltext0
- 1103 002b 82000000 		.4byte	.LFE9-.Ltext0
-ARM GAS  /tmp/ccHTCD0s.s 			page 24
+ 990 0100 9742     		.uleb128 0x2117
+ 991 0102 0C       		.uleb128 0xc
+ 992 0103 01       		.uleb128 0x1
+ 993 0104 13       		.uleb128 0x13
+ 994 0105 00       		.byte	0
+ 995 0106 00       		.byte	0
+ 996 0107 11       		.uleb128 0x11
+ 997 0108 2E       		.uleb128 0x2e
+ 998 0109 01       		.byte	0x1
+ 999 010a 3F       		.uleb128 0x3f
+ 1000 010b 0C       		.uleb128 0xc
+ 1001 010c 03       		.uleb128 0x3
+ 1002 010d 0E       		.uleb128 0xe
+ 1003 010e 3A       		.uleb128 0x3a
+ 1004 010f 0B       		.uleb128 0xb
+ 1005 0110 3B       		.uleb128 0x3b
+ 1006 0111 0B       		.uleb128 0xb
+ 1007 0112 39       		.uleb128 0x39
+ 1008 0113 0B       		.uleb128 0xb
+ 1009 0114 27       		.uleb128 0x27
+ 1010 0115 0C       		.uleb128 0xc
+ 1011 0116 11       		.uleb128 0x11
+ 1012 0117 01       		.uleb128 0x1
+ 1013 0118 12       		.uleb128 0x12
+ 1014 0119 01       		.uleb128 0x1
+ 1015 011a 40       		.uleb128 0x40
+ 1016 011b 0A       		.uleb128 0xa
+ 1017 011c 9742     		.uleb128 0x2117
+ 1018 011e 0C       		.uleb128 0xc
+ 1019 011f 00       		.byte	0
+ 1020 0120 00       		.byte	0
+ 1021 0121 00       		.byte	0
+ 1022              		.section	.debug_loc,"",%progbits
+ 1023              	.Ldebug_loc0:
+ 1024              	.LVUS4:
+ 1025 0000 00       		.uleb128 0
+ 1026 0001 00       		.uleb128 .LVU93
+ 1027 0002 00       		.uleb128 .LVU93
+ 1028 0003 00       		.uleb128 0
+ 1029              	.LLST4:
+ 1030 0004 60000000 		.4byte	.LVL12-.Ltext0
+ 1031 0008 7E000000 		.4byte	.LVL14-.Ltext0
+ 1032 000c 0100     		.2byte	0x1
+ 1033 000e 50       		.byte	0x50
+ 1034 000f 7E000000 		.4byte	.LVL14-.Ltext0
+ 1035 0013 80000000 		.4byte	.LFE9-.Ltext0
+ 1036 0017 0A00     		.2byte	0xa
+ 1037 0019 F3       		.byte	0xf3
+ 1038 001a 03       		.uleb128 0x3
+ 1039 001b F5       		.byte	0xf5
+ 1040 001c 00       		.uleb128 0
+ 1041 001d 25       		.uleb128 0x25
+ 1042 001e F7       		.byte	0xf7
+ 1043 001f 2C       		.uleb128 0x2c
+ 1044 0020 F7       		.byte	0xf7
+ 1045 0021 00       		.uleb128 0
+ 1046 0022 9F       		.byte	0x9f
+ARM GAS  /tmp/ccMdawIA.s 			page 23
 
 
- 1104 002f 0100     		.2byte	0x1
- 1105 0031 53       		.byte	0x53
- 1106 0032 00000000 		.4byte	0
- 1107 0036 00000000 		.4byte	0
- 1108              	.LLST1:
- 1109 003a 34000000 		.4byte	.LFB8-.Ltext0
- 1110 003e 36000000 		.4byte	.LCFI0-.Ltext0
- 1111 0042 0200     		.2byte	0x2
- 1112 0044 7D       		.byte	0x7d
- 1113 0045 00       		.sleb128 0
- 1114 0046 36000000 		.4byte	.LCFI0-.Ltext0
- 1115 004a 62000000 		.4byte	.LFE8-.Ltext0
- 1116 004e 0200     		.2byte	0x2
- 1117 0050 7D       		.byte	0x7d
- 1118 0051 0C       		.sleb128 12
- 1119 0052 00000000 		.4byte	0
- 1120 0056 00000000 		.4byte	0
- 1121              	.LVUS2:
- 1122 005a 00       		.uleb128 .LVU52
- 1123 005b 00       		.uleb128 .LVU63
- 1124 005c 00       		.uleb128 .LVU63
- 1125 005d 00       		.uleb128 .LVU67
- 1126 005e 00       		.uleb128 .LVU69
- 1127 005f 00       		.uleb128 .LVU71
- 1128 0060 00       		.uleb128 .LVU71
- 1129 0061 00       		.uleb128 0
- 1130              	.LLST2:
- 1131 0062 3E000000 		.4byte	.LVL7-.Ltext0
- 1132 0066 4A000000 		.4byte	.LVL8-.Ltext0
- 1133 006a 0100     		.2byte	0x1
- 1134 006c 53       		.byte	0x53
- 1135 006d 4A000000 		.4byte	.LVL8-.Ltext0
- 1136 0071 52000000 		.4byte	.LVL9-.Ltext0
- 1137 0075 0200     		.2byte	0x2
- 1138 0077 71       		.byte	0x71
- 1139 0078 08       		.sleb128 8
- 1140 0079 56000000 		.4byte	.LVL10-.Ltext0
- 1141 007d 5A000000 		.4byte	.LVL11-.Ltext0
- 1142 0081 0100     		.2byte	0x1
- 1143 0083 52       		.byte	0x52
- 1144 0084 5A000000 		.4byte	.LVL11-.Ltext0
- 1145 0088 62000000 		.4byte	.LFE8-.Ltext0
- 1146 008c 0100     		.2byte	0x1
- 1147 008e 53       		.byte	0x53
- 1148 008f 00000000 		.4byte	0
- 1149 0093 00000000 		.4byte	0
- 1150              	.LVUS3:
- 1151 0097 00       		.uleb128 .LVU46
- 1152 0098 00       		.uleb128 0
- 1153              	.LLST3:
- 1154 0099 38000000 		.4byte	.LVL6-.Ltext0
- 1155 009d 62000000 		.4byte	.LFE8-.Ltext0
- 1156 00a1 0100     		.2byte	0x1
- 1157 00a3 54       		.byte	0x54
- 1158 00a4 00000000 		.4byte	0
- 1159 00a8 00000000 		.4byte	0
- 1160              	.LVUS0:
-ARM GAS  /tmp/ccHTCD0s.s 			page 25
+ 1047 0023 00000000 		.4byte	0
+ 1048 0027 00000000 		.4byte	0
+ 1049              	.LVUS5:
+ 1050 002b 00       		.uleb128 .LVU75
+ 1051 002c 00       		.uleb128 0
+ 1052              	.LLST5:
+ 1053 002d 62000000 		.4byte	.LVL13-.Ltext0
+ 1054 0031 80000000 		.4byte	.LFE9-.Ltext0
+ 1055 0035 0100     		.2byte	0x1
+ 1056 0037 53       		.byte	0x53
+ 1057 0038 00000000 		.4byte	0
+ 1058 003c 00000000 		.4byte	0
+ 1059              	.LLST1:
+ 1060 0040 32000000 		.4byte	.LFB8-.Ltext0
+ 1061 0044 34000000 		.4byte	.LCFI0-.Ltext0
+ 1062 0048 0200     		.2byte	0x2
+ 1063 004a 7D       		.byte	0x7d
+ 1064 004b 00       		.sleb128 0
+ 1065 004c 34000000 		.4byte	.LCFI0-.Ltext0
+ 1066 0050 60000000 		.4byte	.LFE8-.Ltext0
+ 1067 0054 0200     		.2byte	0x2
+ 1068 0056 7D       		.byte	0x7d
+ 1069 0057 0C       		.sleb128 12
+ 1070 0058 00000000 		.4byte	0
+ 1071 005c 00000000 		.4byte	0
+ 1072              	.LVUS2:
+ 1073 0060 00       		.uleb128 .LVU52
+ 1074 0061 00       		.uleb128 .LVU63
+ 1075 0062 00       		.uleb128 .LVU63
+ 1076 0063 00       		.uleb128 .LVU67
+ 1077 0064 00       		.uleb128 .LVU69
+ 1078 0065 00       		.uleb128 .LVU71
+ 1079 0066 00       		.uleb128 .LVU71
+ 1080 0067 00       		.uleb128 0
+ 1081              	.LLST2:
+ 1082 0068 3C000000 		.4byte	.LVL7-.Ltext0
+ 1083 006c 48000000 		.4byte	.LVL8-.Ltext0
+ 1084 0070 0100     		.2byte	0x1
+ 1085 0072 53       		.byte	0x53
+ 1086 0073 48000000 		.4byte	.LVL8-.Ltext0
+ 1087 0077 50000000 		.4byte	.LVL9-.Ltext0
+ 1088 007b 0200     		.2byte	0x2
+ 1089 007d 71       		.byte	0x71
+ 1090 007e 08       		.sleb128 8
+ 1091 007f 54000000 		.4byte	.LVL10-.Ltext0
+ 1092 0083 58000000 		.4byte	.LVL11-.Ltext0
+ 1093 0087 0100     		.2byte	0x1
+ 1094 0089 52       		.byte	0x52
+ 1095 008a 58000000 		.4byte	.LVL11-.Ltext0
+ 1096 008e 60000000 		.4byte	.LFE8-.Ltext0
+ 1097 0092 0100     		.2byte	0x1
+ 1098 0094 53       		.byte	0x53
+ 1099 0095 00000000 		.4byte	0
+ 1100 0099 00000000 		.4byte	0
+ 1101              	.LVUS3:
+ 1102 009d 00       		.uleb128 .LVU46
+ 1103 009e 00       		.uleb128 0
+ARM GAS  /tmp/ccMdawIA.s 			page 24
 
 
- 1161 00ac 00       		.uleb128 .LVU23
- 1162 00ad 00       		.uleb128 .LVU37
- 1163 00ae 00       		.uleb128 .LVU37
- 1164 00af 00       		.uleb128 0
- 1165              	.LLST0:
- 1166 00b0 1E000000 		.4byte	.LVL3-.Ltext0
- 1167 00b4 2C000000 		.4byte	.LVL4-.Ltext0
- 1168 00b8 0100     		.2byte	0x1
- 1169 00ba 53       		.byte	0x53
- 1170 00bb 2C000000 		.4byte	.LVL4-.Ltext0
- 1171 00bf 34000000 		.4byte	.LFE7-.Ltext0
- 1172 00c3 0200     		.2byte	0x2
- 1173 00c5 70       		.byte	0x70
- 1174 00c6 04       		.sleb128 4
- 1175 00c7 00000000 		.4byte	0
- 1176 00cb 00000000 		.4byte	0
- 1177              		.section	.debug_aranges,"",%progbits
- 1178 0000 1C000000 		.4byte	0x1c
- 1179 0004 0200     		.2byte	0x2
- 1180 0006 00000000 		.4byte	.Ldebug_info0
- 1181 000a 04       		.byte	0x4
- 1182 000b 00       		.byte	0
- 1183 000c 0000     		.2byte	0
- 1184 000e 0000     		.2byte	0
- 1185 0010 00000000 		.4byte	.Ltext0
- 1186 0014 82000000 		.4byte	.Letext0-.Ltext0
- 1187 0018 00000000 		.4byte	0
- 1188 001c 00000000 		.4byte	0
- 1189              		.section	.debug_line,"",%progbits
- 1190              	.Ldebug_line0:
- 1191 0000 65020000 		.section	.debug_str,"MS",%progbits,1
- 1191      0300DA00 
- 1191      00000201 
- 1191      FB0E0D00 
- 1191      01010101 
- 1192              	.LASF19:
- 1193 0000 7076436F 		.ascii	"pvContainer\000"
- 1193      6E746169 
- 1193      6E657200 
- 1194              	.LASF14:
- 1195 000c 5469636B 		.ascii	"TickType_t\000"
- 1195      54797065 
- 1195      5F7400
- 1196              	.LASF27:
- 1197 0017 4D696E69 		.ascii	"MiniListItem_t\000"
- 1197      4C697374 
- 1197      4974656D 
- 1197      5F7400
- 1198              	.LASF38:
- 1199 0026 2E2E2F66 		.ascii	"../freertos/list.c\000"
- 1199      72656572 
- 1199      746F732F 
- 1199      6C697374 
- 1199      2E6300
- 1200              	.LASF15:
- 1201 0039 78497465 		.ascii	"xItemValue\000"
- 1201      6D56616C 
-ARM GAS  /tmp/ccHTCD0s.s 			page 26
+ 1104              	.LLST3:
+ 1105 009f 36000000 		.4byte	.LVL6-.Ltext0
+ 1106 00a3 60000000 		.4byte	.LFE8-.Ltext0
+ 1107 00a7 0100     		.2byte	0x1
+ 1108 00a9 54       		.byte	0x54
+ 1109 00aa 00000000 		.4byte	0
+ 1110 00ae 00000000 		.4byte	0
+ 1111              	.LVUS0:
+ 1112 00b2 00       		.uleb128 .LVU23
+ 1113 00b3 00       		.uleb128 .LVU37
+ 1114 00b4 00       		.uleb128 .LVU37
+ 1115 00b5 00       		.uleb128 0
+ 1116              	.LLST0:
+ 1117 00b6 1E000000 		.4byte	.LVL3-.Ltext0
+ 1118 00ba 2A000000 		.4byte	.LVL4-.Ltext0
+ 1119 00be 0100     		.2byte	0x1
+ 1120 00c0 53       		.byte	0x53
+ 1121 00c1 2A000000 		.4byte	.LVL4-.Ltext0
+ 1122 00c5 32000000 		.4byte	.LFE7-.Ltext0
+ 1123 00c9 0200     		.2byte	0x2
+ 1124 00cb 70       		.byte	0x70
+ 1125 00cc 04       		.sleb128 4
+ 1126 00cd 00000000 		.4byte	0
+ 1127 00d1 00000000 		.4byte	0
+ 1128              		.section	.debug_aranges,"",%progbits
+ 1129 0000 1C000000 		.4byte	0x1c
+ 1130 0004 0200     		.2byte	0x2
+ 1131 0006 00000000 		.4byte	.Ldebug_info0
+ 1132 000a 04       		.byte	0x4
+ 1133 000b 00       		.byte	0
+ 1134 000c 0000     		.2byte	0
+ 1135 000e 0000     		.2byte	0
+ 1136 0010 00000000 		.4byte	.Ltext0
+ 1137 0014 80000000 		.4byte	.Letext0-.Ltext0
+ 1138 0018 00000000 		.4byte	0
+ 1139 001c 00000000 		.4byte	0
+ 1140              		.section	.debug_line,"",%progbits
+ 1141              	.Ldebug_line0:
+ 1142 0000 65020000 		.section	.debug_str,"MS",%progbits,1
+ 1142      0300DA00 
+ 1142      00000201 
+ 1142      FB0E0D00 
+ 1142      01010101 
+ 1143              	.LASF19:
+ 1144 0000 7076436F 		.ascii	"pvContainer\000"
+ 1144      6E746169 
+ 1144      6E657200 
+ 1145              	.LASF14:
+ 1146 000c 5469636B 		.ascii	"TickType_t\000"
+ 1146      54797065 
+ 1146      5F7400
+ 1147              	.LASF27:
+ 1148 0017 4D696E69 		.ascii	"MiniListItem_t\000"
+ 1148      4C697374 
+ 1148      4974656D 
+ 1148      5F7400
+ 1149              	.LASF38:
+ARM GAS  /tmp/ccMdawIA.s 			page 25
 
 
- 1201      756500
- 1202              	.LASF24:
- 1203 0044 784C6973 		.ascii	"xListEnd\000"
- 1203      74456E64 
+ 1150 0026 2E2E2F66 		.ascii	"../freertos/list.c\000"
+ 1150      72656572 
+ 1150      746F732F 
+ 1150      6C697374 
+ 1150      2E6300
+ 1151              	.LASF15:
+ 1152 0039 78497465 		.ascii	"xItemValue\000"
+ 1152      6D56616C 
+ 1152      756500
+ 1153              	.LASF24:
+ 1154 0044 784C6973 		.ascii	"xListEnd\000"
+ 1154      74456E64 
+ 1154      00
+ 1155              	.LASF18:
+ 1156 004d 70764F77 		.ascii	"pvOwner\000"
+ 1156      6E657200 
+ 1157              	.LASF20:
+ 1158 0055 784C4953 		.ascii	"xLIST_ITEM\000"
+ 1158      545F4954 
+ 1158      454D00
+ 1159              	.LASF5:
+ 1160 0060 756E7369 		.ascii	"unsigned char\000"
+ 1160      676E6564 
+ 1160      20636861 
+ 1160      7200
+ 1161              	.LASF9:
+ 1162 006e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1162      20756E73 
+ 1162      69676E65 
+ 1162      6420696E 
+ 1162      7400
+ 1163              	.LASF41:
+ 1164 0080 70784974 		.ascii	"pxItemToRemove\000"
+ 1164      656D546F 
+ 1164      52656D6F 
+ 1164      766500
+ 1165              	.LASF7:
+ 1166 008f 73686F72 		.ascii	"short unsigned int\000"
+ 1166      7420756E 
+ 1166      7369676E 
+ 1166      65642069 
+ 1166      6E7400
+ 1167              	.LASF37:
+ 1168 00a2 474E5520 		.ascii	"GNU C17 13.2.0 -mcpu=cortex-m3 -mthumb -mfloat-abi="
+ 1168      43313720 
+ 1168      31332E32 
+ 1168      2E30202D 
+ 1168      6D637075 
+ 1169 00d5 736F6674 		.ascii	"soft -march=armv7-m -g -gdwarf-2 -Os -fomit-frame-p"
+ 1169      202D6D61 
+ 1169      7263683D 
+ 1169      61726D76 
+ 1169      372D6D20 
+ 1170 0108 6F696E74 		.ascii	"ointer\000"
+ 1170      657200
+ 1171              	.LASF35:
+ 1172 010f 764C6973 		.ascii	"vListInitialiseItem\000"
+ARM GAS  /tmp/ccMdawIA.s 			page 26
+
+
+ 1172      74496E69 
+ 1172      7469616C 
+ 1172      69736549 
+ 1172      74656D00 
+ 1173              	.LASF28:
+ 1174 0123 4C697374 		.ascii	"List_t\000"
+ 1174      5F7400
+ 1175              	.LASF39:
+ 1176 012a 2F686F6D 		.ascii	"/home/me/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/5-PWM_L"
+ 1176      652F6D65 
+ 1176      2F436F64 
+ 1176      69676F73 
+ 1176      2F362D53 
+ 1177 015d 43445F53 		.ascii	"CD_SERIAL\000"
+ 1177      45524941 
+ 1177      4C00
+ 1178              	.LASF11:
+ 1179 0167 5F5F7569 		.ascii	"__uint32_t\000"
+ 1179      6E743332 
+ 1179      5F7400
+ 1180              	.LASF22:
+ 1181 0172 75784E75 		.ascii	"uxNumberOfItems\000"
+ 1181      6D626572 
+ 1181      4F664974 
+ 1181      656D7300 
+ 1182              	.LASF34:
+ 1183 0182 764C6973 		.ascii	"vListInsertEnd\000"
+ 1183      74496E73 
+ 1183      65727445 
+ 1183      6E6400
+ 1184              	.LASF16:
+ 1185 0191 70784E65 		.ascii	"pxNext\000"
+ 1185      787400
+ 1186              	.LASF1:
+ 1187 0198 756E7369 		.ascii	"unsigned int\000"
+ 1187      676E6564 
+ 1187      20696E74 
+ 1187      00
+ 1188              	.LASF42:
+ 1189 01a5 764C6973 		.ascii	"vListInitialise\000"
+ 1189      74496E69 
+ 1189      7469616C 
+ 1189      69736500 
+ 1190              	.LASF32:
+ 1191 01b5 7856616C 		.ascii	"xValueOfInsertion\000"
+ 1191      75654F66 
+ 1191      496E7365 
+ 1191      7274696F 
+ 1191      6E00
+ 1192              	.LASF0:
+ 1193 01c7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1193      206C6F6E 
+ 1193      6720756E 
+ 1193      7369676E 
+ 1193      65642069 
+ 1194              	.LASF36:
+ 1195 01de 70784974 		.ascii	"pxItem\000"
+ARM GAS  /tmp/ccMdawIA.s 			page 27
+
+
+ 1195      656D00
+ 1196              	.LASF13:
+ 1197 01e5 55426173 		.ascii	"UBaseType_t\000"
+ 1197      65547970 
+ 1197      655F7400 
+ 1198              	.LASF25:
+ 1199 01f1 4C697374 		.ascii	"ListItem_t\000"
+ 1199      4974656D 
+ 1199      5F7400
+ 1200              	.LASF2:
+ 1201 01fc 6C6F6E67 		.ascii	"long long int\000"
+ 1201      206C6F6E 
+ 1201      6720696E 
+ 1201      7400
+ 1202              	.LASF10:
+ 1203 020a 63686172 		.ascii	"char\000"
  1203      00
- 1204              	.LASF18:
- 1205 004d 70764F77 		.ascii	"pvOwner\000"
- 1205      6E657200 
- 1206              	.LASF20:
- 1207 0055 784C4953 		.ascii	"xLIST_ITEM\000"
- 1207      545F4954 
- 1207      454D00
- 1208              	.LASF4:
- 1209 0060 756E7369 		.ascii	"unsigned char\000"
- 1209      676E6564 
- 1209      20636861 
- 1209      7200
- 1210              	.LASF8:
- 1211 006e 6C6F6E67 		.ascii	"long unsigned int\000"
- 1211      20756E73 
- 1211      69676E65 
- 1211      6420696E 
- 1211      7400
- 1212              	.LASF41:
- 1213 0080 70784974 		.ascii	"pxItemToRemove\000"
- 1213      656D546F 
- 1213      52656D6F 
- 1213      766500
- 1214              	.LASF6:
- 1215 008f 73686F72 		.ascii	"short unsigned int\000"
- 1215      7420756E 
- 1215      7369676E 
- 1215      65642069 
- 1215      6E7400
- 1216              	.LASF35:
- 1217 00a2 764C6973 		.ascii	"vListInitialiseItem\000"
- 1217      74496E69 
- 1217      7469616C 
- 1217      69736549 
- 1217      74656D00 
- 1218              	.LASF28:
- 1219 00b6 4C697374 		.ascii	"List_t\000"
- 1219      5F7400
- 1220              	.LASF11:
- 1221 00bd 5F5F7569 		.ascii	"__uint32_t\000"
- 1221      6E743332 
- 1221      5F7400
- 1222              	.LASF22:
- 1223 00c8 75784E75 		.ascii	"uxNumberOfItems\000"
- 1223      6D626572 
- 1223      4F664974 
- 1223      656D7300 
- 1224              	.LASF34:
- 1225 00d8 764C6973 		.ascii	"vListInsertEnd\000"
- 1225      74496E73 
- 1225      65727445 
- 1225      6E6400
-ARM GAS  /tmp/ccHTCD0s.s 			page 27
+ 1204              	.LASF31:
+ 1205 020f 70784974 		.ascii	"pxIterator\000"
+ 1205      65726174 
+ 1205      6F7200
+ 1206              	.LASF6:
+ 1207 021a 73686F72 		.ascii	"short int\000"
+ 1207      7420696E 
+ 1207      7400
+ 1208              	.LASF23:
+ 1209 0224 7078496E 		.ascii	"pxIndex\000"
+ 1209      64657800 
+ 1210              	.LASF17:
+ 1211 022c 70785072 		.ascii	"pxPrevious\000"
+ 1211      6576696F 
+ 1211      757300
+ 1212              	.LASF12:
+ 1213 0237 75696E74 		.ascii	"uint32_t\000"
+ 1213      33325F74 
+ 1213      00
+ 1214              	.LASF8:
+ 1215 0240 6C6F6E67 		.ascii	"long int\000"
+ 1215      20696E74 
+ 1215      00
+ 1216              	.LASF3:
+ 1217 0249 6C6F6E67 		.ascii	"long double\000"
+ 1217      20646F75 
+ 1217      626C6500 
+ 1218              	.LASF26:
+ 1219 0255 784D494E 		.ascii	"xMINI_LIST_ITEM\000"
+ 1219      495F4C49 
+ 1219      53545F49 
+ 1219      54454D00 
+ 1220              	.LASF4:
+ 1221 0265 7369676E 		.ascii	"signed char\000"
+ 1221      65642063 
+ 1221      68617200 
+ 1222              	.LASF29:
+ 1223 0271 70784C69 		.ascii	"pxList\000"
+ 1223      737400
+ 1224              	.LASF21:
+ARM GAS  /tmp/ccMdawIA.s 			page 28
 
 
- 1226              	.LASF16:
- 1227 00e7 70784E65 		.ascii	"pxNext\000"
- 1227      787400
- 1228              	.LASF0:
- 1229 00ee 756E7369 		.ascii	"unsigned int\000"
- 1229      676E6564 
- 1229      20696E74 
- 1229      00
- 1230              	.LASF42:
- 1231 00fb 764C6973 		.ascii	"vListInitialise\000"
- 1231      74496E69 
- 1231      7469616C 
- 1231      69736500 
- 1232              	.LASF32:
- 1233 010b 7856616C 		.ascii	"xValueOfInsertion\000"
- 1233      75654F66 
- 1233      496E7365 
- 1233      7274696F 
- 1233      6E00
- 1234              	.LASF9:
- 1235 011d 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1235      206C6F6E 
- 1235      6720756E 
- 1235      7369676E 
- 1235      65642069 
- 1236              	.LASF37:
- 1237 0134 474E5520 		.ascii	"GNU C17 10.3.1 20210824 (release) -mcpu=cortex-m3 -"
- 1237      43313720 
- 1237      31302E33 
- 1237      2E312032 
- 1237      30323130 
- 1238 0167 6D746875 		.ascii	"mthumb -mfloat-abi=soft -march=armv7-m -g -gdwarf-2"
- 1238      6D62202D 
- 1238      6D666C6F 
- 1238      61742D61 
- 1238      62693D73 
- 1239 019a 202D4F73 		.ascii	" -Os -fomit-frame-pointer\000"
- 1239      202D666F 
- 1239      6D69742D 
- 1239      6672616D 
- 1239      652D706F 
- 1240              	.LASF36:
- 1241 01b4 70784974 		.ascii	"pxItem\000"
- 1241      656D00
- 1242              	.LASF13:
- 1243 01bb 55426173 		.ascii	"UBaseType_t\000"
- 1243      65547970 
- 1243      655F7400 
- 1244              	.LASF25:
- 1245 01c7 4C697374 		.ascii	"ListItem_t\000"
- 1245      4974656D 
- 1245      5F7400
- 1246              	.LASF39:
- 1247 01d2 2F686F6D 		.ascii	"/home/junior/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/5-P"
- 1247      652F6A75 
- 1247      6E696F72 
- 1247      2F436F64 
-ARM GAS  /tmp/ccHTCD0s.s 			page 28
-
-
- 1247      69676F73 
- 1248 0205 574D5F4C 		.ascii	"WM_LCD_SERIAL\000"
- 1248      43445F53 
- 1248      45524941 
- 1248      4C00
- 1249              	.LASF1:
- 1250 0213 6C6F6E67 		.ascii	"long long int\000"
- 1250      206C6F6E 
- 1250      6720696E 
- 1250      7400
- 1251              	.LASF10:
- 1252 0221 63686172 		.ascii	"char\000"
- 1252      00
- 1253              	.LASF31:
- 1254 0226 70784974 		.ascii	"pxIterator\000"
- 1254      65726174 
- 1254      6F7200
- 1255              	.LASF5:
- 1256 0231 73686F72 		.ascii	"short int\000"
- 1256      7420696E 
- 1256      7400
- 1257              	.LASF23:
- 1258 023b 7078496E 		.ascii	"pxIndex\000"
- 1258      64657800 
- 1259              	.LASF17:
- 1260 0243 70785072 		.ascii	"pxPrevious\000"
- 1260      6576696F 
- 1260      757300
- 1261              	.LASF12:
- 1262 024e 75696E74 		.ascii	"uint32_t\000"
- 1262      33325F74 
- 1262      00
- 1263              	.LASF7:
- 1264 0257 6C6F6E67 		.ascii	"long int\000"
- 1264      20696E74 
- 1264      00
- 1265              	.LASF2:
- 1266 0260 6C6F6E67 		.ascii	"long double\000"
- 1266      20646F75 
- 1266      626C6500 
- 1267              	.LASF26:
- 1268 026c 784D494E 		.ascii	"xMINI_LIST_ITEM\000"
- 1268      495F4C49 
- 1268      53545F49 
- 1268      54454D00 
- 1269              	.LASF3:
- 1270 027c 7369676E 		.ascii	"signed char\000"
- 1270      65642063 
- 1270      68617200 
- 1271              	.LASF29:
- 1272 0288 70784C69 		.ascii	"pxList\000"
- 1272      737400
- 1273              	.LASF21:
- 1274 028f 784C4953 		.ascii	"xLIST\000"
- 1274      5400
- 1275              	.LASF40:
- 1276 0295 75784C69 		.ascii	"uxListRemove\000"
-ARM GAS  /tmp/ccHTCD0s.s 			page 29
-
-
- 1276      73745265 
- 1276      6D6F7665 
- 1276      00
- 1277              	.LASF30:
- 1278 02a2 70784E65 		.ascii	"pxNewListItem\000"
- 1278      774C6973 
- 1278      74497465 
- 1278      6D00
- 1279              	.LASF33:
- 1280 02b0 764C6973 		.ascii	"vListInsert\000"
- 1280      74496E73 
- 1280      65727400 
- 1281              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  /tmp/ccHTCD0s.s 			page 30
+ 1225 0278 784C4953 		.ascii	"xLIST\000"
+ 1225      5400
+ 1226              	.LASF40:
+ 1227 027e 75784C69 		.ascii	"uxListRemove\000"
+ 1227      73745265 
+ 1227      6D6F7665 
+ 1227      00
+ 1228              	.LASF30:
+ 1229 028b 70784E65 		.ascii	"pxNewListItem\000"
+ 1229      774C6973 
+ 1229      74497465 
+ 1229      6D00
+ 1230              	.LASF33:
+ 1231 0299 764C6973 		.ascii	"vListInsert\000"
+ 1231      74496E73 
+ 1231      65727400 
+ 1232              		.ident	"GCC: (Arch Repository) 13.2.0"
+ARM GAS  /tmp/ccMdawIA.s 			page 29
 
 
 DEFINED SYMBOLS
-                            *ABS*:0000000000000000 list.c
-     /tmp/ccHTCD0s.s:77     .text:0000000000000000 $t
-     /tmp/ccHTCD0s.s:83     .text:0000000000000000 vListInitialise
-     /tmp/ccHTCD0s.s:129    .text:0000000000000016 vListInitialiseItem
-     /tmp/ccHTCD0s.s:156    .text:000000000000001c vListInsertEnd
-     /tmp/ccHTCD0s.s:217    .text:0000000000000034 vListInsert
-     /tmp/ccHTCD0s.s:315    .text:0000000000000062 uxListRemove
+                            *ABS*:00000000 list.c
+     /tmp/ccMdawIA.s:24     .text:00000000 $t
+     /tmp/ccMdawIA.s:30     .text:00000000 vListInitialise
+     /tmp/ccMdawIA.s:75     .text:00000016 vListInitialiseItem
+     /tmp/ccMdawIA.s:102    .text:0000001c vListInsertEnd
+     /tmp/ccMdawIA.s:162    .text:00000032 vListInsert
+     /tmp/ccMdawIA.s:260    .text:00000060 uxListRemove
 
 NO UNDEFINED SYMBOLS
