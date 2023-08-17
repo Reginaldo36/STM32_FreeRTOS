@@ -136,6 +136,7 @@ static void task5(void *args __attribute ((unused))){
 	u8 menu_enter = 0;
 	u8 fila_flag; 
 	u8 PWD_Value=(u8) 0x0fff / 2;
+	u8 SWP;
 	while(1){
 		if (GPIOB->IDR & (1<<12))
 			menu_select ++; 
@@ -157,15 +158,15 @@ static void task5(void *args __attribute ((unused))){
 
 		switch (menu_select){
 			case 0 :	
+					SWP = menu_select;
 					if (menu_enter){
-						
-						
-
+						if 
 						disp_text("1 - Valor PWM:", 0,0);
 						disp_text("   :_ ",1,0);
 
 						//disp_number( , 1,7 );
 					}
+				menu_select = SWP;
 
 				break;
 
