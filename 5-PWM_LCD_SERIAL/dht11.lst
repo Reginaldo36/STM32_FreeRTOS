@@ -1,0 +1,3056 @@
+ARM GAS  /tmp/ccsnpTLa.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   5              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   6              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   7              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+   8              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+   9              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+  10              		.eabi_attribute 30, 4	@ Tag_ABI_optimization_goals
+  11              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  12              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  13              		.file	"dht11.c"
+  14              	@ GNU C17 (GNU Arm Embedded Toolchain 10.3-2021.10) version 10.3.1 20210824 (release) (arm-none-eab
+  15              	@	compiled by GNU C version 4.8.4, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl ve
+  16              	
+  17              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  18              	@ options passed:  -I . -I ../5-PWM_LCD_SERIAL
+  19              	@ -I ../stm32f10x_lib/CMSIS/CM3/CoreSupport
+  20              	@ -I ../stm32f10x_lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x
+  21              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/inc
+  22              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver -I ../freertos/include
+  23              	@ -I ../freertos/portable/GCC/ARM_CM3 -imultilib thumb/v7-m/nofp
+  24              	@ -iprefix /usr/bin/../lib/gcc/arm-none-eabi/10.3.1/
+  25              	@ -isysroot /usr/bin/../arm-none-eabi -D__USES_INITFINI__ -D STM32F10X_MD
+  26              	@ -D USE_STDPERIPH_DRIVER -D HSE_VALUE=8000000 -D RUN_FROM_FLASH=1
+  27              	@ ../5-PWM_LCD_SERIAL/dht11.c -mcpu=cortex-m3 -mthumb -mfloat-abi=soft
+  28              	@ -mlibarch=armv7-m -march=armv7-m
+  29              	@ -auxbase-strip ../5-PWM_LCD_SERIAL/dht11.o -g -gdwarf-2 -Os -Wall
+  30              	@ -fomit-frame-pointer -fverbose-asm
+  31              	@ options enabled:  -faggressive-loop-optimizations -fallocation-dce
+  32              	@ -fauto-inc-dec -fbranch-count-reg -fcaller-saves -fcode-hoisting
+  33              	@ -fcombine-stack-adjustments -fcompare-elim -fcprop-registers
+  34              	@ -fcrossjumping -fcse-follow-jumps -fdefer-pop
+  35              	@ -fdelete-null-pointer-checks -fdevirtualize -fdevirtualize-speculatively
+  36              	@ -fdwarf2-cfi-asm -fearly-inlining -feliminate-unused-debug-symbols
+  37              	@ -feliminate-unused-debug-types -fexpensive-optimizations
+  38              	@ -fforward-propagate -ffp-int-builtin-inexact -ffunction-cse -fgcse
+  39              	@ -fgcse-lm -fgnu-unique -fguess-branch-probability -fhoist-adjacent-loads
+  40              	@ -fident -fif-conversion -fif-conversion2 -findirect-inlining -finline
+  41              	@ -finline-atomics -finline-functions -finline-functions-called-once
+  42              	@ -finline-small-functions -fipa-bit-cp -fipa-cp -fipa-icf
+  43              	@ -fipa-icf-functions -fipa-icf-variables -fipa-profile -fipa-pure-const
+  44              	@ -fipa-ra -fipa-reference -fipa-reference-addressable -fipa-sra
+  45              	@ -fipa-stack-alignment -fipa-vrp -fira-hoist-pressure
+  46              	@ -fira-share-save-slots -fira-share-spill-slots
+  47              	@ -fisolate-erroneous-paths-dereference -fivopts -fkeep-static-consts
+  48              	@ -fleading-underscore -flifetime-dse -flra-remat -fmath-errno
+  49              	@ -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  50              	@ -fomit-frame-pointer -foptimize-sibling-calls -fpartial-inlining
+  51              	@ -fpeephole -fpeephole2 -fplt -fprefetch-loop-arrays -freg-struct-return
+  52              	@ -freorder-blocks -freorder-functions -frerun-cse-after-loop
+  53              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  54              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  55              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
+  56              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
+  57              	@ -fsection-anchors -fsemantic-interposition -fshow-column
+ARM GAS  /tmp/ccsnpTLa.s 			page 2
+
+
+  58              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
+  59              	@ -fsplit-wide-types -fssa-backprop -fssa-phiopt -fstdarg-opt
+  60              	@ -fstore-merging -fstrict-aliasing -fstrict-volatile-bitfields
+  61              	@ -fsync-libcalls -fthread-jumps -ftoplevel-reorder -ftrapping-math
+  62              	@ -ftree-bit-ccp -ftree-builtin-call-dce -ftree-ccp -ftree-ch
+  63              	@ -ftree-coalesce-vars -ftree-copy-prop -ftree-cselim -ftree-dce
+  64              	@ -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  65              	@ -ftree-loop-distribute-patterns -ftree-loop-if-convert -ftree-loop-im
+  66              	@ -ftree-loop-ivcanon -ftree-loop-optimize -ftree-parallelize-loops=
+  67              	@ -ftree-phiprop -ftree-pre -ftree-pta -ftree-reassoc -ftree-scev-cprop
+  68              	@ -ftree-sink -ftree-slsr -ftree-sra -ftree-switch-conversion
+  69              	@ -ftree-tail-merge -ftree-ter -ftree-vrp -funit-at-a-time -fvar-tracking
+  70              	@ -fvar-tracking-assignments -fverbose-asm -fzero-initialized-in-bss
+  71              	@ -masm-syntax-unified -mbe32 -mfix-cortex-m3-ldrd -mlittle-endian
+  72              	@ -mpic-data-is-text-relative -msched-prolog -mthumb -munaligned-access
+  73              	@ -mvectorize-with-neon-quad
+  74              	
+  75              		.text
+  76              	.Ltext0:
+  77              		.cfi_sections	.debug_frame
+  78              		.align	1
+  79              		.global	DHT11_init
+  80              		.syntax unified
+  81              		.thumb
+  82              		.thumb_func
+  83              		.type	DHT11_init, %function
+  84              	DHT11_init:
+  85              	.LVL0:
+  86              	.LFB29:
+  87              		.file 1 "../5-PWM_LCD_SERIAL/dht11.c"
+   1:../5-PWM_LCD_SERIAL/dht11.c **** #include "dht11.h"
+   2:../5-PWM_LCD_SERIAL/dht11.c **** 
+   3:../5-PWM_LCD_SERIAL/dht11.c **** int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t pin) {
+  88              		.loc 1 3 73 view -0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 16
+  91              		@ frame_needed = 0, uses_anonymous_args = 0
+   4:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimeBaseInitTypeDef TIM_TimBaseStructure;
+  92              		.loc 1 4 2 view .LVU1
+   5:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitTypeDef GPIO_InitStructure;
+  93              		.loc 1 5 2 view .LVU2
+   6:../5-PWM_LCD_SERIAL/dht11.c **** 	
+   7:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->port = port;
+  94              		.loc 1 7 2 view .LVU3
+  95              	@ ../5-PWM_LCD_SERIAL/dht11.c:11: 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
+   8:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->pin = pin;
+   9:../5-PWM_LCD_SERIAL/dht11.c **** 
+  10:../5-PWM_LCD_SERIAL/dht11.c **** 	//Initialise TIMER2
+  11:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
+  96              		.loc 1 11 34 is_stmt 0 view .LVU4
+  97 0000 4FF6FF73 		movw	r3, #65535	@ tmp121,
+  98              	@ ../5-PWM_LCD_SERIAL/dht11.c:3: int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t
+   3:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimeBaseInitTypeDef TIM_TimBaseStructure;
+  99              		.loc 1 3 73 view .LVU5
+ 100 0004 30B5     		push	{r4, r5, lr}	@
+ 101              	.LCFI0:
+ 102              		.cfi_def_cfa_offset 12
+ARM GAS  /tmp/ccsnpTLa.s 			page 3
+
+
+ 103              		.cfi_offset 4, -12
+ 104              		.cfi_offset 5, -8
+ 105              		.cfi_offset 14, -4
+ 106 0006 85B0     		sub	sp, sp, #20	@,,
+ 107              	.LCFI1:
+ 108              		.cfi_def_cfa_offset 32
+ 109              	@ ../5-PWM_LCD_SERIAL/dht11.c:14: 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  12:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+  13:../5-PWM_LCD_SERIAL/dht11.c **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
+  14:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 110              		.loc 1 14 39 view .LVU6
+ 111 0008 0025     		movs	r5, #0	@ tmp125,
+ 112              	@ ../5-PWM_LCD_SERIAL/dht11.c:11: 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
+  11:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+ 113              		.loc 1 11 34 view .LVU7
+ 114 000a ADF80830 		strh	r3, [sp, #8]	@ movhi	@ tmp121, TIM_TimBaseStructure.TIM_Period
+ 115              	@ ../5-PWM_LCD_SERIAL/dht11.c:12: 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+  12:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+ 116              		.loc 1 12 37 view .LVU8
+ 117 000e 4723     		movs	r3, #71	@ tmp123,
+ 118              	@ ../5-PWM_LCD_SERIAL/dht11.c:3: int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t
+   3:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimeBaseInitTypeDef TIM_TimBaseStructure;
+ 119              		.loc 1 3 73 view .LVU9
+ 120 0010 0446     		mov	r4, r0	@ dev, tmp132
+ 121              	@ ../5-PWM_LCD_SERIAL/dht11.c:8: 	dev->pin = pin;
+   8:../5-PWM_LCD_SERIAL/dht11.c **** 
+ 122              		.loc 1 8 11 view .LVU10
+ 123 0012 0281     		strh	r2, [r0, #8]	@ movhi	@ tmp134, dev_4(D)->pin
+ 124              	@ ../5-PWM_LCD_SERIAL/dht11.c:7: 	dev->port = port;
+   7:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->pin = pin;
+ 125              		.loc 1 7 12 view .LVU11
+ 126 0014 4160     		str	r1, [r0, #4]	@ tmp133, dev_4(D)->port
+   8:../5-PWM_LCD_SERIAL/dht11.c **** 
+ 127              		.loc 1 8 2 is_stmt 1 view .LVU12
+  11:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+ 128              		.loc 1 11 2 view .LVU13
+  12:../5-PWM_LCD_SERIAL/dht11.c **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
+ 129              		.loc 1 12 2 view .LVU14
+ 130              	@ ../5-PWM_LCD_SERIAL/dht11.c:15: 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+  15:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+ 131              		.loc 1 15 2 is_stmt 0 view .LVU15
+ 132 0016 01A9     		add	r1, sp, #4	@,,
+ 133              	.LVL1:
+ 134              		.loc 1 15 2 view .LVU16
+ 135 0018 4FF08040 		mov	r0, #1073741824	@,
+ 136              	.LVL2:
+ 137              	@ ../5-PWM_LCD_SERIAL/dht11.c:12: 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+  12:../5-PWM_LCD_SERIAL/dht11.c **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
+ 138              		.loc 1 12 37 view .LVU17
+ 139 001c ADF80430 		strh	r3, [sp, #4]	@ movhi	@ tmp123, TIM_TimBaseStructure.TIM_Prescaler
+  14:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+ 140              		.loc 1 14 2 is_stmt 1 view .LVU18
+ 141              	@ ../5-PWM_LCD_SERIAL/dht11.c:14: 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  14:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+ 142              		.loc 1 14 39 is_stmt 0 view .LVU19
+ 143 0020 ADF80650 		strh	r5, [sp, #6]	@ movhi	@ tmp125, TIM_TimBaseStructure.TIM_CounterMode
+ 144              		.loc 1 15 2 is_stmt 1 view .LVU20
+ARM GAS  /tmp/ccsnpTLa.s 			page 4
+
+
+ 145 0024 FFF7FEFF 		bl	TIM_TimeBaseInit		@
+ 146              	.LVL3:
+  16:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM_Cmd(TIM2, ENABLE);
+ 147              		.loc 1 16 2 view .LVU21
+ 148 0028 0121     		movs	r1, #1	@,
+ 149 002a 4FF08040 		mov	r0, #1073741824	@,
+ 150 002e FFF7FEFF 		bl	TIM_Cmd		@
+ 151              	.LVL4:
+  17:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  18:../5-PWM_LCD_SERIAL/dht11.c **** 	//Initialise GPIO DHT11
+  19:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 152              		.loc 1 19 2 view .LVU22
+ 153              	@ ../5-PWM_LCD_SERIAL/dht11.c:19: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 154              		.loc 1 19 30 is_stmt 0 view .LVU23
+ 155 0032 2389     		ldrh	r3, [r4, #8]	@, dev_4(D)->pin
+ 156              	@ ../5-PWM_LCD_SERIAL/dht11.c:22: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+  20:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  21:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  22:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 157              		.loc 1 22 2 view .LVU24
+ 158 0034 6068     		ldr	r0, [r4, #4]	@, dev_4(D)->port
+ 159              	@ ../5-PWM_LCD_SERIAL/dht11.c:19: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+  19:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 160              		.loc 1 19 30 view .LVU25
+ 161 0036 ADF80030 		strh	r3, [sp]	@ movhi	@ dev_4(D)->pin, GPIO_InitStructure.GPIO_Pin
+  20:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 162              		.loc 1 20 2 is_stmt 1 view .LVU26
+  21:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 163              		.loc 1 21 2 view .LVU27
+ 164              	@ ../5-PWM_LCD_SERIAL/dht11.c:21: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  21:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 165              		.loc 1 21 32 is_stmt 0 view .LVU28
+ 166 003a 41F20303 		movw	r3, #4099	@ tmp129,
+ 167              	@ ../5-PWM_LCD_SERIAL/dht11.c:22: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 168              		.loc 1 22 2 view .LVU29
+ 169 003e 6946     		mov	r1, sp	@,
+ 170              	@ ../5-PWM_LCD_SERIAL/dht11.c:21: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  21:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 171              		.loc 1 21 32 view .LVU30
+ 172 0040 ADF80230 		strh	r3, [sp, #2]	@ movhi	@ tmp129, MEM <unsigned short> [(void *)&GPIO_InitStructure + 2B]
+ 173              		.loc 1 22 2 is_stmt 1 view .LVU31
+ 174 0044 FFF7FEFF 		bl	GPIO_Init		@
+ 175              	.LVL5:
+  23:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  24:../5-PWM_LCD_SERIAL/dht11.c **** 	return 0;
+ 176              		.loc 1 24 2 view .LVU32
+ 177              	@ ../5-PWM_LCD_SERIAL/dht11.c:25: }
+  25:../5-PWM_LCD_SERIAL/dht11.c **** }
+ 178              		.loc 1 25 1 is_stmt 0 view .LVU33
+ 179 0048 2846     		mov	r0, r5	@, tmp125
+ 180 004a 05B0     		add	sp, sp, #20	@,,
+ 181              	.LCFI2:
+ 182              		.cfi_def_cfa_offset 12
+ 183              		@ sp needed	@
+ 184 004c 30BD     		pop	{r4, r5, pc}	@
+ 185              		.loc 1 25 1 view .LVU34
+ 186              		.cfi_endproc
+ARM GAS  /tmp/ccsnpTLa.s 			page 5
+
+
+ 187              	.LFE29:
+ 188              		.size	DHT11_init, .-DHT11_init
+ 189              		.align	1
+ 190              		.global	DHT11_read
+ 191              		.syntax unified
+ 192              		.thumb
+ 193              		.thumb_func
+ 194              		.type	DHT11_read, %function
+ 195              	DHT11_read:
+ 196              	.LVL6:
+ 197              	.LFB30:
+  26:../5-PWM_LCD_SERIAL/dht11.c **** 
+  27:../5-PWM_LCD_SERIAL/dht11.c **** int DHT11_read(struct DHT11_Dev* dev) {
+ 198              		.loc 1 27 39 is_stmt 1 view -0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 16
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+  28:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  29:../5-PWM_LCD_SERIAL/dht11.c **** 	//Initialisation
+  30:../5-PWM_LCD_SERIAL/dht11.c **** 	uint8_t i, j, temp;
+ 202              		.loc 1 30 2 view .LVU36
+  31:../5-PWM_LCD_SERIAL/dht11.c **** 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+ 203              		.loc 1 31 2 view .LVU37
+ 204              	@ ../5-PWM_LCD_SERIAL/dht11.c:27: int DHT11_read(struct DHT11_Dev* dev) {
+  27:../5-PWM_LCD_SERIAL/dht11.c **** 	
+ 205              		.loc 1 27 39 is_stmt 0 view .LVU38
+ 206 004e F0B5     		push	{r4, r5, r6, r7, lr}	@
+ 207              	.LCFI3:
+ 208              		.cfi_def_cfa_offset 20
+ 209              		.cfi_offset 4, -20
+ 210              		.cfi_offset 5, -16
+ 211              		.cfi_offset 6, -12
+ 212              		.cfi_offset 7, -8
+ 213              		.cfi_offset 14, -4
+ 214 0050 0446     		mov	r4, r0	@ dev, tmp235
+ 215              	@ ../5-PWM_LCD_SERIAL/dht11.c:31: 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+ 216              		.loc 1 31 10 view .LVU39
+ 217 0052 464B     		ldr	r3, .L27	@ tmp154,
+ 218              	@ ../5-PWM_LCD_SERIAL/dht11.c:27: int DHT11_read(struct DHT11_Dev* dev) {
+  27:../5-PWM_LCD_SERIAL/dht11.c **** 	
+ 219              		.loc 1 27 39 view .LVU40
+ 220 0054 85B0     		sub	sp, sp, #20	@,,
+ 221              	.LCFI4:
+ 222              		.cfi_def_cfa_offset 40
+ 223              	@ ../5-PWM_LCD_SERIAL/dht11.c:31: 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+ 224              		.loc 1 31 10 view .LVU41
+ 225 0056 1868     		ldr	r0, [r3]	@ unaligned	@,
+ 226              	.LVL7:
+ 227              		.loc 1 31 10 view .LVU42
+ 228 0058 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2	@ tmp158,
+ 229 005a 0290     		str	r0, [sp, #8]	@, data
+ 230 005c 8DF80C30 		strb	r3, [sp, #12]	@ tmp158, data
+  32:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitTypeDef GPIO_InitStructure;
+ 231              		.loc 1 32 2 is_stmt 1 view .LVU43
+  33:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  34:../5-PWM_LCD_SERIAL/dht11.c **** 	//Generate START condition
+  35:../5-PWM_LCD_SERIAL/dht11.c **** 	//o
+ARM GAS  /tmp/ccsnpTLa.s 			page 6
+
+
+  36:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 232              		.loc 1 36 2 view .LVU44
+ 233              	@ ../5-PWM_LCD_SERIAL/dht11.c:36: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 234              		.loc 1 36 30 is_stmt 0 view .LVU45
+ 235 0060 2389     		ldrh	r3, [r4, #8]	@, dev_49(D)->pin
+ 236              	@ ../5-PWM_LCD_SERIAL/dht11.c:39: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+  37:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  38:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  39:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 237              		.loc 1 39 2 view .LVU46
+ 238 0062 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 239              	@ ../5-PWM_LCD_SERIAL/dht11.c:36: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+  36:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 240              		.loc 1 36 30 view .LVU47
+ 241 0064 ADF80430 		strh	r3, [sp, #4]	@ movhi	@ dev_49(D)->pin, GPIO_InitStructure.GPIO_Pin
+  37:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 242              		.loc 1 37 2 is_stmt 1 view .LVU48
+  38:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 243              		.loc 1 38 2 view .LVU49
+ 244              	@ ../5-PWM_LCD_SERIAL/dht11.c:38: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  38:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 245              		.loc 1 38 32 is_stmt 0 view .LVU50
+ 246 0068 41F20303 		movw	r3, #4099	@ tmp162,
+ 247              	@ ../5-PWM_LCD_SERIAL/dht11.c:39: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 248              		.loc 1 39 2 view .LVU51
+ 249 006c 01A9     		add	r1, sp, #4	@ tmp243,,
+ 250              	@ ../5-PWM_LCD_SERIAL/dht11.c:38: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  38:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 251              		.loc 1 38 32 view .LVU52
+ 252 006e ADF80630 		strh	r3, [sp, #6]	@ movhi	@ tmp162, MEM <unsigned short> [(void *)&GPIO_InitStructure + 2B]
+ 253              		.loc 1 39 2 is_stmt 1 view .LVU53
+ 254 0072 FFF7FEFF 		bl	GPIO_Init		@
+ 255              	.LVL8:
+  40:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  41:../5-PWM_LCD_SERIAL/dht11.c **** 	//dev->port->MODER |= GPIO_MODER_MODER6_0;
+  42:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  43:../5-PWM_LCD_SERIAL/dht11.c **** 	//Put LOW for at least 18ms
+  44:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_ResetBits(dev->port, dev->pin);
+ 256              		.loc 1 44 2 view .LVU54
+ 257 0076 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
+ 258 0078 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 259 007a FFF7FEFF 		bl	GPIO_ResetBits		@
+ 260              	.LVL9:
+  45:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  46:../5-PWM_LCD_SERIAL/dht11.c **** 	//wait 18ms
+  47:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM2->CNT = 0;
+ 261              		.loc 1 47 2 view .LVU55
+ 262              	@ ../5-PWM_LCD_SERIAL/dht11.c:47: 	TIM2->CNT = 0;
+ 263              		.loc 1 47 12 is_stmt 0 view .LVU56
+ 264 007e 4FF08045 		mov	r5, #1073741824	@ tmp165,
+ 265 0082 0023     		movs	r3, #0	@ tmp167,
+ 266              	@ ../5-PWM_LCD_SERIAL/dht11.c:48: 	while((TIM2->CNT) <= 18000);
+  48:../5-PWM_LCD_SERIAL/dht11.c **** 	while((TIM2->CNT) <= 18000);
+ 267              		.loc 1 48 7 view .LVU57
+ 268 0084 44F25062 		movw	r2, #18000	@ tmp173,
+ 269              	@ ../5-PWM_LCD_SERIAL/dht11.c:47: 	TIM2->CNT = 0;
+  47:../5-PWM_LCD_SERIAL/dht11.c **** 	while((TIM2->CNT) <= 18000);
+ARM GAS  /tmp/ccsnpTLa.s 			page 7
+
+
+ 270              		.loc 1 47 12 view .LVU58
+ 271 0088 AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp167, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 272              		.loc 1 48 2 is_stmt 1 view .LVU59
+ 273              	.L3:
+ 274              		.loc 1 48 29 discriminator 1 view .LVU60
+ 275              		.loc 1 48 7 discriminator 1 view .LVU61
+ 276              	@ ../5-PWM_LCD_SERIAL/dht11.c:48: 	while((TIM2->CNT) <= 18000);
+ 277              		.loc 1 48 13 is_stmt 0 discriminator 1 view .LVU62
+ 278 008a AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 279 008c 9BB2     		uxth	r3, r3	@ _5, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 280              	@ ../5-PWM_LCD_SERIAL/dht11.c:48: 	while((TIM2->CNT) <= 18000);
+ 281              		.loc 1 48 7 discriminator 1 view .LVU63
+ 282 008e 9342     		cmp	r3, r2	@ _5, tmp173
+ 283 0090 FBD9     		bls	.L3		@,
+  49:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  50:../5-PWM_LCD_SERIAL/dht11.c **** 	//Put HIGH for 20-40us
+  51:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_SetBits(dev->port, dev->pin);
+ 284              		.loc 1 51 2 is_stmt 1 view .LVU64
+ 285 0092 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
+ 286 0094 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 287 0096 FFF7FEFF 		bl	GPIO_SetBits		@
+ 288              	.LVL10:
+  52:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  53:../5-PWM_LCD_SERIAL/dht11.c **** 	//wait 40us
+  54:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM2->CNT = 0;
+ 289              		.loc 1 54 2 view .LVU65
+ 290              	@ ../5-PWM_LCD_SERIAL/dht11.c:54: 	TIM2->CNT = 0;
+ 291              		.loc 1 54 12 is_stmt 0 view .LVU66
+ 292 009a 0023     		movs	r3, #0	@ tmp177,
+ 293 009c AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp177, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+  55:../5-PWM_LCD_SERIAL/dht11.c **** 	while((TIM2->CNT) <= 40);
+ 294              		.loc 1 55 2 is_stmt 1 view .LVU67
+ 295              	@ ../5-PWM_LCD_SERIAL/dht11.c:55: 	while((TIM2->CNT) <= 40);
+ 296              		.loc 1 55 13 is_stmt 0 view .LVU68
+ 297 009e 4FF08045 		mov	r5, #1073741824	@ tmp178,
+ 298              	.L4:
+ 299              		.loc 1 55 26 is_stmt 1 discriminator 1 view .LVU69
+ 300              		.loc 1 55 7 discriminator 1 view .LVU70
+ 301              	@ ../5-PWM_LCD_SERIAL/dht11.c:55: 	while((TIM2->CNT) <= 40);
+ 302              		.loc 1 55 13 is_stmt 0 discriminator 1 view .LVU71
+ 303 00a2 AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 304 00a4 9BB2     		uxth	r3, r3	@ _8, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 305              	@ ../5-PWM_LCD_SERIAL/dht11.c:55: 	while((TIM2->CNT) <= 40);
+ 306              		.loc 1 55 7 discriminator 1 view .LVU72
+ 307 00a6 282B     		cmp	r3, #40	@ _8,
+ 308 00a8 FBD9     		bls	.L4		@,
+  56:../5-PWM_LCD_SERIAL/dht11.c **** 	//End start condition
+  57:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  58:../5-PWM_LCD_SERIAL/dht11.c **** 	//io();
+  59:../5-PWM_LCD_SERIAL/dht11.c **** 	//Input mode to receive data
+  60:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 309              		.loc 1 60 2 is_stmt 1 view .LVU73
+ 310              	@ ../5-PWM_LCD_SERIAL/dht11.c:60: 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 311              		.loc 1 60 31 is_stmt 0 view .LVU74
+ 312 00aa 0423     		movs	r3, #4	@ tmp183,
+ 313              	@ ../5-PWM_LCD_SERIAL/dht11.c:61: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+  61:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ARM GAS  /tmp/ccsnpTLa.s 			page 8
+
+
+ 314              		.loc 1 61 2 view .LVU75
+ 315 00ac 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 316 00ae 0DEB0301 		add	r1, sp, r3	@ tmp244,,
+ 317              	@ ../5-PWM_LCD_SERIAL/dht11.c:60: 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  60:../5-PWM_LCD_SERIAL/dht11.c **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 318              		.loc 1 60 31 view .LVU76
+ 319 00b2 8DF80730 		strb	r3, [sp, #7]	@ tmp183, GPIO_InitStructure.GPIO_Mode
+ 320              		.loc 1 61 2 is_stmt 1 view .LVU77
+ 321 00b6 FFF7FEFF 		bl	GPIO_Init		@
+ 322              	.LVL11:
+  62:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  63:../5-PWM_LCD_SERIAL/dht11.c **** 	//DHT11 ACK
+  64:../5-PWM_LCD_SERIAL/dht11.c **** 	//should be LOW for at least 80us
+  65:../5-PWM_LCD_SERIAL/dht11.c **** 	//while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+  66:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM2->CNT = 0;
+ 323              		.loc 1 66 2 view .LVU78
+ 324              	@ ../5-PWM_LCD_SERIAL/dht11.c:66: 	TIM2->CNT = 0;
+ 325              		.loc 1 66 12 is_stmt 0 view .LVU79
+ 326 00ba 0023     		movs	r3, #0	@ tmp188,
+ 327 00bc AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp188, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+  67:../5-PWM_LCD_SERIAL/dht11.c **** 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 328              		.loc 1 67 2 is_stmt 1 view .LVU80
+ 329 00be 4FF08045 		mov	r5, #1073741824	@ tmp229,
+ 330              	.L5:
+ 331              		.loc 1 67 7 view .LVU81
+ 332              	@ ../5-PWM_LCD_SERIAL/dht11.c:67: 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 333              		.loc 1 67 9 is_stmt 0 view .LVU82
+ 334 00c2 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
+ 335 00c4 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 336 00c6 FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
+ 337              	.LVL12:
+ 338              	@ ../5-PWM_LCD_SERIAL/dht11.c:67: 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 339              		.loc 1 67 7 view .LVU83
+ 340 00ca 0028     		cmp	r0, #0	@ tmp236
+ 341 00cc 42D0     		beq	.L7	@
+  68:../5-PWM_LCD_SERIAL/dht11.c **** 		if(TIM2->CNT > 100)
+  69:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+  70:../5-PWM_LCD_SERIAL/dht11.c **** 	}
+  71:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  72:../5-PWM_LCD_SERIAL/dht11.c **** 	//should be HIGH for at least 80us
+  73:../5-PWM_LCD_SERIAL/dht11.c **** 	//while(GPIO_ReadInputDataBit(dev->port, dev->pin));		
+  74:../5-PWM_LCD_SERIAL/dht11.c **** 	TIM2->CNT = 0;
+ 342              		.loc 1 74 2 is_stmt 1 view .LVU84
+ 343              	@ ../5-PWM_LCD_SERIAL/dht11.c:74: 	TIM2->CNT = 0;
+ 344              		.loc 1 74 12 is_stmt 0 view .LVU85
+ 345 00ce 0023     		movs	r3, #0	@ tmp198,
+ 346 00d0 AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp198, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+  75:../5-PWM_LCD_SERIAL/dht11.c **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 347              		.loc 1 75 2 is_stmt 1 view .LVU86
+ 348              	@ ../5-PWM_LCD_SERIAL/dht11.c:76: 		if(TIM2->CNT > 100)
+  76:../5-PWM_LCD_SERIAL/dht11.c **** 		if(TIM2->CNT > 100)
+ 349              		.loc 1 76 10 is_stmt 0 view .LVU87
+ 350 00d2 4FF08045 		mov	r5, #1073741824	@ tmp234,
+ 351              	.L8:
+  75:../5-PWM_LCD_SERIAL/dht11.c **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 352              		.loc 1 75 7 is_stmt 1 view .LVU88
+ 353              	@ ../5-PWM_LCD_SERIAL/dht11.c:75: 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ARM GAS  /tmp/ccsnpTLa.s 			page 9
+
+
+  75:../5-PWM_LCD_SERIAL/dht11.c **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 354              		.loc 1 75 8 is_stmt 0 view .LVU89
+ 355 00d6 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
+ 356 00d8 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 357 00da FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
+ 358              	.LVL13:
+ 359              	@ ../5-PWM_LCD_SERIAL/dht11.c:75: 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+  75:../5-PWM_LCD_SERIAL/dht11.c **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 360              		.loc 1 75 7 view .LVU90
+ 361 00de 0028     		cmp	r0, #0	@ tmp237
+ 362 00e0 3FD1     		bne	.L10	@
+ 363 00e2 0527     		movs	r7, #5	@ ivtmp_81,
+ 364 00e4 02AD     		add	r5, sp, #8	@ tmp245,,
+ 365              	.L11:
+ 366              	.LVL14:
+  77:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+  78:../5-PWM_LCD_SERIAL/dht11.c **** 	}
+  79:../5-PWM_LCD_SERIAL/dht11.c **** 	
+  80:../5-PWM_LCD_SERIAL/dht11.c **** 	//Read 40 bits (8*5)
+  81:../5-PWM_LCD_SERIAL/dht11.c **** 	for(j = 0; j < 5; ++j) {
+  82:../5-PWM_LCD_SERIAL/dht11.c **** 		for(i = 0; i < 8; ++i) {
+ 367              		.loc 1 82 14 is_stmt 1 view .LVU91
+ 368              	@ ../5-PWM_LCD_SERIAL/dht11.c:27: int DHT11_read(struct DHT11_Dev* dev) {
+  27:../5-PWM_LCD_SERIAL/dht11.c **** 	
+ 369              		.loc 1 27 39 is_stmt 0 view .LVU92
+ 370 00e6 0826     		movs	r6, #8	@ ivtmp_83,
+ 371              	.LVL15:
+ 372              	.L12:
+  83:../5-PWM_LCD_SERIAL/dht11.c **** 			
+  84:../5-PWM_LCD_SERIAL/dht11.c **** 			//LOW for 50us
+  85:../5-PWM_LCD_SERIAL/dht11.c **** 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 373              		.loc 1 85 54 is_stmt 1 discriminator 1 view .LVU93
+ 374              		.loc 1 85 9 discriminator 1 view .LVU94
+ 375              	@ ../5-PWM_LCD_SERIAL/dht11.c:85: 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 376              		.loc 1 85 11 is_stmt 0 discriminator 1 view .LVU95
+ 377 00e8 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
+ 378 00ea 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 379 00ec FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
+ 380              	.LVL16:
+ 381              	@ ../5-PWM_LCD_SERIAL/dht11.c:85: 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 382              		.loc 1 85 9 discriminator 1 view .LVU96
+ 383 00f0 0028     		cmp	r0, #0	@ tmp238
+ 384 00f2 F9D0     		beq	.L12	@
+  86:../5-PWM_LCD_SERIAL/dht11.c **** 			/*TIM2->CNT = 0;
+  87:../5-PWM_LCD_SERIAL/dht11.c **** 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+  88:../5-PWM_LCD_SERIAL/dht11.c **** 				if(TIM2->CNT > 60)
+  89:../5-PWM_LCD_SERIAL/dht11.c **** 					return DHT11_ERROR_TIMEOUT;
+  90:../5-PWM_LCD_SERIAL/dht11.c **** 			}*/
+  91:../5-PWM_LCD_SERIAL/dht11.c **** 			
+  92:../5-PWM_LCD_SERIAL/dht11.c **** 			//Start counter
+  93:../5-PWM_LCD_SERIAL/dht11.c **** 			TIM_SetCounter(TIM2, 0);
+ 385              		.loc 1 93 4 is_stmt 1 view .LVU97
+ 386 00f4 0021     		movs	r1, #0	@,
+ 387 00f6 4FF08040 		mov	r0, #1073741824	@,
+ 388 00fa FFF7FEFF 		bl	TIM_SetCounter		@
+ 389              	.LVL17:
+  94:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ARM GAS  /tmp/ccsnpTLa.s 			page 10
+
+
+  95:../5-PWM_LCD_SERIAL/dht11.c **** 			//HIGH for 26-28us = 0 / 70us = 1
+  96:../5-PWM_LCD_SERIAL/dht11.c **** 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 390              		.loc 1 96 4 view .LVU98
+ 391              	.L13:
+ 392              		.loc 1 96 53 discriminator 1 view .LVU99
+ 393              		.loc 1 96 9 discriminator 1 view .LVU100
+ 394              	@ ../5-PWM_LCD_SERIAL/dht11.c:96: 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 395              		.loc 1 96 10 is_stmt 0 discriminator 1 view .LVU101
+ 396 00fe 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
+ 397 0100 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
+ 398 0102 FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
+ 399              	.LVL18:
+ 400              	@ ../5-PWM_LCD_SERIAL/dht11.c:96: 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 401              		.loc 1 96 9 discriminator 1 view .LVU102
+ 402 0106 0028     		cmp	r0, #0	@ tmp239
+ 403 0108 F9D1     		bne	.L13	@
+  97:../5-PWM_LCD_SERIAL/dht11.c **** 			/*while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+  98:../5-PWM_LCD_SERIAL/dht11.c **** 				if(TIM2->CNT > 100)
+  99:../5-PWM_LCD_SERIAL/dht11.c **** 					return DHT11_ERROR_TIMEOUT;
+ 100:../5-PWM_LCD_SERIAL/dht11.c **** 			}*/
+ 101:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 102:../5-PWM_LCD_SERIAL/dht11.c **** 			//Calc amount of time passed
+ 103:../5-PWM_LCD_SERIAL/dht11.c **** 			temp = TIM_GetCounter(TIM2);
+ 404              		.loc 1 103 4 is_stmt 1 view .LVU103
+ 405              	@ ../5-PWM_LCD_SERIAL/dht11.c:103: 			temp = TIM_GetCounter(TIM2);
+ 406              		.loc 1 103 11 is_stmt 0 view .LVU104
+ 407 010a 4FF08040 		mov	r0, #1073741824	@,
+ 408 010e FFF7FEFF 		bl	TIM_GetCounter		@
+ 409              	.LVL19:
+ 104:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 105:../5-PWM_LCD_SERIAL/dht11.c **** 			//shift 0
+ 106:../5-PWM_LCD_SERIAL/dht11.c **** 			data[j] = data[j] << 1;
+ 410              		.loc 1 106 4 is_stmt 1 view .LVU105
+ 411              	@ ../5-PWM_LCD_SERIAL/dht11.c:106: 			data[j] = data[j] << 1;
+ 412              		.loc 1 106 22 is_stmt 0 view .LVU106
+ 413 0112 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2	@ MEM[base: _36, offset: 0B], MEM[base: _36, offset: 0B]
+ 414              	@ ../5-PWM_LCD_SERIAL/dht11.c:109: 			if(temp > 40)
+ 107:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 108:../5-PWM_LCD_SERIAL/dht11.c **** 			//if > 30us it's 1
+ 109:../5-PWM_LCD_SERIAL/dht11.c **** 			if(temp > 40)
+ 415              		.loc 1 109 6 view .LVU107
+ 416 0114 C0B2     		uxtb	r0, r0	@ _24, tmp240
+ 417              	@ ../5-PWM_LCD_SERIAL/dht11.c:106: 			data[j] = data[j] << 1;
+ 106:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 418              		.loc 1 106 22 view .LVU108
+ 419 0116 5B00     		lsls	r3, r3, #1	@ tmp213, MEM[base: _36, offset: 0B],
+ 420 0118 DBB2     		uxtb	r3, r3	@ _27, tmp213
+ 421              		.loc 1 109 4 is_stmt 1 view .LVU109
+ 422              	@ ../5-PWM_LCD_SERIAL/dht11.c:109: 			if(temp > 40)
+ 423              		.loc 1 109 6 is_stmt 0 view .LVU110
+ 424 011a 2828     		cmp	r0, #40	@ _24,
+ 110:../5-PWM_LCD_SERIAL/dht11.c **** 				data[j] = data[j]+1;
+ 425              		.loc 1 110 5 is_stmt 1 view .LVU111
+ 426              	@ ../5-PWM_LCD_SERIAL/dht11.c:82: 		for(i = 0; i < 8; ++i) {
+  82:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 427              		.loc 1 82 3 is_stmt 0 view .LVU112
+ 428 011c 06F1FF36 		add	r6, r6, #-1	@ tmp220, ivtmp_83,
+ARM GAS  /tmp/ccsnpTLa.s 			page 11
+
+
+ 429              	@ ../5-PWM_LCD_SERIAL/dht11.c:110: 				data[j] = data[j]+1;
+ 430              		.loc 1 110 22 view .LVU113
+ 431 0120 88BF     		it	hi
+ 432 0122 0133     		addhi	r3, r3, #1	@ tmp218, _27,
+ 433              	@ ../5-PWM_LCD_SERIAL/dht11.c:82: 		for(i = 0; i < 8; ++i) {
+  82:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 434              		.loc 1 82 3 view .LVU114
+ 435 0124 16F0FF06 		ands	r6, r6, #255	@ ivtmp_83, tmp220,
+ 436              	@ ../5-PWM_LCD_SERIAL/dht11.c:110: 				data[j] = data[j]+1;
+ 437              		.loc 1 110 13 view .LVU115
+ 438 0128 2B70     		strb	r3, [r5]	@ tmp218, MEM[base: _36, offset: 0B]
+  82:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 439              		.loc 1 82 21 is_stmt 1 view .LVU116
+  82:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 440              		.loc 1 82 14 view .LVU117
+ 441              	@ ../5-PWM_LCD_SERIAL/dht11.c:82: 		for(i = 0; i < 8; ++i) {
+  82:../5-PWM_LCD_SERIAL/dht11.c **** 			
+ 442              		.loc 1 82 3 is_stmt 0 view .LVU118
+ 443 012a DDD1     		bne	.L12		@,
+  81:../5-PWM_LCD_SERIAL/dht11.c **** 		for(i = 0; i < 8; ++i) {
+ 444              		.loc 1 81 20 is_stmt 1 discriminator 2 view .LVU119
+ 445              	.LVL20:
+  81:../5-PWM_LCD_SERIAL/dht11.c **** 		for(i = 0; i < 8; ++i) {
+ 446              		.loc 1 81 13 discriminator 2 view .LVU120
+ 447              	@ ../5-PWM_LCD_SERIAL/dht11.c:81: 	for(j = 0; j < 5; ++j) {
+  81:../5-PWM_LCD_SERIAL/dht11.c **** 		for(i = 0; i < 8; ++i) {
+ 448              		.loc 1 81 2 is_stmt 0 discriminator 2 view .LVU121
+ 449 012c 013F     		subs	r7, r7, #1	@ tmp221, ivtmp_81,
+ 450 012e 17F0FF07 		ands	r7, r7, #255	@ ivtmp_81, tmp221,
+ 451 0132 05F10105 		add	r5, r5, #1	@ ivtmp.20, ivtmp.20,
+ 452              	.LVL21:
+  81:../5-PWM_LCD_SERIAL/dht11.c **** 		for(i = 0; i < 8; ++i) {
+ 453              		.loc 1 81 2 discriminator 2 view .LVU122
+ 454 0136 D6D1     		bne	.L11		@,
+ 111:../5-PWM_LCD_SERIAL/dht11.c **** 		}
+ 112:../5-PWM_LCD_SERIAL/dht11.c **** 	}
+ 113:../5-PWM_LCD_SERIAL/dht11.c **** 	
+ 114:../5-PWM_LCD_SERIAL/dht11.c **** 	//verify the Checksum
+ 115:../5-PWM_LCD_SERIAL/dht11.c **** 	if(data[4] != (data[0] + data[2]))
+ 455              		.loc 1 115 2 is_stmt 1 view .LVU123
+ 456              	@ ../5-PWM_LCD_SERIAL/dht11.c:115: 	if(data[4] != (data[0] + data[2]))
+ 457              		.loc 1 115 21 is_stmt 0 view .LVU124
+ 458 0138 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2	@ _31, data[0]
+ 459              	@ ../5-PWM_LCD_SERIAL/dht11.c:115: 	if(data[4] != (data[0] + data[2]))
+ 460              		.loc 1 115 31 view .LVU125
+ 461 013c 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2	@ _33, data[2]
+ 462              	@ ../5-PWM_LCD_SERIAL/dht11.c:115: 	if(data[4] != (data[0] + data[2]))
+ 463              		.loc 1 115 9 view .LVU126
+ 464 0140 9DF80C00 		ldrb	r0, [sp, #12]	@ zero_extendqisi2	@ data[4], data[4]
+ 465              	.LVL22:
+ 466              	@ ../5-PWM_LCD_SERIAL/dht11.c:115: 	if(data[4] != (data[0] + data[2]))
+ 467              		.loc 1 115 25 view .LVU127
+ 468 0144 9918     		adds	r1, r3, r2	@ tmp223, _31, _33
+ 469              	@ ../5-PWM_LCD_SERIAL/dht11.c:115: 	if(data[4] != (data[0] + data[2]))
+ 470              		.loc 1 115 4 view .LVU128
+ 471 0146 8842     		cmp	r0, r1	@ data[4], tmp223
+ 116:../5-PWM_LCD_SERIAL/dht11.c **** 		return DHT11_ERROR_CHECKSUM;
+ARM GAS  /tmp/ccsnpTLa.s 			page 12
+
+
+ 117:../5-PWM_LCD_SERIAL/dht11.c **** 	
+ 118:../5-PWM_LCD_SERIAL/dht11.c **** 	//set data
+ 119:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->temparature = data[2];
+ 472              		.loc 1 119 2 is_stmt 1 view .LVU129
+ 473              	@ ../5-PWM_LCD_SERIAL/dht11.c:122: 	return DHT11_SUCCESS;
+ 120:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->humidity = data[0];
+ 121:../5-PWM_LCD_SERIAL/dht11.c **** 	
+ 122:../5-PWM_LCD_SERIAL/dht11.c **** 	return DHT11_SUCCESS;
+ 474              		.loc 1 122 9 is_stmt 0 view .LVU130
+ 475 0148 09BF     		itett	eq
+ 476 014a 0120     		moveq	r0, #1	@ <retval>,
+ 477              	@ ../5-PWM_LCD_SERIAL/dht11.c:116: 		return DHT11_ERROR_CHECKSUM;
+ 116:../5-PWM_LCD_SERIAL/dht11.c **** 		return DHT11_ERROR_CHECKSUM;
+ 478              		.loc 1 116 10 view .LVU131
+ 479 014c 0220     		movne	r0, #2	@ <retval>,
+ 480              	@ ../5-PWM_LCD_SERIAL/dht11.c:119: 	dev->temparature = data[2];
+ 119:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->humidity = data[0];
+ 481              		.loc 1 119 19 view .LVU132
+ 482 014e 2270     		strbeq	r2, [r4]	@ _33, dev_49(D)->temparature
+ 120:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->humidity = data[0];
+ 483              		.loc 1 120 2 is_stmt 1 view .LVU133
+ 484              	@ ../5-PWM_LCD_SERIAL/dht11.c:120: 	dev->humidity = data[0];
+ 120:../5-PWM_LCD_SERIAL/dht11.c **** 	dev->humidity = data[0];
+ 485              		.loc 1 120 16 is_stmt 0 view .LVU134
+ 486 0150 6370     		strbeq	r3, [r4, #1]	@ _31, dev_49(D)->humidity
+ 487              		.loc 1 122 2 is_stmt 1 view .LVU135
+ 488 0152 04E0     		b	.L2		@
+ 489              	.L7:
+  68:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+ 490              		.loc 1 68 3 view .LVU136
+ 491              	@ ../5-PWM_LCD_SERIAL/dht11.c:68: 		if(TIM2->CNT > 100)
+  68:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+ 492              		.loc 1 68 10 is_stmt 0 view .LVU137
+ 493 0154 AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 494 0156 9BB2     		uxth	r3, r3	@ _10, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 495              	@ ../5-PWM_LCD_SERIAL/dht11.c:68: 		if(TIM2->CNT > 100)
+  68:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+ 496              		.loc 1 68 5 view .LVU138
+ 497 0158 642B     		cmp	r3, #100	@ _10,
+ 498 015a B2D9     		bls	.L5		@,
+ 499              	.L9:
+ 500              	@ ../5-PWM_LCD_SERIAL/dht11.c:69: 			return DHT11_ERROR_TIMEOUT;
+  69:../5-PWM_LCD_SERIAL/dht11.c **** 	}
+ 501              		.loc 1 69 11 view .LVU139
+ 502 015c 0320     		movs	r0, #3	@ <retval>,
+ 503              	.L2:
+ 504              	@ ../5-PWM_LCD_SERIAL/dht11.c:123: }
+ 123:../5-PWM_LCD_SERIAL/dht11.c **** }
+ 505              		.loc 1 123 1 view .LVU140
+ 506 015e 05B0     		add	sp, sp, #20	@,,
+ 507              	.LCFI5:
+ 508              		.cfi_remember_state
+ 509              		.cfi_def_cfa_offset 20
+ 510              		@ sp needed	@
+ 511 0160 F0BD     		pop	{r4, r5, r6, r7, pc}	@
+ 512              	.LVL23:
+ 513              	.L10:
+ARM GAS  /tmp/ccsnpTLa.s 			page 13
+
+
+ 514              	.LCFI6:
+ 515              		.cfi_restore_state
+  76:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+ 516              		.loc 1 76 3 is_stmt 1 view .LVU141
+ 517              	@ ../5-PWM_LCD_SERIAL/dht11.c:76: 		if(TIM2->CNT > 100)
+  76:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+ 518              		.loc 1 76 10 is_stmt 0 view .LVU142
+ 519 0162 AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 520 0164 9BB2     		uxth	r3, r3	@ _14, MEM[(struct TIM_TypeDef *)1073741824B].CNT
+ 521              	@ ../5-PWM_LCD_SERIAL/dht11.c:76: 		if(TIM2->CNT > 100)
+  76:../5-PWM_LCD_SERIAL/dht11.c **** 			return DHT11_ERROR_TIMEOUT;
+ 522              		.loc 1 76 5 view .LVU143
+ 523 0166 642B     		cmp	r3, #100	@ _14,
+ 524 0168 B5D9     		bls	.L8		@,
+ 525 016a F7E7     		b	.L9		@
+ 526              	.L28:
+ 527              		.align	2
+ 528              	.L27:
+ 529 016c 00000000 		.word	.LANCHOR0
+ 530              		.cfi_endproc
+ 531              	.LFE30:
+ 532              		.size	DHT11_read, .-DHT11_read
+ 533              		.section	.rodata
+ 534              		.set	.LANCHOR0,. + 0
+ 535              	.LC0:
+ 536 0000 00000000 		.ascii	"\000\000\000\000\000"
+ 536      00
+ 537              		.text
+ 538              	.Letext0:
+ 539              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 540              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 541              		.file 4 "../stm32f10x_lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x/stm32f10x.h"
+ 542              		.file 5 "../stm32f10x_lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h"
+ 543              		.file 6 "../stm32f10x_lib/STM32F10x_StdPeriph_Driver/inc/stm32f10x_tim.h"
+ 544              		.file 7 "../5-PWM_LCD_SERIAL/dht11.h"
+ 545              		.section	.debug_info,"",%progbits
+ 546              	.Ldebug_info0:
+ 547 0000 C1070000 		.4byte	0x7c1
+ 548 0004 0200     		.2byte	0x2
+ 549 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 550 000a 04       		.byte	0x4
+ 551 000b 01       		.uleb128 0x1
+ 552 000c B4000000 		.4byte	.LASF92
+ 553 0010 0C       		.byte	0xc
+ 554 0011 E4010000 		.4byte	.LASF93
+ 555 0015 54010000 		.4byte	.LASF94
+ 556 0019 00000000 		.4byte	.Ltext0
+ 557 001d 70010000 		.4byte	.Letext0
+ 558 0021 00000000 		.4byte	.Ldebug_line0
+ 559 0025 02       		.uleb128 0x2
+ 560 0026 01       		.byte	0x1
+ 561 0027 06       		.byte	0x6
+ 562 0028 95010000 		.4byte	.LASF0
+ 563 002c 03       		.uleb128 0x3
+ 564 002d 19020000 		.4byte	.LASF3
+ 565 0031 02       		.byte	0x2
+ 566 0032 2B       		.byte	0x2b
+ARM GAS  /tmp/ccsnpTLa.s 			page 14
+
+
+ 567 0033 18       		.byte	0x18
+ 568 0034 38000000 		.4byte	0x38
+ 569 0038 02       		.uleb128 0x2
+ 570 0039 01       		.byte	0x1
+ 571 003a 08       		.byte	0x8
+ 572 003b 75020000 		.4byte	.LASF1
+ 573 003f 02       		.uleb128 0x2
+ 574 0040 02       		.byte	0x2
+ 575 0041 05       		.byte	0x5
+ 576 0042 4D000000 		.4byte	.LASF2
+ 577 0046 03       		.uleb128 0x3
+ 578 0047 70000000 		.4byte	.LASF4
+ 579 004b 02       		.byte	0x2
+ 580 004c 39       		.byte	0x39
+ 581 004d 19       		.byte	0x19
+ 582 004e 52000000 		.4byte	0x52
+ 583 0052 02       		.uleb128 0x2
+ 584 0053 02       		.byte	0x2
+ 585 0054 07       		.byte	0x7
+ 586 0055 56030000 		.4byte	.LASF5
+ 587 0059 02       		.uleb128 0x2
+ 588 005a 04       		.byte	0x4
+ 589 005b 05       		.byte	0x5
+ 590 005c 75030000 		.4byte	.LASF6
+ 591 0060 03       		.uleb128 0x3
+ 592 0061 65000000 		.4byte	.LASF7
+ 593 0065 02       		.byte	0x2
+ 594 0066 4F       		.byte	0x4f
+ 595 0067 19       		.byte	0x19
+ 596 0068 6C000000 		.4byte	0x6c
+ 597 006c 02       		.uleb128 0x2
+ 598 006d 04       		.byte	0x4
+ 599 006e 07       		.byte	0x7
+ 600 006f 3A030000 		.4byte	.LASF8
+ 601 0073 02       		.uleb128 0x2
+ 602 0074 08       		.byte	0x8
+ 603 0075 05       		.byte	0x5
+ 604 0076 C4010000 		.4byte	.LASF9
+ 605 007a 02       		.uleb128 0x2
+ 606 007b 08       		.byte	0x8
+ 607 007c 07       		.byte	0x7
+ 608 007d DB020000 		.4byte	.LASF10
+ 609 0081 04       		.uleb128 0x4
+ 610 0082 04       		.byte	0x4
+ 611 0083 05       		.byte	0x5
+ 612 0084 696E7400 		.ascii	"int\000"
+ 613 0088 02       		.uleb128 0x2
+ 614 0089 04       		.byte	0x4
+ 615 008a 07       		.byte	0x7
+ 616 008b 0C030000 		.4byte	.LASF11
+ 617 008f 03       		.uleb128 0x3
+ 618 0090 AC000000 		.4byte	.LASF12
+ 619 0094 03       		.byte	0x3
+ 620 0095 18       		.byte	0x18
+ 621 0096 13       		.byte	0x13
+ 622 0097 2C000000 		.4byte	0x2c
+ 623 009b 03       		.uleb128 0x3
+ARM GAS  /tmp/ccsnpTLa.s 			page 15
+
+
+ 624 009c 19030000 		.4byte	.LASF13
+ 625 00a0 03       		.byte	0x3
+ 626 00a1 24       		.byte	0x24
+ 627 00a2 14       		.byte	0x14
+ 628 00a3 46000000 		.4byte	0x46
+ 629 00a7 05       		.uleb128 0x5
+ 630 00a8 9B000000 		.4byte	0x9b
+ 631 00ac 03       		.uleb128 0x3
+ 632 00ad F2020000 		.4byte	.LASF14
+ 633 00b1 03       		.byte	0x3
+ 634 00b2 30       		.byte	0x30
+ 635 00b3 14       		.byte	0x14
+ 636 00b4 60000000 		.4byte	0x60
+ 637 00b8 05       		.uleb128 0x5
+ 638 00b9 AC000000 		.4byte	0xac
+ 639 00bd 06       		.uleb128 0x6
+ 640 00be 07       		.byte	0x7
+ 641 00bf 01       		.byte	0x1
+ 642 00c0 38000000 		.4byte	0x38
+ 643 00c4 04       		.byte	0x4
+ 644 00c5 0902     		.2byte	0x209
+ 645 00c7 0E       		.byte	0xe
+ 646 00c8 D9000000 		.4byte	0xd9
+ 647 00cc 07       		.uleb128 0x7
+ 648 00cd 7E030000 		.4byte	.LASF15
+ 649 00d1 00       		.byte	0
+ 650 00d2 07       		.uleb128 0x7
+ 651 00d3 D2010000 		.4byte	.LASF16
+ 652 00d7 01       		.byte	0x1
+ 653 00d8 00       		.byte	0
+ 654 00d9 08       		.uleb128 0x8
+ 655 00da 1C       		.byte	0x1c
+ 656 00db 04       		.byte	0x4
+ 657 00dc E903     		.2byte	0x3e9
+ 658 00de 09       		.byte	0x9
+ 659 00df 54010000 		.4byte	0x154
+ 660 00e3 09       		.uleb128 0x9
+ 661 00e4 43524C00 		.ascii	"CRL\000"
+ 662 00e8 04       		.byte	0x4
+ 663 00e9 EB03     		.2byte	0x3eb
+ 664 00eb 11       		.byte	0x11
+ 665 00ec B8000000 		.4byte	0xb8
+ 666 00f0 02       		.byte	0x2
+ 667 00f1 23       		.byte	0x23
+ 668 00f2 00       		.uleb128 0
+ 669 00f3 09       		.uleb128 0x9
+ 670 00f4 43524800 		.ascii	"CRH\000"
+ 671 00f8 04       		.byte	0x4
+ 672 00f9 EC03     		.2byte	0x3ec
+ 673 00fb 11       		.byte	0x11
+ 674 00fc B8000000 		.4byte	0xb8
+ 675 0100 02       		.byte	0x2
+ 676 0101 23       		.byte	0x23
+ 677 0102 04       		.uleb128 0x4
+ 678 0103 09       		.uleb128 0x9
+ 679 0104 49445200 		.ascii	"IDR\000"
+ 680 0108 04       		.byte	0x4
+ARM GAS  /tmp/ccsnpTLa.s 			page 16
+
+
+ 681 0109 ED03     		.2byte	0x3ed
+ 682 010b 11       		.byte	0x11
+ 683 010c B8000000 		.4byte	0xb8
+ 684 0110 02       		.byte	0x2
+ 685 0111 23       		.byte	0x23
+ 686 0112 08       		.uleb128 0x8
+ 687 0113 09       		.uleb128 0x9
+ 688 0114 4F445200 		.ascii	"ODR\000"
+ 689 0118 04       		.byte	0x4
+ 690 0119 EE03     		.2byte	0x3ee
+ 691 011b 11       		.byte	0x11
+ 692 011c B8000000 		.4byte	0xb8
+ 693 0120 02       		.byte	0x2
+ 694 0121 23       		.byte	0x23
+ 695 0122 0C       		.uleb128 0xc
+ 696 0123 0A       		.uleb128 0xa
+ 697 0124 14020000 		.4byte	.LASF17
+ 698 0128 04       		.byte	0x4
+ 699 0129 EF03     		.2byte	0x3ef
+ 700 012b 11       		.byte	0x11
+ 701 012c B8000000 		.4byte	0xb8
+ 702 0130 02       		.byte	0x2
+ 703 0131 23       		.byte	0x23
+ 704 0132 10       		.uleb128 0x10
+ 705 0133 09       		.uleb128 0x9
+ 706 0134 42525200 		.ascii	"BRR\000"
+ 707 0138 04       		.byte	0x4
+ 708 0139 F003     		.2byte	0x3f0
+ 709 013b 11       		.byte	0x11
+ 710 013c B8000000 		.4byte	0xb8
+ 711 0140 02       		.byte	0x2
+ 712 0141 23       		.byte	0x23
+ 713 0142 14       		.uleb128 0x14
+ 714 0143 0A       		.uleb128 0xa
+ 715 0144 E9040000 		.4byte	.LASF18
+ 716 0148 04       		.byte	0x4
+ 717 0149 F103     		.2byte	0x3f1
+ 718 014b 11       		.byte	0x11
+ 719 014c B8000000 		.4byte	0xb8
+ 720 0150 02       		.byte	0x2
+ 721 0151 23       		.byte	0x23
+ 722 0152 18       		.uleb128 0x18
+ 723 0153 00       		.byte	0
+ 724 0154 0B       		.uleb128 0xb
+ 725 0155 00000000 		.4byte	.LASF19
+ 726 0159 04       		.byte	0x4
+ 727 015a F203     		.2byte	0x3f2
+ 728 015c 03       		.byte	0x3
+ 729 015d D9000000 		.4byte	0xd9
+ 730 0161 08       		.uleb128 0x8
+ 731 0162 50       		.byte	0x50
+ 732 0163 04       		.byte	0x4
+ 733 0164 9A04     		.2byte	0x49a
+ 734 0166 09       		.byte	0x9
+ 735 0167 EB030000 		.4byte	0x3eb
+ 736 016b 09       		.uleb128 0x9
+ 737 016c 43523100 		.ascii	"CR1\000"
+ARM GAS  /tmp/ccsnpTLa.s 			page 17
+
+
+ 738 0170 04       		.byte	0x4
+ 739 0171 9C04     		.2byte	0x49c
+ 740 0173 11       		.byte	0x11
+ 741 0174 A7000000 		.4byte	0xa7
+ 742 0178 02       		.byte	0x2
+ 743 0179 23       		.byte	0x23
+ 744 017a 00       		.uleb128 0
+ 745 017b 0A       		.uleb128 0xa
+ 746 017c C3030000 		.4byte	.LASF20
+ 747 0180 04       		.byte	0x4
+ 748 0181 9D04     		.2byte	0x49d
+ 749 0183 0D       		.byte	0xd
+ 750 0184 9B000000 		.4byte	0x9b
+ 751 0188 02       		.byte	0x2
+ 752 0189 23       		.byte	0x23
+ 753 018a 02       		.uleb128 0x2
+ 754 018b 09       		.uleb128 0x9
+ 755 018c 43523200 		.ascii	"CR2\000"
+ 756 0190 04       		.byte	0x4
+ 757 0191 9E04     		.2byte	0x49e
+ 758 0193 11       		.byte	0x11
+ 759 0194 A7000000 		.4byte	0xa7
+ 760 0198 02       		.byte	0x2
+ 761 0199 23       		.byte	0x23
+ 762 019a 04       		.uleb128 0x4
+ 763 019b 0A       		.uleb128 0xa
+ 764 019c 7B000000 		.4byte	.LASF21
+ 765 01a0 04       		.byte	0x4
+ 766 01a1 9F04     		.2byte	0x49f
+ 767 01a3 0D       		.byte	0xd
+ 768 01a4 9B000000 		.4byte	0x9b
+ 769 01a8 02       		.byte	0x2
+ 770 01a9 23       		.byte	0x23
+ 771 01aa 06       		.uleb128 0x6
+ 772 01ab 0A       		.uleb128 0xa
+ 773 01ac 70020000 		.4byte	.LASF22
+ 774 01b0 04       		.byte	0x4
+ 775 01b1 A004     		.2byte	0x4a0
+ 776 01b3 11       		.byte	0x11
+ 777 01b4 A7000000 		.4byte	0xa7
+ 778 01b8 02       		.byte	0x2
+ 779 01b9 23       		.byte	0x23
+ 780 01ba 08       		.uleb128 0x8
+ 781 01bb 0A       		.uleb128 0xa
+ 782 01bc DB030000 		.4byte	.LASF23
+ 783 01c0 04       		.byte	0x4
+ 784 01c1 A104     		.2byte	0x4a1
+ 785 01c3 0D       		.byte	0xd
+ 786 01c4 9B000000 		.4byte	0x9b
+ 787 01c8 02       		.byte	0x2
+ 788 01c9 23       		.byte	0x23
+ 789 01ca 0A       		.uleb128 0xa
+ 790 01cb 0A       		.uleb128 0xa
+ 791 01cc 51030000 		.4byte	.LASF24
+ 792 01d0 04       		.byte	0x4
+ 793 01d1 A204     		.2byte	0x4a2
+ 794 01d3 11       		.byte	0x11
+ARM GAS  /tmp/ccsnpTLa.s 			page 18
+
+
+ 795 01d4 A7000000 		.4byte	0xa7
+ 796 01d8 02       		.byte	0x2
+ 797 01d9 23       		.byte	0x23
+ 798 01da 0C       		.uleb128 0xc
+ 799 01db 0A       		.uleb128 0xa
+ 800 01dc E5030000 		.4byte	.LASF25
+ 801 01e0 04       		.byte	0x4
+ 802 01e1 A304     		.2byte	0x4a3
+ 803 01e3 0D       		.byte	0xd
+ 804 01e4 9B000000 		.4byte	0x9b
+ 805 01e8 02       		.byte	0x2
+ 806 01e9 23       		.byte	0x23
+ 807 01ea 0E       		.uleb128 0xe
+ 808 01eb 09       		.uleb128 0x9
+ 809 01ec 535200   		.ascii	"SR\000"
+ 810 01ef 04       		.byte	0x4
+ 811 01f0 A404     		.2byte	0x4a4
+ 812 01f2 11       		.byte	0x11
+ 813 01f3 A7000000 		.4byte	0xa7
+ 814 01f7 02       		.byte	0x2
+ 815 01f8 23       		.byte	0x23
+ 816 01f9 10       		.uleb128 0x10
+ 817 01fa 0A       		.uleb128 0xa
+ 818 01fb EF030000 		.4byte	.LASF26
+ 819 01ff 04       		.byte	0x4
+ 820 0200 A504     		.2byte	0x4a5
+ 821 0202 0D       		.byte	0xd
+ 822 0203 9B000000 		.4byte	0x9b
+ 823 0207 02       		.byte	0x2
+ 824 0208 23       		.byte	0x23
+ 825 0209 12       		.uleb128 0x12
+ 826 020a 09       		.uleb128 0x9
+ 827 020b 45475200 		.ascii	"EGR\000"
+ 828 020f 04       		.byte	0x4
+ 829 0210 A604     		.2byte	0x4a6
+ 830 0212 11       		.byte	0x11
+ 831 0213 A7000000 		.4byte	0xa7
+ 832 0217 02       		.byte	0x2
+ 833 0218 23       		.byte	0x23
+ 834 0219 14       		.uleb128 0x14
+ 835 021a 0A       		.uleb128 0xa
+ 836 021b F9030000 		.4byte	.LASF27
+ 837 021f 04       		.byte	0x4
+ 838 0220 A704     		.2byte	0x4a7
+ 839 0222 0D       		.byte	0xd
+ 840 0223 9B000000 		.4byte	0x9b
+ 841 0227 02       		.byte	0x2
+ 842 0228 23       		.byte	0x23
+ 843 0229 16       		.uleb128 0x16
+ 844 022a 0A       		.uleb128 0xa
+ 845 022b 3C000000 		.4byte	.LASF28
+ 846 022f 04       		.byte	0x4
+ 847 0230 A804     		.2byte	0x4a8
+ 848 0232 11       		.byte	0x11
+ 849 0233 A7000000 		.4byte	0xa7
+ 850 0237 02       		.byte	0x2
+ 851 0238 23       		.byte	0x23
+ARM GAS  /tmp/ccsnpTLa.s 			page 19
+
+
+ 852 0239 18       		.uleb128 0x18
+ 853 023a 0A       		.uleb128 0xa
+ 854 023b 03040000 		.4byte	.LASF29
+ 855 023f 04       		.byte	0x4
+ 856 0240 A904     		.2byte	0x4a9
+ 857 0242 0D       		.byte	0xd
+ 858 0243 9B000000 		.4byte	0x9b
+ 859 0247 02       		.byte	0x2
+ 860 0248 23       		.byte	0x23
+ 861 0249 1A       		.uleb128 0x1a
+ 862 024a 0A       		.uleb128 0xa
+ 863 024b 42000000 		.4byte	.LASF30
+ 864 024f 04       		.byte	0x4
+ 865 0250 AA04     		.2byte	0x4aa
+ 866 0252 11       		.byte	0x11
+ 867 0253 A7000000 		.4byte	0xa7
+ 868 0257 02       		.byte	0x2
+ 869 0258 23       		.byte	0x23
+ 870 0259 1C       		.uleb128 0x1c
+ 871 025a 0A       		.uleb128 0xa
+ 872 025b 0D040000 		.4byte	.LASF31
+ 873 025f 04       		.byte	0x4
+ 874 0260 AB04     		.2byte	0x4ab
+ 875 0262 0D       		.byte	0xd
+ 876 0263 9B000000 		.4byte	0x9b
+ 877 0267 02       		.byte	0x2
+ 878 0268 23       		.byte	0x23
+ 879 0269 1E       		.uleb128 0x1e
+ 880 026a 0A       		.uleb128 0xa
+ 881 026b 16000000 		.4byte	.LASF32
+ 882 026f 04       		.byte	0x4
+ 883 0270 AC04     		.2byte	0x4ac
+ 884 0272 11       		.byte	0x11
+ 885 0273 A7000000 		.4byte	0xa7
+ 886 0277 02       		.byte	0x2
+ 887 0278 23       		.byte	0x23
+ 888 0279 20       		.uleb128 0x20
+ 889 027a 0A       		.uleb128 0xa
+ 890 027b 17040000 		.4byte	.LASF33
+ 891 027f 04       		.byte	0x4
+ 892 0280 AD04     		.2byte	0x4ad
+ 893 0282 0D       		.byte	0xd
+ 894 0283 9B000000 		.4byte	0x9b
+ 895 0287 02       		.byte	0x2
+ 896 0288 23       		.byte	0x23
+ 897 0289 22       		.uleb128 0x22
+ 898 028a 09       		.uleb128 0x9
+ 899 028b 434E5400 		.ascii	"CNT\000"
+ 900 028f 04       		.byte	0x4
+ 901 0290 AE04     		.2byte	0x4ae
+ 902 0292 11       		.byte	0x11
+ 903 0293 A7000000 		.4byte	0xa7
+ 904 0297 02       		.byte	0x2
+ 905 0298 23       		.byte	0x23
+ 906 0299 24       		.uleb128 0x24
+ 907 029a 0A       		.uleb128 0xa
+ 908 029b 21040000 		.4byte	.LASF34
+ARM GAS  /tmp/ccsnpTLa.s 			page 20
+
+
+ 909 029f 04       		.byte	0x4
+ 910 02a0 AF04     		.2byte	0x4af
+ 911 02a2 0D       		.byte	0xd
+ 912 02a3 9B000000 		.4byte	0x9b
+ 913 02a7 02       		.byte	0x2
+ 914 02a8 23       		.byte	0x23
+ 915 02a9 26       		.uleb128 0x26
+ 916 02aa 09       		.uleb128 0x9
+ 917 02ab 50534300 		.ascii	"PSC\000"
+ 918 02af 04       		.byte	0x4
+ 919 02b0 B004     		.2byte	0x4b0
+ 920 02b2 11       		.byte	0x11
+ 921 02b3 A7000000 		.4byte	0xa7
+ 922 02b7 02       		.byte	0x2
+ 923 02b8 23       		.byte	0x23
+ 924 02b9 28       		.uleb128 0x28
+ 925 02ba 0A       		.uleb128 0xa
+ 926 02bb 83020000 		.4byte	.LASF35
+ 927 02bf 04       		.byte	0x4
+ 928 02c0 B104     		.2byte	0x4b1
+ 929 02c2 0D       		.byte	0xd
+ 930 02c3 9B000000 		.4byte	0x9b
+ 931 02c7 02       		.byte	0x2
+ 932 02c8 23       		.byte	0x23
+ 933 02c9 2A       		.uleb128 0x2a
+ 934 02ca 09       		.uleb128 0x9
+ 935 02cb 41525200 		.ascii	"ARR\000"
+ 936 02cf 04       		.byte	0x4
+ 937 02d0 B204     		.2byte	0x4b2
+ 938 02d2 11       		.byte	0x11
+ 939 02d3 A7000000 		.4byte	0xa7
+ 940 02d7 02       		.byte	0x2
+ 941 02d8 23       		.byte	0x23
+ 942 02d9 2C       		.uleb128 0x2c
+ 943 02da 0A       		.uleb128 0xa
+ 944 02db 8E020000 		.4byte	.LASF36
+ 945 02df 04       		.byte	0x4
+ 946 02e0 B304     		.2byte	0x4b3
+ 947 02e2 0D       		.byte	0xd
+ 948 02e3 9B000000 		.4byte	0x9b
+ 949 02e7 02       		.byte	0x2
+ 950 02e8 23       		.byte	0x23
+ 951 02e9 2E       		.uleb128 0x2e
+ 952 02ea 09       		.uleb128 0x9
+ 953 02eb 52435200 		.ascii	"RCR\000"
+ 954 02ef 04       		.byte	0x4
+ 955 02f0 B404     		.2byte	0x4b4
+ 956 02f2 11       		.byte	0x11
+ 957 02f3 A7000000 		.4byte	0xa7
+ 958 02f7 02       		.byte	0x2
+ 959 02f8 23       		.byte	0x23
+ 960 02f9 30       		.uleb128 0x30
+ 961 02fa 0A       		.uleb128 0xa
+ 962 02fb 99020000 		.4byte	.LASF37
+ 963 02ff 04       		.byte	0x4
+ 964 0300 B504     		.2byte	0x4b5
+ 965 0302 0D       		.byte	0xd
+ARM GAS  /tmp/ccsnpTLa.s 			page 21
+
+
+ 966 0303 9B000000 		.4byte	0x9b
+ 967 0307 02       		.byte	0x2
+ 968 0308 23       		.byte	0x23
+ 969 0309 32       		.uleb128 0x32
+ 970 030a 0A       		.uleb128 0xa
+ 971 030b 00020000 		.4byte	.LASF38
+ 972 030f 04       		.byte	0x4
+ 973 0310 B604     		.2byte	0x4b6
+ 974 0312 11       		.byte	0x11
+ 975 0313 A7000000 		.4byte	0xa7
+ 976 0317 02       		.byte	0x2
+ 977 0318 23       		.byte	0x23
+ 978 0319 34       		.uleb128 0x34
+ 979 031a 0A       		.uleb128 0xa
+ 980 031b A4020000 		.4byte	.LASF39
+ 981 031f 04       		.byte	0x4
+ 982 0320 B704     		.2byte	0x4b7
+ 983 0322 0D       		.byte	0xd
+ 984 0323 9B000000 		.4byte	0x9b
+ 985 0327 02       		.byte	0x2
+ 986 0328 23       		.byte	0x23
+ 987 0329 36       		.uleb128 0x36
+ 988 032a 0A       		.uleb128 0xa
+ 989 032b 05020000 		.4byte	.LASF40
+ 990 032f 04       		.byte	0x4
+ 991 0330 B804     		.2byte	0x4b8
+ 992 0332 11       		.byte	0x11
+ 993 0333 A7000000 		.4byte	0xa7
+ 994 0337 02       		.byte	0x2
+ 995 0338 23       		.byte	0x23
+ 996 0339 38       		.uleb128 0x38
+ 997 033a 0A       		.uleb128 0xa
+ 998 033b AF020000 		.4byte	.LASF41
+ 999 033f 04       		.byte	0x4
+ 1000 0340 B904     		.2byte	0x4b9
+ 1001 0342 0D       		.byte	0xd
+ 1002 0343 9B000000 		.4byte	0x9b
+ 1003 0347 02       		.byte	0x2
+ 1004 0348 23       		.byte	0x23
+ 1005 0349 3A       		.uleb128 0x3a
+ 1006 034a 0A       		.uleb128 0xa
+ 1007 034b 0A020000 		.4byte	.LASF42
+ 1008 034f 04       		.byte	0x4
+ 1009 0350 BA04     		.2byte	0x4ba
+ 1010 0352 11       		.byte	0x11
+ 1011 0353 A7000000 		.4byte	0xa7
+ 1012 0357 02       		.byte	0x2
+ 1013 0358 23       		.byte	0x23
+ 1014 0359 3C       		.uleb128 0x3c
+ 1015 035a 0A       		.uleb128 0xa
+ 1016 035b BA020000 		.4byte	.LASF43
+ 1017 035f 04       		.byte	0x4
+ 1018 0360 BB04     		.2byte	0x4bb
+ 1019 0362 0D       		.byte	0xd
+ 1020 0363 9B000000 		.4byte	0x9b
+ 1021 0367 02       		.byte	0x2
+ 1022 0368 23       		.byte	0x23
+ARM GAS  /tmp/ccsnpTLa.s 			page 22
+
+
+ 1023 0369 3E       		.uleb128 0x3e
+ 1024 036a 0A       		.uleb128 0xa
+ 1025 036b 0F020000 		.4byte	.LASF44
+ 1026 036f 04       		.byte	0x4
+ 1027 0370 BC04     		.2byte	0x4bc
+ 1028 0372 11       		.byte	0x11
+ 1029 0373 A7000000 		.4byte	0xa7
+ 1030 0377 02       		.byte	0x2
+ 1031 0378 23       		.byte	0x23
+ 1032 0379 40       		.uleb128 0x40
+ 1033 037a 0A       		.uleb128 0xa
+ 1034 037b C5020000 		.4byte	.LASF45
+ 1035 037f 04       		.byte	0x4
+ 1036 0380 BD04     		.2byte	0x4bd
+ 1037 0382 0D       		.byte	0xd
+ 1038 0383 9B000000 		.4byte	0x9b
+ 1039 0387 02       		.byte	0x2
+ 1040 0388 23       		.byte	0x23
+ 1041 0389 42       		.uleb128 0x42
+ 1042 038a 0A       		.uleb128 0xa
+ 1043 038b 4C030000 		.4byte	.LASF46
+ 1044 038f 04       		.byte	0x4
+ 1045 0390 BE04     		.2byte	0x4be
+ 1046 0392 11       		.byte	0x11
+ 1047 0393 A7000000 		.4byte	0xa7
+ 1048 0397 02       		.byte	0x2
+ 1049 0398 23       		.byte	0x23
+ 1050 0399 44       		.uleb128 0x44
+ 1051 039a 0A       		.uleb128 0xa
+ 1052 039b 59020000 		.4byte	.LASF47
+ 1053 039f 04       		.byte	0x4
+ 1054 03a0 BF04     		.2byte	0x4bf
+ 1055 03a2 0D       		.byte	0xd
+ 1056 03a3 9B000000 		.4byte	0x9b
+ 1057 03a7 02       		.byte	0x2
+ 1058 03a8 23       		.byte	0x23
+ 1059 03a9 46       		.uleb128 0x46
+ 1060 03aa 09       		.uleb128 0x9
+ 1061 03ab 44435200 		.ascii	"DCR\000"
+ 1062 03af 04       		.byte	0x4
+ 1063 03b0 C004     		.2byte	0x4c0
+ 1064 03b2 11       		.byte	0x11
+ 1065 03b3 A7000000 		.4byte	0xa7
+ 1066 03b7 02       		.byte	0x2
+ 1067 03b8 23       		.byte	0x23
+ 1068 03b9 48       		.uleb128 0x48
+ 1069 03ba 0A       		.uleb128 0xa
+ 1070 03bb D0020000 		.4byte	.LASF48
+ 1071 03bf 04       		.byte	0x4
+ 1072 03c0 C104     		.2byte	0x4c1
+ 1073 03c2 0D       		.byte	0xd
+ 1074 03c3 9B000000 		.4byte	0x9b
+ 1075 03c7 02       		.byte	0x2
+ 1076 03c8 23       		.byte	0x23
+ 1077 03c9 4A       		.uleb128 0x4a
+ 1078 03ca 0A       		.uleb128 0xa
+ 1079 03cb 37000000 		.4byte	.LASF49
+ARM GAS  /tmp/ccsnpTLa.s 			page 23
+
+
+ 1080 03cf 04       		.byte	0x4
+ 1081 03d0 C204     		.2byte	0x4c2
+ 1082 03d2 11       		.byte	0x11
+ 1083 03d3 A7000000 		.4byte	0xa7
+ 1084 03d7 02       		.byte	0x2
+ 1085 03d8 23       		.byte	0x23
+ 1086 03d9 4C       		.uleb128 0x4c
+ 1087 03da 0A       		.uleb128 0xa
+ 1088 03db D9010000 		.4byte	.LASF50
+ 1089 03df 04       		.byte	0x4
+ 1090 03e0 C304     		.2byte	0x4c3
+ 1091 03e2 0D       		.byte	0xd
+ 1092 03e3 9B000000 		.4byte	0x9b
+ 1093 03e7 02       		.byte	0x2
+ 1094 03e8 23       		.byte	0x23
+ 1095 03e9 4E       		.uleb128 0x4e
+ 1096 03ea 00       		.byte	0
+ 1097 03eb 0B       		.uleb128 0xb
+ 1098 03ec 64020000 		.4byte	.LASF51
+ 1099 03f0 04       		.byte	0x4
+ 1100 03f1 C404     		.2byte	0x4c4
+ 1101 03f3 03       		.byte	0x3
+ 1102 03f4 61010000 		.4byte	0x161
+ 1103 03f8 0C       		.uleb128 0xc
+ 1104 03f9 07       		.byte	0x7
+ 1105 03fa 01       		.byte	0x1
+ 1106 03fb 38000000 		.4byte	0x38
+ 1107 03ff 05       		.byte	0x5
+ 1108 0400 3B       		.byte	0x3b
+ 1109 0401 01       		.byte	0x1
+ 1110 0402 19040000 		.4byte	0x419
+ 1111 0406 07       		.uleb128 0x7
+ 1112 0407 39020000 		.4byte	.LASF52
+ 1113 040b 01       		.byte	0x1
+ 1114 040c 07       		.uleb128 0x7
+ 1115 040d 86030000 		.4byte	.LASF53
+ 1116 0411 02       		.byte	0x2
+ 1117 0412 07       		.uleb128 0x7
+ 1118 0413 6D040000 		.4byte	.LASF54
+ 1119 0417 03       		.byte	0x3
+ 1120 0418 00       		.byte	0
+ 1121 0419 03       		.uleb128 0x3
+ 1122 041a 2B040000 		.4byte	.LASF55
+ 1123 041e 05       		.byte	0x5
+ 1124 041f 3F       		.byte	0x3f
+ 1125 0420 02       		.byte	0x2
+ 1126 0421 F8030000 		.4byte	0x3f8
+ 1127 0425 0C       		.uleb128 0xc
+ 1128 0426 07       		.byte	0x7
+ 1129 0427 01       		.byte	0x1
+ 1130 0428 38000000 		.4byte	0x38
+ 1131 042c 05       		.byte	0x5
+ 1132 042d 48       		.byte	0x48
+ 1133 042e 01       		.byte	0x1
+ 1134 042f 64040000 		.4byte	0x464
+ 1135 0433 07       		.uleb128 0x7
+ 1136 0434 CD030000 		.4byte	.LASF56
+ARM GAS  /tmp/ccsnpTLa.s 			page 24
+
+
+ 1137 0438 00       		.byte	0
+ 1138 0439 07       		.uleb128 0x7
+ 1139 043a C0040000 		.4byte	.LASF57
+ 1140 043e 04       		.byte	0x4
+ 1141 043f 07       		.uleb128 0x7
+ 1142 0440 7E040000 		.4byte	.LASF58
+ 1143 0444 28       		.byte	0x28
+ 1144 0445 07       		.uleb128 0x7
+ 1145 0446 96030000 		.4byte	.LASF59
+ 1146 044a 48       		.byte	0x48
+ 1147 044b 07       		.uleb128 0x7
+ 1148 044c 43010000 		.4byte	.LASF60
+ 1149 0450 14       		.byte	0x14
+ 1150 0451 07       		.uleb128 0x7
+ 1151 0452 53040000 		.4byte	.LASF61
+ 1152 0456 10       		.byte	0x10
+ 1153 0457 07       		.uleb128 0x7
+ 1154 0458 0C050000 		.4byte	.LASF62
+ 1155 045c 1C       		.byte	0x1c
+ 1156 045d 07       		.uleb128 0x7
+ 1157 045e A1010000 		.4byte	.LASF63
+ 1158 0462 18       		.byte	0x18
+ 1159 0463 00       		.byte	0
+ 1160 0464 03       		.uleb128 0x3
+ 1161 0465 26000000 		.4byte	.LASF64
+ 1162 0469 05       		.byte	0x5
+ 1163 046a 50       		.byte	0x50
+ 1164 046b 02       		.byte	0x2
+ 1165 046c 25040000 		.4byte	0x425
+ 1166 0470 0D       		.uleb128 0xd
+ 1167 0471 04       		.byte	0x4
+ 1168 0472 05       		.byte	0x5
+ 1169 0473 5B       		.byte	0x5b
+ 1170 0474 09       		.byte	0x9
+ 1171 0475 A7040000 		.4byte	0x4a7
+ 1172 0479 0E       		.uleb128 0xe
+ 1173 047a 0D000000 		.4byte	.LASF65
+ 1174 047e 05       		.byte	0x5
+ 1175 047f 5D       		.byte	0x5d
+ 1176 0480 0C       		.byte	0xc
+ 1177 0481 9B000000 		.4byte	0x9b
+ 1178 0485 02       		.byte	0x2
+ 1179 0486 23       		.byte	0x23
+ 1180 0487 00       		.uleb128 0
+ 1181 0488 0E       		.uleb128 0xe
+ 1182 0489 97000000 		.4byte	.LASF66
+ 1183 048d 05       		.byte	0x5
+ 1184 048e 60       		.byte	0x60
+ 1185 048f 15       		.byte	0x15
+ 1186 0490 19040000 		.4byte	0x419
+ 1187 0494 02       		.byte	0x2
+ 1188 0495 23       		.byte	0x23
+ 1189 0496 02       		.uleb128 0x2
+ 1190 0497 0E       		.uleb128 0xe
+ 1191 0498 1C050000 		.4byte	.LASF67
+ 1192 049c 05       		.byte	0x5
+ 1193 049d 63       		.byte	0x63
+ARM GAS  /tmp/ccsnpTLa.s 			page 25
+
+
+ 1194 049e 14       		.byte	0x14
+ 1195 049f 64040000 		.4byte	0x464
+ 1196 04a3 02       		.byte	0x2
+ 1197 04a4 23       		.byte	0x23
+ 1198 04a5 03       		.uleb128 0x3
+ 1199 04a6 00       		.byte	0
+ 1200 04a7 03       		.uleb128 0x3
+ 1201 04a8 FB020000 		.4byte	.LASF68
+ 1202 04ac 05       		.byte	0x5
+ 1203 04ad 65       		.byte	0x65
+ 1204 04ae 02       		.byte	0x2
+ 1205 04af 70040000 		.4byte	0x470
+ 1206 04b3 0D       		.uleb128 0xd
+ 1207 04b4 0A       		.byte	0xa
+ 1208 04b5 06       		.byte	0x6
+ 1209 04b6 33       		.byte	0x33
+ 1210 04b7 09       		.byte	0x9
+ 1211 04b8 08050000 		.4byte	0x508
+ 1212 04bc 0E       		.uleb128 0xe
+ 1213 04bd 57000000 		.4byte	.LASF69
+ 1214 04c1 06       		.byte	0x6
+ 1215 04c2 35       		.byte	0x35
+ 1216 04c3 0C       		.byte	0xc
+ 1217 04c4 9B000000 		.4byte	0x9b
+ 1218 04c8 02       		.byte	0x2
+ 1219 04c9 23       		.byte	0x23
+ 1220 04ca 00       		.uleb128 0
+ 1221 04cb 0E       		.uleb128 0xe
+ 1222 04cc B0040000 		.4byte	.LASF70
+ 1223 04d0 06       		.byte	0x6
+ 1224 04d1 38       		.byte	0x38
+ 1225 04d2 0C       		.byte	0xc
+ 1226 04d3 9B000000 		.4byte	0x9b
+ 1227 04d7 02       		.byte	0x2
+ 1228 04d8 23       		.byte	0x23
+ 1229 04d9 02       		.uleb128 0x2
+ 1230 04da 0E       		.uleb128 0xe
+ 1231 04db 8C040000 		.4byte	.LASF71
+ 1232 04df 06       		.byte	0x6
+ 1233 04e0 3B       		.byte	0x3b
+ 1234 04e1 0C       		.byte	0xc
+ 1235 04e2 9B000000 		.4byte	0x9b
+ 1236 04e6 02       		.byte	0x2
+ 1237 04e7 23       		.byte	0x23
+ 1238 04e8 04       		.uleb128 0x4
+ 1239 04e9 0E       		.uleb128 0xe
+ 1240 04ea 85000000 		.4byte	.LASF72
+ 1241 04ee 06       		.byte	0x6
+ 1242 04ef 3F       		.byte	0x3f
+ 1243 04f0 0C       		.byte	0xc
+ 1244 04f1 9B000000 		.4byte	0x9b
+ 1245 04f5 02       		.byte	0x2
+ 1246 04f6 23       		.byte	0x23
+ 1247 04f7 06       		.uleb128 0x6
+ 1248 04f8 0E       		.uleb128 0xe
+ 1249 04f9 3D040000 		.4byte	.LASF73
+ 1250 04fd 06       		.byte	0x6
+ARM GAS  /tmp/ccsnpTLa.s 			page 26
+
+
+ 1251 04fe 42       		.byte	0x42
+ 1252 04ff 0B       		.byte	0xb
+ 1253 0500 8F000000 		.4byte	0x8f
+ 1254 0504 02       		.byte	0x2
+ 1255 0505 23       		.byte	0x23
+ 1256 0506 08       		.uleb128 0x8
+ 1257 0507 00       		.byte	0
+ 1258 0508 03       		.uleb128 0x3
+ 1259 0509 22030000 		.4byte	.LASF74
+ 1260 050d 06       		.byte	0x6
+ 1261 050e 4A       		.byte	0x4a
+ 1262 050f 03       		.byte	0x3
+ 1263 0510 B3040000 		.4byte	0x4b3
+ 1264 0514 0F       		.uleb128 0xf
+ 1265 0515 97040000 		.4byte	.LASF95
+ 1266 0519 0C       		.byte	0xc
+ 1267 051a 07       		.byte	0x7
+ 1268 051b 0F       		.byte	0xf
+ 1269 051c 10       		.byte	0x10
+ 1270 051d 5E050000 		.4byte	0x55e
+ 1271 0521 0E       		.uleb128 0xe
+ 1272 0522 69030000 		.4byte	.LASF75
+ 1273 0526 07       		.byte	0x7
+ 1274 0527 10       		.byte	0x10
+ 1275 0528 0A       		.byte	0xa
+ 1276 0529 8F000000 		.4byte	0x8f
+ 1277 052d 02       		.byte	0x2
+ 1278 052e 23       		.byte	0x23
+ 1279 052f 00       		.uleb128 0
+ 1280 0530 0E       		.uleb128 0xe
+ 1281 0531 64040000 		.4byte	.LASF76
+ 1282 0535 07       		.byte	0x7
+ 1283 0536 11       		.byte	0x11
+ 1284 0537 0A       		.byte	0xa
+ 1285 0538 8F000000 		.4byte	0x8f
+ 1286 053c 02       		.byte	0x2
+ 1287 053d 23       		.byte	0x23
+ 1288 053e 01       		.uleb128 0x1
+ 1289 053f 0E       		.uleb128 0xe
+ 1290 0540 BE030000 		.4byte	.LASF77
+ 1291 0544 07       		.byte	0x7
+ 1292 0545 12       		.byte	0x12
+ 1293 0546 10       		.byte	0x10
+ 1294 0547 5E050000 		.4byte	0x55e
+ 1295 054b 02       		.byte	0x2
+ 1296 054c 23       		.byte	0x23
+ 1297 054d 04       		.uleb128 0x4
+ 1298 054e 10       		.uleb128 0x10
+ 1299 054f 70696E00 		.ascii	"pin\000"
+ 1300 0553 07       		.byte	0x7
+ 1301 0554 13       		.byte	0x13
+ 1302 0555 0B       		.byte	0xb
+ 1303 0556 9B000000 		.4byte	0x9b
+ 1304 055a 02       		.byte	0x2
+ 1305 055b 23       		.byte	0x23
+ 1306 055c 08       		.uleb128 0x8
+ 1307 055d 00       		.byte	0
+ARM GAS  /tmp/ccsnpTLa.s 			page 27
+
+
+ 1308 055e 11       		.uleb128 0x11
+ 1309 055f 04       		.byte	0x4
+ 1310 0560 54010000 		.4byte	0x154
+ 1311 0564 12       		.uleb128 0x12
+ 1312 0565 01       		.byte	0x1
+ 1313 0566 D6040000 		.4byte	.LASF81
+ 1314 056a 01       		.byte	0x1
+ 1315 056b 1B       		.byte	0x1b
+ 1316 056c 05       		.byte	0x5
+ 1317 056d 01       		.byte	0x1
+ 1318 056e 81000000 		.4byte	0x81
+ 1319 0572 4E000000 		.4byte	.LFB30
+ 1320 0576 70010000 		.4byte	.LFE30
+ 1321 057a 00000000 		.4byte	.LLST4
+ 1322 057e 01       		.byte	0x1
+ 1323 057f 77060000 		.4byte	0x677
+ 1324 0583 13       		.uleb128 0x13
+ 1325 0584 64657600 		.ascii	"dev\000"
+ 1326 0588 01       		.byte	0x1
+ 1327 0589 1B       		.byte	0x1b
+ 1328 058a 22       		.byte	0x22
+ 1329 058b 77060000 		.4byte	0x677
+ 1330 058f 48000000 		.4byte	.LLST5
+ 1331 0593 44000000 		.4byte	.LVUS5
+ 1332 0597 14       		.uleb128 0x14
+ 1333 0598 6900     		.ascii	"i\000"
+ 1334 059a 01       		.byte	0x1
+ 1335 059b 1E       		.byte	0x1e
+ 1336 059c 0A       		.byte	0xa
+ 1337 059d 8F000000 		.4byte	0x8f
+ 1338 05a1 68000000 		.4byte	.LLST6
+ 1339 05a5 66000000 		.4byte	.LVUS6
+ 1340 05a9 14       		.uleb128 0x14
+ 1341 05aa 6A00     		.ascii	"j\000"
+ 1342 05ac 01       		.byte	0x1
+ 1343 05ad 1E       		.byte	0x1e
+ 1344 05ae 0D       		.byte	0xd
+ 1345 05af 8F000000 		.4byte	0x8f
+ 1346 05b3 80000000 		.4byte	.LLST7
+ 1347 05b7 7C000000 		.4byte	.LVUS7
+ 1348 05bb 15       		.uleb128 0x15
+ 1349 05bc 48000000 		.4byte	.LASF78
+ 1350 05c0 01       		.byte	0x1
+ 1351 05c1 1E       		.byte	0x1e
+ 1352 05c2 10       		.byte	0x10
+ 1353 05c3 8F000000 		.4byte	0x8f
+ 1354 05c7 AC000000 		.4byte	.LLST8
+ 1355 05cb AA000000 		.4byte	.LVUS8
+ 1356 05cf 16       		.uleb128 0x16
+ 1357 05d0 A4030000 		.4byte	.LASF79
+ 1358 05d4 01       		.byte	0x1
+ 1359 05d5 1F       		.byte	0x1f
+ 1360 05d6 0A       		.byte	0xa
+ 1361 05d7 7D060000 		.4byte	0x67d
+ 1362 05db 02       		.byte	0x2
+ 1363 05dc 91       		.byte	0x91
+ 1364 05dd 60       		.sleb128 -32
+ARM GAS  /tmp/ccsnpTLa.s 			page 28
+
+
+ 1365 05de 16       		.uleb128 0x16
+ 1366 05df B1010000 		.4byte	.LASF80
+ 1367 05e3 01       		.byte	0x1
+ 1368 05e4 20       		.byte	0x20
+ 1369 05e5 13       		.byte	0x13
+ 1370 05e6 A7040000 		.4byte	0x4a7
+ 1371 05ea 02       		.byte	0x2
+ 1372 05eb 91       		.byte	0x91
+ 1373 05ec 5C       		.sleb128 -36
+ 1374 05ed 17       		.uleb128 0x17
+ 1375 05ee 76000000 		.4byte	.LVL8
+ 1376 05f2 4C070000 		.4byte	0x74c
+ 1377 05f6 01060000 		.4byte	0x601
+ 1378 05fa 18       		.uleb128 0x18
+ 1379 05fb 01       		.byte	0x1
+ 1380 05fc 51       		.byte	0x51
+ 1381 05fd 02       		.byte	0x2
+ 1382 05fe 91       		.byte	0x91
+ 1383 05ff 5C       		.sleb128 -36
+ 1384 0600 00       		.byte	0
+ 1385 0601 19       		.uleb128 0x19
+ 1386 0602 7E000000 		.4byte	.LVL9
+ 1387 0606 5B070000 		.4byte	0x75b
+ 1388 060a 19       		.uleb128 0x19
+ 1389 060b 9A000000 		.4byte	.LVL10
+ 1390 060f 6A070000 		.4byte	0x76a
+ 1391 0613 17       		.uleb128 0x17
+ 1392 0614 BA000000 		.4byte	.LVL11
+ 1393 0618 4C070000 		.4byte	0x74c
+ 1394 061c 27060000 		.4byte	0x627
+ 1395 0620 18       		.uleb128 0x18
+ 1396 0621 01       		.byte	0x1
+ 1397 0622 51       		.byte	0x51
+ 1398 0623 02       		.byte	0x2
+ 1399 0624 91       		.byte	0x91
+ 1400 0625 5C       		.sleb128 -36
+ 1401 0626 00       		.byte	0
+ 1402 0627 19       		.uleb128 0x19
+ 1403 0628 CA000000 		.4byte	.LVL12
+ 1404 062c 79070000 		.4byte	0x779
+ 1405 0630 19       		.uleb128 0x19
+ 1406 0631 DE000000 		.4byte	.LVL13
+ 1407 0635 79070000 		.4byte	0x779
+ 1408 0639 19       		.uleb128 0x19
+ 1409 063a F0000000 		.4byte	.LVL16
+ 1410 063e 79070000 		.4byte	0x779
+ 1411 0642 17       		.uleb128 0x17
+ 1412 0643 FE000000 		.4byte	.LVL17
+ 1413 0647 88070000 		.4byte	0x788
+ 1414 064b 5C060000 		.4byte	0x65c
+ 1415 064f 18       		.uleb128 0x18
+ 1416 0650 01       		.byte	0x1
+ 1417 0651 50       		.byte	0x50
+ 1418 0652 03       		.byte	0x3
+ 1419 0653 40       		.byte	0x40
+ 1420 0654 4A       		.byte	0x4a
+ 1421 0655 24       		.byte	0x24
+ARM GAS  /tmp/ccsnpTLa.s 			page 29
+
+
+ 1422 0656 18       		.uleb128 0x18
+ 1423 0657 01       		.byte	0x1
+ 1424 0658 51       		.byte	0x51
+ 1425 0659 01       		.byte	0x1
+ 1426 065a 30       		.byte	0x30
+ 1427 065b 00       		.byte	0
+ 1428 065c 19       		.uleb128 0x19
+ 1429 065d 06010000 		.4byte	.LVL18
+ 1430 0661 79070000 		.4byte	0x779
+ 1431 0665 1A       		.uleb128 0x1a
+ 1432 0666 12010000 		.4byte	.LVL19
+ 1433 066a 97070000 		.4byte	0x797
+ 1434 066e 18       		.uleb128 0x18
+ 1435 066f 01       		.byte	0x1
+ 1436 0670 50       		.byte	0x50
+ 1437 0671 03       		.byte	0x3
+ 1438 0672 40       		.byte	0x40
+ 1439 0673 4A       		.byte	0x4a
+ 1440 0674 24       		.byte	0x24
+ 1441 0675 00       		.byte	0
+ 1442 0676 00       		.byte	0
+ 1443 0677 11       		.uleb128 0x11
+ 1444 0678 04       		.byte	0x4
+ 1445 0679 14050000 		.4byte	0x514
+ 1446 067d 1B       		.uleb128 0x1b
+ 1447 067e 8F000000 		.4byte	0x8f
+ 1448 0682 8D060000 		.4byte	0x68d
+ 1449 0686 1C       		.uleb128 0x1c
+ 1450 0687 88000000 		.4byte	0x88
+ 1451 068b 04       		.byte	0x4
+ 1452 068c 00       		.byte	0
+ 1453 068d 12       		.uleb128 0x12
+ 1454 068e 01       		.byte	0x1
+ 1455 068f 1B000000 		.4byte	.LASF82
+ 1456 0693 01       		.byte	0x1
+ 1457 0694 03       		.byte	0x3
+ 1458 0695 05       		.byte	0x5
+ 1459 0696 01       		.byte	0x1
+ 1460 0697 81000000 		.4byte	0x81
+ 1461 069b 00000000 		.4byte	.LFB29
+ 1462 069f 4E000000 		.4byte	.LFE29
+ 1463 06a3 BF000000 		.4byte	.LLST0
+ 1464 06a7 01       		.byte	0x1
+ 1465 06a8 4C070000 		.4byte	0x74c
+ 1466 06ac 13       		.uleb128 0x13
+ 1467 06ad 64657600 		.ascii	"dev\000"
+ 1468 06b1 01       		.byte	0x1
+ 1469 06b2 03       		.byte	0x3
+ 1470 06b3 22       		.byte	0x22
+ 1471 06b4 77060000 		.4byte	0x677
+ 1472 06b8 FB000000 		.4byte	.LLST1
+ 1473 06bc F7000000 		.4byte	.LVUS1
+ 1474 06c0 1D       		.uleb128 0x1d
+ 1475 06c1 BE030000 		.4byte	.LASF77
+ 1476 06c5 01       		.byte	0x1
+ 1477 06c6 03       		.byte	0x3
+ 1478 06c7 35       		.byte	0x35
+ARM GAS  /tmp/ccsnpTLa.s 			page 30
+
+
+ 1479 06c8 5E050000 		.4byte	0x55e
+ 1480 06cc 21010000 		.4byte	.LLST2
+ 1481 06d0 19010000 		.4byte	.LVUS2
+ 1482 06d4 13       		.uleb128 0x13
+ 1483 06d5 70696E00 		.ascii	"pin\000"
+ 1484 06d9 01       		.byte	0x1
+ 1485 06da 03       		.byte	0x3
+ 1486 06db 44       		.byte	0x44
+ 1487 06dc 9B000000 		.4byte	0x9b
+ 1488 06e0 5E010000 		.4byte	.LLST3
+ 1489 06e4 5A010000 		.4byte	.LVUS3
+ 1490 06e8 16       		.uleb128 0x16
+ 1491 06e9 A9030000 		.4byte	.LASF83
+ 1492 06ed 01       		.byte	0x1
+ 1493 06ee 04       		.byte	0x4
+ 1494 06ef 1A       		.byte	0x1a
+ 1495 06f0 08050000 		.4byte	0x508
+ 1496 06f4 02       		.byte	0x2
+ 1497 06f5 91       		.byte	0x91
+ 1498 06f6 64       		.sleb128 -28
+ 1499 06f7 16       		.uleb128 0x16
+ 1500 06f8 B1010000 		.4byte	.LASF80
+ 1501 06fc 01       		.byte	0x1
+ 1502 06fd 05       		.byte	0x5
+ 1503 06fe 13       		.byte	0x13
+ 1504 06ff A7040000 		.4byte	0x4a7
+ 1505 0703 02       		.byte	0x2
+ 1506 0704 91       		.byte	0x91
+ 1507 0705 60       		.sleb128 -32
+ 1508 0706 17       		.uleb128 0x17
+ 1509 0707 28000000 		.4byte	.LVL3
+ 1510 070b A6070000 		.4byte	0x7a6
+ 1511 070f 21070000 		.4byte	0x721
+ 1512 0713 18       		.uleb128 0x18
+ 1513 0714 01       		.byte	0x1
+ 1514 0715 50       		.byte	0x50
+ 1515 0716 03       		.byte	0x3
+ 1516 0717 40       		.byte	0x40
+ 1517 0718 4A       		.byte	0x4a
+ 1518 0719 24       		.byte	0x24
+ 1519 071a 18       		.uleb128 0x18
+ 1520 071b 01       		.byte	0x1
+ 1521 071c 51       		.byte	0x51
+ 1522 071d 02       		.byte	0x2
+ 1523 071e 91       		.byte	0x91
+ 1524 071f 64       		.sleb128 -28
+ 1525 0720 00       		.byte	0
+ 1526 0721 17       		.uleb128 0x17
+ 1527 0722 32000000 		.4byte	.LVL4
+ 1528 0726 B5070000 		.4byte	0x7b5
+ 1529 072a 3B070000 		.4byte	0x73b
+ 1530 072e 18       		.uleb128 0x18
+ 1531 072f 01       		.byte	0x1
+ 1532 0730 50       		.byte	0x50
+ 1533 0731 03       		.byte	0x3
+ 1534 0732 40       		.byte	0x40
+ 1535 0733 4A       		.byte	0x4a
+ARM GAS  /tmp/ccsnpTLa.s 			page 31
+
+
+ 1536 0734 24       		.byte	0x24
+ 1537 0735 18       		.uleb128 0x18
+ 1538 0736 01       		.byte	0x1
+ 1539 0737 51       		.byte	0x51
+ 1540 0738 01       		.byte	0x1
+ 1541 0739 31       		.byte	0x31
+ 1542 073a 00       		.byte	0
+ 1543 073b 1A       		.uleb128 0x1a
+ 1544 073c 48000000 		.4byte	.LVL5
+ 1545 0740 4C070000 		.4byte	0x74c
+ 1546 0744 18       		.uleb128 0x18
+ 1547 0745 01       		.byte	0x1
+ 1548 0746 51       		.byte	0x51
+ 1549 0747 02       		.byte	0x2
+ 1550 0748 7D       		.byte	0x7d
+ 1551 0749 00       		.sleb128 0
+ 1552 074a 00       		.byte	0
+ 1553 074b 00       		.byte	0
+ 1554 074c 1E       		.uleb128 0x1e
+ 1555 074d 01       		.byte	0x1
+ 1556 074e 01       		.byte	0x1
+ 1557 074f A2000000 		.4byte	.LASF84
+ 1558 0753 A2000000 		.4byte	.LASF84
+ 1559 0757 05       		.byte	0x5
+ 1560 0758 5F01     		.2byte	0x15f
+ 1561 075a 06       		.byte	0x6
+ 1562 075b 1E       		.uleb128 0x1e
+ 1563 075c 01       		.byte	0x1
+ 1564 075d 01       		.byte	0x1
+ 1565 075e A1040000 		.4byte	.LASF85
+ 1566 0762 A1040000 		.4byte	.LASF85
+ 1567 0766 05       		.byte	0x5
+ 1568 0767 6601     		.2byte	0x166
+ 1569 0769 06       		.byte	0x6
+ 1570 076a 1E       		.uleb128 0x1e
+ 1571 076b 01       		.byte	0x1
+ 1572 076c 01       		.byte	0x1
+ 1573 076d EE040000 		.4byte	.LASF86
+ 1574 0771 EE040000 		.4byte	.LASF86
+ 1575 0775 05       		.byte	0x5
+ 1576 0776 6501     		.2byte	0x165
+ 1577 0778 06       		.byte	0x6
+ 1578 0779 1E       		.uleb128 0x1e
+ 1579 077a 01       		.byte	0x1
+ 1580 077b 01       		.byte	0x1
+ 1581 077c 23020000 		.4byte	.LASF87
+ 1582 0780 23020000 		.4byte	.LASF87
+ 1583 0784 05       		.byte	0x5
+ 1584 0785 6101     		.2byte	0x161
+ 1585 0787 09       		.byte	0x9
+ 1586 0788 1E       		.uleb128 0x1e
+ 1587 0789 01       		.byte	0x1
+ 1588 078a 01       		.byte	0x1
+ 1589 078b 34010000 		.4byte	.LASF88
+ 1590 078f 34010000 		.4byte	.LASF88
+ 1591 0793 06       		.byte	0x6
+ 1592 0794 6504     		.2byte	0x465
+ARM GAS  /tmp/ccsnpTLa.s 			page 32
+
+
+ 1593 0796 06       		.byte	0x6
+ 1594 0797 1E       		.uleb128 0x1e
+ 1595 0798 01       		.byte	0x1
+ 1596 0799 01       		.byte	0x1
+ 1597 079a 4A020000 		.4byte	.LASF89
+ 1598 079e 4A020000 		.4byte	.LASF89
+ 1599 07a2 06       		.byte	0x6
+ 1600 07a3 7404     		.2byte	0x474
+ 1601 07a5 0A       		.byte	0xa
+ 1602 07a6 1E       		.uleb128 0x1e
+ 1603 07a7 01       		.byte	0x1
+ 1604 07a8 01       		.byte	0x1
+ 1605 07a9 FB040000 		.4byte	.LASF90
+ 1606 07ad FB040000 		.4byte	.LASF90
+ 1607 07b1 06       		.byte	0x6
+ 1608 07b2 1F04     		.2byte	0x41f
+ 1609 07b4 06       		.byte	0x6
+ 1610 07b5 1E       		.uleb128 0x1e
+ 1611 07b6 01       		.byte	0x1
+ 1612 07b7 01       		.byte	0x1
+ 1613 07b8 E1040000 		.4byte	.LASF91
+ 1614 07bc E1040000 		.4byte	.LASF91
+ 1615 07c0 06       		.byte	0x6
+ 1616 07c1 2B04     		.2byte	0x42b
+ 1617 07c3 06       		.byte	0x6
+ 1618 07c4 00       		.byte	0
+ 1619              		.section	.debug_abbrev,"",%progbits
+ 1620              	.Ldebug_abbrev0:
+ 1621 0000 01       		.uleb128 0x1
+ 1622 0001 11       		.uleb128 0x11
+ 1623 0002 01       		.byte	0x1
+ 1624 0003 25       		.uleb128 0x25
+ 1625 0004 0E       		.uleb128 0xe
+ 1626 0005 13       		.uleb128 0x13
+ 1627 0006 0B       		.uleb128 0xb
+ 1628 0007 03       		.uleb128 0x3
+ 1629 0008 0E       		.uleb128 0xe
+ 1630 0009 1B       		.uleb128 0x1b
+ 1631 000a 0E       		.uleb128 0xe
+ 1632 000b 11       		.uleb128 0x11
+ 1633 000c 01       		.uleb128 0x1
+ 1634 000d 12       		.uleb128 0x12
+ 1635 000e 01       		.uleb128 0x1
+ 1636 000f 10       		.uleb128 0x10
+ 1637 0010 06       		.uleb128 0x6
+ 1638 0011 00       		.byte	0
+ 1639 0012 00       		.byte	0
+ 1640 0013 02       		.uleb128 0x2
+ 1641 0014 24       		.uleb128 0x24
+ 1642 0015 00       		.byte	0
+ 1643 0016 0B       		.uleb128 0xb
+ 1644 0017 0B       		.uleb128 0xb
+ 1645 0018 3E       		.uleb128 0x3e
+ 1646 0019 0B       		.uleb128 0xb
+ 1647 001a 03       		.uleb128 0x3
+ 1648 001b 0E       		.uleb128 0xe
+ 1649 001c 00       		.byte	0
+ARM GAS  /tmp/ccsnpTLa.s 			page 33
+
+
+ 1650 001d 00       		.byte	0
+ 1651 001e 03       		.uleb128 0x3
+ 1652 001f 16       		.uleb128 0x16
+ 1653 0020 00       		.byte	0
+ 1654 0021 03       		.uleb128 0x3
+ 1655 0022 0E       		.uleb128 0xe
+ 1656 0023 3A       		.uleb128 0x3a
+ 1657 0024 0B       		.uleb128 0xb
+ 1658 0025 3B       		.uleb128 0x3b
+ 1659 0026 0B       		.uleb128 0xb
+ 1660 0027 39       		.uleb128 0x39
+ 1661 0028 0B       		.uleb128 0xb
+ 1662 0029 49       		.uleb128 0x49
+ 1663 002a 13       		.uleb128 0x13
+ 1664 002b 00       		.byte	0
+ 1665 002c 00       		.byte	0
+ 1666 002d 04       		.uleb128 0x4
+ 1667 002e 24       		.uleb128 0x24
+ 1668 002f 00       		.byte	0
+ 1669 0030 0B       		.uleb128 0xb
+ 1670 0031 0B       		.uleb128 0xb
+ 1671 0032 3E       		.uleb128 0x3e
+ 1672 0033 0B       		.uleb128 0xb
+ 1673 0034 03       		.uleb128 0x3
+ 1674 0035 08       		.uleb128 0x8
+ 1675 0036 00       		.byte	0
+ 1676 0037 00       		.byte	0
+ 1677 0038 05       		.uleb128 0x5
+ 1678 0039 35       		.uleb128 0x35
+ 1679 003a 00       		.byte	0
+ 1680 003b 49       		.uleb128 0x49
+ 1681 003c 13       		.uleb128 0x13
+ 1682 003d 00       		.byte	0
+ 1683 003e 00       		.byte	0
+ 1684 003f 06       		.uleb128 0x6
+ 1685 0040 04       		.uleb128 0x4
+ 1686 0041 01       		.byte	0x1
+ 1687 0042 3E       		.uleb128 0x3e
+ 1688 0043 0B       		.uleb128 0xb
+ 1689 0044 0B       		.uleb128 0xb
+ 1690 0045 0B       		.uleb128 0xb
+ 1691 0046 49       		.uleb128 0x49
+ 1692 0047 13       		.uleb128 0x13
+ 1693 0048 3A       		.uleb128 0x3a
+ 1694 0049 0B       		.uleb128 0xb
+ 1695 004a 3B       		.uleb128 0x3b
+ 1696 004b 05       		.uleb128 0x5
+ 1697 004c 39       		.uleb128 0x39
+ 1698 004d 0B       		.uleb128 0xb
+ 1699 004e 01       		.uleb128 0x1
+ 1700 004f 13       		.uleb128 0x13
+ 1701 0050 00       		.byte	0
+ 1702 0051 00       		.byte	0
+ 1703 0052 07       		.uleb128 0x7
+ 1704 0053 28       		.uleb128 0x28
+ 1705 0054 00       		.byte	0
+ 1706 0055 03       		.uleb128 0x3
+ARM GAS  /tmp/ccsnpTLa.s 			page 34
+
+
+ 1707 0056 0E       		.uleb128 0xe
+ 1708 0057 1C       		.uleb128 0x1c
+ 1709 0058 0B       		.uleb128 0xb
+ 1710 0059 00       		.byte	0
+ 1711 005a 00       		.byte	0
+ 1712 005b 08       		.uleb128 0x8
+ 1713 005c 13       		.uleb128 0x13
+ 1714 005d 01       		.byte	0x1
+ 1715 005e 0B       		.uleb128 0xb
+ 1716 005f 0B       		.uleb128 0xb
+ 1717 0060 3A       		.uleb128 0x3a
+ 1718 0061 0B       		.uleb128 0xb
+ 1719 0062 3B       		.uleb128 0x3b
+ 1720 0063 05       		.uleb128 0x5
+ 1721 0064 39       		.uleb128 0x39
+ 1722 0065 0B       		.uleb128 0xb
+ 1723 0066 01       		.uleb128 0x1
+ 1724 0067 13       		.uleb128 0x13
+ 1725 0068 00       		.byte	0
+ 1726 0069 00       		.byte	0
+ 1727 006a 09       		.uleb128 0x9
+ 1728 006b 0D       		.uleb128 0xd
+ 1729 006c 00       		.byte	0
+ 1730 006d 03       		.uleb128 0x3
+ 1731 006e 08       		.uleb128 0x8
+ 1732 006f 3A       		.uleb128 0x3a
+ 1733 0070 0B       		.uleb128 0xb
+ 1734 0071 3B       		.uleb128 0x3b
+ 1735 0072 05       		.uleb128 0x5
+ 1736 0073 39       		.uleb128 0x39
+ 1737 0074 0B       		.uleb128 0xb
+ 1738 0075 49       		.uleb128 0x49
+ 1739 0076 13       		.uleb128 0x13
+ 1740 0077 38       		.uleb128 0x38
+ 1741 0078 0A       		.uleb128 0xa
+ 1742 0079 00       		.byte	0
+ 1743 007a 00       		.byte	0
+ 1744 007b 0A       		.uleb128 0xa
+ 1745 007c 0D       		.uleb128 0xd
+ 1746 007d 00       		.byte	0
+ 1747 007e 03       		.uleb128 0x3
+ 1748 007f 0E       		.uleb128 0xe
+ 1749 0080 3A       		.uleb128 0x3a
+ 1750 0081 0B       		.uleb128 0xb
+ 1751 0082 3B       		.uleb128 0x3b
+ 1752 0083 05       		.uleb128 0x5
+ 1753 0084 39       		.uleb128 0x39
+ 1754 0085 0B       		.uleb128 0xb
+ 1755 0086 49       		.uleb128 0x49
+ 1756 0087 13       		.uleb128 0x13
+ 1757 0088 38       		.uleb128 0x38
+ 1758 0089 0A       		.uleb128 0xa
+ 1759 008a 00       		.byte	0
+ 1760 008b 00       		.byte	0
+ 1761 008c 0B       		.uleb128 0xb
+ 1762 008d 16       		.uleb128 0x16
+ 1763 008e 00       		.byte	0
+ARM GAS  /tmp/ccsnpTLa.s 			page 35
+
+
+ 1764 008f 03       		.uleb128 0x3
+ 1765 0090 0E       		.uleb128 0xe
+ 1766 0091 3A       		.uleb128 0x3a
+ 1767 0092 0B       		.uleb128 0xb
+ 1768 0093 3B       		.uleb128 0x3b
+ 1769 0094 05       		.uleb128 0x5
+ 1770 0095 39       		.uleb128 0x39
+ 1771 0096 0B       		.uleb128 0xb
+ 1772 0097 49       		.uleb128 0x49
+ 1773 0098 13       		.uleb128 0x13
+ 1774 0099 00       		.byte	0
+ 1775 009a 00       		.byte	0
+ 1776 009b 0C       		.uleb128 0xc
+ 1777 009c 04       		.uleb128 0x4
+ 1778 009d 01       		.byte	0x1
+ 1779 009e 3E       		.uleb128 0x3e
+ 1780 009f 0B       		.uleb128 0xb
+ 1781 00a0 0B       		.uleb128 0xb
+ 1782 00a1 0B       		.uleb128 0xb
+ 1783 00a2 49       		.uleb128 0x49
+ 1784 00a3 13       		.uleb128 0x13
+ 1785 00a4 3A       		.uleb128 0x3a
+ 1786 00a5 0B       		.uleb128 0xb
+ 1787 00a6 3B       		.uleb128 0x3b
+ 1788 00a7 0B       		.uleb128 0xb
+ 1789 00a8 39       		.uleb128 0x39
+ 1790 00a9 0B       		.uleb128 0xb
+ 1791 00aa 01       		.uleb128 0x1
+ 1792 00ab 13       		.uleb128 0x13
+ 1793 00ac 00       		.byte	0
+ 1794 00ad 00       		.byte	0
+ 1795 00ae 0D       		.uleb128 0xd
+ 1796 00af 13       		.uleb128 0x13
+ 1797 00b0 01       		.byte	0x1
+ 1798 00b1 0B       		.uleb128 0xb
+ 1799 00b2 0B       		.uleb128 0xb
+ 1800 00b3 3A       		.uleb128 0x3a
+ 1801 00b4 0B       		.uleb128 0xb
+ 1802 00b5 3B       		.uleb128 0x3b
+ 1803 00b6 0B       		.uleb128 0xb
+ 1804 00b7 39       		.uleb128 0x39
+ 1805 00b8 0B       		.uleb128 0xb
+ 1806 00b9 01       		.uleb128 0x1
+ 1807 00ba 13       		.uleb128 0x13
+ 1808 00bb 00       		.byte	0
+ 1809 00bc 00       		.byte	0
+ 1810 00bd 0E       		.uleb128 0xe
+ 1811 00be 0D       		.uleb128 0xd
+ 1812 00bf 00       		.byte	0
+ 1813 00c0 03       		.uleb128 0x3
+ 1814 00c1 0E       		.uleb128 0xe
+ 1815 00c2 3A       		.uleb128 0x3a
+ 1816 00c3 0B       		.uleb128 0xb
+ 1817 00c4 3B       		.uleb128 0x3b
+ 1818 00c5 0B       		.uleb128 0xb
+ 1819 00c6 39       		.uleb128 0x39
+ 1820 00c7 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccsnpTLa.s 			page 36
+
+
+ 1821 00c8 49       		.uleb128 0x49
+ 1822 00c9 13       		.uleb128 0x13
+ 1823 00ca 38       		.uleb128 0x38
+ 1824 00cb 0A       		.uleb128 0xa
+ 1825 00cc 00       		.byte	0
+ 1826 00cd 00       		.byte	0
+ 1827 00ce 0F       		.uleb128 0xf
+ 1828 00cf 13       		.uleb128 0x13
+ 1829 00d0 01       		.byte	0x1
+ 1830 00d1 03       		.uleb128 0x3
+ 1831 00d2 0E       		.uleb128 0xe
+ 1832 00d3 0B       		.uleb128 0xb
+ 1833 00d4 0B       		.uleb128 0xb
+ 1834 00d5 3A       		.uleb128 0x3a
+ 1835 00d6 0B       		.uleb128 0xb
+ 1836 00d7 3B       		.uleb128 0x3b
+ 1837 00d8 0B       		.uleb128 0xb
+ 1838 00d9 39       		.uleb128 0x39
+ 1839 00da 0B       		.uleb128 0xb
+ 1840 00db 01       		.uleb128 0x1
+ 1841 00dc 13       		.uleb128 0x13
+ 1842 00dd 00       		.byte	0
+ 1843 00de 00       		.byte	0
+ 1844 00df 10       		.uleb128 0x10
+ 1845 00e0 0D       		.uleb128 0xd
+ 1846 00e1 00       		.byte	0
+ 1847 00e2 03       		.uleb128 0x3
+ 1848 00e3 08       		.uleb128 0x8
+ 1849 00e4 3A       		.uleb128 0x3a
+ 1850 00e5 0B       		.uleb128 0xb
+ 1851 00e6 3B       		.uleb128 0x3b
+ 1852 00e7 0B       		.uleb128 0xb
+ 1853 00e8 39       		.uleb128 0x39
+ 1854 00e9 0B       		.uleb128 0xb
+ 1855 00ea 49       		.uleb128 0x49
+ 1856 00eb 13       		.uleb128 0x13
+ 1857 00ec 38       		.uleb128 0x38
+ 1858 00ed 0A       		.uleb128 0xa
+ 1859 00ee 00       		.byte	0
+ 1860 00ef 00       		.byte	0
+ 1861 00f0 11       		.uleb128 0x11
+ 1862 00f1 0F       		.uleb128 0xf
+ 1863 00f2 00       		.byte	0
+ 1864 00f3 0B       		.uleb128 0xb
+ 1865 00f4 0B       		.uleb128 0xb
+ 1866 00f5 49       		.uleb128 0x49
+ 1867 00f6 13       		.uleb128 0x13
+ 1868 00f7 00       		.byte	0
+ 1869 00f8 00       		.byte	0
+ 1870 00f9 12       		.uleb128 0x12
+ 1871 00fa 2E       		.uleb128 0x2e
+ 1872 00fb 01       		.byte	0x1
+ 1873 00fc 3F       		.uleb128 0x3f
+ 1874 00fd 0C       		.uleb128 0xc
+ 1875 00fe 03       		.uleb128 0x3
+ 1876 00ff 0E       		.uleb128 0xe
+ 1877 0100 3A       		.uleb128 0x3a
+ARM GAS  /tmp/ccsnpTLa.s 			page 37
+
+
+ 1878 0101 0B       		.uleb128 0xb
+ 1879 0102 3B       		.uleb128 0x3b
+ 1880 0103 0B       		.uleb128 0xb
+ 1881 0104 39       		.uleb128 0x39
+ 1882 0105 0B       		.uleb128 0xb
+ 1883 0106 27       		.uleb128 0x27
+ 1884 0107 0C       		.uleb128 0xc
+ 1885 0108 49       		.uleb128 0x49
+ 1886 0109 13       		.uleb128 0x13
+ 1887 010a 11       		.uleb128 0x11
+ 1888 010b 01       		.uleb128 0x1
+ 1889 010c 12       		.uleb128 0x12
+ 1890 010d 01       		.uleb128 0x1
+ 1891 010e 40       		.uleb128 0x40
+ 1892 010f 06       		.uleb128 0x6
+ 1893 0110 9742     		.uleb128 0x2117
+ 1894 0112 0C       		.uleb128 0xc
+ 1895 0113 01       		.uleb128 0x1
+ 1896 0114 13       		.uleb128 0x13
+ 1897 0115 00       		.byte	0
+ 1898 0116 00       		.byte	0
+ 1899 0117 13       		.uleb128 0x13
+ 1900 0118 05       		.uleb128 0x5
+ 1901 0119 00       		.byte	0
+ 1902 011a 03       		.uleb128 0x3
+ 1903 011b 08       		.uleb128 0x8
+ 1904 011c 3A       		.uleb128 0x3a
+ 1905 011d 0B       		.uleb128 0xb
+ 1906 011e 3B       		.uleb128 0x3b
+ 1907 011f 0B       		.uleb128 0xb
+ 1908 0120 39       		.uleb128 0x39
+ 1909 0121 0B       		.uleb128 0xb
+ 1910 0122 49       		.uleb128 0x49
+ 1911 0123 13       		.uleb128 0x13
+ 1912 0124 02       		.uleb128 0x2
+ 1913 0125 06       		.uleb128 0x6
+ 1914 0126 B742     		.uleb128 0x2137
+ 1915 0128 06       		.uleb128 0x6
+ 1916 0129 00       		.byte	0
+ 1917 012a 00       		.byte	0
+ 1918 012b 14       		.uleb128 0x14
+ 1919 012c 34       		.uleb128 0x34
+ 1920 012d 00       		.byte	0
+ 1921 012e 03       		.uleb128 0x3
+ 1922 012f 08       		.uleb128 0x8
+ 1923 0130 3A       		.uleb128 0x3a
+ 1924 0131 0B       		.uleb128 0xb
+ 1925 0132 3B       		.uleb128 0x3b
+ 1926 0133 0B       		.uleb128 0xb
+ 1927 0134 39       		.uleb128 0x39
+ 1928 0135 0B       		.uleb128 0xb
+ 1929 0136 49       		.uleb128 0x49
+ 1930 0137 13       		.uleb128 0x13
+ 1931 0138 02       		.uleb128 0x2
+ 1932 0139 06       		.uleb128 0x6
+ 1933 013a B742     		.uleb128 0x2137
+ 1934 013c 06       		.uleb128 0x6
+ARM GAS  /tmp/ccsnpTLa.s 			page 38
+
+
+ 1935 013d 00       		.byte	0
+ 1936 013e 00       		.byte	0
+ 1937 013f 15       		.uleb128 0x15
+ 1938 0140 34       		.uleb128 0x34
+ 1939 0141 00       		.byte	0
+ 1940 0142 03       		.uleb128 0x3
+ 1941 0143 0E       		.uleb128 0xe
+ 1942 0144 3A       		.uleb128 0x3a
+ 1943 0145 0B       		.uleb128 0xb
+ 1944 0146 3B       		.uleb128 0x3b
+ 1945 0147 0B       		.uleb128 0xb
+ 1946 0148 39       		.uleb128 0x39
+ 1947 0149 0B       		.uleb128 0xb
+ 1948 014a 49       		.uleb128 0x49
+ 1949 014b 13       		.uleb128 0x13
+ 1950 014c 02       		.uleb128 0x2
+ 1951 014d 06       		.uleb128 0x6
+ 1952 014e B742     		.uleb128 0x2137
+ 1953 0150 06       		.uleb128 0x6
+ 1954 0151 00       		.byte	0
+ 1955 0152 00       		.byte	0
+ 1956 0153 16       		.uleb128 0x16
+ 1957 0154 34       		.uleb128 0x34
+ 1958 0155 00       		.byte	0
+ 1959 0156 03       		.uleb128 0x3
+ 1960 0157 0E       		.uleb128 0xe
+ 1961 0158 3A       		.uleb128 0x3a
+ 1962 0159 0B       		.uleb128 0xb
+ 1963 015a 3B       		.uleb128 0x3b
+ 1964 015b 0B       		.uleb128 0xb
+ 1965 015c 39       		.uleb128 0x39
+ 1966 015d 0B       		.uleb128 0xb
+ 1967 015e 49       		.uleb128 0x49
+ 1968 015f 13       		.uleb128 0x13
+ 1969 0160 02       		.uleb128 0x2
+ 1970 0161 0A       		.uleb128 0xa
+ 1971 0162 00       		.byte	0
+ 1972 0163 00       		.byte	0
+ 1973 0164 17       		.uleb128 0x17
+ 1974 0165 898201   		.uleb128 0x4109
+ 1975 0168 01       		.byte	0x1
+ 1976 0169 11       		.uleb128 0x11
+ 1977 016a 01       		.uleb128 0x1
+ 1978 016b 31       		.uleb128 0x31
+ 1979 016c 13       		.uleb128 0x13
+ 1980 016d 01       		.uleb128 0x1
+ 1981 016e 13       		.uleb128 0x13
+ 1982 016f 00       		.byte	0
+ 1983 0170 00       		.byte	0
+ 1984 0171 18       		.uleb128 0x18
+ 1985 0172 8A8201   		.uleb128 0x410a
+ 1986 0175 00       		.byte	0
+ 1987 0176 02       		.uleb128 0x2
+ 1988 0177 0A       		.uleb128 0xa
+ 1989 0178 9142     		.uleb128 0x2111
+ 1990 017a 0A       		.uleb128 0xa
+ 1991 017b 00       		.byte	0
+ARM GAS  /tmp/ccsnpTLa.s 			page 39
+
+
+ 1992 017c 00       		.byte	0
+ 1993 017d 19       		.uleb128 0x19
+ 1994 017e 898201   		.uleb128 0x4109
+ 1995 0181 00       		.byte	0
+ 1996 0182 11       		.uleb128 0x11
+ 1997 0183 01       		.uleb128 0x1
+ 1998 0184 31       		.uleb128 0x31
+ 1999 0185 13       		.uleb128 0x13
+ 2000 0186 00       		.byte	0
+ 2001 0187 00       		.byte	0
+ 2002 0188 1A       		.uleb128 0x1a
+ 2003 0189 898201   		.uleb128 0x4109
+ 2004 018c 01       		.byte	0x1
+ 2005 018d 11       		.uleb128 0x11
+ 2006 018e 01       		.uleb128 0x1
+ 2007 018f 31       		.uleb128 0x31
+ 2008 0190 13       		.uleb128 0x13
+ 2009 0191 00       		.byte	0
+ 2010 0192 00       		.byte	0
+ 2011 0193 1B       		.uleb128 0x1b
+ 2012 0194 01       		.uleb128 0x1
+ 2013 0195 01       		.byte	0x1
+ 2014 0196 49       		.uleb128 0x49
+ 2015 0197 13       		.uleb128 0x13
+ 2016 0198 01       		.uleb128 0x1
+ 2017 0199 13       		.uleb128 0x13
+ 2018 019a 00       		.byte	0
+ 2019 019b 00       		.byte	0
+ 2020 019c 1C       		.uleb128 0x1c
+ 2021 019d 21       		.uleb128 0x21
+ 2022 019e 00       		.byte	0
+ 2023 019f 49       		.uleb128 0x49
+ 2024 01a0 13       		.uleb128 0x13
+ 2025 01a1 2F       		.uleb128 0x2f
+ 2026 01a2 0B       		.uleb128 0xb
+ 2027 01a3 00       		.byte	0
+ 2028 01a4 00       		.byte	0
+ 2029 01a5 1D       		.uleb128 0x1d
+ 2030 01a6 05       		.uleb128 0x5
+ 2031 01a7 00       		.byte	0
+ 2032 01a8 03       		.uleb128 0x3
+ 2033 01a9 0E       		.uleb128 0xe
+ 2034 01aa 3A       		.uleb128 0x3a
+ 2035 01ab 0B       		.uleb128 0xb
+ 2036 01ac 3B       		.uleb128 0x3b
+ 2037 01ad 0B       		.uleb128 0xb
+ 2038 01ae 39       		.uleb128 0x39
+ 2039 01af 0B       		.uleb128 0xb
+ 2040 01b0 49       		.uleb128 0x49
+ 2041 01b1 13       		.uleb128 0x13
+ 2042 01b2 02       		.uleb128 0x2
+ 2043 01b3 06       		.uleb128 0x6
+ 2044 01b4 B742     		.uleb128 0x2137
+ 2045 01b6 06       		.uleb128 0x6
+ 2046 01b7 00       		.byte	0
+ 2047 01b8 00       		.byte	0
+ 2048 01b9 1E       		.uleb128 0x1e
+ARM GAS  /tmp/ccsnpTLa.s 			page 40
+
+
+ 2049 01ba 2E       		.uleb128 0x2e
+ 2050 01bb 00       		.byte	0
+ 2051 01bc 3F       		.uleb128 0x3f
+ 2052 01bd 0C       		.uleb128 0xc
+ 2053 01be 3C       		.uleb128 0x3c
+ 2054 01bf 0C       		.uleb128 0xc
+ 2055 01c0 8740     		.uleb128 0x2007
+ 2056 01c2 0E       		.uleb128 0xe
+ 2057 01c3 03       		.uleb128 0x3
+ 2058 01c4 0E       		.uleb128 0xe
+ 2059 01c5 3A       		.uleb128 0x3a
+ 2060 01c6 0B       		.uleb128 0xb
+ 2061 01c7 3B       		.uleb128 0x3b
+ 2062 01c8 05       		.uleb128 0x5
+ 2063 01c9 39       		.uleb128 0x39
+ 2064 01ca 0B       		.uleb128 0xb
+ 2065 01cb 00       		.byte	0
+ 2066 01cc 00       		.byte	0
+ 2067 01cd 00       		.byte	0
+ 2068              		.section	.debug_loc,"",%progbits
+ 2069              	.Ldebug_loc0:
+ 2070              	.LLST4:
+ 2071 0000 4E000000 		.4byte	.LFB30-.Ltext0
+ 2072 0004 50000000 		.4byte	.LCFI3-.Ltext0
+ 2073 0008 0200     		.2byte	0x2
+ 2074 000a 7D       		.byte	0x7d
+ 2075 000b 00       		.sleb128 0
+ 2076 000c 50000000 		.4byte	.LCFI3-.Ltext0
+ 2077 0010 56000000 		.4byte	.LCFI4-.Ltext0
+ 2078 0014 0200     		.2byte	0x2
+ 2079 0016 7D       		.byte	0x7d
+ 2080 0017 14       		.sleb128 20
+ 2081 0018 56000000 		.4byte	.LCFI4-.Ltext0
+ 2082 001c 60010000 		.4byte	.LCFI5-.Ltext0
+ 2083 0020 0200     		.2byte	0x2
+ 2084 0022 7D       		.byte	0x7d
+ 2085 0023 28       		.sleb128 40
+ 2086 0024 60010000 		.4byte	.LCFI5-.Ltext0
+ 2087 0028 62010000 		.4byte	.LCFI6-.Ltext0
+ 2088 002c 0200     		.2byte	0x2
+ 2089 002e 7D       		.byte	0x7d
+ 2090 002f 14       		.sleb128 20
+ 2091 0030 62010000 		.4byte	.LCFI6-.Ltext0
+ 2092 0034 70010000 		.4byte	.LFE30-.Ltext0
+ 2093 0038 0200     		.2byte	0x2
+ 2094 003a 7D       		.byte	0x7d
+ 2095 003b 28       		.sleb128 40
+ 2096 003c 00000000 		.4byte	0
+ 2097 0040 00000000 		.4byte	0
+ 2098              	.LVUS5:
+ 2099 0044 00       		.uleb128 0
+ 2100 0045 00       		.uleb128 .LVU42
+ 2101 0046 00       		.uleb128 .LVU42
+ 2102 0047 00       		.uleb128 0
+ 2103              	.LLST5:
+ 2104 0048 4E000000 		.4byte	.LVL6-.Ltext0
+ 2105 004c 58000000 		.4byte	.LVL7-.Ltext0
+ARM GAS  /tmp/ccsnpTLa.s 			page 41
+
+
+ 2106 0050 0100     		.2byte	0x1
+ 2107 0052 50       		.byte	0x50
+ 2108 0053 58000000 		.4byte	.LVL7-.Ltext0
+ 2109 0057 70010000 		.4byte	.LFE30-.Ltext0
+ 2110 005b 0100     		.2byte	0x1
+ 2111 005d 54       		.byte	0x54
+ 2112 005e 00000000 		.4byte	0
+ 2113 0062 00000000 		.4byte	0
+ 2114              	.LVUS6:
+ 2115 0066 00       		.uleb128 .LVU91
+ 2116 0067 00       		.uleb128 .LVU93
+ 2117              	.LLST6:
+ 2118 0068 E6000000 		.4byte	.LVL14-.Ltext0
+ 2119 006c E8000000 		.4byte	.LVL15-.Ltext0
+ 2120 0070 0200     		.2byte	0x2
+ 2121 0072 30       		.byte	0x30
+ 2122 0073 9F       		.byte	0x9f
+ 2123 0074 00000000 		.4byte	0
+ 2124 0078 00000000 		.4byte	0
+ 2125              	.LVUS7:
+ 2126 007c 00       		.uleb128 .LVU91
+ 2127 007d 01       		.uleb128 .LVU120
+ 2128 007e 01       		.uleb128 .LVU120
+ 2129 007f 00       		.uleb128 .LVU122
+ 2130              	.LLST7:
+ 2131 0080 E6000000 		.4byte	.LVL14-.Ltext0
+ 2132 0084 2C010000 		.4byte	.LVL20-.Ltext0
+ 2133 0088 0600     		.2byte	0x6
+ 2134 008a 75       		.byte	0x75
+ 2135 008b 00       		.sleb128 0
+ 2136 008c 91       		.byte	0x91
+ 2137 008d 60       		.sleb128 -32
+ 2138 008e 1C       		.byte	0x1c
+ 2139 008f 9F       		.byte	0x9f
+ 2140 0090 2C010000 		.4byte	.LVL20-.Ltext0
+ 2141 0094 36010000 		.4byte	.LVL21-.Ltext0
+ 2142 0098 0800     		.2byte	0x8
+ 2143 009a 75       		.byte	0x75
+ 2144 009b 00       		.sleb128 0
+ 2145 009c 91       		.byte	0x91
+ 2146 009d 60       		.sleb128 -32
+ 2147 009e 1C       		.byte	0x1c
+ 2148 009f 23       		.byte	0x23
+ 2149 00a0 01       		.uleb128 0x1
+ 2150 00a1 9F       		.byte	0x9f
+ 2151 00a2 00000000 		.4byte	0
+ 2152 00a6 00000000 		.4byte	0
+ 2153              	.LVUS8:
+ 2154 00aa 00       		.uleb128 .LVU105
+ 2155 00ab 00       		.uleb128 .LVU127
+ 2156              	.LLST8:
+ 2157 00ac 12010000 		.4byte	.LVL19-.Ltext0
+ 2158 00b0 44010000 		.4byte	.LVL22-.Ltext0
+ 2159 00b4 0100     		.2byte	0x1
+ 2160 00b6 50       		.byte	0x50
+ 2161 00b7 00000000 		.4byte	0
+ 2162 00bb 00000000 		.4byte	0
+ARM GAS  /tmp/ccsnpTLa.s 			page 42
+
+
+ 2163              	.LLST0:
+ 2164 00bf 00000000 		.4byte	.LFB29-.Ltext0
+ 2165 00c3 06000000 		.4byte	.LCFI0-.Ltext0
+ 2166 00c7 0200     		.2byte	0x2
+ 2167 00c9 7D       		.byte	0x7d
+ 2168 00ca 00       		.sleb128 0
+ 2169 00cb 06000000 		.4byte	.LCFI0-.Ltext0
+ 2170 00cf 08000000 		.4byte	.LCFI1-.Ltext0
+ 2171 00d3 0200     		.2byte	0x2
+ 2172 00d5 7D       		.byte	0x7d
+ 2173 00d6 0C       		.sleb128 12
+ 2174 00d7 08000000 		.4byte	.LCFI1-.Ltext0
+ 2175 00db 4C000000 		.4byte	.LCFI2-.Ltext0
+ 2176 00df 0200     		.2byte	0x2
+ 2177 00e1 7D       		.byte	0x7d
+ 2178 00e2 20       		.sleb128 32
+ 2179 00e3 4C000000 		.4byte	.LCFI2-.Ltext0
+ 2180 00e7 4E000000 		.4byte	.LFE29-.Ltext0
+ 2181 00eb 0200     		.2byte	0x2
+ 2182 00ed 7D       		.byte	0x7d
+ 2183 00ee 0C       		.sleb128 12
+ 2184 00ef 00000000 		.4byte	0
+ 2185 00f3 00000000 		.4byte	0
+ 2186              	.LVUS1:
+ 2187 00f7 00       		.uleb128 0
+ 2188 00f8 00       		.uleb128 .LVU17
+ 2189 00f9 00       		.uleb128 .LVU17
+ 2190 00fa 00       		.uleb128 0
+ 2191              	.LLST1:
+ 2192 00fb 00000000 		.4byte	.LVL0-.Ltext0
+ 2193 00ff 1C000000 		.4byte	.LVL2-.Ltext0
+ 2194 0103 0100     		.2byte	0x1
+ 2195 0105 50       		.byte	0x50
+ 2196 0106 1C000000 		.4byte	.LVL2-.Ltext0
+ 2197 010a 4E000000 		.4byte	.LFE29-.Ltext0
+ 2198 010e 0100     		.2byte	0x1
+ 2199 0110 54       		.byte	0x54
+ 2200 0111 00000000 		.4byte	0
+ 2201 0115 00000000 		.4byte	0
+ 2202              	.LVUS2:
+ 2203 0119 00       		.uleb128 0
+ 2204 011a 00       		.uleb128 .LVU16
+ 2205 011b 00       		.uleb128 .LVU16
+ 2206 011c 00       		.uleb128 .LVU17
+ 2207 011d 00       		.uleb128 .LVU17
+ 2208 011e 00       		.uleb128 .LVU21
+ 2209 011f 00       		.uleb128 .LVU21
+ 2210 0120 00       		.uleb128 0
+ 2211              	.LLST2:
+ 2212 0121 00000000 		.4byte	.LVL0-.Ltext0
+ 2213 0125 18000000 		.4byte	.LVL1-.Ltext0
+ 2214 0129 0100     		.2byte	0x1
+ 2215 012b 51       		.byte	0x51
+ 2216 012c 18000000 		.4byte	.LVL1-.Ltext0
+ 2217 0130 1C000000 		.4byte	.LVL2-.Ltext0
+ 2218 0134 0200     		.2byte	0x2
+ 2219 0136 70       		.byte	0x70
+ARM GAS  /tmp/ccsnpTLa.s 			page 43
+
+
+ 2220 0137 04       		.sleb128 4
+ 2221 0138 1C000000 		.4byte	.LVL2-.Ltext0
+ 2222 013c 27000000 		.4byte	.LVL3-1-.Ltext0
+ 2223 0140 0200     		.2byte	0x2
+ 2224 0142 74       		.byte	0x74
+ 2225 0143 04       		.sleb128 4
+ 2226 0144 27000000 		.4byte	.LVL3-1-.Ltext0
+ 2227 0148 4E000000 		.4byte	.LFE29-.Ltext0
+ 2228 014c 0400     		.2byte	0x4
+ 2229 014e F3       		.byte	0xf3
+ 2230 014f 01       		.uleb128 0x1
+ 2231 0150 51       		.byte	0x51
+ 2232 0151 9F       		.byte	0x9f
+ 2233 0152 00000000 		.4byte	0
+ 2234 0156 00000000 		.4byte	0
+ 2235              	.LVUS3:
+ 2236 015a 00       		.uleb128 0
+ 2237 015b 00       		.uleb128 .LVU21
+ 2238 015c 00       		.uleb128 .LVU21
+ 2239 015d 00       		.uleb128 0
+ 2240              	.LLST3:
+ 2241 015e 00000000 		.4byte	.LVL0-.Ltext0
+ 2242 0162 27000000 		.4byte	.LVL3-1-.Ltext0
+ 2243 0166 0100     		.2byte	0x1
+ 2244 0168 52       		.byte	0x52
+ 2245 0169 27000000 		.4byte	.LVL3-1-.Ltext0
+ 2246 016d 4E000000 		.4byte	.LFE29-.Ltext0
+ 2247 0171 0400     		.2byte	0x4
+ 2248 0173 F3       		.byte	0xf3
+ 2249 0174 01       		.uleb128 0x1
+ 2250 0175 52       		.byte	0x52
+ 2251 0176 9F       		.byte	0x9f
+ 2252 0177 00000000 		.4byte	0
+ 2253 017b 00000000 		.4byte	0
+ 2254              		.section	.debug_aranges,"",%progbits
+ 2255 0000 1C000000 		.4byte	0x1c
+ 2256 0004 0200     		.2byte	0x2
+ 2257 0006 00000000 		.4byte	.Ldebug_info0
+ 2258 000a 04       		.byte	0x4
+ 2259 000b 00       		.byte	0
+ 2260 000c 0000     		.2byte	0
+ 2261 000e 0000     		.2byte	0
+ 2262 0010 00000000 		.4byte	.Ltext0
+ 2263 0014 70010000 		.4byte	.Letext0-.Ltext0
+ 2264 0018 00000000 		.4byte	0
+ 2265 001c 00000000 		.4byte	0
+ 2266              		.section	.debug_line,"",%progbits
+ 2267              	.Ldebug_line0:
+ 2268 0000 8A030000 		.section	.debug_str,"MS",%progbits,1
+ 2268      03003C01 
+ 2268      00000201 
+ 2268      FB0E0D00 
+ 2268      01010101 
+ 2269              	.LASF19:
+ 2270 0000 4750494F 		.ascii	"GPIO_TypeDef\000"
+ 2270      5F547970 
+ 2270      65446566 
+ARM GAS  /tmp/ccsnpTLa.s 			page 44
+
+
+ 2270      00
+ 2271              	.LASF65:
+ 2272 000d 4750494F 		.ascii	"GPIO_Pin\000"
+ 2272      5F50696E 
+ 2272      00
+ 2273              	.LASF32:
+ 2274 0016 43434552 		.ascii	"CCER\000"
+ 2274      00
+ 2275              	.LASF82:
+ 2276 001b 44485431 		.ascii	"DHT11_init\000"
+ 2276      315F696E 
+ 2276      697400
+ 2277              	.LASF64:
+ 2278 0026 4750494F 		.ascii	"GPIOMode_TypeDef\000"
+ 2278      4D6F6465 
+ 2278      5F547970 
+ 2278      65446566 
+ 2278      00
+ 2279              	.LASF49:
+ 2280 0037 444D4152 		.ascii	"DMAR\000"
+ 2280      00
+ 2281              	.LASF28:
+ 2282 003c 43434D52 		.ascii	"CCMR1\000"
+ 2282      3100
+ 2283              	.LASF30:
+ 2284 0042 43434D52 		.ascii	"CCMR2\000"
+ 2284      3200
+ 2285              	.LASF78:
+ 2286 0048 74656D70 		.ascii	"temp\000"
+ 2286      00
+ 2287              	.LASF2:
+ 2288 004d 73686F72 		.ascii	"short int\000"
+ 2288      7420696E 
+ 2288      7400
+ 2289              	.LASF69:
+ 2290 0057 54494D5F 		.ascii	"TIM_Prescaler\000"
+ 2290      50726573 
+ 2290      63616C65 
+ 2290      7200
+ 2291              	.LASF7:
+ 2292 0065 5F5F7569 		.ascii	"__uint32_t\000"
+ 2292      6E743332 
+ 2292      5F7400
+ 2293              	.LASF4:
+ 2294 0070 5F5F7569 		.ascii	"__uint16_t\000"
+ 2294      6E743136 
+ 2294      5F7400
+ 2295              	.LASF21:
+ 2296 007b 52455345 		.ascii	"RESERVED1\000"
+ 2296      52564544 
+ 2296      3100
+ 2297              	.LASF72:
+ 2298 0085 54494D5F 		.ascii	"TIM_ClockDivision\000"
+ 2298      436C6F63 
+ 2298      6B446976 
+ 2298      6973696F 
+ 2298      6E00
+ARM GAS  /tmp/ccsnpTLa.s 			page 45
+
+
+ 2299              	.LASF66:
+ 2300 0097 4750494F 		.ascii	"GPIO_Speed\000"
+ 2300      5F537065 
+ 2300      656400
+ 2301              	.LASF84:
+ 2302 00a2 4750494F 		.ascii	"GPIO_Init\000"
+ 2302      5F496E69 
+ 2302      7400
+ 2303              	.LASF12:
+ 2304 00ac 75696E74 		.ascii	"uint8_t\000"
+ 2304      385F7400 
+ 2305              	.LASF92:
+ 2306 00b4 474E5520 		.ascii	"GNU C17 10.3.1 20210824 (release) -mcpu=cortex-m3 -"
+ 2306      43313720 
+ 2306      31302E33 
+ 2306      2E312032 
+ 2306      30323130 
+ 2307 00e7 6D746875 		.ascii	"mthumb -mfloat-abi=soft -march=armv7-m -g -gdwarf-2"
+ 2307      6D62202D 
+ 2307      6D666C6F 
+ 2307      61742D61 
+ 2307      62693D73 
+ 2308 011a 202D4F73 		.ascii	" -Os -fomit-frame-pointer\000"
+ 2308      202D666F 
+ 2308      6D69742D 
+ 2308      6672616D 
+ 2308      652D706F 
+ 2309              	.LASF88:
+ 2310 0134 54494D5F 		.ascii	"TIM_SetCounter\000"
+ 2310      53657443 
+ 2310      6F756E74 
+ 2310      657200
+ 2311              	.LASF60:
+ 2312 0143 4750494F 		.ascii	"GPIO_Mode_Out_OD\000"
+ 2312      5F4D6F64 
+ 2312      655F4F75 
+ 2312      745F4F44 
+ 2312      00
+ 2313              	.LASF94:
+ 2314 0154 2F686F6D 		.ascii	"/home/junior/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/5-P"
+ 2314      652F6A75 
+ 2314      6E696F72 
+ 2314      2F436F64 
+ 2314      69676F73 
+ 2315 0187 574D5F4C 		.ascii	"WM_LCD_SERIAL\000"
+ 2315      43445F53 
+ 2315      45524941 
+ 2315      4C00
+ 2316              	.LASF0:
+ 2317 0195 7369676E 		.ascii	"signed char\000"
+ 2317      65642063 
+ 2317      68617200 
+ 2318              	.LASF63:
+ 2319 01a1 4750494F 		.ascii	"GPIO_Mode_AF_PP\000"
+ 2319      5F4D6F64 
+ 2319      655F4146 
+ 2319      5F505000 
+ARM GAS  /tmp/ccsnpTLa.s 			page 46
+
+
+ 2320              	.LASF80:
+ 2321 01b1 4750494F 		.ascii	"GPIO_InitStructure\000"
+ 2321      5F496E69 
+ 2321      74537472 
+ 2321      75637475 
+ 2321      726500
+ 2322              	.LASF9:
+ 2323 01c4 6C6F6E67 		.ascii	"long long int\000"
+ 2323      206C6F6E 
+ 2323      6720696E 
+ 2323      7400
+ 2324              	.LASF16:
+ 2325 01d2 454E4142 		.ascii	"ENABLE\000"
+ 2325      4C4500
+ 2326              	.LASF50:
+ 2327 01d9 52455345 		.ascii	"RESERVED19\000"
+ 2327      52564544 
+ 2327      313900
+ 2328              	.LASF93:
+ 2329 01e4 2E2E2F35 		.ascii	"../5-PWM_LCD_SERIAL/dht11.c\000"
+ 2329      2D50574D 
+ 2329      5F4C4344 
+ 2329      5F534552 
+ 2329      49414C2F 
+ 2330              	.LASF38:
+ 2331 0200 43435231 		.ascii	"CCR1\000"
+ 2331      00
+ 2332              	.LASF40:
+ 2333 0205 43435232 		.ascii	"CCR2\000"
+ 2333      00
+ 2334              	.LASF42:
+ 2335 020a 43435233 		.ascii	"CCR3\000"
+ 2335      00
+ 2336              	.LASF44:
+ 2337 020f 43435234 		.ascii	"CCR4\000"
+ 2337      00
+ 2338              	.LASF17:
+ 2339 0214 42535252 		.ascii	"BSRR\000"
+ 2339      00
+ 2340              	.LASF3:
+ 2341 0219 5F5F7569 		.ascii	"__uint8_t\000"
+ 2341      6E74385F 
+ 2341      7400
+ 2342              	.LASF87:
+ 2343 0223 4750494F 		.ascii	"GPIO_ReadInputDataBit\000"
+ 2343      5F526561 
+ 2343      64496E70 
+ 2343      75744461 
+ 2343      74614269 
+ 2344              	.LASF52:
+ 2345 0239 4750494F 		.ascii	"GPIO_Speed_10MHz\000"
+ 2345      5F537065 
+ 2345      65645F31 
+ 2345      304D487A 
+ 2345      00
+ 2346              	.LASF89:
+ 2347 024a 54494D5F 		.ascii	"TIM_GetCounter\000"
+ARM GAS  /tmp/ccsnpTLa.s 			page 47
+
+
+ 2347      47657443 
+ 2347      6F756E74 
+ 2347      657200
+ 2348              	.LASF47:
+ 2349 0259 52455345 		.ascii	"RESERVED17\000"
+ 2349      52564544 
+ 2349      313700
+ 2350              	.LASF51:
+ 2351 0264 54494D5F 		.ascii	"TIM_TypeDef\000"
+ 2351      54797065 
+ 2351      44656600 
+ 2352              	.LASF22:
+ 2353 0270 534D4352 		.ascii	"SMCR\000"
+ 2353      00
+ 2354              	.LASF1:
+ 2355 0275 756E7369 		.ascii	"unsigned char\000"
+ 2355      676E6564 
+ 2355      20636861 
+ 2355      7200
+ 2356              	.LASF35:
+ 2357 0283 52455345 		.ascii	"RESERVED10\000"
+ 2357      52564544 
+ 2357      313000
+ 2358              	.LASF36:
+ 2359 028e 52455345 		.ascii	"RESERVED11\000"
+ 2359      52564544 
+ 2359      313100
+ 2360              	.LASF37:
+ 2361 0299 52455345 		.ascii	"RESERVED12\000"
+ 2361      52564544 
+ 2361      313200
+ 2362              	.LASF39:
+ 2363 02a4 52455345 		.ascii	"RESERVED13\000"
+ 2363      52564544 
+ 2363      313300
+ 2364              	.LASF41:
+ 2365 02af 52455345 		.ascii	"RESERVED14\000"
+ 2365      52564544 
+ 2365      313400
+ 2366              	.LASF43:
+ 2367 02ba 52455345 		.ascii	"RESERVED15\000"
+ 2367      52564544 
+ 2367      313500
+ 2368              	.LASF45:
+ 2369 02c5 52455345 		.ascii	"RESERVED16\000"
+ 2369      52564544 
+ 2369      313600
+ 2370              	.LASF48:
+ 2371 02d0 52455345 		.ascii	"RESERVED18\000"
+ 2371      52564544 
+ 2371      313800
+ 2372              	.LASF10:
+ 2373 02db 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2373      206C6F6E 
+ 2373      6720756E 
+ 2373      7369676E 
+ 2373      65642069 
+ARM GAS  /tmp/ccsnpTLa.s 			page 48
+
+
+ 2374              	.LASF14:
+ 2375 02f2 75696E74 		.ascii	"uint32_t\000"
+ 2375      33325F74 
+ 2375      00
+ 2376              	.LASF68:
+ 2377 02fb 4750494F 		.ascii	"GPIO_InitTypeDef\000"
+ 2377      5F496E69 
+ 2377      74547970 
+ 2377      65446566 
+ 2377      00
+ 2378              	.LASF11:
+ 2379 030c 756E7369 		.ascii	"unsigned int\000"
+ 2379      676E6564 
+ 2379      20696E74 
+ 2379      00
+ 2380              	.LASF13:
+ 2381 0319 75696E74 		.ascii	"uint16_t\000"
+ 2381      31365F74 
+ 2381      00
+ 2382              	.LASF74:
+ 2383 0322 54494D5F 		.ascii	"TIM_TimeBaseInitTypeDef\000"
+ 2383      54696D65 
+ 2383      42617365 
+ 2383      496E6974 
+ 2383      54797065 
+ 2384              	.LASF8:
+ 2385 033a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2385      20756E73 
+ 2385      69676E65 
+ 2385      6420696E 
+ 2385      7400
+ 2386              	.LASF46:
+ 2387 034c 42445452 		.ascii	"BDTR\000"
+ 2387      00
+ 2388              	.LASF24:
+ 2389 0351 44494552 		.ascii	"DIER\000"
+ 2389      00
+ 2390              	.LASF5:
+ 2391 0356 73686F72 		.ascii	"short unsigned int\000"
+ 2391      7420756E 
+ 2391      7369676E 
+ 2391      65642069 
+ 2391      6E7400
+ 2392              	.LASF75:
+ 2393 0369 74656D70 		.ascii	"temparature\000"
+ 2393      61726174 
+ 2393      75726500 
+ 2394              	.LASF6:
+ 2395 0375 6C6F6E67 		.ascii	"long int\000"
+ 2395      20696E74 
+ 2395      00
+ 2396              	.LASF15:
+ 2397 037e 44495341 		.ascii	"DISABLE\000"
+ 2397      424C4500 
+ 2398              	.LASF53:
+ 2399 0386 4750494F 		.ascii	"GPIO_Speed_2MHz\000"
+ 2399      5F537065 
+ARM GAS  /tmp/ccsnpTLa.s 			page 49
+
+
+ 2399      65645F32 
+ 2399      4D487A00 
+ 2400              	.LASF59:
+ 2401 0396 4750494F 		.ascii	"GPIO_Mode_IPU\000"
+ 2401      5F4D6F64 
+ 2401      655F4950 
+ 2401      5500
+ 2402              	.LASF79:
+ 2403 03a4 64617461 		.ascii	"data\000"
+ 2403      00
+ 2404              	.LASF83:
+ 2405 03a9 54494D5F 		.ascii	"TIM_TimBaseStructure\000"
+ 2405      54696D42 
+ 2405      61736553 
+ 2405      74727563 
+ 2405      74757265 
+ 2406              	.LASF77:
+ 2407 03be 706F7274 		.ascii	"port\000"
+ 2407      00
+ 2408              	.LASF20:
+ 2409 03c3 52455345 		.ascii	"RESERVED0\000"
+ 2409      52564544 
+ 2409      3000
+ 2410              	.LASF56:
+ 2411 03cd 4750494F 		.ascii	"GPIO_Mode_AIN\000"
+ 2411      5F4D6F64 
+ 2411      655F4149 
+ 2411      4E00
+ 2412              	.LASF23:
+ 2413 03db 52455345 		.ascii	"RESERVED2\000"
+ 2413      52564544 
+ 2413      3200
+ 2414              	.LASF25:
+ 2415 03e5 52455345 		.ascii	"RESERVED3\000"
+ 2415      52564544 
+ 2415      3300
+ 2416              	.LASF26:
+ 2417 03ef 52455345 		.ascii	"RESERVED4\000"
+ 2417      52564544 
+ 2417      3400
+ 2418              	.LASF27:
+ 2419 03f9 52455345 		.ascii	"RESERVED5\000"
+ 2419      52564544 
+ 2419      3500
+ 2420              	.LASF29:
+ 2421 0403 52455345 		.ascii	"RESERVED6\000"
+ 2421      52564544 
+ 2421      3600
+ 2422              	.LASF31:
+ 2423 040d 52455345 		.ascii	"RESERVED7\000"
+ 2423      52564544 
+ 2423      3700
+ 2424              	.LASF33:
+ 2425 0417 52455345 		.ascii	"RESERVED8\000"
+ 2425      52564544 
+ 2425      3800
+ 2426              	.LASF34:
+ARM GAS  /tmp/ccsnpTLa.s 			page 50
+
+
+ 2427 0421 52455345 		.ascii	"RESERVED9\000"
+ 2427      52564544 
+ 2427      3900
+ 2428              	.LASF55:
+ 2429 042b 4750494F 		.ascii	"GPIOSpeed_TypeDef\000"
+ 2429      53706565 
+ 2429      645F5479 
+ 2429      70654465 
+ 2429      6600
+ 2430              	.LASF73:
+ 2431 043d 54494D5F 		.ascii	"TIM_RepetitionCounter\000"
+ 2431      52657065 
+ 2431      74697469 
+ 2431      6F6E436F 
+ 2431      756E7465 
+ 2432              	.LASF61:
+ 2433 0453 4750494F 		.ascii	"GPIO_Mode_Out_PP\000"
+ 2433      5F4D6F64 
+ 2433      655F4F75 
+ 2433      745F5050 
+ 2433      00
+ 2434              	.LASF76:
+ 2435 0464 68756D69 		.ascii	"humidity\000"
+ 2435      64697479 
+ 2435      00
+ 2436              	.LASF54:
+ 2437 046d 4750494F 		.ascii	"GPIO_Speed_50MHz\000"
+ 2437      5F537065 
+ 2437      65645F35 
+ 2437      304D487A 
+ 2437      00
+ 2438              	.LASF58:
+ 2439 047e 4750494F 		.ascii	"GPIO_Mode_IPD\000"
+ 2439      5F4D6F64 
+ 2439      655F4950 
+ 2439      4400
+ 2440              	.LASF71:
+ 2441 048c 54494D5F 		.ascii	"TIM_Period\000"
+ 2441      50657269 
+ 2441      6F6400
+ 2442              	.LASF95:
+ 2443 0497 44485431 		.ascii	"DHT11_Dev\000"
+ 2443      315F4465 
+ 2443      7600
+ 2444              	.LASF85:
+ 2445 04a1 4750494F 		.ascii	"GPIO_ResetBits\000"
+ 2445      5F526573 
+ 2445      65744269 
+ 2445      747300
+ 2446              	.LASF70:
+ 2447 04b0 54494D5F 		.ascii	"TIM_CounterMode\000"
+ 2447      436F756E 
+ 2447      7465724D 
+ 2447      6F646500 
+ 2448              	.LASF57:
+ 2449 04c0 4750494F 		.ascii	"GPIO_Mode_IN_FLOATING\000"
+ 2449      5F4D6F64 
+ARM GAS  /tmp/ccsnpTLa.s 			page 51
+
+
+ 2449      655F494E 
+ 2449      5F464C4F 
+ 2449      4154494E 
+ 2450              	.LASF81:
+ 2451 04d6 44485431 		.ascii	"DHT11_read\000"
+ 2451      315F7265 
+ 2451      616400
+ 2452              	.LASF91:
+ 2453 04e1 54494D5F 		.ascii	"TIM_Cmd\000"
+ 2453      436D6400 
+ 2454              	.LASF18:
+ 2455 04e9 4C434B52 		.ascii	"LCKR\000"
+ 2455      00
+ 2456              	.LASF86:
+ 2457 04ee 4750494F 		.ascii	"GPIO_SetBits\000"
+ 2457      5F536574 
+ 2457      42697473 
+ 2457      00
+ 2458              	.LASF90:
+ 2459 04fb 54494D5F 		.ascii	"TIM_TimeBaseInit\000"
+ 2459      54696D65 
+ 2459      42617365 
+ 2459      496E6974 
+ 2459      00
+ 2460              	.LASF62:
+ 2461 050c 4750494F 		.ascii	"GPIO_Mode_AF_OD\000"
+ 2461      5F4D6F64 
+ 2461      655F4146 
+ 2461      5F4F4400 
+ 2462              	.LASF67:
+ 2463 051c 4750494F 		.ascii	"GPIO_Mode\000"
+ 2463      5F4D6F64 
+ 2463      6500
+ 2464              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  /tmp/ccsnpTLa.s 			page 52
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 dht11.c
+     /tmp/ccsnpTLa.s:78     .text:0000000000000000 $t
+     /tmp/ccsnpTLa.s:84     .text:0000000000000000 DHT11_init
+     /tmp/ccsnpTLa.s:195    .text:000000000000004e DHT11_read
+     /tmp/ccsnpTLa.s:529    .text:000000000000016c $d
+
+UNDEFINED SYMBOLS
+TIM_TimeBaseInit
+TIM_Cmd
+GPIO_Init
+GPIO_ResetBits
+GPIO_SetBits
+GPIO_ReadInputDataBit
+TIM_SetCounter
+TIM_GetCounter

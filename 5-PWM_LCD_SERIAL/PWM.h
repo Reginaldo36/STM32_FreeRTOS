@@ -69,6 +69,6 @@ void configure_PWM_TIM4(){
 	TIM4->CCER		|= (1<<0); 
 
 	TIM4->CR1		|= (1<<0); 
-	TIM4->CCR1		= (u8 *) 0x0fff/2; // Inicializa com
+	TIM4->CCR1		= 0x0fff/2; // Inicializa com
 												 // metade da potencia
 }
