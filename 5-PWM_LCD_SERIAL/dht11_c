@@ -1,7 +1,10 @@
 #include "dht11.h"
 
+
 int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t pin) {
+
 	TIM_TimeBaseInitTypeDef TIM_TimBaseStructure;
+
 	GPIO_InitTypeDef GPIO_InitStructure;
 	
 	dev->port = port;

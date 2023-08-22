@@ -27,12 +27,12 @@
 
 #include "stm32f10x.h"
 #include "Me.h"
+#include "dht11.h"
 
 // LCD 16x2
 #include "myLcd.h"
-#include "Serial.h"
-#include "PWM.h"
-#include "dht11.h"
+// #include "Serial.h"
+// #include "PWM.h"
 
 #define BIN 2
 #define OCT 8
