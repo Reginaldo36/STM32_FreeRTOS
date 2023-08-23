@@ -1,16 +1,12 @@
-#ifndef DHT11_H
-#define DHT11_H
-
 // #include "stm32f10x.h"
 // #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
-#include "stm32f10x_tim.h"
 
 #define DHT11_SUCCESS         1
 #define DHT11_ERROR_CHECKSUM  2
 #define DHT11_ERROR_TIMEOUT   3
 
-#define TIM_X	TIM3
+// #define TIM_X	TIM3
 
 typedef struct DHT11_Dev {
 	uint8_t temparature;
@@ -148,4 +144,3 @@ int DHT11_read(struct DHT11_Dev* dev) {
 	return DHT11_SUCCESS;
 }
 
-#endif /* DHT11_H */

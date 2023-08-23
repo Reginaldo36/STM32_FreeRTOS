@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccU2Lc5j.s 			page 1
+ARM GAS  /tmp/ccexPFzH.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
   55              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
   56              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
   57              	@ -fsection-anchors -fsemantic-interposition -fshow-column
-ARM GAS  /tmp/ccU2Lc5j.s 			page 2
+ARM GAS  /tmp/ccexPFzH.s 			page 2
 
 
   58              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
   25:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** 
   26:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** /** @addtogroup STM32F10x_StdPeriph_Driver
   27:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @{
-ARM GAS  /tmp/ccU2Lc5j.s 			page 3
+ARM GAS  /tmp/ccexPFzH.s 			page 3
 
 
   28:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
   82:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** 
   83:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** /** @defgroup GPIO_Private_Variables
   84:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @{
-ARM GAS  /tmp/ccU2Lc5j.s 			page 4
+ARM GAS  /tmp/ccexPFzH.s 			page 4
 
 
   85:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   */
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  110              		.loc 1 115 5 is_stmt 0 view .LVU6
  111 000c FFF7FEFF 		bl	RCC_APB2PeriphResetCmd		@
  112              	.LVL2:
-ARM GAS  /tmp/ccU2Lc5j.s 			page 5
+ARM GAS  /tmp/ccexPFzH.s 			page 5
 
 
  116:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****     RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOA, DISABLE);
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  130              	.LCFI2:
  131              		.cfi_restore_state
  118:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   {
-ARM GAS  /tmp/ccU2Lc5j.s 			page 6
+ARM GAS  /tmp/ccexPFzH.s 			page 6
 
 
  132              		.loc 1 118 8 is_stmt 1 view .LVU10
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  175 0048 06D1     		bne	.L5		@,
  130:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****     RCC_APB2PeriphResetCmd(RCC_APB2Periph_GPIOD, DISABLE);
  176              		.loc 1 130 5 is_stmt 1 view .LVU22
-ARM GAS  /tmp/ccU2Lc5j.s 			page 7
+ARM GAS  /tmp/ccexPFzH.s 			page 7
 
 
  177 004a 0121     		movs	r1, #1	@,
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  220              	.LVL17:
  141:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   }
  221              		.loc 1 141 5 is_stmt 1 view .LVU34
-ARM GAS  /tmp/ccU2Lc5j.s 			page 8
+ARM GAS  /tmp/ccexPFzH.s 			page 8
 
 
  222 007a 0021     		movs	r1, #0	@,
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  153:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** /**
  154:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @brief  Deinitializes the Alternate Functions (remap, event control
  155:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *   and EXTI configuration) registers to their default reset values.
-ARM GAS  /tmp/ccU2Lc5j.s 			page 9
+ARM GAS  /tmp/ccexPFzH.s 			page 9
 
 
  156:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @param  None
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  164:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** 
  165:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** /**
  166:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @brief  Initializes the GPIOx peripheral according to the specified
-ARM GAS  /tmp/ccU2Lc5j.s 			page 10
+ARM GAS  /tmp/ccexPFzH.s 			page 10
 
 
  167:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *         parameters in the GPIO_InitStruct.
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  340 00d4 0F88     		ldrh	r7, [r1]	@ _6, GPIO_InitStruct_32(D)->GPIO_Pin
  341              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:184:   if ((((uint32_t)GPIO_Init
  184:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   if ((((uint32_t)GPIO_InitStruct->GPIO_Mode) & ((uint32_t)0x10)) != 0x00)
-ARM GAS  /tmp/ccU2Lc5j.s 			page 11
+ARM GAS  /tmp/ccexPFzH.s 			page 11
 
 
  342              		.loc 1 184 6 view .LVU58
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  196:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****     {
  378              		.loc 1 196 25 view .LVU72
  379              	.L18:
-ARM GAS  /tmp/ccU2Lc5j.s 			page 12
+ARM GAS  /tmp/ccexPFzH.s 			page 12
 
 
  198:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****       /* Get the port pins position */
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  419              		.loc 1 212 11 is_stmt 1 view .LVU89
  420              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:212:           GPIOx->BRR = (((u
  421              		.loc 1 212 22 is_stmt 0 view .LVU90
-ARM GAS  /tmp/ccU2Lc5j.s 			page 13
+ARM GAS  /tmp/ccexPFzH.s 			page 13
 
 
  422 0114 4661     		str	r6, [r0, #20]	@ pos, GPIOx_33(D)->BRR
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  451              		.loc 1 233 11 view .LVU101
  452 0124 4FF0010C 		mov	ip, #1	@ tmp161,
  453              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:240:         pinmask = ((uint32_
-ARM GAS  /tmp/ccU2Lc5j.s 			page 14
+ARM GAS  /tmp/ccexPFzH.s 			page 14
 
 
  234:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****       /* Get the port pins position */
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  488              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:243:         tmpreg |= (currentm
  489              		.loc 1 243 32 is_stmt 0 view .LVU117
  490 0146 05FA06F6 		lsl	r6, r5, r6	@ tmp166, _2, _75
-ARM GAS  /tmp/ccU2Lc5j.s 			page 15
+ARM GAS  /tmp/ccexPFzH.s 			page 15
 
 
  491              	.LVL42:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  257:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   }
  258:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** }
  527              		.loc 1 258 1 view .LVU131
-ARM GAS  /tmp/ccU2Lc5j.s 			page 16
+ARM GAS  /tmp/ccexPFzH.s 			page 16
 
 
  528 015c BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}	@
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  565              		.loc 1 267 1 is_stmt 1 view -0
  566              		.cfi_startproc
  567              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 17
+ARM GAS  /tmp/ccexPFzH.s 			page 17
 
 
  568              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  286:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
  602              		.loc 1 286 3 view .LVU149
  287:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   assert_param(IS_GET_GPIO_PIN(GPIO_Pin)); 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 18
+ARM GAS  /tmp/ccexPFzH.s 			page 18
 
 
  603              		.loc 1 287 3 view .LVU150
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  637              		@ link register save eliminated.
  307:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   /* Check the parameters */
  308:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   assert_param(IS_GPIO_ALL_PERIPH(GPIOx));
-ARM GAS  /tmp/ccU2Lc5j.s 			page 19
+ARM GAS  /tmp/ccexPFzH.s 			page 19
 
 
  638              		.loc 1 308 3 view .LVU158
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  328:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   {
  329:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****     bitstatus = (uint8_t)Bit_SET;
  330:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   }
-ARM GAS  /tmp/ccU2Lc5j.s 			page 20
+ARM GAS  /tmp/ccexPFzH.s 			page 20
 
 
  331:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   else
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  708              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:349: }
  349:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** }
  709              		.loc 1 349 1 view .LVU176
-ARM GAS  /tmp/ccU2Lc5j.s 			page 21
+ARM GAS  /tmp/ccexPFzH.s 			page 21
 
 
  710 019e 80B2     		uxth	r0, r0	@, _1
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  748              	.LVL61:
  749              	.LFB38:
  366:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 22
+ARM GAS  /tmp/ccexPFzH.s 			page 22
 
 
  367:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** /**
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  395:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** {
  776              		.loc 1 395 1 is_stmt 1 view -0
  777              		.cfi_startproc
-ARM GAS  /tmp/ccU2Lc5j.s 			page 23
+ARM GAS  /tmp/ccexPFzH.s 			page 23
 
 
  778              		@ args = 0, pretend = 0, frame = 0
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  415:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @retval None
  416:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   */
  417:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal)
-ARM GAS  /tmp/ccU2Lc5j.s 			page 24
+ARM GAS  /tmp/ccexPFzH.s 			page 24
 
 
  418:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** {
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  439:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   
  440:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   tmp |= GPIO_Pin;
  846              		.loc 1 440 3 view .LVU209
-ARM GAS  /tmp/ccU2Lc5j.s 			page 25
+ARM GAS  /tmp/ccexPFzH.s 			page 25
 
 
  847              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:440:   tmp |= GPIO_Pin;
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  455:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @param  GPIO_PortSource: selects the GPIO port to be used as source
  456:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *   for Event output.
  457:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *   This parameter can be GPIO_PortSourceGPIOx where x can be (A..E).
-ARM GAS  /tmp/ccU2Lc5j.s 			page 26
+ARM GAS  /tmp/ccexPFzH.s 			page 26
 
 
  458:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @param  GPIO_PinSource: specifies the pin for the Event output.
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  921              		.loc 1 475 1 view .LVU236
  922 01dc 7047     		bx	lr	@
  923              	.L45:
-ARM GAS  /tmp/ccU2Lc5j.s 			page 27
+ARM GAS  /tmp/ccexPFzH.s 			page 27
 
 
  924 01de 00BF     		.align	2
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  964              		.thumb_func
  965              		.type	GPIO_PinRemapConfig, %function
  966              	GPIO_PinRemapConfig:
-ARM GAS  /tmp/ccU2Lc5j.s 			page 28
+ARM GAS  /tmp/ccexPFzH.s 			page 28
 
 
  967              	.LVL72:
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  542:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *     @arg GPIO_Remap_TIM12            : TIM12 Alternate Function mapping (only for High density 
  543:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *     @arg GPIO_Remap_MISC             : Miscellaneous Remap (DMA2 Channel5 Position and DAC Trig
  544:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   *                                        only for High density Value line devices)     
-ARM GAS  /tmp/ccU2Lc5j.s 			page 29
+ARM GAS  /tmp/ccexPFzH.s 			page 29
 
 
  545:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   * @param  NewState: new state of the port pin remapping.
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  996 01fa B4BF     		ite	lt
  997 01fc D369     		ldrlt	r3, [r2, #28]	@ tmpreg, MEM[(struct AFIO_TypeDef *)1073807360B].MAPR2
  998              	.LVL73:
-ARM GAS  /tmp/ccU2Lc5j.s 			page 30
+ARM GAS  /tmp/ccexPFzH.s 			page 30
 
 
  563:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   }
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  585:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** 
  586:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   if (NewState != DISABLE)
  1032              		.loc 1 586 3 is_stmt 1 view .LVU266
-ARM GAS  /tmp/ccU2Lc5j.s 			page 31
+ARM GAS  /tmp/ccexPFzH.s 			page 31
 
 
  1033              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:586:   if (NewState != DISABLE)
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1072              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:574:   else if ((GPIO_Remap & DB
  574:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   {
  1073              		.loc 1 574 11 is_stmt 0 view .LVU281
-ARM GAS  /tmp/ccU2Lc5j.s 			page 32
+ARM GAS  /tmp/ccexPFzH.s 			page 32
 
 
  1074 022a C202     		lsls	r2, r0, #11	@, GPIO_Remap,
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1115              	.LFE44:
  1116              		.size	GPIO_PinRemapConfig, .-GPIO_PinRemapConfig
  1117              		.align	1
-ARM GAS  /tmp/ccU2Lc5j.s 			page 33
+ARM GAS  /tmp/ccexPFzH.s 			page 33
 
 
  1118              		.global	GPIO_EXTILineConfig
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1153              		.loc 1 617 40 view .LVU304
  1154 0264 8A68     		ldr	r2, [r1, #8]	@ _5, MEM <volatile uint32_t> [(struct AFIO_TypeDef *)_21 + 8B]
  1155              	@ ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c:616:   tmp = ((uint32_t)0x0F) <<
-ARM GAS  /tmp/ccU2Lc5j.s 			page 34
+ARM GAS  /tmp/ccexPFzH.s 			page 34
 
 
  616:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c ****   AFIO->EXTICR[GPIO_PinSource >> 0x02] &= ~tmp;
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  630:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** void GPIO_ETH_MediaInterfaceConfig(uint32_t GPIO_ETH_MediaInterface) 
  631:../stm32f10x_lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c **** { 
  1196              		.loc 1 631 1 is_stmt 1 view -0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 35
+ARM GAS  /tmp/ccexPFzH.s 			page 35
 
 
  1197              		.cfi_startproc
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1246 0034 38000000 		.4byte	0x38
  1247 0038 02       		.uleb128 0x2
  1248 0039 01       		.byte	0x1
-ARM GAS  /tmp/ccU2Lc5j.s 			page 36
+ARM GAS  /tmp/ccexPFzH.s 			page 36
 
 
  1249 003a 08       		.byte	0x8
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1303 00a0 03       		.byte	0x3
  1304 00a1 24       		.byte	0x24
  1305 00a2 14       		.byte	0x14
-ARM GAS  /tmp/ccU2Lc5j.s 			page 37
+ARM GAS  /tmp/ccexPFzH.s 			page 37
 
 
  1306 00a3 46000000 		.4byte	0x46
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1360 010d EC03     		.2byte	0x3ec
  1361 010f 11       		.byte	0x11
  1362 0110 B3000000 		.4byte	0xb3
-ARM GAS  /tmp/ccU2Lc5j.s 			page 38
+ARM GAS  /tmp/ccexPFzH.s 			page 38
 
 
  1363 0114 02       		.byte	0x2
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1417 0171 ED000000 		.4byte	0xed
  1418 0175 0A       		.uleb128 0xa
  1419 0176 20       		.byte	0x20
-ARM GAS  /tmp/ccU2Lc5j.s 			page 39
+ARM GAS  /tmp/ccexPFzH.s 			page 39
 
 
  1420 0177 04       		.byte	0x4
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1474 01da 88000000 		.4byte	0x88
  1475 01de 03       		.byte	0x3
  1476 01df 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 40
+ARM GAS  /tmp/ccexPFzH.s 			page 40
 
 
  1477 01e0 05       		.uleb128 0x5
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1531 024a 14       		.byte	0x14
  1532 024b 08       		.uleb128 0x8
  1533 024c 54040000 		.4byte	.LASF36
-ARM GAS  /tmp/ccU2Lc5j.s 			page 41
+ARM GAS  /tmp/ccexPFzH.s 			page 41
 
 
  1534 0250 10       		.byte	0x10
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1588 02ad 0F       		.uleb128 0xf
  1589 02ae 07       		.byte	0x7
  1590 02af 01       		.byte	0x1
-ARM GAS  /tmp/ccU2Lc5j.s 			page 42
+ARM GAS  /tmp/ccexPFzH.s 			page 42
 
 
  1591 02b0 38000000 		.4byte	0x38
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1645 031c 7B040000 		.4byte	.LASF49
  1646 0320 01       		.byte	0x1
  1647 0321 6102     		.2byte	0x261
-ARM GAS  /tmp/ccU2Lc5j.s 			page 43
+ARM GAS  /tmp/ccexPFzH.s 			page 43
 
 
  1648 0323 22       		.byte	0x22
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1702 039e A7000000 		.4byte	0xa7
  1703 03a2 C6000000 		.4byte	.LLST20
  1704 03a6 BE000000 		.4byte	.LVUS20
-ARM GAS  /tmp/ccU2Lc5j.s 			page 44
+ARM GAS  /tmp/ccexPFzH.s 			page 44
 
 
  1705 03aa 17       		.uleb128 0x17
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1759 041f 01       		.byte	0x1
  1760 0420 C8010000 		.4byte	.LFB42
  1761 0424 E4010000 		.4byte	.LFE42
-ARM GAS  /tmp/ccU2Lc5j.s 			page 45
+ARM GAS  /tmp/ccexPFzH.s 			page 45
 
 
  1762 0428 02       		.byte	0x2
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1816 0493 01       		.byte	0x1
  1817 0494 B001     		.2byte	0x1b0
  1818 0496 37       		.byte	0x37
-ARM GAS  /tmp/ccU2Lc5j.s 			page 46
+ARM GAS  /tmp/ccexPFzH.s 			page 46
 
 
  1819 0497 9B000000 		.4byte	0x9b
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1873 0502 B4010000 		.4byte	.LFE39
  1874 0506 02       		.byte	0x2
  1875 0507 7D       		.byte	0x7d
-ARM GAS  /tmp/ccU2Lc5j.s 			page 47
+ARM GAS  /tmp/ccexPFzH.s 			page 47
 
 
  1876 0508 00       		.sleb128 0
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1930 056e 33       		.byte	0x33
  1931 056f 9B000000 		.4byte	0x9b
  1932 0573 01       		.byte	0x1
-ARM GAS  /tmp/ccU2Lc5j.s 			page 48
+ARM GAS  /tmp/ccexPFzH.s 			page 48
 
 
  1933 0574 51       		.byte	0x51
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  1987 05dc 0A020000 		.4byte	.LLST16
  1988 05e0 06020000 		.4byte	.LVUS16
  1989 05e4 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 49
+ARM GAS  /tmp/ccexPFzH.s 			page 49
 
 
  1990 05e5 19       		.uleb128 0x19
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2044 0659 73060000 		.4byte	0x673
  2045 065d 15       		.uleb128 0x15
  2046 065e 4E040000 		.4byte	.LASF61
-ARM GAS  /tmp/ccU2Lc5j.s 			page 50
+ARM GAS  /tmp/ccexPFzH.s 			page 50
 
 
  2047 0662 01       		.byte	0x1
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2101 06d7 70010000 		.4byte	.LFB32
  2102 06db 7E010000 		.4byte	.LFE32
  2103 06df 02       		.byte	0x2
-ARM GAS  /tmp/ccU2Lc5j.s 			page 51
+ARM GAS  /tmp/ccexPFzH.s 			page 51
 
 
  2104 06e0 7D       		.byte	0x7d
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2158 0753 01       		.byte	0x1
  2159 0754 AF       		.byte	0xaf
  2160 0755 20       		.byte	0x20
-ARM GAS  /tmp/ccU2Lc5j.s 			page 52
+ARM GAS  /tmp/ccexPFzH.s 			page 52
 
 
  2161 0756 A7000000 		.4byte	0xa7
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2215 07dd 50       		.byte	0x50
  2216 07de 01       		.byte	0x1
  2217 07df 31       		.byte	0x31
-ARM GAS  /tmp/ccU2Lc5j.s 			page 53
+ARM GAS  /tmp/ccexPFzH.s 			page 53
 
 
  2218 07e0 20       		.uleb128 0x20
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2272 0840 01       		.byte	0x1
  2273 0841 31       		.byte	0x31
  2274 0842 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 54
+ARM GAS  /tmp/ccexPFzH.s 			page 54
 
 
  2275 0843 22       		.uleb128 0x22
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2329 08a3 20       		.uleb128 0x20
  2330 08a4 01       		.byte	0x1
  2331 08a5 50       		.byte	0x50
-ARM GAS  /tmp/ccU2Lc5j.s 			page 55
+ARM GAS  /tmp/ccexPFzH.s 			page 55
 
 
  2332 08a6 02       		.byte	0x2
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2386 0002 01       		.byte	0x1
  2387 0003 25       		.uleb128 0x25
  2388 0004 0E       		.uleb128 0xe
-ARM GAS  /tmp/ccU2Lc5j.s 			page 56
+ARM GAS  /tmp/ccexPFzH.s 			page 56
 
 
  2389 0005 13       		.uleb128 0x13
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2443 003b 49       		.uleb128 0x49
  2444 003c 13       		.uleb128 0x13
  2445 003d 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 57
+ARM GAS  /tmp/ccexPFzH.s 			page 57
 
 
  2446 003e 00       		.byte	0
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2500 0074 0B       		.uleb128 0xb
  2501 0075 49       		.uleb128 0x49
  2502 0076 13       		.uleb128 0x13
-ARM GAS  /tmp/ccU2Lc5j.s 			page 58
+ARM GAS  /tmp/ccexPFzH.s 			page 58
 
 
  2503 0077 00       		.byte	0
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2557 00ad 49       		.uleb128 0x49
  2558 00ae 13       		.uleb128 0x13
  2559 00af 01       		.uleb128 0x1
-ARM GAS  /tmp/ccU2Lc5j.s 			page 59
+ARM GAS  /tmp/ccexPFzH.s 			page 59
 
 
  2560 00b0 13       		.uleb128 0x13
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2614 00e6 0B       		.uleb128 0xb
  2615 00e7 39       		.uleb128 0x39
  2616 00e8 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccU2Lc5j.s 			page 60
+ARM GAS  /tmp/ccexPFzH.s 			page 60
 
 
  2617 00e9 49       		.uleb128 0x49
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2671 0120 0C       		.uleb128 0xc
  2672 0121 03       		.uleb128 0x3
  2673 0122 0E       		.uleb128 0xe
-ARM GAS  /tmp/ccU2Lc5j.s 			page 61
+ARM GAS  /tmp/ccexPFzH.s 			page 61
 
 
  2674 0123 3A       		.uleb128 0x3a
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2728 015b B742     		.uleb128 0x2137
  2729 015d 06       		.uleb128 0x6
  2730 015e 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 62
+ARM GAS  /tmp/ccexPFzH.s 			page 62
 
 
  2731 015f 00       		.byte	0
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2785 0197 01       		.uleb128 0x1
  2786 0198 13       		.uleb128 0x13
  2787 0199 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 63
+ARM GAS  /tmp/ccexPFzH.s 			page 63
 
 
  2788 019a 00       		.byte	0
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2842 01d1 39       		.uleb128 0x39
  2843 01d2 0B       		.uleb128 0xb
  2844 01d3 49       		.uleb128 0x49
-ARM GAS  /tmp/ccU2Lc5j.s 			page 64
+ARM GAS  /tmp/ccexPFzH.s 			page 64
 
 
  2845 01d4 13       		.uleb128 0x13
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2899 020f 00       		.byte	0
  2900 0210 00       		.byte	0
  2901 0211 20       		.uleb128 0x20
-ARM GAS  /tmp/ccU2Lc5j.s 			page 65
+ARM GAS  /tmp/ccexPFzH.s 			page 65
 
 
  2902 0212 8A8201   		.uleb128 0x410a
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  2956 0254 39       		.uleb128 0x39
  2957 0255 0B       		.uleb128 0xb
  2958 0256 00       		.byte	0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 66
+ARM GAS  /tmp/ccexPFzH.s 			page 66
 
 
  2959 0257 00       		.byte	0
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3013 0066 00000000 		.4byte	0
  3014              	.LVUS27:
  3015 006a 02       		.uleb128 .LVU297
-ARM GAS  /tmp/ccU2Lc5j.s 			page 67
+ARM GAS  /tmp/ccexPFzH.s 			page 67
 
 
  3016 006b 00       		.uleb128 .LVU306
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3070 00d6 1C020000 		.4byte	.LVL78-.Ltext0
  3071 00da 0100     		.2byte	0x1
  3072 00dc 54       		.byte	0x54
-ARM GAS  /tmp/ccU2Lc5j.s 			page 68
+ARM GAS  /tmp/ccexPFzH.s 			page 68
 
 
  3073 00dd 1C020000 		.4byte	.LVL78-.Ltext0
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3127 0142 FE010000 		.4byte	.LVL73-.Ltext0
  3128 0146 0200     		.2byte	0x2
  3129 0148 30       		.byte	0x30
-ARM GAS  /tmp/ccU2Lc5j.s 			page 69
+ARM GAS  /tmp/ccexPFzH.s 			page 69
 
 
  3130 0149 9F       		.byte	0x9f
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3184 01b1 73       		.byte	0x73
  3185 01b2 00       		.sleb128 0
  3186 01b3 0A       		.byte	0xa
-ARM GAS  /tmp/ccU2Lc5j.s 			page 70
+ARM GAS  /tmp/ccexPFzH.s 			page 70
 
 
  3187 01b4 80FF     		.2byte	0xff80
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3241 021d 0400     		.2byte	0x4
  3242 021f F3       		.byte	0xf3
  3243 0220 01       		.uleb128 0x1
-ARM GAS  /tmp/ccU2Lc5j.s 			page 71
+ARM GAS  /tmp/ccexPFzH.s 			page 71
 
 
  3244 0221 50       		.byte	0x50
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3298 0282 8C010000 		.4byte	.LVL54-.Ltext0
  3299 0286 0100     		.2byte	0x1
  3300 0288 50       		.byte	0x50
-ARM GAS  /tmp/ccU2Lc5j.s 			page 72
+ARM GAS  /tmp/ccexPFzH.s 			page 72
 
 
  3301 0289 8C010000 		.4byte	.LVL54-.Ltext0
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3355 02f2 D2000000 		.4byte	.LCFI5-.Ltext0
  3356 02f6 0200     		.2byte	0x2
  3357 02f8 7D       		.byte	0x7d
-ARM GAS  /tmp/ccU2Lc5j.s 			page 73
+ARM GAS  /tmp/ccexPFzH.s 			page 73
 
 
  3358 02f9 00       		.sleb128 0
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3412 0361 75       		.byte	0x75
  3413 0362 00       		.sleb128 0
  3414 0363 72       		.byte	0x72
-ARM GAS  /tmp/ccU2Lc5j.s 			page 74
+ARM GAS  /tmp/ccexPFzH.s 			page 74
 
 
  3415 0364 00       		.sleb128 0
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3469 03ba 00       		.sleb128 0
  3470 03bb 1A       		.byte	0x1a
  3471 03bc 9F       		.byte	0x9f
-ARM GAS  /tmp/ccU2Lc5j.s 			page 75
+ARM GAS  /tmp/ccexPFzH.s 			page 75
 
 
  3472 03bd 60010000 		.4byte	.LVL47-.Ltext0
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3526 0428 00000000 		.4byte	0
  3527 042c 00000000 		.4byte	0
  3528              	.LVUS8:
-ARM GAS  /tmp/ccU2Lc5j.s 			page 76
+ARM GAS  /tmp/ccexPFzH.s 			page 76
 
 
  3529 0430 02       		.uleb128 .LVU50
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3583 0496 60010000 		.4byte	.LVL47-.Ltext0
  3584 049a 70010000 		.4byte	.LFE31-.Ltext0
  3585 049e 0500     		.2byte	0x5
-ARM GAS  /tmp/ccU2Lc5j.s 			page 77
+ARM GAS  /tmp/ccexPFzH.s 			page 77
 
 
  3586 04a0 71       		.byte	0x71
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3640 0501 9F       		.byte	0x9f
  3641 0502 00010000 		.4byte	.LVL31-.Ltext0
  3642 0506 0C010000 		.4byte	.LVL33-.Ltext0
-ARM GAS  /tmp/ccU2Lc5j.s 			page 78
+ARM GAS  /tmp/ccexPFzH.s 			page 78
 
 
  3643 050a 0500     		.2byte	0x5
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3697 056f 0200     		.2byte	0x2
  3698 0571 7D       		.byte	0x7d
  3699 0572 08       		.sleb128 8
-ARM GAS  /tmp/ccU2Lc5j.s 			page 79
+ARM GAS  /tmp/ccexPFzH.s 			page 79
 
 
  3700 0573 C6000000 		.4byte	.LCFI4-.Ltext0
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3754 05d6 00       		.uleb128 .LVU35
  3755 05d7 00       		.uleb128 .LVU35
  3756 05d8 00       		.uleb128 .LVU38
-ARM GAS  /tmp/ccU2Lc5j.s 			page 80
+ARM GAS  /tmp/ccexPFzH.s 			page 80
 
 
  3757 05d9 00       		.uleb128 .LVU38
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3811 0650 6C000000 		.4byte	.LVL15-.Ltext0
  3812 0654 0400     		.2byte	0x4
  3813 0656 F3       		.byte	0xf3
-ARM GAS  /tmp/ccU2Lc5j.s 			page 81
+ARM GAS  /tmp/ccexPFzH.s 			page 81
 
 
  3814 0657 01       		.uleb128 0x1
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3861      00
  3862              	.LASF78:
  3863 000d 70696E70 		.ascii	"pinpos\000"
-ARM GAS  /tmp/ccU2Lc5j.s 			page 82
+ARM GAS  /tmp/ccexPFzH.s 			page 82
 
 
  3863      6F7300
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3888              	.LASF4:
  3889 00a9 5F5F7569 		.ascii	"__uint16_t\000"
  3889      6E743136 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 83
+ARM GAS  /tmp/ccexPFzH.s 			page 83
 
 
  3889      5F7400
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3915      2F436F64 
  3915      69676F73 
  3916 0175 574D5F4C 		.ascii	"WM_LCD_SERIAL\000"
-ARM GAS  /tmp/ccU2Lc5j.s 			page 84
+ARM GAS  /tmp/ccexPFzH.s 			page 84
 
 
  3916      43445F53 
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3940      5F455854 
  3940      494C696E 
  3940      65436F6E 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 85
+ARM GAS  /tmp/ccexPFzH.s 			page 85
 
 
  3940      66696700 
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3964      50657269 
  3964      70685265 
  3964      73657443 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 86
+ARM GAS  /tmp/ccexPFzH.s 			page 86
 
 
  3965              	.LASF71:
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  3989              	.LASF47:
  3990 0360 4750494F 		.ascii	"GPIO_ETH_MediaInterfaceConfig\000"
  3990      5F455448 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 87
+ARM GAS  /tmp/ccexPFzH.s 			page 87
 
 
  3990      5F4D6564 
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  4010      655F4F75 
  4010      745F5050 
  4010      00
-ARM GAS  /tmp/ccU2Lc5j.s 			page 88
+ARM GAS  /tmp/ccexPFzH.s 			page 88
 
 
  4011              	.LASF21:
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  4031 052a 4750494F 		.ascii	"GPIO_AFIODeInit\000"
  4031      5F414649 
  4031      4F446549 
-ARM GAS  /tmp/ccU2Lc5j.s 			page 89
+ARM GAS  /tmp/ccexPFzH.s 			page 89
 
 
  4031      6E697400 
@@ -5292,39 +5292,39 @@ ARM GAS  /tmp/ccU2Lc5j.s 			page 1
  4035      5F4D6F64 
  4035      6500
  4036              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  /tmp/ccU2Lc5j.s 			page 90
+ARM GAS  /tmp/ccexPFzH.s 			page 90
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f10x_gpio.c
-     /tmp/ccU2Lc5j.s:78     .text:0000000000000000 $t
-     /tmp/ccU2Lc5j.s:84     .text:0000000000000000 GPIO_DeInit
-     /tmp/ccU2Lc5j.s:252    .text:000000000000009c $d
-     /tmp/ccU2Lc5j.s:262    .text:00000000000000b8 $t
-     /tmp/ccU2Lc5j.s:268    .text:00000000000000b8 GPIO_AFIODeInit
-     /tmp/ccU2Lc5j.s:311    .text:00000000000000ce GPIO_Init
-     /tmp/ccU2Lc5j.s:562    .text:0000000000000170 GPIO_StructInit
-     /tmp/ccU2Lc5j.s:593    .text:000000000000017e GPIO_ReadInputDataBit
-     /tmp/ccU2Lc5j.s:630    .text:000000000000018a GPIO_ReadInputData
-     /tmp/ccU2Lc5j.s:657    .text:0000000000000190 GPIO_ReadOutputDataBit
-     /tmp/ccU2Lc5j.s:694    .text:000000000000019c GPIO_ReadOutputData
-     /tmp/ccU2Lc5j.s:721    .text:00000000000001a2 GPIO_SetBits
-     /tmp/ccU2Lc5j.s:747    .text:00000000000001a6 GPIO_ResetBits
-     /tmp/ccU2Lc5j.s:773    .text:00000000000001aa GPIO_WriteBit
-     /tmp/ccU2Lc5j.s:810    .text:00000000000001b4 GPIO_Write
-     /tmp/ccU2Lc5j.s:835    .text:00000000000001b8 GPIO_PinLockConfig
-     /tmp/ccU2Lc5j.s:884    .text:00000000000001c8 GPIO_EventOutputConfig
-     /tmp/ccU2Lc5j.s:926    .text:00000000000001e0 $d
-     /tmp/ccU2Lc5j.s:930    .text:00000000000001e4 $t
-     /tmp/ccU2Lc5j.s:936    .text:00000000000001e4 GPIO_EventOutputCmd
-     /tmp/ccU2Lc5j.s:956    .text:00000000000001ec $d
-     /tmp/ccU2Lc5j.s:960    .text:00000000000001f0 $t
-     /tmp/ccU2Lc5j.s:966    .text:00000000000001f0 GPIO_PinRemapConfig
-     /tmp/ccU2Lc5j.s:1113   .text:000000000000024c $d
-     /tmp/ccU2Lc5j.s:1117   .text:0000000000000250 $t
-     /tmp/ccU2Lc5j.s:1123   .text:0000000000000250 GPIO_EXTILineConfig
-     /tmp/ccU2Lc5j.s:1193   .text:000000000000027a GPIO_ETH_MediaInterfaceConfig
-     /tmp/ccU2Lc5j.s:1213   .text:0000000000000284 $d
+     /tmp/ccexPFzH.s:78     .text:0000000000000000 $t
+     /tmp/ccexPFzH.s:84     .text:0000000000000000 GPIO_DeInit
+     /tmp/ccexPFzH.s:252    .text:000000000000009c $d
+     /tmp/ccexPFzH.s:262    .text:00000000000000b8 $t
+     /tmp/ccexPFzH.s:268    .text:00000000000000b8 GPIO_AFIODeInit
+     /tmp/ccexPFzH.s:311    .text:00000000000000ce GPIO_Init
+     /tmp/ccexPFzH.s:562    .text:0000000000000170 GPIO_StructInit
+     /tmp/ccexPFzH.s:593    .text:000000000000017e GPIO_ReadInputDataBit
+     /tmp/ccexPFzH.s:630    .text:000000000000018a GPIO_ReadInputData
+     /tmp/ccexPFzH.s:657    .text:0000000000000190 GPIO_ReadOutputDataBit
+     /tmp/ccexPFzH.s:694    .text:000000000000019c GPIO_ReadOutputData
+     /tmp/ccexPFzH.s:721    .text:00000000000001a2 GPIO_SetBits
+     /tmp/ccexPFzH.s:747    .text:00000000000001a6 GPIO_ResetBits
+     /tmp/ccexPFzH.s:773    .text:00000000000001aa GPIO_WriteBit
+     /tmp/ccexPFzH.s:810    .text:00000000000001b4 GPIO_Write
+     /tmp/ccexPFzH.s:835    .text:00000000000001b8 GPIO_PinLockConfig
+     /tmp/ccexPFzH.s:884    .text:00000000000001c8 GPIO_EventOutputConfig
+     /tmp/ccexPFzH.s:926    .text:00000000000001e0 $d
+     /tmp/ccexPFzH.s:930    .text:00000000000001e4 $t
+     /tmp/ccexPFzH.s:936    .text:00000000000001e4 GPIO_EventOutputCmd
+     /tmp/ccexPFzH.s:956    .text:00000000000001ec $d
+     /tmp/ccexPFzH.s:960    .text:00000000000001f0 $t
+     /tmp/ccexPFzH.s:966    .text:00000000000001f0 GPIO_PinRemapConfig
+     /tmp/ccexPFzH.s:1113   .text:000000000000024c $d
+     /tmp/ccexPFzH.s:1117   .text:0000000000000250 $t
+     /tmp/ccexPFzH.s:1123   .text:0000000000000250 GPIO_EXTILineConfig
+     /tmp/ccexPFzH.s:1193   .text:000000000000027a GPIO_ETH_MediaInterfaceConfig
+     /tmp/ccexPFzH.s:1213   .text:0000000000000284 $d
 
 UNDEFINED SYMBOLS
 RCC_APB2PeriphResetCmd

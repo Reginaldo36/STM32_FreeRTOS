@@ -26,13 +26,14 @@
 #define __delay( TEMPO ) vTaskDelay( TEMPO )
 
 #include "stm32f10x.h"
+#include "stm32f10x_tim.h"
 #include "Me.h"
-#include "dht11.h"
 
 // LCD 16x2
 #include "myLcd.h"
 // #include "Serial.h"
 // #include "PWM.h"
+#include "dht11.h"
 
 #define BIN 2
 #define OCT 8

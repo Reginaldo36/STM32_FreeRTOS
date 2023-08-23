@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccs5bY78.s 			page 1
+ARM GAS  /tmp/ccclVq7k.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
   55              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
   56              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
   57              	@ -fsection-anchors -fsemantic-interposition -fshow-column
-ARM GAS  /tmp/ccs5bY78.s 			page 2
+ARM GAS  /tmp/ccclVq7k.s 			page 2
 
 
   58              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
@@ -117,131 +117,132 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
   26:../5-PWM_LCD_SERIAL/main.c **** #define __delay( TEMPO ) vTaskDelay( TEMPO )
   27:../5-PWM_LCD_SERIAL/main.c **** 
   28:../5-PWM_LCD_SERIAL/main.c **** #include "stm32f10x.h"
-  29:../5-PWM_LCD_SERIAL/main.c **** #include "Me.h"
-ARM GAS  /tmp/ccs5bY78.s 			page 3
+  29:../5-PWM_LCD_SERIAL/main.c **** #include "stm32f10x_tim.h"
+ARM GAS  /tmp/ccclVq7k.s 			page 3
 
 
-  30:../5-PWM_LCD_SERIAL/main.c **** #include "dht11.h"
+  30:../5-PWM_LCD_SERIAL/main.c **** #include "Me.h"
   31:../5-PWM_LCD_SERIAL/main.c **** 
   32:../5-PWM_LCD_SERIAL/main.c **** // LCD 16x2
   33:../5-PWM_LCD_SERIAL/main.c **** #include "myLcd.h"
   34:../5-PWM_LCD_SERIAL/main.c **** // #include "Serial.h"
   35:../5-PWM_LCD_SERIAL/main.c **** // #include "PWM.h"
-  36:../5-PWM_LCD_SERIAL/main.c **** 
-  37:../5-PWM_LCD_SERIAL/main.c **** #define BIN 2
-  38:../5-PWM_LCD_SERIAL/main.c **** #define OCT 8
-  39:../5-PWM_LCD_SERIAL/main.c **** #define DEC 10
-  40:../5-PWM_LCD_SERIAL/main.c **** #define HEX 16
-  41:../5-PWM_LCD_SERIAL/main.c **** 
-  42:../5-PWM_LCD_SERIAL/main.c **** static QueueHandle_t LCD_DHT_queue; 
-  43:../5-PWM_LCD_SERIAL/main.c **** 
-  44:../5-PWM_LCD_SERIAL/main.c **** static void task1(void *args __attribute((unused))) {
-  45:../5-PWM_LCD_SERIAL/main.c **** 
-  46:../5-PWM_LCD_SERIAL/main.c **** 	/* [2---]
-  47:../5-PWM_LCD_SERIAL/main.c **** 	 *
-  48:../5-PWM_LCD_SERIAL/main.c **** 	 * Tarefa dedicada em mostrar informações no LCD 16x2.
-  49:../5-PWM_LCD_SERIAL/main.c **** 	 * Informações de temperatura, ficando aberto para mais
-  50:../5-PWM_LCD_SERIAL/main.c **** 	 * funcionalidades
-  51:../5-PWM_LCD_SERIAL/main.c **** 	 * 
-  52:../5-PWM_LCD_SERIAL/main.c **** 	 * */
-  53:../5-PWM_LCD_SERIAL/main.c **** 
-  54:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<2);
-  55:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
-  56:../5-PWM_LCD_SERIAL/main.c **** 
-  57:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,RS); 	set_bit(IO,RS);
-  58:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,EN); 	set_bit(IO,D4);
-  59:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D5); 	set_bit(IO,D6);
-  60:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D7);   disp_init();
-  61:../5-PWM_LCD_SERIAL/main.c **** 
-  62:../5-PWM_LCD_SERIAL/main.c ****   disp_cmd(0x0C);
-  63:../5-PWM_LCD_SERIAL/main.c **** /*============================================================*/
-  64:../5-PWM_LCD_SERIAL/main.c **** 
-  65:../5-PWM_LCD_SERIAL/main.c ****   disp_text("Temperatura: ",0,0);
-  66:../5-PWM_LCD_SERIAL/main.c **** 
-  67:../5-PWM_LCD_SERIAL/main.c ****   char msg_buf_rev[16];
-  68:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
-  69:../5-PWM_LCD_SERIAL/main.c **** 		//
-  70:../5-PWM_LCD_SERIAL/main.c **** 		// testar para ver se recebe !!!
-  71:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(1000);
-  72:../5-PWM_LCD_SERIAL/main.c **** 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
-  73:../5-PWM_LCD_SERIAL/main.c **** 
-  74:../5-PWM_LCD_SERIAL/main.c **** 		disp_text(msg_buf_rev, 1, 0);
-  75:../5-PWM_LCD_SERIAL/main.c **** 	}
-  76:../5-PWM_LCD_SERIAL/main.c **** }
-  77:../5-PWM_LCD_SERIAL/main.c **** 
-  78:../5-PWM_LCD_SERIAL/main.c **** static void task2(void *args __attribute ((unused))){
-  79:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<4); // En GPIOC
-  80:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
-  81:../5-PWM_LCD_SERIAL/main.c **** 
-  82:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
-  83:../5-PWM_LCD_SERIAL/main.c **** 		GPIOC->ODR	^= (1<<13);
-  84:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
-  85:../5-PWM_LCD_SERIAL/main.c **** 	}
-  86:../5-PWM_LCD_SERIAL/main.c **** }
-ARM GAS  /tmp/ccs5bY78.s 			page 4
+  36:../5-PWM_LCD_SERIAL/main.c **** #include "dht11.h"
+  37:../5-PWM_LCD_SERIAL/main.c **** 
+  38:../5-PWM_LCD_SERIAL/main.c **** #define BIN 2
+  39:../5-PWM_LCD_SERIAL/main.c **** #define OCT 8
+  40:../5-PWM_LCD_SERIAL/main.c **** #define DEC 10
+  41:../5-PWM_LCD_SERIAL/main.c **** #define HEX 16
+  42:../5-PWM_LCD_SERIAL/main.c **** 
+  43:../5-PWM_LCD_SERIAL/main.c **** static QueueHandle_t LCD_DHT_queue; 
+  44:../5-PWM_LCD_SERIAL/main.c **** 
+  45:../5-PWM_LCD_SERIAL/main.c **** static void task1(void *args __attribute((unused))) {
+  46:../5-PWM_LCD_SERIAL/main.c **** 
+  47:../5-PWM_LCD_SERIAL/main.c **** 	/* [2---]
+  48:../5-PWM_LCD_SERIAL/main.c **** 	 *
+  49:../5-PWM_LCD_SERIAL/main.c **** 	 * Tarefa dedicada em mostrar informações no LCD 16x2.
+  50:../5-PWM_LCD_SERIAL/main.c **** 	 * Informações de temperatura, ficando aberto para mais
+  51:../5-PWM_LCD_SERIAL/main.c **** 	 * funcionalidades
+  52:../5-PWM_LCD_SERIAL/main.c **** 	 * 
+  53:../5-PWM_LCD_SERIAL/main.c **** 	 * */
+  54:../5-PWM_LCD_SERIAL/main.c **** 
+  55:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<2);
+  56:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+  57:../5-PWM_LCD_SERIAL/main.c **** 
+  58:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,RS); 	set_bit(IO,RS);
+  59:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,EN); 	set_bit(IO,D4);
+  60:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D5); 	set_bit(IO,D6);
+  61:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D7);   disp_init();
+  62:../5-PWM_LCD_SERIAL/main.c **** 
+  63:../5-PWM_LCD_SERIAL/main.c ****   disp_cmd(0x0C);
+  64:../5-PWM_LCD_SERIAL/main.c **** /*============================================================*/
+  65:../5-PWM_LCD_SERIAL/main.c **** 
+  66:../5-PWM_LCD_SERIAL/main.c ****   disp_text("Temperatura: ",0,0);
+  67:../5-PWM_LCD_SERIAL/main.c **** 
+  68:../5-PWM_LCD_SERIAL/main.c ****   char msg_buf_rev[16];
+  69:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
+  70:../5-PWM_LCD_SERIAL/main.c **** 		//
+  71:../5-PWM_LCD_SERIAL/main.c **** 		// testar para ver se recebe !!!
+  72:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(1000);
+  73:../5-PWM_LCD_SERIAL/main.c **** 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+  74:../5-PWM_LCD_SERIAL/main.c **** 
+  75:../5-PWM_LCD_SERIAL/main.c **** 		disp_text(msg_buf_rev, 1, 0);
+  76:../5-PWM_LCD_SERIAL/main.c **** 	}
+  77:../5-PWM_LCD_SERIAL/main.c **** }
+  78:../5-PWM_LCD_SERIAL/main.c **** 
+  79:../5-PWM_LCD_SERIAL/main.c **** static void task2(void *args __attribute ((unused))){
+  80:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<4); // En GPIOC
+  81:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+  82:../5-PWM_LCD_SERIAL/main.c **** 
+  83:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
+  84:../5-PWM_LCD_SERIAL/main.c **** 		GPIOC->ODR	^= (1<<13);
+  85:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
+  86:../5-PWM_LCD_SERIAL/main.c **** 	}
+ARM GAS  /tmp/ccclVq7k.s 			page 4
 
 
-  87:../5-PWM_LCD_SERIAL/main.c **** 
-  88:../5-PWM_LCD_SERIAL/main.c ****  void task3(void *args __attribute ((unused))){
-  89:../5-PWM_LCD_SERIAL/main.c **** 	/* [1---]
-  90:../5-PWM_LCD_SERIAL/main.c **** 	 *
-  91:../5-PWM_LCD_SERIAL/main.c **** 	 * Tarefa dedicada a leitura do sensor de temperatura e
-  92:../5-PWM_LCD_SERIAL/main.c **** 	 * humidade do ar.
-  93:../5-PWM_LCD_SERIAL/main.c **** 	 *
-  94:../5-PWM_LCD_SERIAL/main.c **** 	 * O valor amostrado deve ser transmitido a cada 500ms
-  95:../5-PWM_LCD_SERIAL/main.c **** 	 * usando área de memória compartilhada. -> [2---]
-  96:../5-PWM_LCD_SERIAL/main.c **** 	 *
-  97:../5-PWM_LCD_SERIAL/main.c **** 	 * Problemas: A configuração do TIMER está errada nas
-  98:../5-PWM_LCD_SERIAL/main.c **** 	 * linhas: 15 e 93 do arquivo dht11.c !!!!!
-  99:../5-PWM_LCD_SERIAL/main.c **** 	 *
- 100:../5-PWM_LCD_SERIAL/main.c **** 	 * Solução: 
- 101:../5-PWM_LCD_SERIAL/main.c **** 	 *		Comparar com a biblioteca funcional do outro
- 102:../5-PWM_LCD_SERIAL/main.c **** 	 *		projeto!!!
- 103:../5-PWM_LCD_SERIAL/main.c **** 	 *
+  87:../5-PWM_LCD_SERIAL/main.c **** }
+  88:../5-PWM_LCD_SERIAL/main.c **** 
+  89:../5-PWM_LCD_SERIAL/main.c ****  void task3(void *args __attribute ((unused))){
+  90:../5-PWM_LCD_SERIAL/main.c **** 	/* [1---]
+  91:../5-PWM_LCD_SERIAL/main.c **** 	 *
+  92:../5-PWM_LCD_SERIAL/main.c **** 	 * Tarefa dedicada a leitura do sensor de temperatura e
+  93:../5-PWM_LCD_SERIAL/main.c **** 	 * humidade do ar.
+  94:../5-PWM_LCD_SERIAL/main.c **** 	 *
+  95:../5-PWM_LCD_SERIAL/main.c **** 	 * O valor amostrado deve ser transmitido a cada 500ms
+  96:../5-PWM_LCD_SERIAL/main.c **** 	 * usando área de memória compartilhada. -> [2---]
+  97:../5-PWM_LCD_SERIAL/main.c **** 	 *
+  98:../5-PWM_LCD_SERIAL/main.c **** 	 * Problemas: A configuração do TIMER está errada nas
+  99:../5-PWM_LCD_SERIAL/main.c **** 	 * linhas: 15 e 93 do arquivo dht11.c !!!!!
+ 100:../5-PWM_LCD_SERIAL/main.c **** 	 *
+ 101:../5-PWM_LCD_SERIAL/main.c **** 	 * Solução: 
+ 102:../5-PWM_LCD_SERIAL/main.c **** 	 *		Comparar com a biblioteca funcional do outro
+ 103:../5-PWM_LCD_SERIAL/main.c **** 	 *		projeto!!!
  104:../5-PWM_LCD_SERIAL/main.c **** 	 *
  105:../5-PWM_LCD_SERIAL/main.c **** 	 *
- 106:../5-PWM_LCD_SERIAL/main.c **** 	 * */
- 107:../5-PWM_LCD_SERIAL/main.c **** 
- 108:../5-PWM_LCD_SERIAL/main.c **** 	struct DHT11_Dev dev;
- 109:../5-PWM_LCD_SERIAL/main.c **** 	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
- 110:../5-PWM_LCD_SERIAL/main.c **** 
- 111:../5-PWM_LCD_SERIAL/main.c **** 	char msg_buf_env[16];
- 112:../5-PWM_LCD_SERIAL/main.c **** 	char  Humidade[4];
- 113:../5-PWM_LCD_SERIAL/main.c **** 	char 	Temperatura[4];
- 114:../5-PWM_LCD_SERIAL/main.c **** 
- 115:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
- 116:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
- 117:../5-PWM_LCD_SERIAL/main.c **** 
- 118:../5-PWM_LCD_SERIAL/main.c **** 		int leitura_DHT = DHT11_read( &dev );
- 119:../5-PWM_LCD_SERIAL/main.c **** 
- 120:../5-PWM_LCD_SERIAL/main.c **** 		if(leitura_DHT == DHT11_SUCCESS) {
- 121:../5-PWM_LCD_SERIAL/main.c **** 			
- 122:../5-PWM_LCD_SERIAL/main.c **** 			// Converte em string 
- 123:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.temparature, Temperatura , DEC);
- 124:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.humidity, Humidade, DEC);
- 125:../5-PWM_LCD_SERIAL/main.c **** 
- 126:../5-PWM_LCD_SERIAL/main.c **** 			// Concatena  a variável "msg_buf_env"
- 127:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "T: ");
- 128:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Temperatura );
- 129:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, "H: " );
- 130:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Humidade );
- 131:../5-PWM_LCD_SERIAL/main.c **** 		}
- 132:../5-PWM_LCD_SERIAL/main.c **** 
- 133:../5-PWM_LCD_SERIAL/main.c **** 		else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) 
- 134:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "ERR_checksum"); 
- 135:../5-PWM_LCD_SERIAL/main.c **** 		
- 136:../5-PWM_LCD_SERIAL/main.c **** 		else 
- 137:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "TIMOUT"); 
- 138:../5-PWM_LCD_SERIAL/main.c **** 
- 139:../5-PWM_LCD_SERIAL/main.c **** 		xQueueSend(LCD_DHT_queue, &msg_buf_env, 0);
- 140:../5-PWM_LCD_SERIAL/main.c **** 	}
- 141:../5-PWM_LCD_SERIAL/main.c **** }
- 142:../5-PWM_LCD_SERIAL/main.c **** 
- 143:../5-PWM_LCD_SERIAL/main.c **** static void task4(void *args __attribute ((unused))){
-ARM GAS  /tmp/ccs5bY78.s 			page 5
+ 106:../5-PWM_LCD_SERIAL/main.c **** 	 *
+ 107:../5-PWM_LCD_SERIAL/main.c **** 	 * */
+ 108:../5-PWM_LCD_SERIAL/main.c **** 
+ 109:../5-PWM_LCD_SERIAL/main.c **** 	struct DHT11_Dev dev;
+ 110:../5-PWM_LCD_SERIAL/main.c **** 	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
+ 111:../5-PWM_LCD_SERIAL/main.c **** 
+ 112:../5-PWM_LCD_SERIAL/main.c **** 	char msg_buf_env[16];
+ 113:../5-PWM_LCD_SERIAL/main.c **** 	char  Humidade[4];
+ 114:../5-PWM_LCD_SERIAL/main.c **** 	char 	Temperatura[4];
+ 115:../5-PWM_LCD_SERIAL/main.c **** 
+ 116:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
+ 117:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
+ 118:../5-PWM_LCD_SERIAL/main.c **** 
+ 119:../5-PWM_LCD_SERIAL/main.c **** 		int leitura_DHT = DHT11_read( &dev );
+ 120:../5-PWM_LCD_SERIAL/main.c **** 
+ 121:../5-PWM_LCD_SERIAL/main.c **** 		if(leitura_DHT == DHT11_SUCCESS) {
+ 122:../5-PWM_LCD_SERIAL/main.c **** 			
+ 123:../5-PWM_LCD_SERIAL/main.c **** 			// Converte em string 
+ 124:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.temparature, Temperatura , DEC);
+ 125:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.humidity, Humidade, DEC);
+ 126:../5-PWM_LCD_SERIAL/main.c **** 
+ 127:../5-PWM_LCD_SERIAL/main.c **** 			// Concatena  a variável "msg_buf_env"
+ 128:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "T: ");
+ 129:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Temperatura );
+ 130:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, "H: " );
+ 131:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Humidade );
+ 132:../5-PWM_LCD_SERIAL/main.c **** 		}
+ 133:../5-PWM_LCD_SERIAL/main.c **** 
+ 134:../5-PWM_LCD_SERIAL/main.c **** 		else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) 
+ 135:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "ERR_checksum"); 
+ 136:../5-PWM_LCD_SERIAL/main.c **** 		
+ 137:../5-PWM_LCD_SERIAL/main.c **** 		else 
+ 138:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "TIMOUT"); 
+ 139:../5-PWM_LCD_SERIAL/main.c **** 
+ 140:../5-PWM_LCD_SERIAL/main.c **** 		xQueueSend(LCD_DHT_queue, &msg_buf_env, 0);
+ 141:../5-PWM_LCD_SERIAL/main.c **** 	}
+ 142:../5-PWM_LCD_SERIAL/main.c **** }
+ 143:../5-PWM_LCD_SERIAL/main.c **** 
+ARM GAS  /tmp/ccclVq7k.s 			page 5
 
 
-  86              		.loc 1 143 53 view -0
+ 144:../5-PWM_LCD_SERIAL/main.c **** static void task4(void *args __attribute ((unused))){
+  86              		.loc 1 144 53 view -0
   87              		.cfi_startproc
   88              		@ Volatile: function does not return.
   89              		@ args = 0, pretend = 0, frame = 0
@@ -249,18 +250,18 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
   91              		@ link register save eliminated.
   92              	.LVL0:
   93              	.L2:
- 144:../5-PWM_LCD_SERIAL/main.c **** 	/* [3---]
- 145:../5-PWM_LCD_SERIAL/main.c **** 	 * Tarefa dedicada a leitura de botões para controlar o
- 146:../5-PWM_LCD_SERIAL/main.c **** 	 * PWM -> ajuste de contraste.
- 147:../5-PWM_LCD_SERIAL/main.c **** 	 * */
- 148:../5-PWM_LCD_SERIAL/main.c **** 	
- 149:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
-  94              		.loc 1 149 2 discriminator 1 view .LVU1
+ 145:../5-PWM_LCD_SERIAL/main.c **** 	/* [3---]
+ 146:../5-PWM_LCD_SERIAL/main.c **** 	 * Tarefa dedicada a leitura de botões para controlar o
+ 147:../5-PWM_LCD_SERIAL/main.c **** 	 * PWM -> ajuste de contraste.
+ 148:../5-PWM_LCD_SERIAL/main.c **** 	 * */
+ 149:../5-PWM_LCD_SERIAL/main.c **** 	
+ 150:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
+  94              		.loc 1 150 2 discriminator 1 view .LVU1
+ 151:../5-PWM_LCD_SERIAL/main.c **** 		
+ 152:../5-PWM_LCD_SERIAL/main.c **** 	}
+  95              		.loc 1 152 2 discriminator 1 view .LVU2
  150:../5-PWM_LCD_SERIAL/main.c **** 		
- 151:../5-PWM_LCD_SERIAL/main.c **** 	}
-  95              		.loc 1 151 2 discriminator 1 view .LVU2
- 149:../5-PWM_LCD_SERIAL/main.c **** 		
-  96              		.loc 1 149 7 discriminator 1 view .LVU3
+  96              		.loc 1 150 7 discriminator 1 view .LVU3
   97 0000 FEE7     		b	.L2		@
   98              		.cfi_endproc
   99              	.LFE45:
@@ -273,75 +274,75 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  106              	task2:
  107              	.LVL1:
  108              	.LFB43:
-  78:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<4); // En GPIOC
- 109              		.loc 1 78 53 view -0
+  79:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<4); // En GPIOC
+ 109              		.loc 1 79 53 view -0
  110              		.cfi_startproc
  111              		@ Volatile: function does not return.
  112              		@ args = 0, pretend = 0, frame = 0
  113              		@ frame_needed = 0, uses_anonymous_args = 0
-  79:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
- 114              		.loc 1 79 2 view .LVU5
- 115              	@ ../5-PWM_LCD_SERIAL/main.c:79: 	RCC->APB2ENR |= (1<<4); // En GPIOC
-  79:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
- 116              		.loc 1 79 15 is_stmt 0 view .LVU6
+  80:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+ 114              		.loc 1 80 2 view .LVU5
+ 115              	@ ../5-PWM_LCD_SERIAL/main.c:80: 	RCC->APB2ENR |= (1<<4); // En GPIOC
+  80:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+ 116              		.loc 1 80 15 is_stmt 0 view .LVU6
  117 0002 0A4A     		ldr	r2, .L5	@ tmp120,
- 118              	@ ../5-PWM_LCD_SERIAL/main.c:78: static void task2(void *args __attribute ((unused))){
-  78:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<4); // En GPIOC
- 119              		.loc 1 78 53 view .LVU7
+ 118              	@ ../5-PWM_LCD_SERIAL/main.c:79: static void task2(void *args __attribute ((unused))){
+  79:../5-PWM_LCD_SERIAL/main.c **** 	RCC->APB2ENR |= (1<<4); // En GPIOC
+ 119              		.loc 1 79 53 view .LVU7
  120 0004 08B5     		push	{r3, lr}	@
  121              	.LCFI0:
  122              		.cfi_def_cfa_offset 8
  123              		.cfi_offset 3, -8
  124              		.cfi_offset 14, -4
- 125              	@ ../5-PWM_LCD_SERIAL/main.c:79: 	RCC->APB2ENR |= (1<<4); // En GPIOC
-  79:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
- 126              		.loc 1 79 15 view .LVU8
+ 125              	@ ../5-PWM_LCD_SERIAL/main.c:80: 	RCC->APB2ENR |= (1<<4); // En GPIOC
+  80:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+ 126              		.loc 1 80 15 view .LVU8
  127 0006 9369     		ldr	r3, [r2, #24]	@ _1, MEM[(struct RCC_TypeDef *)1073876992B].APB2ENR
- 128              	@ ../5-PWM_LCD_SERIAL/main.c:80: 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
-ARM GAS  /tmp/ccs5bY78.s 			page 6
+ARM GAS  /tmp/ccclVq7k.s 			page 6
 
 
-  80:../5-PWM_LCD_SERIAL/main.c **** 
- 129              		.loc 1 80 13 view .LVU9
+ 128              	@ ../5-PWM_LCD_SERIAL/main.c:81: 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+  81:../5-PWM_LCD_SERIAL/main.c **** 
+ 129              		.loc 1 81 13 view .LVU9
  130 0008 094C     		ldr	r4, .L5+4	@ tmp122,
- 131              	@ ../5-PWM_LCD_SERIAL/main.c:79: 	RCC->APB2ENR |= (1<<4); // En GPIOC
-  79:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
- 132              		.loc 1 79 15 view .LVU10
+ 131              	@ ../5-PWM_LCD_SERIAL/main.c:80: 	RCC->APB2ENR |= (1<<4); // En GPIOC
+  80:../5-PWM_LCD_SERIAL/main.c **** 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+ 132              		.loc 1 80 15 view .LVU10
  133 000a 43F01003 		orr	r3, r3, #16	@ _2, _1,
  134 000e 9361     		str	r3, [r2, #24]	@ _2, MEM[(struct RCC_TypeDef *)1073876992B].APB2ENR
-  80:../5-PWM_LCD_SERIAL/main.c **** 
- 135              		.loc 1 80 2 is_stmt 1 view .LVU11
- 136              	@ ../5-PWM_LCD_SERIAL/main.c:80: 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
-  80:../5-PWM_LCD_SERIAL/main.c **** 
- 137              		.loc 1 80 13 is_stmt 0 view .LVU12
+  81:../5-PWM_LCD_SERIAL/main.c **** 
+ 135              		.loc 1 81 2 is_stmt 1 view .LVU11
+ 136              	@ ../5-PWM_LCD_SERIAL/main.c:81: 	GPIOC->CRH	|= (0b11<< 20); // PC13 out PP 
+  81:../5-PWM_LCD_SERIAL/main.c **** 
+ 137              		.loc 1 81 13 is_stmt 0 view .LVU12
  138 0010 6368     		ldr	r3, [r4, #4]	@ _3, MEM[(struct GPIO_TypeDef *)1073811456B].CRH
  139 0012 43F44013 		orr	r3, r3, #3145728	@ _4, _3,
  140 0016 6360     		str	r3, [r4, #4]	@ _4, MEM[(struct GPIO_TypeDef *)1073811456B].CRH
  141              	.LVL2:
  142              	.L4:
-  82:../5-PWM_LCD_SERIAL/main.c **** 		GPIOC->ODR	^= (1<<13);
- 143              		.loc 1 82 2 is_stmt 1 discriminator 1 view .LVU13
-  83:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
- 144              		.loc 1 83 3 discriminator 1 view .LVU14
- 145              	@ ../5-PWM_LCD_SERIAL/main.c:83: 		GPIOC->ODR	^= (1<<13);
-  83:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
- 146              		.loc 1 83 14 is_stmt 0 discriminator 1 view .LVU15
+  83:../5-PWM_LCD_SERIAL/main.c **** 		GPIOC->ODR	^= (1<<13);
+ 143              		.loc 1 83 2 is_stmt 1 discriminator 1 view .LVU13
+  84:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
+ 144              		.loc 1 84 3 discriminator 1 view .LVU14
+ 145              	@ ../5-PWM_LCD_SERIAL/main.c:84: 		GPIOC->ODR	^= (1<<13);
+  84:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
+ 146              		.loc 1 84 14 is_stmt 0 discriminator 1 view .LVU15
  147 0018 E368     		ldr	r3, [r4, #12]	@ _5, MEM[(struct GPIO_TypeDef *)1073811456B].ODR
- 148              	@ ../5-PWM_LCD_SERIAL/main.c:84: 		__delay_ms(50);
-  84:../5-PWM_LCD_SERIAL/main.c **** 	}
- 149              		.loc 1 84 3 discriminator 1 view .LVU16
+ 148              	@ ../5-PWM_LCD_SERIAL/main.c:85: 		__delay_ms(50);
+  85:../5-PWM_LCD_SERIAL/main.c **** 	}
+ 149              		.loc 1 85 3 discriminator 1 view .LVU16
  150 001a 41F28830 		movw	r0, #5000	@,
- 151              	@ ../5-PWM_LCD_SERIAL/main.c:83: 		GPIOC->ODR	^= (1<<13);
-  83:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
- 152              		.loc 1 83 14 discriminator 1 view .LVU17
+ 151              	@ ../5-PWM_LCD_SERIAL/main.c:84: 		GPIOC->ODR	^= (1<<13);
+  84:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(50);
+ 152              		.loc 1 84 14 discriminator 1 view .LVU17
  153 001e 83F40053 		eor	r3, r3, #8192	@ _6, _5,
  154 0022 E360     		str	r3, [r4, #12]	@ _6, MEM[(struct GPIO_TypeDef *)1073811456B].ODR
-  84:../5-PWM_LCD_SERIAL/main.c **** 	}
- 155              		.loc 1 84 3 is_stmt 1 discriminator 1 view .LVU18
+  85:../5-PWM_LCD_SERIAL/main.c **** 	}
+ 155              		.loc 1 85 3 is_stmt 1 discriminator 1 view .LVU18
  156 0024 FFF7FEFF 		bl	vTaskDelay		@
  157              	.LVL3:
-  82:../5-PWM_LCD_SERIAL/main.c **** 		GPIOC->ODR	^= (1<<13);
- 158              		.loc 1 82 7 discriminator 1 view .LVU19
+  83:../5-PWM_LCD_SERIAL/main.c **** 		GPIOC->ODR	^= (1<<13);
+ 158              		.loc 1 83 7 discriminator 1 view .LVU19
  159 0028 F6E7     		b	.L4		@
  160              	.L6:
  161 002a 00BF     		.align	2
@@ -357,10 +358,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  170      65726174 
  170      7572613A 
  170      2000
+ARM GAS  /tmp/ccclVq7k.s 			page 7
+
+
  171              		.text
-ARM GAS  /tmp/ccs5bY78.s 			page 7
-
-
  172              		.align	1
  173              		.syntax unified
  174              		.thumb
@@ -369,135 +370,135 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  177              	task1:
  178              	.LVL4:
  179              	.LFB42:
-  44:../5-PWM_LCD_SERIAL/main.c **** 
- 180              		.loc 1 44 53 view -0
+  45:../5-PWM_LCD_SERIAL/main.c **** 
+ 180              		.loc 1 45 53 view -0
  181              		.cfi_startproc
  182              		@ Volatile: function does not return.
  183              		@ args = 0, pretend = 0, frame = 16
  184              		@ frame_needed = 0, uses_anonymous_args = 0
-  54:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
- 185              		.loc 1 54 2 view .LVU21
- 186              	@ ../5-PWM_LCD_SERIAL/main.c:44: static void task1(void *args __attribute((unused))) {
-  44:../5-PWM_LCD_SERIAL/main.c **** 
- 187              		.loc 1 44 53 is_stmt 0 view .LVU22
+  55:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+ 185              		.loc 1 55 2 view .LVU21
+ 186              	@ ../5-PWM_LCD_SERIAL/main.c:45: static void task1(void *args __attribute((unused))) {
+  45:../5-PWM_LCD_SERIAL/main.c **** 
+ 187              		.loc 1 45 53 is_stmt 0 view .LVU22
  188 0034 1FB5     		push	{r0, r1, r2, r3, r4, lr}	@
  189              	.LCFI1:
  190              		.cfi_def_cfa_offset 24
  191              		.cfi_offset 14, -4
- 192              	@ ../5-PWM_LCD_SERIAL/main.c:54: 	RCC->APB2ENR |= (1<<2);
-  54:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
- 193              		.loc 1 54 15 view .LVU23
+ 192              	@ ../5-PWM_LCD_SERIAL/main.c:55: 	RCC->APB2ENR |= (1<<2);
+  55:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+ 193              		.loc 1 55 15 view .LVU23
  194 0036 214A     		ldr	r2, .L9	@ tmp133,
- 195              	@ ../5-PWM_LCD_SERIAL/main.c:71: 		__delay_ms(1000);
-  71:../5-PWM_LCD_SERIAL/main.c **** 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
- 196              		.loc 1 71 3 view .LVU24
+ 195              	@ ../5-PWM_LCD_SERIAL/main.c:72: 		__delay_ms(1000);
+  72:../5-PWM_LCD_SERIAL/main.c **** 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+ 196              		.loc 1 72 3 view .LVU24
  197 0038 214D     		ldr	r5, .L9+4	@ tmp157,
- 198              	@ ../5-PWM_LCD_SERIAL/main.c:54: 	RCC->APB2ENR |= (1<<2);
-  54:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
- 199              		.loc 1 54 15 view .LVU25
+ 198              	@ ../5-PWM_LCD_SERIAL/main.c:55: 	RCC->APB2ENR |= (1<<2);
+  55:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+ 199              		.loc 1 55 15 view .LVU25
  200 003a 9369     		ldr	r3, [r2, #24]	@ _1, MEM[(struct RCC_TypeDef *)1073876992B].APB2ENR
- 201              	@ ../5-PWM_LCD_SERIAL/main.c:72: 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
-  72:../5-PWM_LCD_SERIAL/main.c **** 
- 202              		.loc 1 72 3 view .LVU26
+ 201              	@ ../5-PWM_LCD_SERIAL/main.c:73: 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+  73:../5-PWM_LCD_SERIAL/main.c **** 
+ 202              		.loc 1 73 3 view .LVU26
  203 003c 214C     		ldr	r4, .L9+8	@ tmp155,
- 204              	@ ../5-PWM_LCD_SERIAL/main.c:54: 	RCC->APB2ENR |= (1<<2);
-  54:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
- 205              		.loc 1 54 15 view .LVU27
+ 204              	@ ../5-PWM_LCD_SERIAL/main.c:55: 	RCC->APB2ENR |= (1<<2);
+  55:../5-PWM_LCD_SERIAL/main.c **** 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+ 205              		.loc 1 55 15 view .LVU27
  206 003e 43F00403 		orr	r3, r3, #4	@ _2, _1,
  207 0042 9361     		str	r3, [r2, #24]	@ _2, MEM[(struct RCC_TypeDef *)1073876992B].APB2ENR
-  55:../5-PWM_LCD_SERIAL/main.c **** 
- 208              		.loc 1 55 2 is_stmt 1 view .LVU28
- 209              	@ ../5-PWM_LCD_SERIAL/main.c:55: 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
-  55:../5-PWM_LCD_SERIAL/main.c **** 
- 210              		.loc 1 55 14 is_stmt 0 view .LVU29
+  56:../5-PWM_LCD_SERIAL/main.c **** 
+ 208              		.loc 1 56 2 is_stmt 1 view .LVU28
+ 209              	@ ../5-PWM_LCD_SERIAL/main.c:56: 	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+  56:../5-PWM_LCD_SERIAL/main.c **** 
+ 210              		.loc 1 56 14 is_stmt 0 view .LVU29
  211 0044 204B     		ldr	r3, .L9+12	@ tmp135,
  212 0046 1A68     		ldr	r2, [r3]	@ _3, MEM[(struct GPIO_TypeDef *)1073809408B].CRL
  213 0048 42F03322 		orr	r2, r2, #855651072	@ _4, _3,
  214 004c 42F44C12 		orr	r2, r2, #3342336	@ _4, _4,
  215 0050 1A60     		str	r2, [r3]	@ _4, MEM[(struct GPIO_TypeDef *)1073809408B].CRL
-  57:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,EN); 	set_bit(IO,D4);
- 216              		.loc 1 57 2 is_stmt 1 view .LVU30
+  58:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,EN); 	set_bit(IO,D4);
+ 216              		.loc 1 58 2 is_stmt 1 view .LVU30
+ARM GAS  /tmp/ccclVq7k.s 			page 8
+
+
  217 0052 DA68     		ldr	r2, [r3, #12]	@ _5, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-ARM GAS  /tmp/ccs5bY78.s 			page 8
-
-
  218 0054 42F08002 		orr	r2, r2, #128	@ _6, _5,
  219 0058 DA60     		str	r2, [r3, #12]	@ _6, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  57:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,EN); 	set_bit(IO,D4);
- 220              		.loc 1 57 19 view .LVU31
+  58:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,EN); 	set_bit(IO,D4);
+ 220              		.loc 1 58 19 view .LVU31
  221 005a DA68     		ldr	r2, [r3, #12]	@ _7, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
  222 005c 42F08002 		orr	r2, r2, #128	@ _8, _7,
  223 0060 DA60     		str	r2, [r3, #12]	@ _8, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  58:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D5); 	set_bit(IO,D6);
- 224              		.loc 1 58 2 view .LVU32
+  59:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D5); 	set_bit(IO,D6);
+ 224              		.loc 1 59 2 view .LVU32
  225 0062 DA68     		ldr	r2, [r3, #12]	@ _9, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
  226 0064 42F04002 		orr	r2, r2, #64	@ _10, _9,
  227 0068 DA60     		str	r2, [r3, #12]	@ _10, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  58:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D5); 	set_bit(IO,D6);
- 228              		.loc 1 58 19 view .LVU33
+  59:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D5); 	set_bit(IO,D6);
+ 228              		.loc 1 59 19 view .LVU33
  229 006a DA68     		ldr	r2, [r3, #12]	@ _11, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
  230 006c 42F02002 		orr	r2, r2, #32	@ _12, _11,
  231 0070 DA60     		str	r2, [r3, #12]	@ _12, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  59:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D7);   disp_init();
- 232              		.loc 1 59 2 view .LVU34
+  60:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D7);   disp_init();
+ 232              		.loc 1 60 2 view .LVU34
  233 0072 DA68     		ldr	r2, [r3, #12]	@ _13, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
  234 0074 42F01002 		orr	r2, r2, #16	@ _14, _13,
  235 0078 DA60     		str	r2, [r3, #12]	@ _14, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  59:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D7);   disp_init();
- 236              		.loc 1 59 19 view .LVU35
+  60:../5-PWM_LCD_SERIAL/main.c **** 	set_bit(IO,D7);   disp_init();
+ 236              		.loc 1 60 19 view .LVU35
  237 007a DA68     		ldr	r2, [r3, #12]	@ _15, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
  238 007c 42F00802 		orr	r2, r2, #8	@ _16, _15,
  239 0080 DA60     		str	r2, [r3, #12]	@ _16, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  60:../5-PWM_LCD_SERIAL/main.c **** 
- 240              		.loc 1 60 2 view .LVU36
+  61:../5-PWM_LCD_SERIAL/main.c **** 
+ 240              		.loc 1 61 2 view .LVU36
  241 0082 DA68     		ldr	r2, [r3, #12]	@ _17, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
  242 0084 42F00402 		orr	r2, r2, #4	@ _18, _17,
  243 0088 DA60     		str	r2, [r3, #12]	@ _18, MEM[(struct GPIO_TypeDef *)1073809408B].ODR
-  60:../5-PWM_LCD_SERIAL/main.c **** 
- 244              		.loc 1 60 20 view .LVU37
+  61:../5-PWM_LCD_SERIAL/main.c **** 
+ 244              		.loc 1 61 20 view .LVU37
  245 008a FFF7FEFF 		bl	disp_init		@
  246              	.LVL5:
-  62:../5-PWM_LCD_SERIAL/main.c **** /*============================================================*/
- 247              		.loc 1 62 3 view .LVU38
+  63:../5-PWM_LCD_SERIAL/main.c **** /*============================================================*/
+ 247              		.loc 1 63 3 view .LVU38
  248 008e 0C20     		movs	r0, #12	@,
  249 0090 FFF7FEFF 		bl	disp_cmd		@
  250              	.LVL6:
-  65:../5-PWM_LCD_SERIAL/main.c **** 
- 251              		.loc 1 65 3 view .LVU39
+  66:../5-PWM_LCD_SERIAL/main.c **** 
+ 251              		.loc 1 66 3 view .LVU39
  252 0094 0022     		movs	r2, #0	@,
  253 0096 0D48     		ldr	r0, .L9+16	@,
  254 0098 1146     		mov	r1, r2	@,
  255 009a FFF7FEFF 		bl	disp_text		@
  256              	.LVL7:
  257              	.L8:
-  67:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
- 258              		.loc 1 67 3 discriminator 1 view .LVU40
-  68:../5-PWM_LCD_SERIAL/main.c **** 		//
- 259              		.loc 1 68 2 discriminator 1 view .LVU41
-  71:../5-PWM_LCD_SERIAL/main.c **** 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
- 260              		.loc 1 71 3 discriminator 1 view .LVU42
+  68:../5-PWM_LCD_SERIAL/main.c **** 	while(1){
+ 258              		.loc 1 68 3 discriminator 1 view .LVU40
+  69:../5-PWM_LCD_SERIAL/main.c **** 		//
+ 259              		.loc 1 69 2 discriminator 1 view .LVU41
+  72:../5-PWM_LCD_SERIAL/main.c **** 		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+ 260              		.loc 1 72 3 discriminator 1 view .LVU42
  261 009e 2846     		mov	r0, r5	@, tmp157
+ARM GAS  /tmp/ccclVq7k.s 			page 9
+
+
  262 00a0 FFF7FEFF 		bl	vTaskDelay		@
-ARM GAS  /tmp/ccs5bY78.s 			page 9
-
-
  263              	.LVL8:
-  72:../5-PWM_LCD_SERIAL/main.c **** 
- 264              		.loc 1 72 3 discriminator 1 view .LVU43
+  73:../5-PWM_LCD_SERIAL/main.c **** 
+ 264              		.loc 1 73 3 discriminator 1 view .LVU43
  265 00a4 6946     		mov	r1, sp	@,
  266 00a6 6422     		movs	r2, #100	@,
  267 00a8 2068     		ldr	r0, [r4]	@, LCD_DHT_queue
  268 00aa FFF7FEFF 		bl	xQueueReceive		@
  269              	.LVL9:
-  74:../5-PWM_LCD_SERIAL/main.c **** 	}
- 270              		.loc 1 74 3 discriminator 1 view .LVU44
+  75:../5-PWM_LCD_SERIAL/main.c **** 	}
+ 270              		.loc 1 75 3 discriminator 1 view .LVU44
  271 00ae 0022     		movs	r2, #0	@,
  272 00b0 0121     		movs	r1, #1	@,
  273 00b2 6846     		mov	r0, sp	@,
  274 00b4 FFF7FEFF 		bl	disp_text		@
  275              	.LVL10:
-  68:../5-PWM_LCD_SERIAL/main.c **** 		//
- 276              		.loc 1 68 7 discriminator 1 view .LVU45
+  69:../5-PWM_LCD_SERIAL/main.c **** 		//
+ 276              		.loc 1 69 7 discriminator 1 view .LVU45
  277 00b8 F1E7     		b	.L8		@
  278              	.L10:
  279 00ba 00BF     		.align	2
@@ -537,10 +538,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  299              		.cfi_startproc
  300              		@ args = 0, pretend = 0, frame = 0
  301              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /tmp/ccclVq7k.s 			page 10
+
+
  302              		@ link register save eliminated.
-ARM GAS  /tmp/ccs5bY78.s 			page 10
-
-
   15:../5-PWM_LCD_SERIAL/Me.h **** 	RCC->APB2ENR |= 1UL<<2 ; // Hab. GPIOA
  303              		.loc 2 15 2 view .LVU47
  304              	@ ../5-PWM_LCD_SERIAL/Me.h:15: 	RCC->APB2ENR |= 1UL<<2 ; // Hab. GPIOA
@@ -597,10 +598,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  341              	@ ../5-PWM_LCD_SERIAL/Me.h:28: 	ADC1->SQR1 = 0x00000000;
  342              		.loc 2 28 13 is_stmt 0 view .LVU60
  343 0100 0022     		movs	r2, #0	@ tmp152,
+ARM GAS  /tmp/ccclVq7k.s 			page 11
+
+
  344 0102 DA62     		str	r2, [r3, #44]	@ tmp152, MEM[(struct ADC_TypeDef *)1073816576B].SQR1
-ARM GAS  /tmp/ccs5bY78.s 			page 11
-
-
   29:../5-PWM_LCD_SERIAL/Me.h **** 
   30:../5-PWM_LCD_SERIAL/Me.h **** 	// Choose the analog channel to read
   31:../5-PWM_LCD_SERIAL/Me.h **** 	// Since we want channel 10 to be the first
@@ -657,10 +658,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  375              	@ ../5-PWM_LCD_SERIAL/Me.h:51: 	ADC1->CR2 |= (1 << 3);
  376              		.loc 2 51 12 is_stmt 0 view .LVU72
  377 0128 9A68     		ldr	r2, [r3, #8]	@ _19, MEM[(struct ADC_TypeDef *)1073816576B].CR2
+ARM GAS  /tmp/ccclVq7k.s 			page 12
+
+
  378 012a 42F00802 		orr	r2, r2, #8	@ _20, _19,
-ARM GAS  /tmp/ccs5bY78.s 			page 12
-
-
  379 012e 9A60     		str	r2, [r3, #8]	@ _20, MEM[(struct ADC_TypeDef *)1073816576B].CR2
   52:../5-PWM_LCD_SERIAL/Me.h **** 	while((ADC1->CR2 & (1 << 3)));
  380              		.loc 2 52 2 is_stmt 1 view .LVU73
@@ -717,10 +718,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  423 0150 00100240 		.word	1073876992
  424 0154 00080140 		.word	1073809408
  425 0158 00240140 		.word	1073816576
+ARM GAS  /tmp/ccclVq7k.s 			page 13
+
+
  426              		.cfi_endproc
-ARM GAS  /tmp/ccs5bY78.s 			page 13
-
-
  427              	.LFE34:
  428              		.size	ADC1_configure, .-ADC1_configure
  429              		.align	1
@@ -777,10 +778,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  469 0174 DA6A     		ldr	r2, [r3, #44]	@ _5, MEM[(struct RCC_TypeDef *)1073876992B].CFGR2
  470 0176 42F04002 		orr	r2, r2, #64	@ _6, _5,
  471 017a DA62     		str	r2, [r3, #44]	@ _6, MEM[(struct RCC_TypeDef *)1073876992B].CFGR2
+ARM GAS  /tmp/ccclVq7k.s 			page 14
+
+
   72:../5-PWM_LCD_SERIAL/Me.h ****    // Set PLL2 multiplication factor to 8
-ARM GAS  /tmp/ccs5bY78.s 			page 14
-
-
   73:../5-PWM_LCD_SERIAL/Me.h ****    RCC->CFGR2 |= (0b0110 << 8);
  472              		.loc 2 73 4 is_stmt 1 view .LVU101
  473              	@ ../5-PWM_LCD_SERIAL/Me.h:73:    RCC->CFGR2 |= (0b0110 << 8);
@@ -837,10 +838,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  510              		.loc 2 87 14 is_stmt 0 view .LVU114
  511 01ac 5A68     		ldr	r2, [r3, #4]	@ _19, MEM[(struct RCC_TypeDef *)1073876992B].CFGR
  512 01ae 42F48062 		orr	r2, r2, #1024	@ _20, _19,
+ARM GAS  /tmp/ccclVq7k.s 			page 15
+
+
  513 01b2 5A60     		str	r2, [r3, #4]	@ _20, MEM[(struct RCC_TypeDef *)1073876992B].CFGR
-ARM GAS  /tmp/ccs5bY78.s 			page 15
-
-
   88:../5-PWM_LCD_SERIAL/Me.h ****    // Enable PLL
   89:../5-PWM_LCD_SERIAL/Me.h ****    RCC->CR |= (1 << 24);
  514              		.loc 2 89 4 is_stmt 1 view .LVU115
@@ -897,10 +898,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  558              		@ args = 0, pretend = 0, frame = 8
  559              		@ frame_needed = 0, uses_anonymous_args = 0
  560              		@ link register save eliminated.
+ARM GAS  /tmp/ccclVq7k.s 			page 16
+
+
   97:../5-PWM_LCD_SERIAL/Me.h ****   for ( T ; T > 0 ; T-- ){
-ARM GAS  /tmp/ccs5bY78.s 			page 16
-
-
  561              		.loc 2 97 3 view .LVU126
  562              	@ ../5-PWM_LCD_SERIAL/Me.h:96: void Delay ( __IO u32 T ) { // T=1 ;  868µs -> T=1 ~ 526µs
   96:../5-PWM_LCD_SERIAL/Me.h ****   for ( T ; T > 0 ; T-- ){
@@ -957,10 +958,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  602              		.loc 2 99 4 is_stmt 1 view .LVU137
  603              	.L29:
   99:../5-PWM_LCD_SERIAL/Me.h ****    while ( TIM3->CNT < 5 ) ; /* 5 * 10-- Configurar para IR */
+ARM GAS  /tmp/ccclVq7k.s 			page 17
+
+
  604              		.loc 2 99 28 discriminator 1 view .LVU138
-ARM GAS  /tmp/ccs5bY78.s 			page 17
-
-
   99:../5-PWM_LCD_SERIAL/Me.h ****    while ( TIM3->CNT < 5 ) ; /* 5 * 10-- Configurar para IR */
  605              		.loc 2 99 10 discriminator 1 view .LVU139
  606              	@ ../5-PWM_LCD_SERIAL/Me.h:99:    while ( TIM3->CNT < 5 ) ; /* 5 * 10-- Configurar para IR */
@@ -1017,10 +1018,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  649              	@ ../5-PWM_LCD_SERIAL/Me.h:105:    TIM3->CR1 = 0x0000;
  650              		.loc 2 105 14 is_stmt 0 view .LVU148
  651 020a 0023     		movs	r3, #0	@ tmp121,
+ARM GAS  /tmp/ccclVq7k.s 			page 18
+
+
  652 020c A2F50332 		sub	r2, r2, #134144	@ tmp119, tmp119,
-ARM GAS  /tmp/ccs5bY78.s 			page 18
-
-
  653 0210 1380     		strh	r3, [r2]	@ movhi	@ tmp121, MEM[(struct TIM_TypeDef *)1073742848B].CR1
  106:../5-PWM_LCD_SERIAL/Me.h ****    //TIM3->ARR = 21699;
  107:../5-PWM_LCD_SERIAL/Me.h ****    // TIM3->ARR = 250-1; // 10µs
@@ -1077,10 +1078,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  693 0228 0123     		movs	r3, #1	@ tmp124,
  694              	@ ../5-PWM_LCD_SERIAL/Me.h:118:    NVIC->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 
  695              		.loc 2 118 33 view .LVU157
+ARM GAS  /tmp/ccclVq7k.s 			page 19
+
+
  696 022a 4209     		lsrs	r2, r0, #5	@ _6, IRQn,
-ARM GAS  /tmp/ccs5bY78.s 			page 19
-
-
  697              	@ ../5-PWM_LCD_SERIAL/Me.h:118:    NVIC->ISER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 
  698              		.loc 2 118 66 view .LVU158
  699 022c 00F01F00 		and	r0, r0, #31	@ tmp123, IRQn,
@@ -1137,10 +1138,10 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  742              	.LVL15:
  743              	@ ../5-PWM_LCD_SERIAL/Me.h:126:    NVIC->ICER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 
  744              		.loc 2 126 45 view .LVU167
+ARM GAS  /tmp/ccclVq7k.s 			page 20
+
+
  745 0248 02FA00F0 		lsl	r0, r2, r0	@ _7, tmp124, tmp123
-ARM GAS  /tmp/ccs5bY78.s 			page 20
-
-
  746              	@ ../5-PWM_LCD_SERIAL/Me.h:126:    NVIC->ICER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 
  747              		.loc 2 126 40 view .LVU168
  748 024c 024A     		ldr	r2, .L41	@ tmp125,
@@ -1167,59 +1168,55 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  768              	.LVL16:
  769              	.LFB40:
  770              		.file 3 "../5-PWM_LCD_SERIAL/dht11.h"
-   1:../5-PWM_LCD_SERIAL/dht11.h **** #ifndef DHT11_H
-   2:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_H
-   3:../5-PWM_LCD_SERIAL/dht11.h **** 
-   4:../5-PWM_LCD_SERIAL/dht11.h **** // #include "stm32f10x.h"
-   5:../5-PWM_LCD_SERIAL/dht11.h **** // #include "stm32f10x_gpio.h"
-   6:../5-PWM_LCD_SERIAL/dht11.h **** #include "stm32f10x_rcc.h"
-   7:../5-PWM_LCD_SERIAL/dht11.h **** #include "stm32f10x_tim.h"
+   1:../5-PWM_LCD_SERIAL/dht11.h **** // #include "stm32f10x.h"
+   2:../5-PWM_LCD_SERIAL/dht11.h **** // #include "stm32f10x_gpio.h"
+   3:../5-PWM_LCD_SERIAL/dht11.h **** #include "stm32f10x_rcc.h"
+   4:../5-PWM_LCD_SERIAL/dht11.h **** 
+   5:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_SUCCESS         1
+   6:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_ERROR_CHECKSUM  2
+   7:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_ERROR_TIMEOUT   3
    8:../5-PWM_LCD_SERIAL/dht11.h **** 
-   9:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_SUCCESS         1
-  10:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_ERROR_CHECKSUM  2
-  11:../5-PWM_LCD_SERIAL/dht11.h **** #define DHT11_ERROR_TIMEOUT   3
-  12:../5-PWM_LCD_SERIAL/dht11.h **** 
-  13:../5-PWM_LCD_SERIAL/dht11.h **** #define TIM_X	TIM3
-  14:../5-PWM_LCD_SERIAL/dht11.h **** 
-  15:../5-PWM_LCD_SERIAL/dht11.h **** typedef struct DHT11_Dev {
-  16:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t temparature;
-  17:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t humidity;
-  18:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_TypeDef* port;
-  19:../5-PWM_LCD_SERIAL/dht11.h **** 	uint16_t pin;
-  20:../5-PWM_LCD_SERIAL/dht11.h **** } DHT11_Dev;
-  21:../5-PWM_LCD_SERIAL/dht11.h **** 
-  22:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t pin);
-  23:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_read(struct DHT11_Dev* dev);
-  24:../5-PWM_LCD_SERIAL/dht11.h **** 
-  25:../5-PWM_LCD_SERIAL/dht11.h **** /*==========================================================*/
-  26:../5-PWM_LCD_SERIAL/dht11.h **** 
-  27:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t pin) {
- 771              		.loc 3 27 73 is_stmt 1 view -0
+   9:../5-PWM_LCD_SERIAL/dht11.h **** // #define TIM_X	TIM3
+  10:../5-PWM_LCD_SERIAL/dht11.h **** 
+  11:../5-PWM_LCD_SERIAL/dht11.h **** typedef struct DHT11_Dev {
+  12:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t temparature;
+  13:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t humidity;
+  14:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_TypeDef* port;
+  15:../5-PWM_LCD_SERIAL/dht11.h **** 	uint16_t pin;
+  16:../5-PWM_LCD_SERIAL/dht11.h **** } DHT11_Dev;
+  17:../5-PWM_LCD_SERIAL/dht11.h **** 
+  18:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t pin);
+  19:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_read(struct DHT11_Dev* dev);
+  20:../5-PWM_LCD_SERIAL/dht11.h **** 
+  21:../5-PWM_LCD_SERIAL/dht11.h **** /*==========================================================*/
+  22:../5-PWM_LCD_SERIAL/dht11.h **** 
+  23:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_t pin) {
+ 771              		.loc 3 23 73 is_stmt 1 view -0
  772              		.cfi_startproc
  773              		@ args = 0, pretend = 0, frame = 16
  774              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  /tmp/ccs5bY78.s 			page 21
+  24:../5-PWM_LCD_SERIAL/dht11.h **** 
+  25:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInitTypeDef TIM_TimBaseStructure;
+ 775              		.loc 3 25 2 view .LVU171
+ARM GAS  /tmp/ccclVq7k.s 			page 21
 
 
-  28:../5-PWM_LCD_SERIAL/dht11.h **** 
-  29:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInitTypeDef TIM_TimBaseStructure;
- 775              		.loc 3 29 2 view .LVU171
-  30:../5-PWM_LCD_SERIAL/dht11.h **** 
-  31:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitTypeDef GPIO_InitStructure;
- 776              		.loc 3 31 2 view .LVU172
-  32:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  33:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->port = port;
- 777              		.loc 3 33 2 view .LVU173
- 778              	@ ../5-PWM_LCD_SERIAL/dht11.h:37: 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
-  34:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->pin = pin;
-  35:../5-PWM_LCD_SERIAL/dht11.h **** 
-  36:../5-PWM_LCD_SERIAL/dht11.h **** 	//Initialise TIMER2
-  37:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
- 779              		.loc 3 37 34 is_stmt 0 view .LVU174
+  26:../5-PWM_LCD_SERIAL/dht11.h **** 
+  27:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitTypeDef GPIO_InitStructure;
+ 776              		.loc 3 27 2 view .LVU172
+  28:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  29:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->port = port;
+ 777              		.loc 3 29 2 view .LVU173
+ 778              	@ ../5-PWM_LCD_SERIAL/dht11.h:33: 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
+  30:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->pin = pin;
+  31:../5-PWM_LCD_SERIAL/dht11.h **** 
+  32:../5-PWM_LCD_SERIAL/dht11.h **** 	//Initialise TIMER2
+  33:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
+ 779              		.loc 3 33 34 is_stmt 0 view .LVU174
  780 025c 4FF6FF73 		movw	r3, #65535	@ tmp121,
- 781              	@ ../5-PWM_LCD_SERIAL/dht11.h:27: int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_
-  27:../5-PWM_LCD_SERIAL/dht11.h **** 
- 782              		.loc 3 27 73 view .LVU175
+ 781              	@ ../5-PWM_LCD_SERIAL/dht11.h:23: int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_
+  23:../5-PWM_LCD_SERIAL/dht11.h **** 
+ 782              		.loc 3 23 73 view .LVU175
  783 0260 30B5     		push	{r4, r5, lr}	@
  784              	.LCFI5:
  785              		.cfi_def_cfa_offset 12
@@ -1229,119 +1226,119 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  789 0262 85B0     		sub	sp, sp, #20	@,,
  790              	.LCFI6:
  791              		.cfi_def_cfa_offset 32
- 792              	@ ../5-PWM_LCD_SERIAL/dht11.h:40: 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-  38:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
-  39:../5-PWM_LCD_SERIAL/dht11.h **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
-  40:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
- 793              		.loc 3 40 39 view .LVU176
+ 792              	@ ../5-PWM_LCD_SERIAL/dht11.h:36: 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  34:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+  35:../5-PWM_LCD_SERIAL/dht11.h **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
+  36:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+ 793              		.loc 3 36 39 view .LVU176
  794 0264 0025     		movs	r5, #0	@ tmp125,
- 795              	@ ../5-PWM_LCD_SERIAL/dht11.h:37: 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
-  37:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
- 796              		.loc 3 37 34 view .LVU177
+ 795              	@ ../5-PWM_LCD_SERIAL/dht11.h:33: 	TIM_TimBaseStructure.TIM_Period = 0xFFFF;
+  33:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+ 796              		.loc 3 33 34 view .LVU177
  797 0266 ADF80830 		strh	r3, [sp, #8]	@ movhi	@ tmp121, TIM_TimBaseStructure.TIM_Period
- 798              	@ ../5-PWM_LCD_SERIAL/dht11.h:38: 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
-  38:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
- 799              		.loc 3 38 37 view .LVU178
+ 798              	@ ../5-PWM_LCD_SERIAL/dht11.h:34: 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+  34:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+ 799              		.loc 3 34 37 view .LVU178
  800 026a 4723     		movs	r3, #71	@ tmp123,
- 801              	@ ../5-PWM_LCD_SERIAL/dht11.h:27: int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_
-  27:../5-PWM_LCD_SERIAL/dht11.h **** 
- 802              		.loc 3 27 73 view .LVU179
+ 801              	@ ../5-PWM_LCD_SERIAL/dht11.h:23: int DHT11_init(struct DHT11_Dev* dev, GPIO_TypeDef* port, uint16_
+  23:../5-PWM_LCD_SERIAL/dht11.h **** 
+ 802              		.loc 3 23 73 view .LVU179
  803 026c 0446     		mov	r4, r0	@ dev, tmp132
- 804              	@ ../5-PWM_LCD_SERIAL/dht11.h:34: 	dev->pin = pin;
-  34:../5-PWM_LCD_SERIAL/dht11.h **** 
- 805              		.loc 3 34 11 view .LVU180
+ 804              	@ ../5-PWM_LCD_SERIAL/dht11.h:30: 	dev->pin = pin;
+  30:../5-PWM_LCD_SERIAL/dht11.h **** 
+ 805              		.loc 3 30 11 view .LVU180
  806 026e 0281     		strh	r2, [r0, #8]	@ movhi	@ tmp134, dev_4(D)->pin
- 807              	@ ../5-PWM_LCD_SERIAL/dht11.h:33: 	dev->port = port;
-  33:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->pin = pin;
- 808              		.loc 3 33 12 view .LVU181
+ 807              	@ ../5-PWM_LCD_SERIAL/dht11.h:29: 	dev->port = port;
+  29:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->pin = pin;
+ 808              		.loc 3 29 12 view .LVU181
  809 0270 4160     		str	r1, [r0, #4]	@ tmp133, dev_4(D)->port
-  34:../5-PWM_LCD_SERIAL/dht11.h **** 
- 810              		.loc 3 34 2 is_stmt 1 view .LVU182
-  37:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
-ARM GAS  /tmp/ccs5bY78.s 			page 22
+  30:../5-PWM_LCD_SERIAL/dht11.h **** 
+ 810              		.loc 3 30 2 is_stmt 1 view .LVU182
+  33:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+ 811              		.loc 3 33 2 view .LVU183
+  34:../5-PWM_LCD_SERIAL/dht11.h **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
+ 812              		.loc 3 34 2 view .LVU184
+ARM GAS  /tmp/ccclVq7k.s 			page 22
 
 
- 811              		.loc 3 37 2 view .LVU183
-  38:../5-PWM_LCD_SERIAL/dht11.h **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
- 812              		.loc 3 38 2 view .LVU184
- 813              	@ ../5-PWM_LCD_SERIAL/dht11.h:41: 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
-  41:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
- 814              		.loc 3 41 2 is_stmt 0 view .LVU185
+ 813              	@ ../5-PWM_LCD_SERIAL/dht11.h:37: 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+  37:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+ 814              		.loc 3 37 2 is_stmt 0 view .LVU185
  815 0272 01A9     		add	r1, sp, #4	@,,
  816              	.LVL17:
- 817              		.loc 3 41 2 view .LVU186
+ 817              		.loc 3 37 2 view .LVU186
  818 0274 4FF08040 		mov	r0, #1073741824	@,
  819              	.LVL18:
- 820              	@ ../5-PWM_LCD_SERIAL/dht11.h:38: 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
-  38:../5-PWM_LCD_SERIAL/dht11.h **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
- 821              		.loc 3 38 37 view .LVU187
+ 820              	@ ../5-PWM_LCD_SERIAL/dht11.h:34: 	TIM_TimBaseStructure.TIM_Prescaler = 72 - 1 ;
+  34:../5-PWM_LCD_SERIAL/dht11.h **** 	//TIM_TimBaseStructure.TIM_ClockDivision = 0;
+ 821              		.loc 3 34 37 view .LVU187
  822 0278 ADF80430 		strh	r3, [sp, #4]	@ movhi	@ tmp123, TIM_TimBaseStructure.TIM_Prescaler
-  40:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
- 823              		.loc 3 40 2 is_stmt 1 view .LVU188
- 824              	@ ../5-PWM_LCD_SERIAL/dht11.h:40: 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-  40:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
- 825              		.loc 3 40 39 is_stmt 0 view .LVU189
+  36:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+ 823              		.loc 3 36 2 is_stmt 1 view .LVU188
+ 824              	@ ../5-PWM_LCD_SERIAL/dht11.h:36: 	TIM_TimBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  36:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_TimeBaseInit(TIM2, &TIM_TimBaseStructure);
+ 825              		.loc 3 36 39 is_stmt 0 view .LVU189
  826 027c ADF80650 		strh	r5, [sp, #6]	@ movhi	@ tmp125, TIM_TimBaseStructure.TIM_CounterMode
- 827              		.loc 3 41 2 is_stmt 1 view .LVU190
+ 827              		.loc 3 37 2 is_stmt 1 view .LVU190
  828 0280 FFF7FEFF 		bl	TIM_TimeBaseInit		@
  829              	.LVL19:
-  42:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_Cmd(TIM2, ENABLE);
- 830              		.loc 3 42 2 view .LVU191
+  38:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM_Cmd(TIM2, ENABLE);
+ 830              		.loc 3 38 2 view .LVU191
  831 0284 0121     		movs	r1, #1	@,
  832 0286 4FF08040 		mov	r0, #1073741824	@,
  833 028a FFF7FEFF 		bl	TIM_Cmd		@
  834              	.LVL20:
-  43:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  44:../5-PWM_LCD_SERIAL/dht11.h **** 	//Initialise GPIO DHT11
-  45:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Pin = dev->pin;
- 835              		.loc 3 45 2 view .LVU192
- 836              	@ ../5-PWM_LCD_SERIAL/dht11.h:45: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
- 837              		.loc 3 45 30 is_stmt 0 view .LVU193
+  39:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  40:../5-PWM_LCD_SERIAL/dht11.h **** 	//Initialise GPIO DHT11
+  41:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 835              		.loc 3 41 2 view .LVU192
+ 836              	@ ../5-PWM_LCD_SERIAL/dht11.h:41: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 837              		.loc 3 41 30 is_stmt 0 view .LVU193
  838 028e 2389     		ldrh	r3, [r4, #8]	@, dev_4(D)->pin
- 839              	@ ../5-PWM_LCD_SERIAL/dht11.h:48: 	GPIO_Init(dev->port, &GPIO_InitStructure);
-  46:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-  47:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  48:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 840              		.loc 3 48 2 view .LVU194
+ 839              	@ ../5-PWM_LCD_SERIAL/dht11.h:44: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+  42:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  43:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  44:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 840              		.loc 3 44 2 view .LVU194
  841 0290 6068     		ldr	r0, [r4, #4]	@, dev_4(D)->port
- 842              	@ ../5-PWM_LCD_SERIAL/dht11.h:45: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
-  45:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
- 843              		.loc 3 45 30 view .LVU195
+ 842              	@ ../5-PWM_LCD_SERIAL/dht11.h:41: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+  41:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 843              		.loc 3 41 30 view .LVU195
  844 0292 ADF80030 		strh	r3, [sp]	@ movhi	@ dev_4(D)->pin, GPIO_InitStructure.GPIO_Pin
-  46:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
- 845              		.loc 3 46 2 is_stmt 1 view .LVU196
-  47:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 846              		.loc 3 47 2 view .LVU197
- 847              	@ ../5-PWM_LCD_SERIAL/dht11.h:47: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  47:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 848              		.loc 3 47 32 is_stmt 0 view .LVU198
+  42:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 845              		.loc 3 42 2 is_stmt 1 view .LVU196
+  43:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 846              		.loc 3 43 2 view .LVU197
+ 847              	@ ../5-PWM_LCD_SERIAL/dht11.h:43: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  43:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 848              		.loc 3 43 32 is_stmt 0 view .LVU198
  849 0296 41F20303 		movw	r3, #4099	@ tmp129,
- 850              	@ ../5-PWM_LCD_SERIAL/dht11.h:48: 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 851              		.loc 3 48 2 view .LVU199
-ARM GAS  /tmp/ccs5bY78.s 			page 23
-
-
+ 850              	@ ../5-PWM_LCD_SERIAL/dht11.h:44: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 851              		.loc 3 44 2 view .LVU199
  852 029a 6946     		mov	r1, sp	@,
- 853              	@ ../5-PWM_LCD_SERIAL/dht11.h:47: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  47:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 854              		.loc 3 47 32 view .LVU200
+ 853              	@ ../5-PWM_LCD_SERIAL/dht11.h:43: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  43:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ARM GAS  /tmp/ccclVq7k.s 			page 23
+
+
+ 854              		.loc 3 43 32 view .LVU200
  855 029c ADF80230 		strh	r3, [sp, #2]	@ movhi	@ tmp129, MEM <unsigned short> [(void *)&GPIO_InitStructure + 2B]
- 856              		.loc 3 48 2 is_stmt 1 view .LVU201
+ 856              		.loc 3 44 2 is_stmt 1 view .LVU201
  857 02a0 FFF7FEFF 		bl	GPIO_Init		@
  858              	.LVL21:
-  49:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  50:../5-PWM_LCD_SERIAL/dht11.h **** 	return 0;
- 859              		.loc 3 50 2 view .LVU202
- 860              	@ ../5-PWM_LCD_SERIAL/dht11.h:51: }
-  51:../5-PWM_LCD_SERIAL/dht11.h **** }
- 861              		.loc 3 51 1 is_stmt 0 view .LVU203
+  45:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  46:../5-PWM_LCD_SERIAL/dht11.h **** 	return 0;
+ 859              		.loc 3 46 2 view .LVU202
+ 860              	@ ../5-PWM_LCD_SERIAL/dht11.h:47: }
+  47:../5-PWM_LCD_SERIAL/dht11.h **** }
+ 861              		.loc 3 47 1 is_stmt 0 view .LVU203
  862 02a4 2846     		mov	r0, r5	@, tmp125
  863 02a6 05B0     		add	sp, sp, #20	@,,
  864              	.LCFI7:
  865              		.cfi_def_cfa_offset 12
  866              		@ sp needed	@
  867 02a8 30BD     		pop	{r4, r5, pc}	@
- 868              		.loc 3 51 1 view .LVU204
+ 868              		.loc 3 47 1 view .LVU204
  869              		.cfi_endproc
  870              	.LFE40:
  871              		.size	DHT11_init, .-DHT11_init
@@ -1354,21 +1351,21 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  878              	DHT11_read:
  879              	.LVL22:
  880              	.LFB41:
-  52:../5-PWM_LCD_SERIAL/dht11.h **** 
-  53:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_read(struct DHT11_Dev* dev) {
- 881              		.loc 3 53 39 is_stmt 1 view -0
+  48:../5-PWM_LCD_SERIAL/dht11.h **** 
+  49:../5-PWM_LCD_SERIAL/dht11.h **** int DHT11_read(struct DHT11_Dev* dev) {
+ 881              		.loc 3 49 39 is_stmt 1 view -0
  882              		.cfi_startproc
  883              		@ args = 0, pretend = 0, frame = 16
  884              		@ frame_needed = 0, uses_anonymous_args = 0
-  54:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  55:../5-PWM_LCD_SERIAL/dht11.h **** 	//Initialisation
-  56:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t i, j, temp;
- 885              		.loc 3 56 2 view .LVU206
-  57:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
- 886              		.loc 3 57 2 view .LVU207
- 887              	@ ../5-PWM_LCD_SERIAL/dht11.h:53: int DHT11_read(struct DHT11_Dev* dev) {
-  53:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 888              		.loc 3 53 39 is_stmt 0 view .LVU208
+  50:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  51:../5-PWM_LCD_SERIAL/dht11.h **** 	//Initialisation
+  52:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t i, j, temp;
+ 885              		.loc 3 52 2 view .LVU206
+  53:../5-PWM_LCD_SERIAL/dht11.h **** 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+ 886              		.loc 3 53 2 view .LVU207
+ 887              	@ ../5-PWM_LCD_SERIAL/dht11.h:49: int DHT11_read(struct DHT11_Dev* dev) {
+  49:../5-PWM_LCD_SERIAL/dht11.h **** 	
+ 888              		.loc 3 49 39 is_stmt 0 view .LVU208
  889 02aa F0B5     		push	{r4, r5, r6, r7, lr}	@
  890              	.LCFI8:
  891              		.cfi_def_cfa_offset 20
@@ -1378,443 +1375,443 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  895              		.cfi_offset 7, -8
  896              		.cfi_offset 14, -4
  897 02ac 0446     		mov	r4, r0	@ dev, tmp235
-ARM GAS  /tmp/ccs5bY78.s 			page 24
-
-
- 898              	@ ../5-PWM_LCD_SERIAL/dht11.h:57: 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
- 899              		.loc 3 57 10 view .LVU209
+ 898              	@ ../5-PWM_LCD_SERIAL/dht11.h:53: 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+ 899              		.loc 3 53 10 view .LVU209
  900 02ae 464B     		ldr	r3, .L69	@ tmp154,
- 901              	@ ../5-PWM_LCD_SERIAL/dht11.h:53: int DHT11_read(struct DHT11_Dev* dev) {
-  53:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 902              		.loc 3 53 39 view .LVU210
+ARM GAS  /tmp/ccclVq7k.s 			page 24
+
+
+ 901              	@ ../5-PWM_LCD_SERIAL/dht11.h:49: int DHT11_read(struct DHT11_Dev* dev) {
+  49:../5-PWM_LCD_SERIAL/dht11.h **** 	
+ 902              		.loc 3 49 39 view .LVU210
  903 02b0 85B0     		sub	sp, sp, #20	@,,
  904              	.LCFI9:
  905              		.cfi_def_cfa_offset 40
- 906              	@ ../5-PWM_LCD_SERIAL/dht11.h:57: 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
- 907              		.loc 3 57 10 view .LVU211
+ 906              	@ ../5-PWM_LCD_SERIAL/dht11.h:53: 	uint8_t data[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
+ 907              		.loc 3 53 10 view .LVU211
  908 02b2 1868     		ldr	r0, [r3]	@ unaligned	@,
  909              	.LVL23:
- 910              		.loc 3 57 10 view .LVU212
+ 910              		.loc 3 53 10 view .LVU212
  911 02b4 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2	@ tmp158,
  912 02b6 0290     		str	r0, [sp, #8]	@, data
  913 02b8 8DF80C30 		strb	r3, [sp, #12]	@ tmp158, data
-  58:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitTypeDef GPIO_InitStructure;
- 914              		.loc 3 58 2 is_stmt 1 view .LVU213
-  59:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  60:../5-PWM_LCD_SERIAL/dht11.h **** 	//Generate START condition
-  61:../5-PWM_LCD_SERIAL/dht11.h **** 	//o
-  62:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Pin = dev->pin;
- 915              		.loc 3 62 2 view .LVU214
- 916              	@ ../5-PWM_LCD_SERIAL/dht11.h:62: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
- 917              		.loc 3 62 30 is_stmt 0 view .LVU215
+  54:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitTypeDef GPIO_InitStructure;
+ 914              		.loc 3 54 2 is_stmt 1 view .LVU213
+  55:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  56:../5-PWM_LCD_SERIAL/dht11.h **** 	//Generate START condition
+  57:../5-PWM_LCD_SERIAL/dht11.h **** 	//o
+  58:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 915              		.loc 3 58 2 view .LVU214
+ 916              	@ ../5-PWM_LCD_SERIAL/dht11.h:58: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+ 917              		.loc 3 58 30 is_stmt 0 view .LVU215
  918 02bc 2389     		ldrh	r3, [r4, #8]	@, dev_49(D)->pin
- 919              	@ ../5-PWM_LCD_SERIAL/dht11.h:65: 	GPIO_Init(dev->port, &GPIO_InitStructure);
-  63:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-  64:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  65:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 920              		.loc 3 65 2 view .LVU216
+ 919              	@ ../5-PWM_LCD_SERIAL/dht11.h:61: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+  59:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+  60:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  61:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 920              		.loc 3 61 2 view .LVU216
  921 02be 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
- 922              	@ ../5-PWM_LCD_SERIAL/dht11.h:62: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
-  62:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
- 923              		.loc 3 62 30 view .LVU217
+ 922              	@ ../5-PWM_LCD_SERIAL/dht11.h:58: 	GPIO_InitStructure.GPIO_Pin = dev->pin;
+  58:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 923              		.loc 3 58 30 view .LVU217
  924 02c0 ADF80430 		strh	r3, [sp, #4]	@ movhi	@ dev_49(D)->pin, GPIO_InitStructure.GPIO_Pin
-  63:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
- 925              		.loc 3 63 2 is_stmt 1 view .LVU218
-  64:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 926              		.loc 3 64 2 view .LVU219
- 927              	@ ../5-PWM_LCD_SERIAL/dht11.h:64: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  64:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 928              		.loc 3 64 32 is_stmt 0 view .LVU220
+  59:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+ 925              		.loc 3 59 2 is_stmt 1 view .LVU218
+  60:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 926              		.loc 3 60 2 view .LVU219
+ 927              	@ ../5-PWM_LCD_SERIAL/dht11.h:60: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  60:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 928              		.loc 3 60 32 is_stmt 0 view .LVU220
  929 02c4 41F20303 		movw	r3, #4099	@ tmp162,
- 930              	@ ../5-PWM_LCD_SERIAL/dht11.h:65: 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 931              		.loc 3 65 2 view .LVU221
+ 930              	@ ../5-PWM_LCD_SERIAL/dht11.h:61: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 931              		.loc 3 61 2 view .LVU221
  932 02c8 01A9     		add	r1, sp, #4	@ tmp243,,
- 933              	@ ../5-PWM_LCD_SERIAL/dht11.h:64: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  64:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 934              		.loc 3 64 32 view .LVU222
+ 933              	@ ../5-PWM_LCD_SERIAL/dht11.h:60: 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  60:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 934              		.loc 3 60 32 view .LVU222
  935 02ca ADF80630 		strh	r3, [sp, #6]	@ movhi	@ tmp162, MEM <unsigned short> [(void *)&GPIO_InitStructure + 2B]
- 936              		.loc 3 65 2 is_stmt 1 view .LVU223
+ 936              		.loc 3 61 2 is_stmt 1 view .LVU223
  937 02ce FFF7FEFF 		bl	GPIO_Init		@
  938              	.LVL24:
-  66:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  67:../5-PWM_LCD_SERIAL/dht11.h **** 	//dev->port->MODER |= GPIO_MODER_MODER6_0;
-ARM GAS  /tmp/ccs5bY78.s 			page 25
+  62:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  63:../5-PWM_LCD_SERIAL/dht11.h **** 	//dev->port->MODER |= GPIO_MODER_MODER6_0;
+  64:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  65:../5-PWM_LCD_SERIAL/dht11.h **** 	//Put LOW for at least 18ms
+  66:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_ResetBits(dev->port, dev->pin);
+ARM GAS  /tmp/ccclVq7k.s 			page 25
 
 
-  68:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  69:../5-PWM_LCD_SERIAL/dht11.h **** 	//Put LOW for at least 18ms
-  70:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_ResetBits(dev->port, dev->pin);
- 939              		.loc 3 70 2 view .LVU224
+ 939              		.loc 3 66 2 view .LVU224
  940 02d2 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
  941 02d4 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  942 02d6 FFF7FEFF 		bl	GPIO_ResetBits		@
  943              	.LVL25:
-  71:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  72:../5-PWM_LCD_SERIAL/dht11.h **** 	//wait 18ms
-  73:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
- 944              		.loc 3 73 2 view .LVU225
- 945              	@ ../5-PWM_LCD_SERIAL/dht11.h:73: 	TIM2->CNT = 0;
- 946              		.loc 3 73 12 is_stmt 0 view .LVU226
+  67:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  68:../5-PWM_LCD_SERIAL/dht11.h **** 	//wait 18ms
+  69:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
+ 944              		.loc 3 69 2 view .LVU225
+ 945              	@ ../5-PWM_LCD_SERIAL/dht11.h:69: 	TIM2->CNT = 0;
+ 946              		.loc 3 69 12 is_stmt 0 view .LVU226
  947 02da 4FF08045 		mov	r5, #1073741824	@ tmp165,
  948 02de 0023     		movs	r3, #0	@ tmp167,
- 949              	@ ../5-PWM_LCD_SERIAL/dht11.h:74: 	while((TIM2->CNT) <= 18000);
-  74:../5-PWM_LCD_SERIAL/dht11.h **** 	while((TIM2->CNT) <= 18000);
- 950              		.loc 3 74 7 view .LVU227
+ 949              	@ ../5-PWM_LCD_SERIAL/dht11.h:70: 	while((TIM2->CNT) <= 18000);
+  70:../5-PWM_LCD_SERIAL/dht11.h **** 	while((TIM2->CNT) <= 18000);
+ 950              		.loc 3 70 7 view .LVU227
  951 02e0 44F25062 		movw	r2, #18000	@ tmp173,
- 952              	@ ../5-PWM_LCD_SERIAL/dht11.h:73: 	TIM2->CNT = 0;
-  73:../5-PWM_LCD_SERIAL/dht11.h **** 	while((TIM2->CNT) <= 18000);
- 953              		.loc 3 73 12 view .LVU228
+ 952              	@ ../5-PWM_LCD_SERIAL/dht11.h:69: 	TIM2->CNT = 0;
+  69:../5-PWM_LCD_SERIAL/dht11.h **** 	while((TIM2->CNT) <= 18000);
+ 953              		.loc 3 69 12 view .LVU228
  954 02e4 AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp167, MEM[(struct TIM_TypeDef *)1073741824B].CNT
- 955              		.loc 3 74 2 is_stmt 1 view .LVU229
+ 955              		.loc 3 70 2 is_stmt 1 view .LVU229
  956              	.L45:
- 957              		.loc 3 74 29 discriminator 1 view .LVU230
- 958              		.loc 3 74 7 discriminator 1 view .LVU231
- 959              	@ ../5-PWM_LCD_SERIAL/dht11.h:74: 	while((TIM2->CNT) <= 18000);
- 960              		.loc 3 74 13 is_stmt 0 discriminator 1 view .LVU232
+ 957              		.loc 3 70 29 discriminator 1 view .LVU230
+ 958              		.loc 3 70 7 discriminator 1 view .LVU231
+ 959              	@ ../5-PWM_LCD_SERIAL/dht11.h:70: 	while((TIM2->CNT) <= 18000);
+ 960              		.loc 3 70 13 is_stmt 0 discriminator 1 view .LVU232
  961 02e6 AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
  962 02e8 9BB2     		uxth	r3, r3	@ _5, MEM[(struct TIM_TypeDef *)1073741824B].CNT
- 963              	@ ../5-PWM_LCD_SERIAL/dht11.h:74: 	while((TIM2->CNT) <= 18000);
- 964              		.loc 3 74 7 discriminator 1 view .LVU233
+ 963              	@ ../5-PWM_LCD_SERIAL/dht11.h:70: 	while((TIM2->CNT) <= 18000);
+ 964              		.loc 3 70 7 discriminator 1 view .LVU233
  965 02ea 9342     		cmp	r3, r2	@ _5, tmp173
  966 02ec FBD9     		bls	.L45		@,
-  75:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  76:../5-PWM_LCD_SERIAL/dht11.h **** 	//Put HIGH for 20-40us
-  77:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_SetBits(dev->port, dev->pin);
- 967              		.loc 3 77 2 is_stmt 1 view .LVU234
+  71:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  72:../5-PWM_LCD_SERIAL/dht11.h **** 	//Put HIGH for 20-40us
+  73:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_SetBits(dev->port, dev->pin);
+ 967              		.loc 3 73 2 is_stmt 1 view .LVU234
  968 02ee 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
  969 02f0 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  970 02f2 FFF7FEFF 		bl	GPIO_SetBits		@
  971              	.LVL26:
-  78:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  79:../5-PWM_LCD_SERIAL/dht11.h **** 	//wait 40us
-  80:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
- 972              		.loc 3 80 2 view .LVU235
- 973              	@ ../5-PWM_LCD_SERIAL/dht11.h:80: 	TIM2->CNT = 0;
- 974              		.loc 3 80 12 is_stmt 0 view .LVU236
+  74:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  75:../5-PWM_LCD_SERIAL/dht11.h **** 	//wait 40us
+  76:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
+ 972              		.loc 3 76 2 view .LVU235
+ 973              	@ ../5-PWM_LCD_SERIAL/dht11.h:76: 	TIM2->CNT = 0;
+ 974              		.loc 3 76 12 is_stmt 0 view .LVU236
  975 02f6 0023     		movs	r3, #0	@ tmp177,
  976 02f8 AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp177, MEM[(struct TIM_TypeDef *)1073741824B].CNT
-  81:../5-PWM_LCD_SERIAL/dht11.h **** 	while((TIM2->CNT) <= 40);
- 977              		.loc 3 81 2 is_stmt 1 view .LVU237
- 978              	@ ../5-PWM_LCD_SERIAL/dht11.h:81: 	while((TIM2->CNT) <= 40);
- 979              		.loc 3 81 13 is_stmt 0 view .LVU238
+  77:../5-PWM_LCD_SERIAL/dht11.h **** 	while((TIM2->CNT) <= 40);
+ 977              		.loc 3 77 2 is_stmt 1 view .LVU237
+ 978              	@ ../5-PWM_LCD_SERIAL/dht11.h:77: 	while((TIM2->CNT) <= 40);
+ 979              		.loc 3 77 13 is_stmt 0 view .LVU238
  980 02fa 4FF08045 		mov	r5, #1073741824	@ tmp178,
-ARM GAS  /tmp/ccs5bY78.s 			page 26
-
-
  981              	.L46:
- 982              		.loc 3 81 26 is_stmt 1 discriminator 1 view .LVU239
- 983              		.loc 3 81 7 discriminator 1 view .LVU240
- 984              	@ ../5-PWM_LCD_SERIAL/dht11.h:81: 	while((TIM2->CNT) <= 40);
- 985              		.loc 3 81 13 is_stmt 0 discriminator 1 view .LVU241
+ 982              		.loc 3 77 26 is_stmt 1 discriminator 1 view .LVU239
+ 983              		.loc 3 77 7 discriminator 1 view .LVU240
+ARM GAS  /tmp/ccclVq7k.s 			page 26
+
+
+ 984              	@ ../5-PWM_LCD_SERIAL/dht11.h:77: 	while((TIM2->CNT) <= 40);
+ 985              		.loc 3 77 13 is_stmt 0 discriminator 1 view .LVU241
  986 02fe AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
  987 0300 9BB2     		uxth	r3, r3	@ _8, MEM[(struct TIM_TypeDef *)1073741824B].CNT
- 988              	@ ../5-PWM_LCD_SERIAL/dht11.h:81: 	while((TIM2->CNT) <= 40);
- 989              		.loc 3 81 7 discriminator 1 view .LVU242
+ 988              	@ ../5-PWM_LCD_SERIAL/dht11.h:77: 	while((TIM2->CNT) <= 40);
+ 989              		.loc 3 77 7 discriminator 1 view .LVU242
  990 0302 282B     		cmp	r3, #40	@ _8,
  991 0304 FBD9     		bls	.L46		@,
-  82:../5-PWM_LCD_SERIAL/dht11.h **** 	//End start condition
-  83:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  84:../5-PWM_LCD_SERIAL/dht11.h **** 	//io();
-  85:../5-PWM_LCD_SERIAL/dht11.h **** 	//Input mode to receive data
-  86:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
- 992              		.loc 3 86 2 is_stmt 1 view .LVU243
- 993              	@ ../5-PWM_LCD_SERIAL/dht11.h:86: 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
- 994              		.loc 3 86 31 is_stmt 0 view .LVU244
+  78:../5-PWM_LCD_SERIAL/dht11.h **** 	//End start condition
+  79:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  80:../5-PWM_LCD_SERIAL/dht11.h **** 	//io();
+  81:../5-PWM_LCD_SERIAL/dht11.h **** 	//Input mode to receive data
+  82:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 992              		.loc 3 82 2 is_stmt 1 view .LVU243
+ 993              	@ ../5-PWM_LCD_SERIAL/dht11.h:82: 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 994              		.loc 3 82 31 is_stmt 0 view .LVU244
  995 0306 0423     		movs	r3, #4	@ tmp183,
- 996              	@ ../5-PWM_LCD_SERIAL/dht11.h:87: 	GPIO_Init(dev->port, &GPIO_InitStructure);
-  87:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 997              		.loc 3 87 2 view .LVU245
+ 996              	@ ../5-PWM_LCD_SERIAL/dht11.h:83: 	GPIO_Init(dev->port, &GPIO_InitStructure);
+  83:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 997              		.loc 3 83 2 view .LVU245
  998 0308 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  999 030a 0DEB0301 		add	r1, sp, r3	@ tmp244,,
- 1000              	@ ../5-PWM_LCD_SERIAL/dht11.h:86: 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-  86:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
- 1001              		.loc 3 86 31 view .LVU246
+ 1000              	@ ../5-PWM_LCD_SERIAL/dht11.h:82: 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  82:../5-PWM_LCD_SERIAL/dht11.h **** 	GPIO_Init(dev->port, &GPIO_InitStructure);
+ 1001              		.loc 3 82 31 view .LVU246
  1002 030e 8DF80730 		strb	r3, [sp, #7]	@ tmp183, GPIO_InitStructure.GPIO_Mode
- 1003              		.loc 3 87 2 is_stmt 1 view .LVU247
+ 1003              		.loc 3 83 2 is_stmt 1 view .LVU247
  1004 0312 FFF7FEFF 		bl	GPIO_Init		@
  1005              	.LVL27:
-  88:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  89:../5-PWM_LCD_SERIAL/dht11.h **** 	//DHT11 ACK
-  90:../5-PWM_LCD_SERIAL/dht11.h **** 	//should be LOW for at least 80us
-  91:../5-PWM_LCD_SERIAL/dht11.h **** 	//while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
-  92:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
- 1006              		.loc 3 92 2 view .LVU248
- 1007              	@ ../5-PWM_LCD_SERIAL/dht11.h:92: 	TIM2->CNT = 0;
- 1008              		.loc 3 92 12 is_stmt 0 view .LVU249
+  84:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  85:../5-PWM_LCD_SERIAL/dht11.h **** 	//DHT11 ACK
+  86:../5-PWM_LCD_SERIAL/dht11.h **** 	//should be LOW for at least 80us
+  87:../5-PWM_LCD_SERIAL/dht11.h **** 	//while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+  88:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
+ 1006              		.loc 3 88 2 view .LVU248
+ 1007              	@ ../5-PWM_LCD_SERIAL/dht11.h:88: 	TIM2->CNT = 0;
+ 1008              		.loc 3 88 12 is_stmt 0 view .LVU249
  1009 0316 0023     		movs	r3, #0	@ tmp188,
  1010 0318 AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp188, MEM[(struct TIM_TypeDef *)1073741824B].CNT
-  93:../5-PWM_LCD_SERIAL/dht11.h **** 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1011              		.loc 3 93 2 is_stmt 1 view .LVU250
+  89:../5-PWM_LCD_SERIAL/dht11.h **** 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1011              		.loc 3 89 2 is_stmt 1 view .LVU250
  1012 031a 4FF08045 		mov	r5, #1073741824	@ tmp229,
  1013              	.L47:
- 1014              		.loc 3 93 7 view .LVU251
- 1015              	@ ../5-PWM_LCD_SERIAL/dht11.h:93: 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1016              		.loc 3 93 9 is_stmt 0 view .LVU252
+ 1014              		.loc 3 89 7 view .LVU251
+ 1015              	@ ../5-PWM_LCD_SERIAL/dht11.h:89: 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1016              		.loc 3 89 9 is_stmt 0 view .LVU252
  1017 031e 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
  1018 0320 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  1019 0322 FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
  1020              	.LVL28:
- 1021              	@ ../5-PWM_LCD_SERIAL/dht11.h:93: 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1022              		.loc 3 93 7 view .LVU253
+ 1021              	@ ../5-PWM_LCD_SERIAL/dht11.h:89: 	while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1022              		.loc 3 89 7 view .LVU253
  1023 0326 0028     		cmp	r0, #0	@ tmp236
  1024 0328 42D0     		beq	.L49	@
-ARM GAS  /tmp/ccs5bY78.s 			page 27
+  90:../5-PWM_LCD_SERIAL/dht11.h **** 		if(TIM2->CNT > 100)
+  91:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+  92:../5-PWM_LCD_SERIAL/dht11.h **** 	}
+ARM GAS  /tmp/ccclVq7k.s 			page 27
 
 
-  94:../5-PWM_LCD_SERIAL/dht11.h **** 		if(TIM2->CNT > 100)
-  95:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
-  96:../5-PWM_LCD_SERIAL/dht11.h **** 	}
-  97:../5-PWM_LCD_SERIAL/dht11.h **** 	
-  98:../5-PWM_LCD_SERIAL/dht11.h **** 	//should be HIGH for at least 80us
-  99:../5-PWM_LCD_SERIAL/dht11.h **** 	//while(GPIO_ReadInputDataBit(dev->port, dev->pin));		
- 100:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
- 1025              		.loc 3 100 2 is_stmt 1 view .LVU254
- 1026              	@ ../5-PWM_LCD_SERIAL/dht11.h:100: 	TIM2->CNT = 0;
- 1027              		.loc 3 100 12 is_stmt 0 view .LVU255
+  93:../5-PWM_LCD_SERIAL/dht11.h **** 	
+  94:../5-PWM_LCD_SERIAL/dht11.h **** 	//should be HIGH for at least 80us
+  95:../5-PWM_LCD_SERIAL/dht11.h **** 	//while(GPIO_ReadInputDataBit(dev->port, dev->pin));		
+  96:../5-PWM_LCD_SERIAL/dht11.h **** 	TIM2->CNT = 0;
+ 1025              		.loc 3 96 2 is_stmt 1 view .LVU254
+ 1026              	@ ../5-PWM_LCD_SERIAL/dht11.h:96: 	TIM2->CNT = 0;
+ 1027              		.loc 3 96 12 is_stmt 0 view .LVU255
  1028 032a 0023     		movs	r3, #0	@ tmp198,
  1029 032c AB84     		strh	r3, [r5, #36]	@ movhi	@ tmp198, MEM[(struct TIM_TypeDef *)1073741824B].CNT
- 101:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1030              		.loc 3 101 2 is_stmt 1 view .LVU256
- 1031              	@ ../5-PWM_LCD_SERIAL/dht11.h:102: 		if(TIM2->CNT > 100)
- 102:../5-PWM_LCD_SERIAL/dht11.h **** 		if(TIM2->CNT > 100)
- 1032              		.loc 3 102 10 is_stmt 0 view .LVU257
+  97:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1030              		.loc 3 97 2 is_stmt 1 view .LVU256
+ 1031              	@ ../5-PWM_LCD_SERIAL/dht11.h:98: 		if(TIM2->CNT > 100)
+  98:../5-PWM_LCD_SERIAL/dht11.h **** 		if(TIM2->CNT > 100)
+ 1032              		.loc 3 98 10 is_stmt 0 view .LVU257
  1033 032e 4FF08045 		mov	r5, #1073741824	@ tmp234,
  1034              	.L50:
- 101:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1035              		.loc 3 101 7 is_stmt 1 view .LVU258
- 1036              	@ ../5-PWM_LCD_SERIAL/dht11.h:101: 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 101:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1037              		.loc 3 101 8 is_stmt 0 view .LVU259
+  97:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1035              		.loc 3 97 7 is_stmt 1 view .LVU258
+ 1036              	@ ../5-PWM_LCD_SERIAL/dht11.h:97: 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+  97:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1037              		.loc 3 97 8 is_stmt 0 view .LVU259
  1038 0332 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
  1039 0334 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  1040 0336 FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
  1041              	.LVL29:
- 1042              	@ ../5-PWM_LCD_SERIAL/dht11.h:101: 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 101:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 1043              		.loc 3 101 7 view .LVU260
+ 1042              	@ ../5-PWM_LCD_SERIAL/dht11.h:97: 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+  97:../5-PWM_LCD_SERIAL/dht11.h **** 	while(GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 1043              		.loc 3 97 7 view .LVU260
  1044 033a 0028     		cmp	r0, #0	@ tmp237
  1045 033c 3FD1     		bne	.L52	@
  1046 033e 0527     		movs	r7, #5	@ ivtmp_81,
  1047 0340 02AD     		add	r5, sp, #8	@ tmp245,,
  1048              	.L53:
  1049              	.LVL30:
- 103:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 104:../5-PWM_LCD_SERIAL/dht11.h **** 	}
- 105:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 106:../5-PWM_LCD_SERIAL/dht11.h **** 	//Read 40 bits (8*5)
- 107:../5-PWM_LCD_SERIAL/dht11.h **** 	for(j = 0; j < 5; ++j) {
- 108:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
- 1050              		.loc 3 108 14 is_stmt 1 view .LVU261
- 1051              	@ ../5-PWM_LCD_SERIAL/dht11.h:53: int DHT11_read(struct DHT11_Dev* dev) {
-  53:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 1052              		.loc 3 53 39 is_stmt 0 view .LVU262
+  99:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 100:../5-PWM_LCD_SERIAL/dht11.h **** 	}
+ 101:../5-PWM_LCD_SERIAL/dht11.h **** 	
+ 102:../5-PWM_LCD_SERIAL/dht11.h **** 	//Read 40 bits (8*5)
+ 103:../5-PWM_LCD_SERIAL/dht11.h **** 	for(j = 0; j < 5; ++j) {
+ 104:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
+ 1050              		.loc 3 104 14 is_stmt 1 view .LVU261
+ 1051              	@ ../5-PWM_LCD_SERIAL/dht11.h:49: int DHT11_read(struct DHT11_Dev* dev) {
+  49:../5-PWM_LCD_SERIAL/dht11.h **** 	
+ 1052              		.loc 3 49 39 is_stmt 0 view .LVU262
  1053 0342 0826     		movs	r6, #8	@ ivtmp_83,
  1054              	.LVL31:
  1055              	.L54:
- 109:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 110:../5-PWM_LCD_SERIAL/dht11.h **** 			//LOW for 50us
- 111:../5-PWM_LCD_SERIAL/dht11.h **** 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
- 1056              		.loc 3 111 54 is_stmt 1 discriminator 1 view .LVU263
- 1057              		.loc 3 111 9 discriminator 1 view .LVU264
- 1058              	@ ../5-PWM_LCD_SERIAL/dht11.h:111: 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
- 1059              		.loc 3 111 11 is_stmt 0 discriminator 1 view .LVU265
-ARM GAS  /tmp/ccs5bY78.s 			page 28
-
-
+ 105:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 106:../5-PWM_LCD_SERIAL/dht11.h **** 			//LOW for 50us
+ 107:../5-PWM_LCD_SERIAL/dht11.h **** 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 1056              		.loc 3 107 54 is_stmt 1 discriminator 1 view .LVU263
+ 1057              		.loc 3 107 9 discriminator 1 view .LVU264
+ 1058              	@ ../5-PWM_LCD_SERIAL/dht11.h:107: 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 1059              		.loc 3 107 11 is_stmt 0 discriminator 1 view .LVU265
  1060 0344 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
  1061 0346 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  1062 0348 FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
+ARM GAS  /tmp/ccclVq7k.s 			page 28
+
+
  1063              	.LVL32:
- 1064              	@ ../5-PWM_LCD_SERIAL/dht11.h:111: 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
- 1065              		.loc 3 111 9 discriminator 1 view .LVU266
+ 1064              	@ ../5-PWM_LCD_SERIAL/dht11.h:107: 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 1065              		.loc 3 107 9 discriminator 1 view .LVU266
  1066 034c 0028     		cmp	r0, #0	@ tmp238
  1067 034e F9D0     		beq	.L54	@
- 112:../5-PWM_LCD_SERIAL/dht11.h **** 			/*TIM2->CNT = 0;
- 113:../5-PWM_LCD_SERIAL/dht11.h **** 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 114:../5-PWM_LCD_SERIAL/dht11.h **** 				if(TIM2->CNT > 60)
- 115:../5-PWM_LCD_SERIAL/dht11.h **** 					return DHT11_ERROR_TIMEOUT;
- 116:../5-PWM_LCD_SERIAL/dht11.h **** 			}*/
- 117:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 118:../5-PWM_LCD_SERIAL/dht11.h **** 			//Start counter
- 119:../5-PWM_LCD_SERIAL/dht11.h **** 			TIM_SetCounter(TIM2, 0);
- 1068              		.loc 3 119 4 is_stmt 1 view .LVU267
+ 108:../5-PWM_LCD_SERIAL/dht11.h **** 			/*TIM2->CNT = 0;
+ 109:../5-PWM_LCD_SERIAL/dht11.h **** 			while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 110:../5-PWM_LCD_SERIAL/dht11.h **** 				if(TIM2->CNT > 60)
+ 111:../5-PWM_LCD_SERIAL/dht11.h **** 					return DHT11_ERROR_TIMEOUT;
+ 112:../5-PWM_LCD_SERIAL/dht11.h **** 			}*/
+ 113:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 114:../5-PWM_LCD_SERIAL/dht11.h **** 			//Start counter
+ 115:../5-PWM_LCD_SERIAL/dht11.h **** 			TIM_SetCounter(TIM2, 0);
+ 1068              		.loc 3 115 4 is_stmt 1 view .LVU267
  1069 0350 0021     		movs	r1, #0	@,
  1070 0352 4FF08040 		mov	r0, #1073741824	@,
  1071 0356 FFF7FEFF 		bl	TIM_SetCounter		@
  1072              	.LVL33:
- 120:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 121:../5-PWM_LCD_SERIAL/dht11.h **** 			//HIGH for 26-28us = 0 / 70us = 1
- 122:../5-PWM_LCD_SERIAL/dht11.h **** 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
- 1073              		.loc 3 122 4 view .LVU268
+ 116:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 117:../5-PWM_LCD_SERIAL/dht11.h **** 			//HIGH for 26-28us = 0 / 70us = 1
+ 118:../5-PWM_LCD_SERIAL/dht11.h **** 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 1073              		.loc 3 118 4 view .LVU268
  1074              	.L55:
- 1075              		.loc 3 122 53 discriminator 1 view .LVU269
- 1076              		.loc 3 122 9 discriminator 1 view .LVU270
- 1077              	@ ../5-PWM_LCD_SERIAL/dht11.h:122: 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
- 1078              		.loc 3 122 10 is_stmt 0 discriminator 1 view .LVU271
+ 1075              		.loc 3 118 53 discriminator 1 view .LVU269
+ 1076              		.loc 3 118 9 discriminator 1 view .LVU270
+ 1077              	@ ../5-PWM_LCD_SERIAL/dht11.h:118: 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 1078              		.loc 3 118 10 is_stmt 0 discriminator 1 view .LVU271
  1079 035a 2189     		ldrh	r1, [r4, #8]	@, dev_49(D)->pin
  1080 035c 6068     		ldr	r0, [r4, #4]	@, dev_49(D)->port
  1081 035e FFF7FEFF 		bl	GPIO_ReadInputDataBit		@
  1082              	.LVL34:
- 1083              	@ ../5-PWM_LCD_SERIAL/dht11.h:122: 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
- 1084              		.loc 3 122 9 discriminator 1 view .LVU272
+ 1083              	@ ../5-PWM_LCD_SERIAL/dht11.h:118: 			while(GPIO_ReadInputDataBit(dev->port, dev->pin));
+ 1084              		.loc 3 118 9 discriminator 1 view .LVU272
  1085 0362 0028     		cmp	r0, #0	@ tmp239
  1086 0364 F9D1     		bne	.L55	@
- 123:../5-PWM_LCD_SERIAL/dht11.h **** 			/*while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
- 124:../5-PWM_LCD_SERIAL/dht11.h **** 				if(TIM2->CNT > 100)
- 125:../5-PWM_LCD_SERIAL/dht11.h **** 					return DHT11_ERROR_TIMEOUT;
- 126:../5-PWM_LCD_SERIAL/dht11.h **** 			}*/
- 127:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 128:../5-PWM_LCD_SERIAL/dht11.h **** 			//Calc amount of time passed
- 129:../5-PWM_LCD_SERIAL/dht11.h **** 			temp = TIM_GetCounter(TIM2);
- 1087              		.loc 3 129 4 is_stmt 1 view .LVU273
- 1088              	@ ../5-PWM_LCD_SERIAL/dht11.h:129: 			temp = TIM_GetCounter(TIM2);
- 1089              		.loc 3 129 11 is_stmt 0 view .LVU274
+ 119:../5-PWM_LCD_SERIAL/dht11.h **** 			/*while(!GPIO_ReadInputDataBit(dev->port, dev->pin)) {
+ 120:../5-PWM_LCD_SERIAL/dht11.h **** 				if(TIM2->CNT > 100)
+ 121:../5-PWM_LCD_SERIAL/dht11.h **** 					return DHT11_ERROR_TIMEOUT;
+ 122:../5-PWM_LCD_SERIAL/dht11.h **** 			}*/
+ 123:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 124:../5-PWM_LCD_SERIAL/dht11.h **** 			//Calc amount of time passed
+ 125:../5-PWM_LCD_SERIAL/dht11.h **** 			temp = TIM_GetCounter(TIM2);
+ 1087              		.loc 3 125 4 is_stmt 1 view .LVU273
+ 1088              	@ ../5-PWM_LCD_SERIAL/dht11.h:125: 			temp = TIM_GetCounter(TIM2);
+ 1089              		.loc 3 125 11 is_stmt 0 view .LVU274
  1090 0366 4FF08040 		mov	r0, #1073741824	@,
  1091 036a FFF7FEFF 		bl	TIM_GetCounter		@
  1092              	.LVL35:
- 130:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 131:../5-PWM_LCD_SERIAL/dht11.h **** 			//shift 0
- 132:../5-PWM_LCD_SERIAL/dht11.h **** 			data[j] = data[j] << 1;
- 1093              		.loc 3 132 4 is_stmt 1 view .LVU275
- 1094              	@ ../5-PWM_LCD_SERIAL/dht11.h:132: 			data[j] = data[j] << 1;
- 1095              		.loc 3 132 22 is_stmt 0 view .LVU276
-ARM GAS  /tmp/ccs5bY78.s 			page 29
-
-
+ 126:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 127:../5-PWM_LCD_SERIAL/dht11.h **** 			//shift 0
+ 128:../5-PWM_LCD_SERIAL/dht11.h **** 			data[j] = data[j] << 1;
+ 1093              		.loc 3 128 4 is_stmt 1 view .LVU275
+ 1094              	@ ../5-PWM_LCD_SERIAL/dht11.h:128: 			data[j] = data[j] << 1;
+ 1095              		.loc 3 128 22 is_stmt 0 view .LVU276
  1096 036e 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2	@ MEM[base: _36, offset: 0B], MEM[base: _36, offset: 0B]
- 1097              	@ ../5-PWM_LCD_SERIAL/dht11.h:135: 			if(temp > 40)
- 133:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 134:../5-PWM_LCD_SERIAL/dht11.h **** 			//if > 30us it's 1
- 135:../5-PWM_LCD_SERIAL/dht11.h **** 			if(temp > 40)
- 1098              		.loc 3 135 6 view .LVU277
+ 1097              	@ ../5-PWM_LCD_SERIAL/dht11.h:131: 			if(temp > 40)
+ 129:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ARM GAS  /tmp/ccclVq7k.s 			page 29
+
+
+ 130:../5-PWM_LCD_SERIAL/dht11.h **** 			//if > 30us it's 1
+ 131:../5-PWM_LCD_SERIAL/dht11.h **** 			if(temp > 40)
+ 1098              		.loc 3 131 6 view .LVU277
  1099 0370 C0B2     		uxtb	r0, r0	@ _24, tmp240
- 1100              	@ ../5-PWM_LCD_SERIAL/dht11.h:132: 			data[j] = data[j] << 1;
- 132:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 1101              		.loc 3 132 22 view .LVU278
+ 1100              	@ ../5-PWM_LCD_SERIAL/dht11.h:128: 			data[j] = data[j] << 1;
+ 128:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 1101              		.loc 3 128 22 view .LVU278
  1102 0372 5B00     		lsls	r3, r3, #1	@ tmp213, MEM[base: _36, offset: 0B],
  1103 0374 DBB2     		uxtb	r3, r3	@ _27, tmp213
- 1104              		.loc 3 135 4 is_stmt 1 view .LVU279
- 1105              	@ ../5-PWM_LCD_SERIAL/dht11.h:135: 			if(temp > 40)
- 1106              		.loc 3 135 6 is_stmt 0 view .LVU280
+ 1104              		.loc 3 131 4 is_stmt 1 view .LVU279
+ 1105              	@ ../5-PWM_LCD_SERIAL/dht11.h:131: 			if(temp > 40)
+ 1106              		.loc 3 131 6 is_stmt 0 view .LVU280
  1107 0376 2828     		cmp	r0, #40	@ _24,
- 136:../5-PWM_LCD_SERIAL/dht11.h **** 				data[j] = data[j]+1;
- 1108              		.loc 3 136 5 is_stmt 1 view .LVU281
- 1109              	@ ../5-PWM_LCD_SERIAL/dht11.h:108: 		for(i = 0; i < 8; ++i) {
- 108:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 1110              		.loc 3 108 3 is_stmt 0 view .LVU282
+ 132:../5-PWM_LCD_SERIAL/dht11.h **** 				data[j] = data[j]+1;
+ 1108              		.loc 3 132 5 is_stmt 1 view .LVU281
+ 1109              	@ ../5-PWM_LCD_SERIAL/dht11.h:104: 		for(i = 0; i < 8; ++i) {
+ 104:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 1110              		.loc 3 104 3 is_stmt 0 view .LVU282
  1111 0378 06F1FF36 		add	r6, r6, #-1	@ tmp220, ivtmp_83,
- 1112              	@ ../5-PWM_LCD_SERIAL/dht11.h:136: 				data[j] = data[j]+1;
- 1113              		.loc 3 136 22 view .LVU283
+ 1112              	@ ../5-PWM_LCD_SERIAL/dht11.h:132: 				data[j] = data[j]+1;
+ 1113              		.loc 3 132 22 view .LVU283
  1114 037c 88BF     		it	hi
  1115 037e 0133     		addhi	r3, r3, #1	@ tmp218, _27,
- 1116              	@ ../5-PWM_LCD_SERIAL/dht11.h:108: 		for(i = 0; i < 8; ++i) {
- 108:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 1117              		.loc 3 108 3 view .LVU284
+ 1116              	@ ../5-PWM_LCD_SERIAL/dht11.h:104: 		for(i = 0; i < 8; ++i) {
+ 104:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 1117              		.loc 3 104 3 view .LVU284
  1118 0380 16F0FF06 		ands	r6, r6, #255	@ ivtmp_83, tmp220,
- 1119              	@ ../5-PWM_LCD_SERIAL/dht11.h:136: 				data[j] = data[j]+1;
- 1120              		.loc 3 136 13 view .LVU285
+ 1119              	@ ../5-PWM_LCD_SERIAL/dht11.h:132: 				data[j] = data[j]+1;
+ 1120              		.loc 3 132 13 view .LVU285
  1121 0384 2B70     		strb	r3, [r5]	@ tmp218, MEM[base: _36, offset: 0B]
- 108:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 1122              		.loc 3 108 21 is_stmt 1 view .LVU286
- 108:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 1123              		.loc 3 108 14 view .LVU287
- 1124              	@ ../5-PWM_LCD_SERIAL/dht11.h:108: 		for(i = 0; i < 8; ++i) {
- 108:../5-PWM_LCD_SERIAL/dht11.h **** 			
- 1125              		.loc 3 108 3 is_stmt 0 view .LVU288
+ 104:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 1122              		.loc 3 104 21 is_stmt 1 view .LVU286
+ 104:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 1123              		.loc 3 104 14 view .LVU287
+ 1124              	@ ../5-PWM_LCD_SERIAL/dht11.h:104: 		for(i = 0; i < 8; ++i) {
+ 104:../5-PWM_LCD_SERIAL/dht11.h **** 			
+ 1125              		.loc 3 104 3 is_stmt 0 view .LVU288
  1126 0386 DDD1     		bne	.L54		@,
- 107:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
- 1127              		.loc 3 107 20 is_stmt 1 discriminator 2 view .LVU289
+ 103:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
+ 1127              		.loc 3 103 20 is_stmt 1 discriminator 2 view .LVU289
  1128              	.LVL36:
- 107:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
- 1129              		.loc 3 107 13 discriminator 2 view .LVU290
- 1130              	@ ../5-PWM_LCD_SERIAL/dht11.h:107: 	for(j = 0; j < 5; ++j) {
- 107:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
- 1131              		.loc 3 107 2 is_stmt 0 discriminator 2 view .LVU291
+ 103:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
+ 1129              		.loc 3 103 13 discriminator 2 view .LVU290
+ 1130              	@ ../5-PWM_LCD_SERIAL/dht11.h:103: 	for(j = 0; j < 5; ++j) {
+ 103:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
+ 1131              		.loc 3 103 2 is_stmt 0 discriminator 2 view .LVU291
  1132 0388 013F     		subs	r7, r7, #1	@ tmp221, ivtmp_81,
  1133 038a 17F0FF07 		ands	r7, r7, #255	@ ivtmp_81, tmp221,
  1134 038e 05F10105 		add	r5, r5, #1	@ ivtmp.65, ivtmp.65,
  1135              	.LVL37:
- 107:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
- 1136              		.loc 3 107 2 discriminator 2 view .LVU292
+ 103:../5-PWM_LCD_SERIAL/dht11.h **** 		for(i = 0; i < 8; ++i) {
+ 1136              		.loc 3 103 2 discriminator 2 view .LVU292
  1137 0392 D6D1     		bne	.L53		@,
- 137:../5-PWM_LCD_SERIAL/dht11.h **** 		}
-ARM GAS  /tmp/ccs5bY78.s 			page 30
+ 133:../5-PWM_LCD_SERIAL/dht11.h **** 		}
+ 134:../5-PWM_LCD_SERIAL/dht11.h **** 	}
+ 135:../5-PWM_LCD_SERIAL/dht11.h **** 	
+ 136:../5-PWM_LCD_SERIAL/dht11.h **** 	//verify the Checksum
+ARM GAS  /tmp/ccclVq7k.s 			page 30
 
 
- 138:../5-PWM_LCD_SERIAL/dht11.h **** 	}
- 139:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 140:../5-PWM_LCD_SERIAL/dht11.h **** 	//verify the Checksum
- 141:../5-PWM_LCD_SERIAL/dht11.h **** 	if(data[4] != (data[0] + data[2]))
- 1138              		.loc 3 141 2 is_stmt 1 view .LVU293
- 1139              	@ ../5-PWM_LCD_SERIAL/dht11.h:141: 	if(data[4] != (data[0] + data[2]))
- 1140              		.loc 3 141 21 is_stmt 0 view .LVU294
+ 137:../5-PWM_LCD_SERIAL/dht11.h **** 	if(data[4] != (data[0] + data[2]))
+ 1138              		.loc 3 137 2 is_stmt 1 view .LVU293
+ 1139              	@ ../5-PWM_LCD_SERIAL/dht11.h:137: 	if(data[4] != (data[0] + data[2]))
+ 1140              		.loc 3 137 21 is_stmt 0 view .LVU294
  1141 0394 9DF80830 		ldrb	r3, [sp, #8]	@ zero_extendqisi2	@ _31, data[0]
- 1142              	@ ../5-PWM_LCD_SERIAL/dht11.h:141: 	if(data[4] != (data[0] + data[2]))
- 1143              		.loc 3 141 31 view .LVU295
+ 1142              	@ ../5-PWM_LCD_SERIAL/dht11.h:137: 	if(data[4] != (data[0] + data[2]))
+ 1143              		.loc 3 137 31 view .LVU295
  1144 0398 9DF80A20 		ldrb	r2, [sp, #10]	@ zero_extendqisi2	@ _33, data[2]
- 1145              	@ ../5-PWM_LCD_SERIAL/dht11.h:141: 	if(data[4] != (data[0] + data[2]))
- 1146              		.loc 3 141 9 view .LVU296
+ 1145              	@ ../5-PWM_LCD_SERIAL/dht11.h:137: 	if(data[4] != (data[0] + data[2]))
+ 1146              		.loc 3 137 9 view .LVU296
  1147 039c 9DF80C00 		ldrb	r0, [sp, #12]	@ zero_extendqisi2	@ data[4], data[4]
  1148              	.LVL38:
- 1149              	@ ../5-PWM_LCD_SERIAL/dht11.h:141: 	if(data[4] != (data[0] + data[2]))
- 1150              		.loc 3 141 25 view .LVU297
+ 1149              	@ ../5-PWM_LCD_SERIAL/dht11.h:137: 	if(data[4] != (data[0] + data[2]))
+ 1150              		.loc 3 137 25 view .LVU297
  1151 03a0 9918     		adds	r1, r3, r2	@ tmp223, _31, _33
- 1152              	@ ../5-PWM_LCD_SERIAL/dht11.h:141: 	if(data[4] != (data[0] + data[2]))
- 1153              		.loc 3 141 4 view .LVU298
+ 1152              	@ ../5-PWM_LCD_SERIAL/dht11.h:137: 	if(data[4] != (data[0] + data[2]))
+ 1153              		.loc 3 137 4 view .LVU298
  1154 03a2 8842     		cmp	r0, r1	@ data[4], tmp223
- 142:../5-PWM_LCD_SERIAL/dht11.h **** 		return DHT11_ERROR_CHECKSUM;
+ 138:../5-PWM_LCD_SERIAL/dht11.h **** 		return DHT11_ERROR_CHECKSUM;
+ 139:../5-PWM_LCD_SERIAL/dht11.h **** 	
+ 140:../5-PWM_LCD_SERIAL/dht11.h **** 	//set data
+ 141:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->temparature = data[2];
+ 1155              		.loc 3 141 2 is_stmt 1 view .LVU299
+ 1156              	@ ../5-PWM_LCD_SERIAL/dht11.h:144: 	return DHT11_SUCCESS;
+ 142:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
  143:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 144:../5-PWM_LCD_SERIAL/dht11.h **** 	//set data
- 145:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->temparature = data[2];
- 1155              		.loc 3 145 2 is_stmt 1 view .LVU299
- 1156              	@ ../5-PWM_LCD_SERIAL/dht11.h:148: 	return DHT11_SUCCESS;
- 146:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
- 147:../5-PWM_LCD_SERIAL/dht11.h **** 	
- 148:../5-PWM_LCD_SERIAL/dht11.h **** 	return DHT11_SUCCESS;
- 1157              		.loc 3 148 9 is_stmt 0 view .LVU300
+ 144:../5-PWM_LCD_SERIAL/dht11.h **** 	return DHT11_SUCCESS;
+ 1157              		.loc 3 144 9 is_stmt 0 view .LVU300
  1158 03a4 09BF     		itett	eq
  1159 03a6 0120     		moveq	r0, #1	@ <retval>,
- 1160              	@ ../5-PWM_LCD_SERIAL/dht11.h:142: 		return DHT11_ERROR_CHECKSUM;
- 142:../5-PWM_LCD_SERIAL/dht11.h **** 		return DHT11_ERROR_CHECKSUM;
- 1161              		.loc 3 142 10 view .LVU301
+ 1160              	@ ../5-PWM_LCD_SERIAL/dht11.h:138: 		return DHT11_ERROR_CHECKSUM;
+ 138:../5-PWM_LCD_SERIAL/dht11.h **** 		return DHT11_ERROR_CHECKSUM;
+ 1161              		.loc 3 138 10 view .LVU301
  1162 03a8 0220     		movne	r0, #2	@ <retval>,
- 1163              	@ ../5-PWM_LCD_SERIAL/dht11.h:145: 	dev->temparature = data[2];
- 145:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
- 1164              		.loc 3 145 19 view .LVU302
+ 1163              	@ ../5-PWM_LCD_SERIAL/dht11.h:141: 	dev->temparature = data[2];
+ 141:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
+ 1164              		.loc 3 141 19 view .LVU302
  1165 03aa 2270     		strbeq	r2, [r4]	@ _33, dev_49(D)->temparature
- 146:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
- 1166              		.loc 3 146 2 is_stmt 1 view .LVU303
- 1167              	@ ../5-PWM_LCD_SERIAL/dht11.h:146: 	dev->humidity = data[0];
- 146:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
- 1168              		.loc 3 146 16 is_stmt 0 view .LVU304
+ 142:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
+ 1166              		.loc 3 142 2 is_stmt 1 view .LVU303
+ 1167              	@ ../5-PWM_LCD_SERIAL/dht11.h:142: 	dev->humidity = data[0];
+ 142:../5-PWM_LCD_SERIAL/dht11.h **** 	dev->humidity = data[0];
+ 1168              		.loc 3 142 16 is_stmt 0 view .LVU304
  1169 03ac 6370     		strbeq	r3, [r4, #1]	@ _31, dev_49(D)->humidity
- 1170              		.loc 3 148 2 is_stmt 1 view .LVU305
+ 1170              		.loc 3 144 2 is_stmt 1 view .LVU305
  1171 03ae 04E0     		b	.L44		@
  1172              	.L49:
-  94:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 1173              		.loc 3 94 3 view .LVU306
- 1174              	@ ../5-PWM_LCD_SERIAL/dht11.h:94: 		if(TIM2->CNT > 100)
-  94:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 1175              		.loc 3 94 10 is_stmt 0 view .LVU307
+  90:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 1173              		.loc 3 90 3 view .LVU306
+ 1174              	@ ../5-PWM_LCD_SERIAL/dht11.h:90: 		if(TIM2->CNT > 100)
+  90:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 1175              		.loc 3 90 10 is_stmt 0 view .LVU307
  1176 03b0 AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
  1177 03b2 9BB2     		uxth	r3, r3	@ _10, MEM[(struct TIM_TypeDef *)1073741824B].CNT
-ARM GAS  /tmp/ccs5bY78.s 			page 31
+ 1178              	@ ../5-PWM_LCD_SERIAL/dht11.h:90: 		if(TIM2->CNT > 100)
+  90:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 1179              		.loc 3 90 5 view .LVU308
+ARM GAS  /tmp/ccclVq7k.s 			page 31
 
 
- 1178              	@ ../5-PWM_LCD_SERIAL/dht11.h:94: 		if(TIM2->CNT > 100)
-  94:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 1179              		.loc 3 94 5 view .LVU308
  1180 03b4 642B     		cmp	r3, #100	@ _10,
  1181 03b6 B2D9     		bls	.L47		@,
  1182              	.L51:
- 1183              	@ ../5-PWM_LCD_SERIAL/dht11.h:95: 			return DHT11_ERROR_TIMEOUT;
-  95:../5-PWM_LCD_SERIAL/dht11.h **** 	}
- 1184              		.loc 3 95 11 view .LVU309
+ 1183              	@ ../5-PWM_LCD_SERIAL/dht11.h:91: 			return DHT11_ERROR_TIMEOUT;
+  91:../5-PWM_LCD_SERIAL/dht11.h **** 	}
+ 1184              		.loc 3 91 11 view .LVU309
  1185 03b8 0320     		movs	r0, #3	@ <retval>,
  1186              	.L44:
- 1187              	@ ../5-PWM_LCD_SERIAL/dht11.h:149: }
- 149:../5-PWM_LCD_SERIAL/dht11.h **** }
- 1188              		.loc 3 149 1 view .LVU310
+ 1187              	@ ../5-PWM_LCD_SERIAL/dht11.h:145: }
+ 145:../5-PWM_LCD_SERIAL/dht11.h **** }
+ 1188              		.loc 3 145 1 view .LVU310
  1189 03ba 05B0     		add	sp, sp, #20	@,,
  1190              	.LCFI10:
  1191              		.cfi_remember_state
@@ -1825,16 +1822,16 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1196              	.L52:
  1197              	.LCFI11:
  1198              		.cfi_restore_state
- 102:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 1199              		.loc 3 102 3 is_stmt 1 view .LVU311
- 1200              	@ ../5-PWM_LCD_SERIAL/dht11.h:102: 		if(TIM2->CNT > 100)
- 102:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 1201              		.loc 3 102 10 is_stmt 0 view .LVU312
+  98:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 1199              		.loc 3 98 3 is_stmt 1 view .LVU311
+ 1200              	@ ../5-PWM_LCD_SERIAL/dht11.h:98: 		if(TIM2->CNT > 100)
+  98:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 1201              		.loc 3 98 10 is_stmt 0 view .LVU312
  1202 03be AB8C     		ldrh	r3, [r5, #36]	@, MEM[(struct TIM_TypeDef *)1073741824B].CNT
  1203 03c0 9BB2     		uxth	r3, r3	@ _14, MEM[(struct TIM_TypeDef *)1073741824B].CNT
- 1204              	@ ../5-PWM_LCD_SERIAL/dht11.h:102: 		if(TIM2->CNT > 100)
- 102:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
- 1205              		.loc 3 102 5 view .LVU313
+ 1204              	@ ../5-PWM_LCD_SERIAL/dht11.h:98: 		if(TIM2->CNT > 100)
+  98:../5-PWM_LCD_SERIAL/dht11.h **** 			return DHT11_ERROR_TIMEOUT;
+ 1205              		.loc 3 98 5 view .LVU313
  1206 03c2 642B     		cmp	r3, #100	@ _14,
  1207 03c4 B5D9     		bls	.L50		@,
  1208 03c6 F7E7     		b	.L51		@
@@ -1858,12 +1855,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1223              	.LC5:
  1224 0023 54494D4F 		.ascii	"TIMOUT\000"
  1224      555400
-ARM GAS  /tmp/ccs5bY78.s 			page 32
-
-
  1225              		.text
  1226              		.align	1
  1227              		.global	task3
+ARM GAS  /tmp/ccclVq7k.s 			page 32
+
+
  1228              		.syntax unified
  1229              		.thumb
  1230              		.thumb_func
@@ -1871,18 +1868,18 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1232              	task3:
  1233              	.LVL40:
  1234              	.LFB44:
-  88:../5-PWM_LCD_SERIAL/main.c **** 	/* [1---]
- 1235              		.loc 1 88 47 is_stmt 1 view -0
+  89:../5-PWM_LCD_SERIAL/main.c **** 	/* [1---]
+ 1235              		.loc 1 89 47 is_stmt 1 view -0
  1236              		.cfi_startproc
  1237              		@ args = 0, pretend = 0, frame = 40
  1238              		@ frame_needed = 0, uses_anonymous_args = 0
- 108:../5-PWM_LCD_SERIAL/main.c **** 	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
- 1239              		.loc 1 108 2 view .LVU315
- 109:../5-PWM_LCD_SERIAL/main.c **** 
- 1240              		.loc 1 109 2 view .LVU316
- 1241              	@ ../5-PWM_LCD_SERIAL/main.c:88:  void task3(void *args __attribute ((unused))){
-  88:../5-PWM_LCD_SERIAL/main.c **** 	/* [1---]
- 1242              		.loc 1 88 47 is_stmt 0 view .LVU317
+ 109:../5-PWM_LCD_SERIAL/main.c **** 	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
+ 1239              		.loc 1 109 2 view .LVU315
+ 110:../5-PWM_LCD_SERIAL/main.c **** 
+ 1240              		.loc 1 110 2 view .LVU316
+ 1241              	@ ../5-PWM_LCD_SERIAL/main.c:89:  void task3(void *args __attribute ((unused))){
+  89:../5-PWM_LCD_SERIAL/main.c **** 	/* [1---]
+ 1242              		.loc 1 89 47 is_stmt 0 view .LVU317
  1243 03cc 70B5     		push	{r4, r5, r6, lr}	@
  1244              	.LCFI12:
  1245              		.cfi_def_cfa_offset 16
@@ -1893,111 +1890,111 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1250 03ce 8AB0     		sub	sp, sp, #40	@,,
  1251              	.LCFI13:
  1252              		.cfi_def_cfa_offset 56
- 1253              	@ ../5-PWM_LCD_SERIAL/main.c:109: 	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
- 109:../5-PWM_LCD_SERIAL/main.c **** 
- 1254              		.loc 1 109 2 view .LVU318
+ 1253              	@ ../5-PWM_LCD_SERIAL/main.c:110: 	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
+ 110:../5-PWM_LCD_SERIAL/main.c **** 
+ 1254              		.loc 1 110 2 view .LVU318
  1255 03d0 4022     		movs	r2, #64	@,
  1256 03d2 1E49     		ldr	r1, .L77	@,
  1257 03d4 03A8     		add	r0, sp, #12	@ tmp148,,
  1258              	.LVL41:
- 109:../5-PWM_LCD_SERIAL/main.c **** 
- 1259              		.loc 1 109 2 view .LVU319
+ 110:../5-PWM_LCD_SERIAL/main.c **** 
+ 1259              		.loc 1 110 2 view .LVU319
  1260 03d6 FFF7FEFF 		bl	DHT11_init		@
  1261              	.LVL42:
  1262              	.LBB2:
- 1263              	@ ../5-PWM_LCD_SERIAL/main.c:137: 			strcpy(msg_buf_env, "TIMOUT"); 
- 137:../5-PWM_LCD_SERIAL/main.c **** 
- 1264              		.loc 1 137 4 view .LVU320
+ 1263              	@ ../5-PWM_LCD_SERIAL/main.c:138: 			strcpy(msg_buf_env, "TIMOUT"); 
+ 138:../5-PWM_LCD_SERIAL/main.c **** 
+ 1264              		.loc 1 138 4 view .LVU320
  1265 03da 1D4C     		ldr	r4, .L77+4	@ tmp143,
- 1266              	@ ../5-PWM_LCD_SERIAL/main.c:134: 			strcpy(msg_buf_env, "ERR_checksum"); 
- 134:../5-PWM_LCD_SERIAL/main.c **** 		
- 1267              		.loc 1 134 4 view .LVU321
+ 1266              	@ ../5-PWM_LCD_SERIAL/main.c:135: 			strcpy(msg_buf_env, "ERR_checksum"); 
+ 135:../5-PWM_LCD_SERIAL/main.c **** 		
+ 1267              		.loc 1 135 4 view .LVU321
  1268 03dc 1D4D     		ldr	r5, .L77+8	@ tmp144,
- 1269              	@ ../5-PWM_LCD_SERIAL/main.c:127: 			strcpy(msg_buf_env, "T: ");
- 127:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Temperatura );
- 1270              		.loc 1 127 4 view .LVU322
+ 1269              	@ ../5-PWM_LCD_SERIAL/main.c:128: 			strcpy(msg_buf_env, "T: ");
+ 128:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Temperatura );
+ 1270              		.loc 1 128 4 view .LVU322
  1271 03de 1E4E     		ldr	r6, .L77+12	@ tmp145,
  1272              	.L75:
-ARM GAS  /tmp/ccs5bY78.s 			page 33
-
-
  1273              	.LBE2:
- 111:../5-PWM_LCD_SERIAL/main.c **** 	char  Humidade[4];
- 1274              		.loc 1 111 2 is_stmt 1 view .LVU323
- 112:../5-PWM_LCD_SERIAL/main.c **** 	char 	Temperatura[4];
- 1275              		.loc 1 112 2 view .LVU324
- 113:../5-PWM_LCD_SERIAL/main.c **** 
- 1276              		.loc 1 113 2 view .LVU325
- 115:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
- 1277              		.loc 1 115 2 view .LVU326
+ 112:../5-PWM_LCD_SERIAL/main.c **** 	char  Humidade[4];
+ 1274              		.loc 1 112 2 is_stmt 1 view .LVU323
+ARM GAS  /tmp/ccclVq7k.s 			page 33
+
+
+ 113:../5-PWM_LCD_SERIAL/main.c **** 	char 	Temperatura[4];
+ 1275              		.loc 1 113 2 view .LVU324
+ 114:../5-PWM_LCD_SERIAL/main.c **** 
+ 1276              		.loc 1 114 2 view .LVU325
+ 116:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
+ 1277              		.loc 1 116 2 view .LVU326
  1278              	.LBB3:
- 116:../5-PWM_LCD_SERIAL/main.c **** 
- 1279              		.loc 1 116 3 view .LVU327
+ 117:../5-PWM_LCD_SERIAL/main.c **** 
+ 1279              		.loc 1 117 3 view .LVU327
  1280 03e0 4CF25030 		movw	r0, #50000	@,
  1281 03e4 FFF7FEFF 		bl	vTaskDelay		@
  1282              	.LVL43:
- 118:../5-PWM_LCD_SERIAL/main.c **** 
- 1283              		.loc 1 118 3 view .LVU328
- 1284              	@ ../5-PWM_LCD_SERIAL/main.c:118: 		int leitura_DHT = DHT11_read( &dev );
- 118:../5-PWM_LCD_SERIAL/main.c **** 
- 1285              		.loc 1 118 21 is_stmt 0 view .LVU329
+ 119:../5-PWM_LCD_SERIAL/main.c **** 
+ 1283              		.loc 1 119 3 view .LVU328
+ 1284              	@ ../5-PWM_LCD_SERIAL/main.c:119: 		int leitura_DHT = DHT11_read( &dev );
+ 119:../5-PWM_LCD_SERIAL/main.c **** 
+ 1285              		.loc 1 119 21 is_stmt 0 view .LVU329
  1286 03e8 03A8     		add	r0, sp, #12	@ tmp149,,
  1287 03ea FFF7FEFF 		bl	DHT11_read		@
  1288              	.LVL44:
- 120:../5-PWM_LCD_SERIAL/main.c **** 			
- 1289              		.loc 1 120 3 is_stmt 1 view .LVU330
- 1290              	@ ../5-PWM_LCD_SERIAL/main.c:120: 		if(leitura_DHT == DHT11_SUCCESS) {
- 120:../5-PWM_LCD_SERIAL/main.c **** 			
- 1291              		.loc 1 120 5 is_stmt 0 view .LVU331
+ 121:../5-PWM_LCD_SERIAL/main.c **** 			
+ 1289              		.loc 1 121 3 is_stmt 1 view .LVU330
+ 1290              	@ ../5-PWM_LCD_SERIAL/main.c:121: 		if(leitura_DHT == DHT11_SUCCESS) {
+ 121:../5-PWM_LCD_SERIAL/main.c **** 			
+ 1291              		.loc 1 121 5 is_stmt 0 view .LVU331
  1292 03ee 0128     		cmp	r0, #1	@ leitura_DHT,
  1293 03f0 23D1     		bne	.L72		@,
- 123:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.humidity, Humidade, DEC);
- 1294              		.loc 1 123 4 is_stmt 1 view .LVU332
+ 124:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.humidity, Humidade, DEC);
+ 1294              		.loc 1 124 4 is_stmt 1 view .LVU332
  1295 03f2 0A22     		movs	r2, #10	@,
  1296 03f4 02A9     		add	r1, sp, #8	@ tmp150,,
  1297 03f6 9DF80C00 		ldrb	r0, [sp, #12]	@ zero_extendqisi2	@, dev.temparature
  1298              	.LVL45:
- 123:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.humidity, Humidade, DEC);
- 1299              		.loc 1 123 4 is_stmt 0 view .LVU333
+ 124:../5-PWM_LCD_SERIAL/main.c **** 			itoa(dev.humidity, Humidade, DEC);
+ 1299              		.loc 1 124 4 is_stmt 0 view .LVU333
  1300 03fa FFF7FEFF 		bl	itoa		@
  1301              	.LVL46:
- 124:../5-PWM_LCD_SERIAL/main.c **** 
- 1302              		.loc 1 124 4 is_stmt 1 view .LVU334
+ 125:../5-PWM_LCD_SERIAL/main.c **** 
+ 1302              		.loc 1 125 4 is_stmt 1 view .LVU334
  1303 03fe 0A22     		movs	r2, #10	@,
  1304 0400 01A9     		add	r1, sp, #4	@ tmp151,,
  1305 0402 9DF80D00 		ldrb	r0, [sp, #13]	@ zero_extendqisi2	@, dev.humidity
  1306 0406 FFF7FEFF 		bl	itoa		@
  1307              	.LVL47:
- 127:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Temperatura );
- 1308              		.loc 1 127 4 view .LVU335
+ 128:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Temperatura );
+ 1308              		.loc 1 128 4 view .LVU335
  1309 040a 3146     		mov	r1, r6	@, tmp145
  1310 040c 06A8     		add	r0, sp, #24	@ tmp152,,
  1311 040e FFF7FEFF 		bl	strcpy		@
  1312              	.LVL48:
- 128:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, "H: " );
- 1313              		.loc 1 128 4 view .LVU336
+ 129:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, "H: " );
+ 1313              		.loc 1 129 4 view .LVU336
  1314 0412 02A9     		add	r1, sp, #8	@ tmp153,,
  1315 0414 06A8     		add	r0, sp, #24	@ tmp154,,
-ARM GAS  /tmp/ccs5bY78.s 			page 34
-
-
  1316 0416 FFF7FEFF 		bl	strcat		@
  1317              	.LVL49:
- 129:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Humidade );
- 1318              		.loc 1 129 4 view .LVU337
+ 130:../5-PWM_LCD_SERIAL/main.c **** 			strcat(msg_buf_env, Humidade );
+ARM GAS  /tmp/ccclVq7k.s 			page 34
+
+
+ 1318              		.loc 1 130 4 view .LVU337
  1319 041a 1049     		ldr	r1, .L77+16	@,
  1320 041c 06A8     		add	r0, sp, #24	@ tmp155,,
  1321 041e FFF7FEFF 		bl	strcat		@
  1322              	.LVL50:
- 130:../5-PWM_LCD_SERIAL/main.c **** 		}
- 1323              		.loc 1 130 4 view .LVU338
+ 131:../5-PWM_LCD_SERIAL/main.c **** 		}
+ 1323              		.loc 1 131 4 view .LVU338
  1324 0422 01A9     		add	r1, sp, #4	@ tmp156,,
  1325 0424 06A8     		add	r0, sp, #24	@ tmp157,,
  1326 0426 FFF7FEFF 		bl	strcat		@
  1327              	.LVL51:
  1328              	.L73:
- 139:../5-PWM_LCD_SERIAL/main.c **** 	}
- 1329              		.loc 1 139 3 view .LVU339
+ 140:../5-PWM_LCD_SERIAL/main.c **** 	}
+ 1329              		.loc 1 140 3 view .LVU339
  1330 042a 0023     		movs	r3, #0	@,
  1331 042c 0C48     		ldr	r0, .L77+20	@ tmp140,
  1332 042e 1A46     		mov	r2, r3	@,
@@ -2006,44 +2003,44 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1335 0434 FFF7FEFF 		bl	xQueueGenericSend		@
  1336              	.LVL52:
  1337              	.LBE3:
- 115:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
- 1338              		.loc 1 115 7 view .LVU340
- 1339              	@ ../5-PWM_LCD_SERIAL/main.c:115: 	while(1){
- 115:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
- 1340              		.loc 1 115 10 is_stmt 0 view .LVU341
+ 116:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
+ 1338              		.loc 1 116 7 view .LVU340
+ 1339              	@ ../5-PWM_LCD_SERIAL/main.c:116: 	while(1){
+ 116:../5-PWM_LCD_SERIAL/main.c **** 		__delay_ms(500); // << Rever isso !!
+ 1340              		.loc 1 116 10 is_stmt 0 view .LVU341
  1341 0438 D2E7     		b	.L75		@
  1342              	.LVL53:
  1343              	.L72:
  1344              	.LBB4:
- 133:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "ERR_checksum"); 
- 1345              		.loc 1 133 8 is_stmt 1 view .LVU342
- 1346              	@ ../5-PWM_LCD_SERIAL/main.c:133: 		else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) 
- 133:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "ERR_checksum"); 
- 1347              		.loc 1 133 10 is_stmt 0 view .LVU343
+ 134:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "ERR_checksum"); 
+ 1345              		.loc 1 134 8 is_stmt 1 view .LVU342
+ 1346              	@ ../5-PWM_LCD_SERIAL/main.c:134: 		else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) 
+ 134:../5-PWM_LCD_SERIAL/main.c **** 			strcpy(msg_buf_env, "ERR_checksum"); 
+ 1347              		.loc 1 134 10 is_stmt 0 view .LVU343
  1348 043a 0228     		cmp	r0, #2	@ leitura_DHT,
- 134:../5-PWM_LCD_SERIAL/main.c **** 		
- 1349              		.loc 1 134 4 is_stmt 1 view .LVU344
+ 135:../5-PWM_LCD_SERIAL/main.c **** 		
+ 1349              		.loc 1 135 4 is_stmt 1 view .LVU344
  1350 043c 0CBF     		ite	eq
  1351 043e 2946     		moveq	r1, r5	@, tmp144
- 137:../5-PWM_LCD_SERIAL/main.c **** 
- 1352              		.loc 1 137 4 view .LVU345
+ 138:../5-PWM_LCD_SERIAL/main.c **** 
+ 1352              		.loc 1 138 4 view .LVU345
  1353 0440 2146     		movne	r1, r4	@, tmp143
  1354 0442 06A8     		add	r0, sp, #24	@ tmp159,,
  1355              	.LVL54:
- 137:../5-PWM_LCD_SERIAL/main.c **** 
- 1356              		.loc 1 137 4 is_stmt 0 view .LVU346
+ 138:../5-PWM_LCD_SERIAL/main.c **** 
+ 1356              		.loc 1 138 4 is_stmt 0 view .LVU346
  1357 0444 FFF7FEFF 		bl	strcpy		@
  1358              	.LVL55:
  1359 0448 EFE7     		b	.L73		@
  1360              	.L78:
  1361 044a 00BF     		.align	2
  1362              	.L77:
-ARM GAS  /tmp/ccs5bY78.s 			page 35
-
-
  1363 044c 000C0140 		.word	1073810432
  1364 0450 23000000 		.word	.LC5
  1365 0454 16000000 		.word	.LC4
+ARM GAS  /tmp/ccclVq7k.s 			page 35
+
+
  1366 0458 0E000000 		.word	.LC2
  1367 045c 12000000 		.word	.LC3
  1368 0460 00000000 		.word	.LANCHOR0
@@ -2076,57 +2073,57 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1388              		.type	main, %function
  1389              	main:
  1390              	.LFB46:
- 152:../5-PWM_LCD_SERIAL/main.c **** }
- 153:../5-PWM_LCD_SERIAL/main.c **** 
- 154:../5-PWM_LCD_SERIAL/main.c **** int main(void) {
- 1391              		.loc 1 154 16 is_stmt 1 view -0
+ 153:../5-PWM_LCD_SERIAL/main.c **** }
+ 154:../5-PWM_LCD_SERIAL/main.c **** 
+ 155:../5-PWM_LCD_SERIAL/main.c **** int main(void) {
+ 1391              		.loc 1 155 16 is_stmt 1 view -0
  1392              		.cfi_startproc
  1393              		@ Volatile: function does not return.
  1394              		@ args = 0, pretend = 0, frame = 0
  1395              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156:../5-PWM_LCD_SERIAL/main.c **** 
+ 157:../5-PWM_LCD_SERIAL/main.c **** 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
+ 1396              		.loc 1 157 2 view .LVU348
+ 1397              	@ ../5-PWM_LCD_SERIAL/main.c:155: int main(void) {
  155:../5-PWM_LCD_SERIAL/main.c **** 
- 156:../5-PWM_LCD_SERIAL/main.c **** 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
- 1396              		.loc 1 156 2 view .LVU348
- 1397              	@ ../5-PWM_LCD_SERIAL/main.c:154: int main(void) {
- 154:../5-PWM_LCD_SERIAL/main.c **** 
- 1398              		.loc 1 154 16 is_stmt 0 view .LVU349
+ 1398              		.loc 1 155 16 is_stmt 0 view .LVU349
  1399 0000 07B5     		push	{r0, r1, r2, lr}	@
  1400              	.LCFI14:
  1401              		.cfi_def_cfa_offset 16
  1402              		.cfi_offset 14, -4
- 1403              	@ ../5-PWM_LCD_SERIAL/main.c:156: 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
- 1404              		.loc 1 156 18 view .LVU350
+ 1403              	@ ../5-PWM_LCD_SERIAL/main.c:157: 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
+ 1404              		.loc 1 157 18 view .LVU350
  1405 0002 0022     		movs	r2, #0	@,
  1406 0004 0121     		movs	r1, #1	@,
-ARM GAS  /tmp/ccs5bY78.s 			page 36
-
-
  1407 0006 0220     		movs	r0, #2	@,
- 1408              	@ ../5-PWM_LCD_SERIAL/main.c:160: 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
- 157:../5-PWM_LCD_SERIAL/main.c **** 	
- 158:../5-PWM_LCD_SERIAL/main.c **** 	set_system_clock_to_72Mhz();
- 159:../5-PWM_LCD_SERIAL/main.c **** 
- 160:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
- 1409              		.loc 1 160 2 view .LVU351
+ 1408              	@ ../5-PWM_LCD_SERIAL/main.c:161: 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
+ 158:../5-PWM_LCD_SERIAL/main.c **** 	
+ARM GAS  /tmp/ccclVq7k.s 			page 36
+
+
+ 159:../5-PWM_LCD_SERIAL/main.c **** 	set_system_clock_to_72Mhz();
+ 160:../5-PWM_LCD_SERIAL/main.c **** 
+ 161:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
+ 1409              		.loc 1 161 2 view .LVU351
  1410 0008 0024     		movs	r4, #0	@ tmp118,
- 1411              	@ ../5-PWM_LCD_SERIAL/main.c:156: 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
- 156:../5-PWM_LCD_SERIAL/main.c **** 	
- 1412              		.loc 1 156 18 view .LVU352
+ 1411              	@ ../5-PWM_LCD_SERIAL/main.c:157: 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
+ 157:../5-PWM_LCD_SERIAL/main.c **** 	
+ 1412              		.loc 1 157 18 view .LVU352
  1413 000a FFF7FEFF 		bl	xQueueGenericCreate		@
  1414              	.LVL56:
- 1415              	@ ../5-PWM_LCD_SERIAL/main.c:160: 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
- 1416              		.loc 1 160 2 view .LVU353
+ 1415              	@ ../5-PWM_LCD_SERIAL/main.c:161: 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
+ 1416              		.loc 1 161 2 view .LVU353
  1417 000e 0425     		movs	r5, #4	@ tmp119,
- 1418              	@ ../5-PWM_LCD_SERIAL/main.c:156: 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
- 156:../5-PWM_LCD_SERIAL/main.c **** 	
- 1419              		.loc 1 156 16 view .LVU354
+ 1418              	@ ../5-PWM_LCD_SERIAL/main.c:157: 	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
+ 157:../5-PWM_LCD_SERIAL/main.c **** 	
+ 1419              		.loc 1 157 16 view .LVU354
  1420 0010 134B     		ldr	r3, .L81	@ tmp115,
  1421 0012 1860     		str	r0, [r3]	@ tmp132, LCD_DHT_queue
- 158:../5-PWM_LCD_SERIAL/main.c **** 
- 1422              		.loc 1 158 2 is_stmt 1 view .LVU355
+ 159:../5-PWM_LCD_SERIAL/main.c **** 
+ 1422              		.loc 1 159 2 is_stmt 1 view .LVU355
  1423 0014 FFF7FEFF 		bl	set_system_clock_to_72Mhz		@
  1424              	.LVL57:
- 1425              		.loc 1 160 2 view .LVU356
+ 1425              		.loc 1 161 2 view .LVU356
  1426 0018 1248     		ldr	r0, .L81+4	@,
  1427 001a 2346     		mov	r3, r4	@, tmp118
  1428 001c 6422     		movs	r2, #100	@,
@@ -2134,8 +2131,8 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1430 0020 CDE90054 		strd	r5, r4, [sp]	@ tmp119, tmp118,
  1431 0024 FFF7FEFF 		bl	xTaskCreate		@
  1432              	.LVL58:
- 161:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
- 1433              		.loc 1 161 2 view .LVU357
+ 162:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
+ 1433              		.loc 1 162 2 view .LVU357
  1434 0028 2346     		mov	r3, r4	@, tmp118
  1435 002a 6422     		movs	r2, #100	@,
  1436 002c 0F49     		ldr	r1, .L81+12	@,
@@ -2143,8 +2140,8 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1438 0032 0F48     		ldr	r0, .L81+16	@,
  1439 0034 FFF7FEFF 		bl	xTaskCreate		@
  1440              	.LVL59:
- 162:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task3, "DHT_read", 100 , NULL, 4 , NULL);
- 1441              		.loc 1 162 2 view .LVU358
+ 163:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task3, "DHT_read", 100 , NULL, 4 , NULL);
+ 1441              		.loc 1 163 2 view .LVU358
  1442 0038 2346     		mov	r3, r4	@, tmp118
  1443 003a 6422     		movs	r2, #100	@,
  1444 003c 0D49     		ldr	r1, .L81+20	@,
@@ -2152,29 +2149,29 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1446 0042 0D48     		ldr	r0, .L81+24	@,
  1447 0044 FFF7FEFF 		bl	xTaskCreate		@
  1448              	.LVL60:
- 163:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
- 1449              		.loc 1 163 2 view .LVU359
+ 164:../5-PWM_LCD_SERIAL/main.c **** 	xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
+ 1449              		.loc 1 164 2 view .LVU359
  1450 0048 2346     		mov	r3, r4	@, tmp118
  1451 004a 6422     		movs	r2, #100	@,
  1452 004c 0B49     		ldr	r1, .L81+28	@,
  1453 004e CDE90054 		strd	r5, r4, [sp]	@ tmp119, tmp118,
-ARM GAS  /tmp/ccs5bY78.s 			page 37
-
-
  1454 0052 0B48     		ldr	r0, .L81+32	@,
  1455 0054 FFF7FEFF 		bl	xTaskCreate		@
  1456              	.LVL61:
- 164:../5-PWM_LCD_SERIAL/main.c **** 
- 165:../5-PWM_LCD_SERIAL/main.c **** 	vTaskStartScheduler(); 
- 1457              		.loc 1 165 2 view .LVU360
+ARM GAS  /tmp/ccclVq7k.s 			page 37
+
+
+ 165:../5-PWM_LCD_SERIAL/main.c **** 
+ 166:../5-PWM_LCD_SERIAL/main.c **** 	vTaskStartScheduler(); 
+ 1457              		.loc 1 166 2 view .LVU360
  1458 0058 FFF7FEFF 		bl	vTaskStartScheduler		@
  1459              	.LVL62:
  1460              	.L80:
- 166:../5-PWM_LCD_SERIAL/main.c **** 
- 167:../5-PWM_LCD_SERIAL/main.c **** 	while(1);
- 1461              		.loc 1 167 2 discriminator 1 view .LVU361
- 1462              		.loc 1 167 10 discriminator 1 view .LVU362
- 1463              		.loc 1 167 7 discriminator 1 view .LVU363
+ 167:../5-PWM_LCD_SERIAL/main.c **** 
+ 168:../5-PWM_LCD_SERIAL/main.c **** 	while(1);
+ 1461              		.loc 1 168 2 discriminator 1 view .LVU361
+ 1462              		.loc 1 168 10 discriminator 1 view .LVU362
+ 1463              		.loc 1 168 7 discriminator 1 view .LVU363
  1464 005c FEE7     		b	.L80		@
  1465              	.L82:
  1466 005e 00BF     		.align	2
@@ -2218,12 +2215,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1503              		.file 14 "/usr/arm-none-eabi/include/string.h"
  1504              		.file 15 "../5-PWM_LCD_SERIAL/myLcd.h"
  1505              		.section	.debug_info,"",%progbits
-ARM GAS  /tmp/ccs5bY78.s 			page 38
-
-
  1506              	.Ldebug_info0:
  1507 0000 2C130000 		.4byte	0x132c
  1508 0004 0200     		.2byte	0x2
+ARM GAS  /tmp/ccclVq7k.s 			page 38
+
+
  1509 0006 00000000 		.4byte	.Ldebug_abbrev0
  1510 000a 04       		.byte	0x4
  1511 000b 01       		.uleb128 0x1
@@ -2278,12 +2275,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1560 0072 03       		.uleb128 0x3
  1561 0073 02       		.byte	0x2
  1562 0074 07       		.byte	0x7
-ARM GAS  /tmp/ccs5bY78.s 			page 39
-
-
  1563 0075 C0020000 		.4byte	.LASF8
  1564 0079 03       		.uleb128 0x3
  1565 007a 04       		.byte	0x4
+ARM GAS  /tmp/ccclVq7k.s 			page 39
+
+
  1566 007b 05       		.byte	0x5
  1567 007c 1E020000 		.4byte	.LASF9
  1568 0080 04       		.uleb128 0x4
@@ -2338,12 +2335,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1617 00e1 3F       		.byte	0x3f
  1618 00e2 13       		.byte	0x13
  1619 00e3 BC000000 		.4byte	0xbc
-ARM GAS  /tmp/ccs5bY78.s 			page 40
-
-
  1620 00e7 03       		.uleb128 0x3
  1621 00e8 01       		.byte	0x1
  1622 00e9 08       		.byte	0x8
+ARM GAS  /tmp/ccclVq7k.s 			page 40
+
+
  1623 00ea A3080000 		.4byte	.LASF18
  1624 00ee 04       		.uleb128 0x4
  1625 00ef FC000000 		.4byte	.LASF19
@@ -2398,12 +2395,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1674 0153 01       		.byte	0x1
  1675 0154 0B       		.uleb128 0xb
  1676 0155 46090000 		.4byte	.LASF30
-ARM GAS  /tmp/ccs5bY78.s 			page 41
-
-
  1677 0159 02       		.byte	0x2
  1678 015a 0B       		.uleb128 0xb
  1679 015b C1000000 		.4byte	.LASF31
+ARM GAS  /tmp/ccclVq7k.s 			page 41
+
+
  1680 015f 03       		.byte	0x3
  1681 0160 0B       		.uleb128 0xb
  1682 0161 29080000 		.4byte	.LASF32
@@ -2458,12 +2455,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1731 01c5 14       		.byte	0x14
  1732 01c6 0B       		.uleb128 0xb
  1733 01c7 4F000000 		.4byte	.LASF49
-ARM GAS  /tmp/ccs5bY78.s 			page 42
-
-
  1734 01cb 15       		.byte	0x15
  1735 01cc 0B       		.uleb128 0xb
  1736 01cd 6D0A0000 		.4byte	.LASF50
+ARM GAS  /tmp/ccclVq7k.s 			page 42
+
+
  1737 01d1 16       		.byte	0x16
  1738 01d2 0B       		.uleb128 0xb
  1739 01d3 37020000 		.4byte	.LASF51
@@ -2518,12 +2515,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1788 0237 27       		.byte	0x27
  1789 0238 0B       		.uleb128 0xb
  1790 0239 95040000 		.4byte	.LASF68
-ARM GAS  /tmp/ccs5bY78.s 			page 43
-
-
  1791 023d 28       		.byte	0x28
  1792 023e 0B       		.uleb128 0xb
  1793 023f B5080000 		.4byte	.LASF69
+ARM GAS  /tmp/ccclVq7k.s 			page 43
+
+
  1794 0243 29       		.byte	0x29
  1795 0244 0B       		.uleb128 0xb
  1796 0245 6D090000 		.4byte	.LASF70
@@ -2578,12 +2575,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1845 029d 23       		.byte	0x23
  1846 029e A001     		.uleb128 0xa0
  1847 02a0 0E       		.uleb128 0xe
-ARM GAS  /tmp/ccs5bY78.s 			page 44
-
-
  1848 02a1 1F010000 		.4byte	.LASF76
  1849 02a5 09       		.byte	0x9
  1850 02a6 8A       		.byte	0x8a
+ARM GAS  /tmp/ccclVq7k.s 			page 44
+
+
  1851 02a7 11       		.byte	0x11
  1852 02a8 40030000 		.4byte	0x340
  1853 02ac 03       		.byte	0x3
@@ -2638,12 +2635,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1902 0301 495000   		.ascii	"IP\000"
  1903 0304 09       		.byte	0x9
  1904 0305 90       		.byte	0x90
-ARM GAS  /tmp/ccs5bY78.s 			page 45
-
-
  1905 0306 11       		.byte	0x11
  1906 0307 75030000 		.4byte	0x375
  1907 030b 03       		.byte	0x3
+ARM GAS  /tmp/ccclVq7k.s 			page 45
+
+
  1908 030c 23       		.byte	0x23
  1909 030d 8006     		.uleb128 0x300
  1910 030f 0E       		.uleb128 0xe
@@ -2698,12 +2695,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  1959 0375 05       		.uleb128 0x5
  1960 0376 65030000 		.4byte	0x365
  1961 037a 10       		.uleb128 0x10
-ARM GAS  /tmp/ccs5bY78.s 			page 46
-
-
  1962 037b BC000000 		.4byte	0xbc
  1963 037f 8B030000 		.4byte	0x38b
  1964 0383 12       		.uleb128 0x12
+ARM GAS  /tmp/ccclVq7k.s 			page 46
+
+
  1965 0384 30000000 		.4byte	0x30
  1966 0388 8302     		.2byte	0x283
  1967 038a 00       		.byte	0
@@ -2758,12 +2755,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2016 03e6 11       		.byte	0x11
  2017 03e7 C8000000 		.4byte	0xc8
  2018 03eb 02       		.byte	0x2
-ARM GAS  /tmp/ccs5bY78.s 			page 47
-
-
  2019 03ec 23       		.byte	0x23
  2020 03ed 04       		.uleb128 0x4
  2021 03ee 16       		.uleb128 0x16
+ARM GAS  /tmp/ccclVq7k.s 			page 47
+
+
  2022 03ef 43523200 		.ascii	"CR2\000"
  2023 03f3 08       		.byte	0x8
  2024 03f4 2202     		.2byte	0x222
@@ -2818,12 +2815,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2073 044c 23       		.byte	0x23
  2074 044d 1C       		.uleb128 0x1c
  2075 044e 17       		.uleb128 0x17
-ARM GAS  /tmp/ccs5bY78.s 			page 48
-
-
  2076 044f 89050000 		.4byte	.LASF92
  2077 0453 08       		.byte	0x8
  2078 0454 2802     		.2byte	0x228
+ARM GAS  /tmp/ccclVq7k.s 			page 48
+
+
  2079 0456 11       		.byte	0x11
  2080 0457 C8000000 		.4byte	0xc8
  2081 045b 02       		.byte	0x2
@@ -2878,12 +2875,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2130 04af 37010000 		.4byte	.LASF96
  2131 04b3 08       		.byte	0x8
  2132 04b4 2E02     		.2byte	0x22e
-ARM GAS  /tmp/ccs5bY78.s 			page 49
-
-
  2133 04b6 11       		.byte	0x11
  2134 04b7 C8000000 		.4byte	0xc8
  2135 04bb 02       		.byte	0x2
+ARM GAS  /tmp/ccclVq7k.s 			page 49
+
+
  2136 04bc 23       		.byte	0x23
  2137 04bd 38       		.uleb128 0x38
  2138 04be 17       		.uleb128 0x17
@@ -2938,12 +2935,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2187 0514 3402     		.2byte	0x234
  2188 0516 03       		.byte	0x3
  2189 0517 C5030000 		.4byte	0x3c5
-ARM GAS  /tmp/ccs5bY78.s 			page 50
-
-
  2190 051b 15       		.uleb128 0x15
  2191 051c 24       		.byte	0x24
  2192 051d 08       		.byte	0x8
+ARM GAS  /tmp/ccclVq7k.s 			page 50
+
+
  2193 051e 8503     		.2byte	0x385
  2194 0520 09       		.byte	0x9
  2195 0521 B3050000 		.4byte	0x5b3
@@ -2998,12 +2995,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2244 0578 8C03     		.2byte	0x38c
  2245 057a 11       		.byte	0x11
  2246 057b C8000000 		.4byte	0xc8
-ARM GAS  /tmp/ccs5bY78.s 			page 51
-
-
  2247 057f 02       		.byte	0x2
  2248 0580 23       		.byte	0x23
  2249 0581 14       		.uleb128 0x14
+ARM GAS  /tmp/ccclVq7k.s 			page 51
+
+
  2250 0582 17       		.uleb128 0x17
  2251 0583 EA070000 		.4byte	.LASF104
  2252 0587 08       		.byte	0x8
@@ -3058,12 +3055,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2301 05df 08       		.byte	0x8
  2302 05e0 EC03     		.2byte	0x3ec
  2303 05e2 11       		.byte	0x11
-ARM GAS  /tmp/ccs5bY78.s 			page 52
-
-
  2304 05e3 C8000000 		.4byte	0xc8
  2305 05e7 02       		.byte	0x2
  2306 05e8 23       		.byte	0x23
+ARM GAS  /tmp/ccclVq7k.s 			page 52
+
+
  2307 05e9 04       		.uleb128 0x4
  2308 05ea 16       		.uleb128 0x16
  2309 05eb 49445200 		.ascii	"IDR\000"
@@ -3118,12 +3115,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2358 0643 03       		.byte	0x3
  2359 0644 C0050000 		.4byte	0x5c0
  2360 0648 15       		.uleb128 0x15
-ARM GAS  /tmp/ccs5bY78.s 			page 53
-
-
  2361 0649 30       		.byte	0x30
  2362 064a 08       		.byte	0x8
  2363 064b 3404     		.2byte	0x434
+ARM GAS  /tmp/ccclVq7k.s 			page 53
+
+
  2364 064d 09       		.byte	0x9
  2365 064e 12070000 		.4byte	0x712
  2366 0652 16       		.uleb128 0x16
@@ -3178,12 +3175,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2415 06a9 11       		.byte	0x11
  2416 06aa C8000000 		.4byte	0xc8
  2417 06ae 02       		.byte	0x2
-ARM GAS  /tmp/ccs5bY78.s 			page 54
-
-
  2418 06af 23       		.byte	0x23
  2419 06b0 14       		.uleb128 0x14
  2420 06b1 17       		.uleb128 0x17
+ARM GAS  /tmp/ccclVq7k.s 			page 54
+
+
  2421 06b2 10080000 		.4byte	.LASF114
  2422 06b6 08       		.byte	0x8
  2423 06b7 3C04     		.2byte	0x43c
@@ -3238,12 +3235,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2472 070f 23       		.byte	0x23
  2473 0710 2C       		.uleb128 0x2c
  2474 0711 00       		.byte	0
-ARM GAS  /tmp/ccs5bY78.s 			page 55
-
-
  2475 0712 0C       		.uleb128 0xc
  2476 0713 DA030000 		.4byte	.LASF119
  2477 0717 08       		.byte	0x8
+ARM GAS  /tmp/ccclVq7k.s 			page 55
+
+
  2478 0718 4204     		.2byte	0x442
  2479 071a 03       		.byte	0x3
  2480 071b 48060000 		.4byte	0x648
@@ -3298,12 +3295,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2529 0776 02       		.byte	0x2
  2530 0777 23       		.byte	0x23
  2531 0778 08       		.uleb128 0x8
-ARM GAS  /tmp/ccs5bY78.s 			page 56
-
-
  2532 0779 17       		.uleb128 0x17
  2533 077a 20070000 		.4byte	.LASF77
  2534 077e 08       		.byte	0x8
+ARM GAS  /tmp/ccclVq7k.s 			page 56
+
+
  2535 077f A104     		.2byte	0x4a1
  2536 0781 0D       		.byte	0xd
  2537 0782 AB000000 		.4byte	0xab
@@ -3358,12 +3355,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2586 07d8 17       		.uleb128 0x17
  2587 07d9 3E070000 		.4byte	.LASF82
  2588 07dd 08       		.byte	0x8
-ARM GAS  /tmp/ccs5bY78.s 			page 57
-
-
  2589 07de A704     		.2byte	0x4a7
  2590 07e0 0D       		.byte	0xd
  2591 07e1 AB000000 		.4byte	0xab
+ARM GAS  /tmp/ccclVq7k.s 			page 57
+
+
  2592 07e5 02       		.byte	0x2
  2593 07e6 23       		.byte	0x23
  2594 07e7 16       		.uleb128 0x16
@@ -3418,12 +3415,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2643 083e AD04     		.2byte	0x4ad
  2644 0840 0D       		.byte	0xd
  2645 0841 AB000000 		.4byte	0xab
-ARM GAS  /tmp/ccs5bY78.s 			page 58
-
-
  2646 0845 02       		.byte	0x2
  2647 0846 23       		.byte	0x23
  2648 0847 22       		.uleb128 0x22
+ARM GAS  /tmp/ccclVq7k.s 			page 58
+
+
  2649 0848 16       		.uleb128 0x16
  2650 0849 434E5400 		.ascii	"CNT\000"
  2651 084d 08       		.byte	0x8
@@ -3478,12 +3475,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2700 08a5 02       		.byte	0x2
  2701 08a6 23       		.byte	0x23
  2702 08a7 2E       		.uleb128 0x2e
-ARM GAS  /tmp/ccs5bY78.s 			page 59
-
-
  2703 08a8 16       		.uleb128 0x16
  2704 08a9 52435200 		.ascii	"RCR\000"
  2705 08ad 08       		.byte	0x8
+ARM GAS  /tmp/ccclVq7k.s 			page 59
+
+
  2706 08ae B404     		.2byte	0x4b4
  2707 08b0 11       		.byte	0x11
  2708 08b1 B7000000 		.4byte	0xb7
@@ -3538,12 +3535,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2757 0908 17       		.uleb128 0x17
  2758 0909 A1090000 		.4byte	.LASF137
  2759 090d 08       		.byte	0x8
-ARM GAS  /tmp/ccs5bY78.s 			page 60
-
-
  2760 090e BA04     		.2byte	0x4ba
  2761 0910 11       		.byte	0x11
  2762 0911 B7000000 		.4byte	0xb7
+ARM GAS  /tmp/ccclVq7k.s 			page 60
+
+
  2763 0915 02       		.byte	0x2
  2764 0916 23       		.byte	0x23
  2765 0917 3C       		.uleb128 0x3c
@@ -3598,12 +3595,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2814 096e C004     		.2byte	0x4c0
  2815 0970 11       		.byte	0x11
  2816 0971 B7000000 		.4byte	0xb7
-ARM GAS  /tmp/ccs5bY78.s 			page 61
-
-
  2817 0975 02       		.byte	0x2
  2818 0976 23       		.byte	0x23
  2819 0977 48       		.uleb128 0x48
+ARM GAS  /tmp/ccclVq7k.s 			page 61
+
+
  2820 0978 17       		.uleb128 0x17
  2821 0979 08020000 		.4byte	.LASF143
  2822 097d 08       		.byte	0x8
@@ -3658,12 +3655,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2871 09d6 00       		.byte	0
  2872 09d7 04       		.uleb128 0x4
  2873 09d8 5F030000 		.4byte	.LASF150
-ARM GAS  /tmp/ccs5bY78.s 			page 62
-
-
  2874 09dc 0A       		.byte	0xa
  2875 09dd 3F       		.byte	0x3f
  2876 09de 02       		.byte	0x2
+ARM GAS  /tmp/ccclVq7k.s 			page 62
+
+
  2877 09df B6090000 		.4byte	0x9b6
  2878 09e3 18       		.uleb128 0x18
  2879 09e4 07       		.byte	0x7
@@ -3718,12 +3715,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2928 0a3f AB000000 		.4byte	0xab
  2929 0a43 02       		.byte	0x2
  2930 0a44 23       		.byte	0x23
-ARM GAS  /tmp/ccs5bY78.s 			page 63
-
-
  2931 0a45 00       		.uleb128 0
  2932 0a46 0E       		.uleb128 0xe
  2933 0a47 DA000000 		.4byte	.LASF161
+ARM GAS  /tmp/ccclVq7k.s 			page 63
+
+
  2934 0a4b 0A       		.byte	0xa
  2935 0a4c 60       		.byte	0x60
  2936 0a4d 15       		.byte	0x15
@@ -3778,12 +3775,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  2985 0a9f 0C       		.byte	0xc
  2986 0aa0 AB000000 		.4byte	0xab
  2987 0aa4 02       		.byte	0x2
-ARM GAS  /tmp/ccs5bY78.s 			page 64
-
-
  2988 0aa5 23       		.byte	0x23
  2989 0aa6 04       		.uleb128 0x4
  2990 0aa7 0E       		.uleb128 0xe
+ARM GAS  /tmp/ccclVq7k.s 			page 64
+
+
  2991 0aa8 8C030000 		.4byte	.LASF167
  2992 0aac 0B       		.byte	0xb
  2993 0aad 3F       		.byte	0x3f
@@ -3812,13 +3809,13 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3016 0ad3 06090000 		.4byte	.LASF221
  3017 0ad7 0C       		.byte	0xc
  3018 0ad8 03       		.byte	0x3
- 3019 0ad9 0F       		.byte	0xf
+ 3019 0ad9 0B       		.byte	0xb
  3020 0ada 10       		.byte	0x10
  3021 0adb 1C0B0000 		.4byte	0xb1c
  3022 0adf 0E       		.uleb128 0xe
  3023 0ae0 FC010000 		.4byte	.LASF170
  3024 0ae4 03       		.byte	0x3
- 3025 0ae5 10       		.byte	0x10
+ 3025 0ae5 0C       		.byte	0xc
  3026 0ae6 0A       		.byte	0xa
  3027 0ae7 9A000000 		.4byte	0x9a
  3028 0aeb 02       		.byte	0x2
@@ -3827,7 +3824,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3031 0aee 0E       		.uleb128 0xe
  3032 0aef 61040000 		.4byte	.LASF171
  3033 0af3 03       		.byte	0x3
- 3034 0af4 11       		.byte	0x11
+ 3034 0af4 0D       		.byte	0xd
  3035 0af5 0A       		.byte	0xa
  3036 0af6 9A000000 		.4byte	0x9a
  3037 0afa 02       		.byte	0x2
@@ -3836,19 +3833,19 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3040 0afd 0E       		.uleb128 0xe
  3041 0afe 89040000 		.4byte	.LASF172
  3042 0b02 03       		.byte	0x3
- 3043 0b03 12       		.byte	0x12
+ 3043 0b03 0E       		.byte	0xe
  3044 0b04 10       		.byte	0x10
-ARM GAS  /tmp/ccs5bY78.s 			page 65
-
-
  3045 0b05 1C0B0000 		.4byte	0xb1c
  3046 0b09 02       		.byte	0x2
  3047 0b0a 23       		.byte	0x23
+ARM GAS  /tmp/ccclVq7k.s 			page 65
+
+
  3048 0b0b 04       		.uleb128 0x4
  3049 0b0c 0F       		.uleb128 0xf
  3050 0b0d 70696E00 		.ascii	"pin\000"
  3051 0b11 03       		.byte	0x3
- 3052 0b12 13       		.byte	0x13
+ 3052 0b12 0F       		.byte	0xf
  3053 0b13 0B       		.byte	0xb
  3054 0b14 AB000000 		.4byte	0xab
  3055 0b18 02       		.byte	0x2
@@ -3861,7 +3858,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3062 0b22 1B       		.uleb128 0x1b
  3063 0b23 5F090000 		.4byte	.LASF174
  3064 0b27 01       		.byte	0x1
- 3065 0b28 2A       		.byte	0x2a
+ 3065 0b28 2B       		.byte	0x2b
  3066 0b29 16       		.byte	0x16
  3067 0b2a EE000000 		.4byte	0xee
  3068 0b2e 05       		.byte	0x5
@@ -3871,7 +3868,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3072 0b35 01       		.byte	0x1
  3073 0b36 680A0000 		.4byte	.LASF182
  3074 0b3a 01       		.byte	0x1
- 3075 0b3b 9A       		.byte	0x9a
+ 3075 0b3b 9B       		.byte	0x9b
  3076 0b3c 05       		.byte	0x5
  3077 0b3d 01       		.byte	0x1
  3078 0b3e 29000000 		.4byte	0x29
@@ -3898,12 +3895,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3099 0b6b 01       		.byte	0x1
  3100 0b6c 52       		.byte	0x52
  3101 0b6d 02       		.byte	0x2
-ARM GAS  /tmp/ccs5bY78.s 			page 66
-
-
  3102 0b6e 74       		.byte	0x74
  3103 0b6f 00       		.sleb128 0
  3104 0b70 00       		.byte	0
+ARM GAS  /tmp/ccclVq7k.s 			page 66
+
+
  3105 0b71 1F       		.uleb128 0x1f
  3106 0b72 18000000 		.4byte	.LVL57
  3107 0b76 DE110000 		.4byte	0x11de
@@ -3958,12 +3955,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3156 0bc2 01       		.byte	0x1
  3157 0bc3 50       		.byte	0x50
  3158 0bc4 05       		.byte	0x5
-ARM GAS  /tmp/ccs5bY78.s 			page 67
-
-
  3159 0bc5 03       		.byte	0x3
  3160 0bc6 00000000 		.4byte	task2
  3161 0bca 1E       		.uleb128 0x1e
+ARM GAS  /tmp/ccclVq7k.s 			page 67
+
+
  3162 0bcb 01       		.byte	0x1
  3163 0bcc 51       		.byte	0x51
  3164 0bcd 05       		.byte	0x5
@@ -4018,12 +4015,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3213 0c10 02       		.byte	0x2
  3214 0c11 08       		.byte	0x8
  3215 0c12 64       		.byte	0x64
-ARM GAS  /tmp/ccs5bY78.s 			page 68
-
-
  3216 0c13 1E       		.uleb128 0x1e
  3217 0c14 01       		.byte	0x1
  3218 0c15 53       		.byte	0x53
+ARM GAS  /tmp/ccclVq7k.s 			page 68
+
+
  3219 0c16 02       		.byte	0x2
  3220 0c17 74       		.byte	0x74
  3221 0c18 00       		.sleb128 0
@@ -4078,12 +4075,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3270 0c58 75       		.byte	0x75
  3271 0c59 00       		.sleb128 0
  3272 0c5a 1E       		.uleb128 0x1e
-ARM GAS  /tmp/ccs5bY78.s 			page 69
-
-
  3273 0c5b 02       		.byte	0x2
  3274 0c5c 7D       		.byte	0x7d
  3275 0c5d 04       		.sleb128 4
+ARM GAS  /tmp/ccclVq7k.s 			page 69
+
+
  3276 0c5e 02       		.byte	0x2
  3277 0c5f 74       		.byte	0x74
  3278 0c60 00       		.sleb128 0
@@ -4095,7 +4092,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3284 0c6c 20       		.uleb128 0x20
  3285 0c6d F8030000 		.4byte	.LASF178
  3286 0c71 01       		.byte	0x1
- 3287 0c72 8F       		.byte	0x8f
+ 3287 0c72 90       		.byte	0x90
  3288 0c73 0D       		.byte	0xd
  3289 0c74 01       		.byte	0x1
  3290 0c75 00000000 		.4byte	.LFB45
@@ -4108,7 +4105,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3297 0c85 21       		.uleb128 0x21
  3298 0c86 630A0000 		.4byte	.LASF173
  3299 0c8a 01       		.byte	0x1
- 3300 0c8b 8F       		.byte	0x8f
+ 3300 0c8b 90       		.byte	0x90
  3301 0c8c 19       		.byte	0x19
  3302 0c8d CD000000 		.4byte	0xcd
  3303 0c91 22000000 		.4byte	.LLST0
@@ -4118,7 +4115,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3307 0c9b 01       		.byte	0x1
  3308 0c9c F2030000 		.4byte	.LASF190
  3309 0ca0 01       		.byte	0x1
- 3310 0ca1 58       		.byte	0x58
+ 3310 0ca1 59       		.byte	0x59
  3311 0ca2 07       		.byte	0x7
  3312 0ca3 01       		.byte	0x1
  3313 0ca4 CC030000 		.4byte	.LFB44
@@ -4129,7 +4126,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3318 0cb5 21       		.uleb128 0x21
  3319 0cb6 630A0000 		.4byte	.LASF173
  3320 0cba 01       		.byte	0x1
- 3321 0cbb 58       		.byte	0x58
+ 3321 0cbb 59       		.byte	0x59
  3322 0cbc 13       		.byte	0x13
  3323 0cbd CD000000 		.4byte	0xcd
  3324 0cc1 65000000 		.4byte	.LLST18
@@ -4137,19 +4134,19 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3326 0cc9 23       		.uleb128 0x23
  3327 0cca 64657600 		.ascii	"dev\000"
  3328 0cce 01       		.byte	0x1
- 3329 0ccf 6C       		.byte	0x6c
-ARM GAS  /tmp/ccs5bY78.s 			page 70
-
-
+ 3329 0ccf 6D       		.byte	0x6d
  3330 0cd0 13       		.byte	0x13
  3331 0cd1 D20A0000 		.4byte	0xad2
  3332 0cd5 02       		.byte	0x2
+ARM GAS  /tmp/ccclVq7k.s 			page 70
+
+
  3333 0cd6 91       		.byte	0x91
  3334 0cd7 54       		.sleb128 -44
  3335 0cd8 1B       		.uleb128 0x1b
  3336 0cd9 DE060000 		.4byte	.LASF175
  3337 0cdd 01       		.byte	0x1
- 3338 0cde 6F       		.byte	0x6f
+ 3338 0cde 70       		.byte	0x70
  3339 0cdf 07       		.byte	0x7
  3340 0ce0 370E0000 		.4byte	0xe37
  3341 0ce4 02       		.byte	0x2
@@ -4158,7 +4155,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3344 0ce7 1B       		.uleb128 0x1b
  3345 0ce8 170A0000 		.4byte	.LASF176
  3346 0cec 01       		.byte	0x1
- 3347 0ced 70       		.byte	0x70
+ 3347 0ced 71       		.byte	0x71
  3348 0cee 08       		.byte	0x8
  3349 0cef 470E0000 		.4byte	0xe47
  3350 0cf3 02       		.byte	0x2
@@ -4167,7 +4164,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3353 0cf6 1B       		.uleb128 0x1b
  3354 0cf7 A1000000 		.4byte	.LASF177
  3355 0cfb 01       		.byte	0x1
- 3356 0cfc 71       		.byte	0x71
+ 3356 0cfc 72       		.byte	0x72
  3357 0cfd 08       		.byte	0x8
  3358 0cfe 470E0000 		.4byte	0xe47
  3359 0d02 02       		.byte	0x2
@@ -4179,7 +4176,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3365 0d0e 25       		.uleb128 0x25
  3366 0d0f 55040000 		.4byte	.LASF184
  3367 0d13 01       		.byte	0x1
- 3368 0d14 76       		.byte	0x76
+ 3368 0d14 77       		.byte	0x77
  3369 0d15 07       		.byte	0x7
  3370 0d16 29000000 		.4byte	0x29
  3371 0d1a 8A000000 		.4byte	.LLST19
@@ -4198,12 +4195,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3384 0d37 1D       		.uleb128 0x1d
  3385 0d38 EE030000 		.4byte	.LVL44
  3386 0d3c 5A0F0000 		.4byte	0xf5a
-ARM GAS  /tmp/ccs5bY78.s 			page 71
-
-
  3387 0d40 4B0D0000 		.4byte	0xd4b
  3388 0d44 1E       		.uleb128 0x1e
  3389 0d45 01       		.byte	0x1
+ARM GAS  /tmp/ccclVq7k.s 			page 71
+
+
  3390 0d46 50       		.byte	0x50
  3391 0d47 02       		.byte	0x2
  3392 0d48 91       		.byte	0x91
@@ -4258,12 +4255,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3441 0d94 76       		.byte	0x76
  3442 0d95 00       		.sleb128 0
  3443 0d96 00       		.byte	0
-ARM GAS  /tmp/ccs5bY78.s 			page 72
-
-
  3444 0d97 1D       		.uleb128 0x1d
  3445 0d98 1A040000 		.4byte	.LVL49
  3446 0d9c 61120000 		.4byte	0x1261
+ARM GAS  /tmp/ccclVq7k.s 			page 72
+
+
  3447 0da0 B10D0000 		.4byte	0xdb1
  3448 0da4 1E       		.uleb128 0x1e
  3449 0da5 01       		.byte	0x1
@@ -4318,12 +4315,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3498 0df1 060E0000 		.4byte	0xe06
  3499 0df5 1E       		.uleb128 0x1e
  3500 0df6 01       		.byte	0x1
-ARM GAS  /tmp/ccs5bY78.s 			page 73
-
-
  3501 0df7 51       		.byte	0x51
  3502 0df8 02       		.byte	0x2
  3503 0df9 91       		.byte	0x91
+ARM GAS  /tmp/ccclVq7k.s 			page 73
+
+
  3504 0dfa 60       		.sleb128 -32
  3505 0dfb 1E       		.uleb128 0x1e
  3506 0dfc 01       		.byte	0x1
@@ -4378,19 +4375,19 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3555 0e45 0F       		.byte	0xf
  3556 0e46 00       		.byte	0
  3557 0e47 10       		.uleb128 0x10
-ARM GAS  /tmp/ccs5bY78.s 			page 74
-
-
  3558 0e48 E7000000 		.4byte	0xe7
  3559 0e4c 570E0000 		.4byte	0xe57
  3560 0e50 11       		.uleb128 0x11
+ARM GAS  /tmp/ccclVq7k.s 			page 74
+
+
  3561 0e51 30000000 		.4byte	0x30
  3562 0e55 03       		.byte	0x3
  3563 0e56 00       		.byte	0
  3564 0e57 27       		.uleb128 0x27
  3565 0e58 EC030000 		.4byte	.LASF179
  3566 0e5c 01       		.byte	0x1
- 3567 0e5d 4E       		.byte	0x4e
+ 3567 0e5d 4F       		.byte	0x4f
  3568 0e5e 0D       		.byte	0xd
  3569 0e5f 01       		.byte	0x1
  3570 0e60 02000000 		.4byte	.LFB43
@@ -4401,7 +4398,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3575 0e71 21       		.uleb128 0x21
  3576 0e72 630A0000 		.4byte	.LASF173
  3577 0e76 01       		.byte	0x1
- 3578 0e77 4E       		.byte	0x4e
+ 3578 0e77 4F       		.byte	0x4f
  3579 0e78 19       		.byte	0x19
  3580 0e79 CD000000 		.4byte	0xcd
  3581 0e7d CC000000 		.4byte	.LLST2
@@ -4420,7 +4417,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3594 0e97 27       		.uleb128 0x27
  3595 0e98 E6030000 		.4byte	.LASF180
  3596 0e9c 01       		.byte	0x1
- 3597 0e9d 2C       		.byte	0x2c
+ 3597 0e9d 2D       		.byte	0x2d
  3598 0e9e 0D       		.byte	0xd
  3599 0e9f 01       		.byte	0x1
  3600 0ea0 34000000 		.4byte	.LFB42
@@ -4431,19 +4428,19 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3605 0eb1 21       		.uleb128 0x21
  3606 0eb2 630A0000 		.4byte	.LASF173
  3607 0eb6 01       		.byte	0x1
- 3608 0eb7 2C       		.byte	0x2c
+ 3608 0eb7 2D       		.byte	0x2d
  3609 0eb8 19       		.byte	0x19
  3610 0eb9 CD000000 		.4byte	0xcd
  3611 0ebd 11010000 		.4byte	.LLST4
  3612 0ec1 0D010000 		.4byte	.LVUS4
  3613 0ec5 1B       		.uleb128 0x1b
  3614 0ec6 6D000000 		.4byte	.LASF181
-ARM GAS  /tmp/ccs5bY78.s 			page 75
-
-
  3615 0eca 01       		.byte	0x1
- 3616 0ecb 43       		.byte	0x43
+ 3616 0ecb 44       		.byte	0x44
  3617 0ecc 08       		.byte	0x8
+ARM GAS  /tmp/ccclVq7k.s 			page 75
+
+
  3618 0ecd 370E0000 		.4byte	0xe37
  3619 0ed1 02       		.byte	0x2
  3620 0ed2 91       		.byte	0x91
@@ -4498,12 +4495,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3669 0f2a A8120000 		.4byte	0x12a8
  3670 0f2e 3F0F0000 		.4byte	0xf3f
  3671 0f32 1E       		.uleb128 0x1e
-ARM GAS  /tmp/ccs5bY78.s 			page 76
-
-
  3672 0f33 01       		.byte	0x1
  3673 0f34 51       		.byte	0x51
  3674 0f35 02       		.byte	0x2
+ARM GAS  /tmp/ccclVq7k.s 			page 76
+
+
  3675 0f36 7D       		.byte	0x7d
  3676 0f37 00       		.sleb128 0
  3677 0f38 1E       		.uleb128 0x1e
@@ -4538,7 +4535,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3706 0f5b 01       		.byte	0x1
  3707 0f5c CA000000 		.4byte	.LASF183
  3708 0f60 03       		.byte	0x3
- 3709 0f61 35       		.byte	0x35
+ 3709 0f61 31       		.byte	0x31
  3710 0f62 05       		.byte	0x5
  3711 0f63 01       		.byte	0x1
  3712 0f64 29000000 		.4byte	0x29
@@ -4550,7 +4547,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3718 0f79 28       		.uleb128 0x28
  3719 0f7a 64657600 		.ascii	"dev\000"
  3720 0f7e 03       		.byte	0x3
- 3721 0f7f 35       		.byte	0x35
+ 3721 0f7f 31       		.byte	0x31
  3722 0f80 22       		.byte	0x22
  3723 0f81 6D100000 		.4byte	0x106d
  3724 0f85 7A010000 		.4byte	.LLST13
@@ -4558,18 +4555,18 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3726 0f8d 29       		.uleb128 0x29
  3727 0f8e 6900     		.ascii	"i\000"
  3728 0f90 03       		.byte	0x3
-ARM GAS  /tmp/ccs5bY78.s 			page 77
-
-
- 3729 0f91 38       		.byte	0x38
+ 3729 0f91 34       		.byte	0x34
  3730 0f92 0A       		.byte	0xa
  3731 0f93 9A000000 		.4byte	0x9a
+ARM GAS  /tmp/ccclVq7k.s 			page 77
+
+
  3732 0f97 9A010000 		.4byte	.LLST14
  3733 0f9b 98010000 		.4byte	.LVUS14
  3734 0f9f 29       		.uleb128 0x29
  3735 0fa0 6A00     		.ascii	"j\000"
  3736 0fa2 03       		.byte	0x3
- 3737 0fa3 38       		.byte	0x38
+ 3737 0fa3 34       		.byte	0x34
  3738 0fa4 0D       		.byte	0xd
  3739 0fa5 9A000000 		.4byte	0x9a
  3740 0fa9 B2010000 		.4byte	.LLST15
@@ -4577,7 +4574,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3742 0fb1 25       		.uleb128 0x25
  3743 0fb2 7A030000 		.4byte	.LASF185
  3744 0fb6 03       		.byte	0x3
- 3745 0fb7 38       		.byte	0x38
+ 3745 0fb7 34       		.byte	0x34
  3746 0fb8 10       		.byte	0x10
  3747 0fb9 9A000000 		.4byte	0x9a
  3748 0fbd DE010000 		.4byte	.LLST16
@@ -4585,7 +4582,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3750 0fc5 1B       		.uleb128 0x1b
  3751 0fc6 28040000 		.4byte	.LASF186
  3752 0fca 03       		.byte	0x3
- 3753 0fcb 39       		.byte	0x39
+ 3753 0fcb 35       		.byte	0x35
  3754 0fcc 0A       		.byte	0xa
  3755 0fcd 73100000 		.4byte	0x1073
  3756 0fd1 02       		.byte	0x2
@@ -4594,7 +4591,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3759 0fd4 1B       		.uleb128 0x1b
  3760 0fd5 7B060000 		.4byte	.LASF187
  3761 0fd9 03       		.byte	0x3
- 3762 0fda 3A       		.byte	0x3a
+ 3762 0fda 36       		.byte	0x36
  3763 0fdb 13       		.byte	0x13
  3764 0fdc 650A0000 		.4byte	0xa65
  3765 0fe0 02       		.byte	0x2
@@ -4618,12 +4615,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3783 1001 F6020000 		.4byte	.LVL26
  3784 1005 D5120000 		.4byte	0x12d5
  3785 1009 1D       		.uleb128 0x1d
-ARM GAS  /tmp/ccs5bY78.s 			page 78
-
-
  3786 100a 16030000 		.4byte	.LVL27
  3787 100e B7120000 		.4byte	0x12b7
  3788 1012 1D100000 		.4byte	0x101d
+ARM GAS  /tmp/ccclVq7k.s 			page 78
+
+
  3789 1016 1E       		.uleb128 0x1e
  3790 1017 01       		.byte	0x1
  3791 1018 51       		.byte	0x51
@@ -4678,18 +4675,18 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3840 1073 10       		.uleb128 0x10
  3841 1074 9A000000 		.4byte	0x9a
  3842 1078 83100000 		.4byte	0x1083
-ARM GAS  /tmp/ccs5bY78.s 			page 79
-
-
  3843 107c 11       		.uleb128 0x11
  3844 107d 30000000 		.4byte	0x30
  3845 1081 04       		.byte	0x4
+ARM GAS  /tmp/ccclVq7k.s 			page 79
+
+
  3846 1082 00       		.byte	0
  3847 1083 1C       		.uleb128 0x1c
  3848 1084 01       		.byte	0x1
  3849 1085 4A060000 		.4byte	.LASF188
  3850 1089 03       		.byte	0x3
- 3851 108a 1B       		.byte	0x1b
+ 3851 108a 17       		.byte	0x17
  3852 108b 05       		.byte	0x5
  3853 108c 01       		.byte	0x1
  3854 108d 29000000 		.4byte	0x29
@@ -4701,7 +4698,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3860 10a2 28       		.uleb128 0x28
  3861 10a3 64657600 		.ascii	"dev\000"
  3862 10a7 03       		.byte	0x3
- 3863 10a8 1B       		.byte	0x1b
+ 3863 10a8 17       		.byte	0x17
  3864 10a9 22       		.byte	0x22
  3865 10aa 6D100000 		.4byte	0x106d
  3866 10ae 2D020000 		.4byte	.LLST9
@@ -4709,7 +4706,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3868 10b6 21       		.uleb128 0x21
  3869 10b7 89040000 		.4byte	.LASF172
  3870 10bb 03       		.byte	0x3
- 3871 10bc 1B       		.byte	0x1b
+ 3871 10bc 17       		.byte	0x17
  3872 10bd 35       		.byte	0x35
  3873 10be 1C0B0000 		.4byte	0xb1c
  3874 10c2 53020000 		.4byte	.LLST10
@@ -4717,7 +4714,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3876 10ca 28       		.uleb128 0x28
  3877 10cb 70696E00 		.ascii	"pin\000"
  3878 10cf 03       		.byte	0x3
- 3879 10d0 1B       		.byte	0x1b
+ 3879 10d0 17       		.byte	0x17
  3880 10d1 44       		.byte	0x44
  3881 10d2 AB000000 		.4byte	0xab
  3882 10d6 90020000 		.4byte	.LLST11
@@ -4725,7 +4722,7 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3884 10de 1B       		.uleb128 0x1b
  3885 10df 00000000 		.4byte	.LASF189
  3886 10e3 03       		.byte	0x3
- 3887 10e4 1D       		.byte	0x1d
+ 3887 10e4 19       		.byte	0x19
  3888 10e5 1A       		.byte	0x1a
  3889 10e6 C60A0000 		.4byte	0xac6
  3890 10ea 02       		.byte	0x2
@@ -4734,16 +4731,16 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3893 10ed 1B       		.uleb128 0x1b
  3894 10ee 7B060000 		.4byte	.LASF187
  3895 10f2 03       		.byte	0x3
- 3896 10f3 1F       		.byte	0x1f
+ 3896 10f3 1B       		.byte	0x1b
  3897 10f4 13       		.byte	0x13
  3898 10f5 650A0000 		.4byte	0xa65
  3899 10f9 02       		.byte	0x2
-ARM GAS  /tmp/ccs5bY78.s 			page 80
-
-
  3900 10fa 91       		.byte	0x91
  3901 10fb 60       		.sleb128 -32
  3902 10fc 1D       		.uleb128 0x1d
+ARM GAS  /tmp/ccclVq7k.s 			page 80
+
+
  3903 10fd 84020000 		.4byte	.LVL19
  3904 1101 11130000 		.4byte	0x1311
  3905 1105 17110000 		.4byte	0x1117
@@ -4798,12 +4795,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  3954 114b 01       		.byte	0x1
  3955 114c 40020000 		.4byte	.LFB39
  3956 1150 5C020000 		.4byte	.LFE39
-ARM GAS  /tmp/ccs5bY78.s 			page 81
-
-
  3957 1154 02       		.byte	0x2
  3958 1155 7D       		.byte	0x7d
  3959 1156 00       		.sleb128 0
+ARM GAS  /tmp/ccclVq7k.s 			page 81
+
+
  3960 1157 01       		.byte	0x1
  3961 1158 71110000 		.4byte	0x1171
  3962 115c 21       		.uleb128 0x21
@@ -4858,12 +4855,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4011 11bd 60       		.byte	0x60
  4012 11be 06       		.byte	0x6
  4013 11bf 01       		.byte	0x1
-ARM GAS  /tmp/ccs5bY78.s 			page 82
-
-
  4014 11c0 D0010000 		.4byte	.LFB36
  4015 11c4 00020000 		.4byte	.LFE36
  4016 11c8 FB020000 		.4byte	.LLST5
+ARM GAS  /tmp/ccclVq7k.s 			page 82
+
+
  4017 11cc 01       		.byte	0x1
  4018 11cd DE110000 		.4byte	0x11de
  4019 11d1 2C       		.uleb128 0x2c
@@ -4918,12 +4915,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4068 1226 0D       		.byte	0xd
  4069 1227 2E       		.uleb128 0x2e
  4070 1228 01       		.byte	0x1
-ARM GAS  /tmp/ccs5bY78.s 			page 83
-
-
  4071 1229 01       		.byte	0x1
  4072 122a 32030000 		.4byte	.LASF199
  4073 122e 32030000 		.4byte	.LASF199
+ARM GAS  /tmp/ccclVq7k.s 			page 83
+
+
  4074 1232 0C       		.byte	0xc
  4075 1233 9704     		.2byte	0x497
  4076 1235 06       		.byte	0x6
@@ -4978,12 +4975,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4125 128c 2F       		.uleb128 0x2f
  4126 128d 01       		.byte	0x1
  4127 128e 01       		.byte	0x1
-ARM GAS  /tmp/ccs5bY78.s 			page 84
-
-
  4128 128f CF080000 		.4byte	.LASF206
  4129 1293 CF080000 		.4byte	.LASF206
  4130 1297 0F       		.byte	0xf
+ARM GAS  /tmp/ccclVq7k.s 			page 84
+
+
  4131 1298 2E       		.byte	0x2e
  4132 1299 06       		.byte	0x6
  4133 129a 2F       		.uleb128 0x2f
@@ -5038,12 +5035,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4182 12f4 01       		.byte	0x1
  4183 12f5 01       		.byte	0x1
  4184 12f6 C7090000 		.4byte	.LASF213
-ARM GAS  /tmp/ccs5bY78.s 			page 85
-
-
  4185 12fa C7090000 		.4byte	.LASF213
  4186 12fe 0B       		.byte	0xb
  4187 12ff 6504     		.2byte	0x465
+ARM GAS  /tmp/ccclVq7k.s 			page 85
+
+
  4188 1301 06       		.byte	0x6
  4189 1302 2E       		.uleb128 0x2e
  4190 1303 01       		.byte	0x1
@@ -5098,12 +5095,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4239 0017 00       		.byte	0
  4240 0018 0B       		.uleb128 0xb
  4241 0019 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccs5bY78.s 			page 86
-
-
  4242 001a 3E       		.uleb128 0x3e
  4243 001b 0B       		.uleb128 0xb
  4244 001c 03       		.uleb128 0x3
+ARM GAS  /tmp/ccclVq7k.s 			page 86
+
+
  4245 001d 08       		.uleb128 0x8
  4246 001e 00       		.byte	0
  4247 001f 00       		.byte	0
@@ -5158,12 +5155,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4296 0050 00       		.byte	0
  4297 0051 08       		.uleb128 0x8
  4298 0052 13       		.uleb128 0x13
-ARM GAS  /tmp/ccs5bY78.s 			page 87
-
-
  4299 0053 00       		.byte	0
  4300 0054 03       		.uleb128 0x3
  4301 0055 0E       		.uleb128 0xe
+ARM GAS  /tmp/ccclVq7k.s 			page 87
+
+
  4302 0056 3C       		.uleb128 0x3c
  4303 0057 0C       		.uleb128 0xc
  4304 0058 00       		.byte	0
@@ -5218,12 +5215,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4353 0089 05       		.uleb128 0x5
  4354 008a 39       		.uleb128 0x39
  4355 008b 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccs5bY78.s 			page 88
-
-
  4356 008c 49       		.uleb128 0x49
  4357 008d 13       		.uleb128 0x13
  4358 008e 00       		.byte	0
+ARM GAS  /tmp/ccclVq7k.s 			page 88
+
+
  4359 008f 00       		.byte	0
  4360 0090 0D       		.uleb128 0xd
  4361 0091 13       		.uleb128 0x13
@@ -5278,12 +5275,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4410 00c2 01       		.uleb128 0x1
  4411 00c3 01       		.byte	0x1
  4412 00c4 49       		.uleb128 0x49
-ARM GAS  /tmp/ccs5bY78.s 			page 89
-
-
  4413 00c5 13       		.uleb128 0x13
  4414 00c6 01       		.uleb128 0x1
  4415 00c7 13       		.uleb128 0x13
+ARM GAS  /tmp/ccclVq7k.s 			page 89
+
+
  4416 00c8 00       		.byte	0
  4417 00c9 00       		.byte	0
  4418 00ca 11       		.uleb128 0x11
@@ -5338,12 +5335,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4467 00fb 13       		.uleb128 0x13
  4468 00fc 00       		.byte	0
  4469 00fd 00       		.byte	0
-ARM GAS  /tmp/ccs5bY78.s 			page 90
-
-
  4470 00fe 15       		.uleb128 0x15
  4471 00ff 13       		.uleb128 0x13
  4472 0100 01       		.byte	0x1
+ARM GAS  /tmp/ccclVq7k.s 			page 90
+
+
  4473 0101 0B       		.uleb128 0xb
  4474 0102 0B       		.uleb128 0xb
  4475 0103 3A       		.uleb128 0x3a
@@ -5398,12 +5395,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4524 0134 0B       		.uleb128 0xb
  4525 0135 0B       		.uleb128 0xb
  4526 0136 49       		.uleb128 0x49
-ARM GAS  /tmp/ccs5bY78.s 			page 91
-
-
  4527 0137 13       		.uleb128 0x13
  4528 0138 3A       		.uleb128 0x3a
  4529 0139 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccclVq7k.s 			page 91
+
+
  4530 013a 3B       		.uleb128 0x3b
  4531 013b 0B       		.uleb128 0xb
  4532 013c 39       		.uleb128 0x39
@@ -5458,12 +5455,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4581 016d 49       		.uleb128 0x49
  4582 016e 13       		.uleb128 0x13
  4583 016f 02       		.uleb128 0x2
-ARM GAS  /tmp/ccs5bY78.s 			page 92
-
-
  4584 0170 0A       		.uleb128 0xa
  4585 0171 00       		.byte	0
  4586 0172 00       		.byte	0
+ARM GAS  /tmp/ccclVq7k.s 			page 92
+
+
  4587 0173 1C       		.uleb128 0x1c
  4588 0174 2E       		.uleb128 0x2e
  4589 0175 01       		.byte	0x1
@@ -5518,12 +5515,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4638 01ae 00       		.byte	0
  4639 01af 11       		.uleb128 0x11
  4640 01b0 01       		.uleb128 0x1
-ARM GAS  /tmp/ccs5bY78.s 			page 93
-
-
  4641 01b1 31       		.uleb128 0x31
  4642 01b2 13       		.uleb128 0x13
  4643 01b3 00       		.byte	0
+ARM GAS  /tmp/ccclVq7k.s 			page 93
+
+
  4644 01b4 00       		.byte	0
  4645 01b5 20       		.uleb128 0x20
  4646 01b6 2E       		.uleb128 0x2e
@@ -5578,12 +5575,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4695 01e9 0E       		.uleb128 0xe
  4696 01ea 3A       		.uleb128 0x3a
  4697 01eb 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccs5bY78.s 			page 94
-
-
  4698 01ec 3B       		.uleb128 0x3b
  4699 01ed 0B       		.uleb128 0xb
  4700 01ee 39       		.uleb128 0x39
+ARM GAS  /tmp/ccclVq7k.s 			page 94
+
+
  4701 01ef 0B       		.uleb128 0xb
  4702 01f0 27       		.uleb128 0x27
  4703 01f1 0C       		.uleb128 0xc
@@ -5638,12 +5635,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4752 0223 0B       		.uleb128 0xb
  4753 0224 49       		.uleb128 0x49
  4754 0225 13       		.uleb128 0x13
-ARM GAS  /tmp/ccs5bY78.s 			page 95
-
-
  4755 0226 02       		.uleb128 0x2
  4756 0227 06       		.uleb128 0x6
  4757 0228 B742     		.uleb128 0x2137
+ARM GAS  /tmp/ccclVq7k.s 			page 95
+
+
  4758 022a 06       		.uleb128 0x6
  4759 022b 00       		.byte	0
  4760 022c 00       		.byte	0
@@ -5698,12 +5695,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4809 0260 06       		.uleb128 0x6
  4810 0261 B742     		.uleb128 0x2137
  4811 0263 06       		.uleb128 0x6
-ARM GAS  /tmp/ccs5bY78.s 			page 96
-
-
  4812 0264 00       		.byte	0
  4813 0265 00       		.byte	0
  4814 0266 29       		.uleb128 0x29
+ARM GAS  /tmp/ccclVq7k.s 			page 96
+
+
  4815 0267 34       		.uleb128 0x34
  4816 0268 00       		.byte	0
  4817 0269 03       		.uleb128 0x3
@@ -5758,12 +5755,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4866 029c 0E       		.uleb128 0xe
  4867 029d 3A       		.uleb128 0x3a
  4868 029e 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccs5bY78.s 			page 97
-
-
  4869 029f 3B       		.uleb128 0x3b
  4870 02a0 0B       		.uleb128 0xb
  4871 02a1 39       		.uleb128 0x39
+ARM GAS  /tmp/ccclVq7k.s 			page 97
+
+
  4872 02a2 0B       		.uleb128 0xb
  4873 02a3 27       		.uleb128 0x27
  4874 02a4 0C       		.uleb128 0xc
@@ -5818,12 +5815,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4923 02d7 00       		.byte	0
  4924 02d8 00       		.byte	0
  4925 02d9 2E       		.uleb128 0x2e
-ARM GAS  /tmp/ccs5bY78.s 			page 98
-
-
  4926 02da 2E       		.uleb128 0x2e
  4927 02db 00       		.byte	0
  4928 02dc 3F       		.uleb128 0x3f
+ARM GAS  /tmp/ccclVq7k.s 			page 98
+
+
  4929 02dd 0C       		.uleb128 0xc
  4930 02de 3C       		.uleb128 0x3c
  4931 02df 0C       		.uleb128 0xc
@@ -5878,12 +5875,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  4980 0020 01       		.uleb128 .LVU1
  4981 0021 00       		.uleb128 0
  4982              	.LLST0:
-ARM GAS  /tmp/ccs5bY78.s 			page 99
-
-
  4983 0022 00000000 		.4byte	.LVL0
  4984 0026 02000000 		.4byte	.LFE45
  4985 002a 0100     		.2byte	0x1
+ARM GAS  /tmp/ccclVq7k.s 			page 99
+
+
  4986 002c 50       		.byte	0x50
  4987 002d 00000000 		.4byte	0
  4988 0031 00000000 		.4byte	0
@@ -5938,12 +5935,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5037 0099 44040000 		.4byte	.LVL54
  5038 009d 0100     		.2byte	0x1
  5039 009f 50       		.byte	0x50
-ARM GAS  /tmp/ccs5bY78.s 			page 100
-
-
  5040 00a0 00000000 		.4byte	0
  5041 00a4 00000000 		.4byte	0
  5042              	.LLST1:
+ARM GAS  /tmp/ccclVq7k.s 			page 100
+
+
  5043 00a8 02000000 		.4byte	.LFB43
  5044 00ac 06000000 		.4byte	.LCFI0
  5045 00b0 0200     		.2byte	0x2
@@ -5998,12 +5995,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5094 0115 8D000000 		.4byte	.LVL5-1
  5095 0119 0100     		.2byte	0x1
  5096 011b 50       		.byte	0x50
-ARM GAS  /tmp/ccs5bY78.s 			page 101
-
-
  5097 011c 8D000000 		.4byte	.LVL5-1
  5098 0120 D0000000 		.4byte	.LFE42
  5099 0124 0400     		.2byte	0x4
+ARM GAS  /tmp/ccclVq7k.s 			page 101
+
+
  5100 0126 F3       		.byte	0xf3
  5101 0127 01       		.uleb128 0x1
  5102 0128 50       		.byte	0x50
@@ -6058,12 +6055,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5151 0198 00       		.uleb128 .LVU261
  5152 0199 00       		.uleb128 .LVU263
  5153              	.LLST14:
-ARM GAS  /tmp/ccs5bY78.s 			page 102
-
-
  5154 019a 42030000 		.4byte	.LVL30
  5155 019e 44030000 		.4byte	.LVL31
  5156 01a2 0200     		.2byte	0x2
+ARM GAS  /tmp/ccclVq7k.s 			page 102
+
+
  5157 01a4 30       		.byte	0x30
  5158 01a5 9F       		.byte	0x9f
  5159 01a6 00000000 		.4byte	0
@@ -6118,12 +6115,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5208 0207 7D       		.byte	0x7d
  5209 0208 0C       		.sleb128 12
  5210 0209 64020000 		.4byte	.LCFI6
-ARM GAS  /tmp/ccs5bY78.s 			page 103
-
-
  5211 020d A8020000 		.4byte	.LCFI7
  5212 0211 0200     		.2byte	0x2
  5213 0213 7D       		.byte	0x7d
+ARM GAS  /tmp/ccclVq7k.s 			page 103
+
+
  5214 0214 20       		.sleb128 32
  5215 0215 A8020000 		.4byte	.LCFI7
  5216 0219 AA020000 		.4byte	.LFE40
@@ -6178,12 +6175,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5265 0280 F3       		.byte	0xf3
  5266 0281 01       		.uleb128 0x1
  5267 0282 51       		.byte	0x51
-ARM GAS  /tmp/ccs5bY78.s 			page 104
-
-
  5268 0283 9F       		.byte	0x9f
  5269 0284 00000000 		.4byte	0
  5270 0288 00000000 		.4byte	0
+ARM GAS  /tmp/ccclVq7k.s 			page 104
+
+
  5271              	.LVUS11:
  5272 028c 00       		.uleb128 0
  5273 028d 00       		.uleb128 .LVU191
@@ -6238,12 +6235,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5322 02ef F3       		.byte	0xf3
  5323 02f0 01       		.uleb128 0x1
  5324 02f1 50       		.byte	0x50
-ARM GAS  /tmp/ccs5bY78.s 			page 105
-
-
  5325 02f2 9F       		.byte	0x9f
  5326 02f3 00000000 		.4byte	0
  5327 02f7 00000000 		.4byte	0
+ARM GAS  /tmp/ccclVq7k.s 			page 105
+
+
  5328              	.LLST5:
  5329 02fb D0010000 		.4byte	.LFB36
  5330 02ff D2010000 		.4byte	.LCFI2
@@ -6298,12 +6295,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5379 0030 00000000 		.4byte	0
  5380 0034 00000000 		.4byte	0
  5381              		.section	.debug_line,"",%progbits
-ARM GAS  /tmp/ccs5bY78.s 			page 106
-
-
  5382              	.Ldebug_line0:
  5383 0000 5D080000 		.section	.debug_str,"MS",%progbits,1
  5383      03000F02 
+ARM GAS  /tmp/ccclVq7k.s 			page 106
+
+
  5383      00000201 
  5383      FB0E0D00 
  5383      01010101 
@@ -6358,12 +6355,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5405      00
  5406              	.LASF6:
  5407 0086 5F5F7569 		.ascii	"__uint8_t\000"
-ARM GAS  /tmp/ccs5bY78.s 			page 107
-
-
  5407      6E74385F 
  5407      7400
  5408              	.LASF147:
+ARM GAS  /tmp/ccclVq7k.s 			page 107
+
+
  5409 0090 4750494F 		.ascii	"GPIO_Speed_10MHz\000"
  5409      5F537065 
  5409      65645F31 
@@ -6418,12 +6415,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5433      5F495251 
  5433      6E00
  5434              	.LASF76:
-ARM GAS  /tmp/ccs5bY78.s 			page 108
-
-
  5435 011f 49535052 		.ascii	"ISPR\000"
  5435      00
  5436              	.LASF201:
+ARM GAS  /tmp/ccclVq7k.s 			page 108
+
+
  5437 0124 69746F61 		.ascii	"itoa\000"
  5437      00
  5438              	.LASF153:
@@ -6478,12 +6475,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5462              	.LASF130:
  5463 01ac 52455345 		.ascii	"RESERVED10\000"
  5463      52564544 
-ARM GAS  /tmp/ccs5bY78.s 			page 109
-
-
  5463      313000
  5464              	.LASF131:
  5465 01b7 52455345 		.ascii	"RESERVED11\000"
+ARM GAS  /tmp/ccclVq7k.s 			page 109
+
+
  5465      52564544 
  5465      313100
  5466              	.LASF132:
@@ -6538,12 +6535,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5490              	.LASF127:
  5491 0244 43434552 		.ascii	"CCER\000"
  5491      00
-ARM GAS  /tmp/ccs5bY78.s 			page 110
-
-
  5492              	.LASF152:
  5493 0249 4750494F 		.ascii	"GPIO_Mode_IN_FLOATING\000"
  5493      5F4D6F64 
+ARM GAS  /tmp/ccclVq7k.s 			page 110
+
+
  5493      655F494E 
  5493      5F464C4F 
  5493      4154494E 
@@ -6598,12 +6595,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5516              	.LASF7:
  5517 02e6 5F5F7569 		.ascii	"__uint16_t\000"
  5517      6E743136 
-ARM GAS  /tmp/ccs5bY78.s 			page 111
-
-
  5517      5F7400
  5518              	.LASF212:
  5519 02f1 4750494F 		.ascii	"GPIO_ReadInputDataBit\000"
+ARM GAS  /tmp/ccclVq7k.s 			page 111
+
+
  5519      5F526561 
  5519      64496E70 
  5519      75744461 
@@ -6658,12 +6655,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5539      00
  5540              	.LASF167:
  5541 038c 54494D5F 		.ascii	"TIM_ClockDivision\000"
-ARM GAS  /tmp/ccs5bY78.s 			page 112
-
-
  5541      436C6F63 
  5541      6B446976 
  5541      6973696F 
+ARM GAS  /tmp/ccclVq7k.s 			page 112
+
+
  5541      6E00
  5542              	.LASF74:
  5543 039e 49434552 		.ascii	"ICER\000"
@@ -6718,12 +6715,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5565      00
  5566              	.LASF157:
  5567 042d 4750494F 		.ascii	"GPIO_Mode_AF_OD\000"
-ARM GAS  /tmp/ccs5bY78.s 			page 113
-
-
  5567      5F4D6F64 
  5567      655F4146 
  5567      5F4F4400 
+ARM GAS  /tmp/ccclVq7k.s 			page 113
+
+
  5568              	.LASF43:
  5569 043d 444D4131 		.ascii	"DMA1_Channel5_IRQn\000"
  5569      5F436861 
@@ -6778,12 +6775,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5589      202D666F 
  5589      6D69742D 
  5589      6672616D 
-ARM GAS  /tmp/ccs5bY78.s 			page 114
-
-
  5589      652D706F 
  5590              	.LASF63:
  5591 0524 53504931 		.ascii	"SPI1_IRQn\000"
+ARM GAS  /tmp/ccclVq7k.s 			page 114
+
+
  5591      5F495251 
  5591      6E00
  5592              	.LASF202:
@@ -6838,12 +6835,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5617      50726573 
  5617      63616C65 
  5617      7200
-ARM GAS  /tmp/ccs5bY78.s 			page 115
-
-
  5618              	.LASF219:
  5619 05b0 2F686F6D 		.ascii	"/home/junior/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/5-P"
  5619      652F6A75 
+ARM GAS  /tmp/ccclVq7k.s 			page 115
+
+
  5619      6E696F72 
  5619      2F436F64 
  5619      69676F73 
@@ -6898,12 +6895,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5643              	.LASF193:
  5644 066a 656E6162 		.ascii	"enable_interrupt\000"
  5644      6C655F69 
-ARM GAS  /tmp/ccs5bY78.s 			page 116
-
-
  5644      6E746572 
  5644      72757074 
  5644      00
+ARM GAS  /tmp/ccclVq7k.s 			page 116
+
+
  5645              	.LASF187:
  5646 067b 4750494F 		.ascii	"GPIO_InitStructure\000"
  5646      5F496E69 
@@ -6958,12 +6955,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5670 06f9 444D4131 		.ascii	"DMA1_Channel1_IRQn\000"
  5670      5F436861 
  5670      6E6E656C 
-ARM GAS  /tmp/ccs5bY78.s 			page 117
-
-
  5670      315F4952 
  5670      516E00
  5671              	.LASF73:
+ARM GAS  /tmp/ccclVq7k.s 			page 117
+
+
  5672 070c 52455345 		.ascii	"RESERVED0\000"
  5672      52564544 
  5672      3000
@@ -7018,12 +7015,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5696 0792 5553425F 		.ascii	"USB_LP_CAN1_RX0_IRQn\000"
  5696      4C505F43 
  5696      414E315F 
-ARM GAS  /tmp/ccs5bY78.s 			page 118
-
-
  5696      5258305F 
  5696      4952516E 
  5697              	.LASF47:
+ARM GAS  /tmp/ccclVq7k.s 			page 118
+
+
  5698 07a7 5553425F 		.ascii	"USB_HP_CAN1_TX_IRQn\000"
  5698      48505F43 
  5698      414E315F 
@@ -7078,12 +7075,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5721              	.LASF191:
  5722 0834 64697361 		.ascii	"disable_interrupt\000"
  5722      626C655F 
-ARM GAS  /tmp/ccs5bY78.s 			page 119
-
-
  5722      696E7465 
  5722      72727570 
  5722      7400
+ARM GAS  /tmp/ccclVq7k.s 			page 119
+
+
  5723              	.LASF71:
  5724 0846 4952516E 		.ascii	"IRQn_Type\000"
  5724      5F547970 
@@ -7138,12 +7135,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5748      52516E00 
  5749              	.LASF206:
  5750 08cf 64697370 		.ascii	"disp_cmd\000"
-ARM GAS  /tmp/ccs5bY78.s 			page 120
-
-
  5750      5F636D64 
  5750      00
  5751              	.LASF166:
+ARM GAS  /tmp/ccclVq7k.s 			page 120
+
+
  5752 08d8 54494D5F 		.ascii	"TIM_Period\000"
  5752      50657269 
  5752      6F6400
@@ -7198,12 +7195,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5772      516E00
  5773              	.LASF205:
  5774 097c 64697370 		.ascii	"disp_init\000"
-ARM GAS  /tmp/ccs5bY78.s 			page 121
-
-
  5774      5F696E69 
  5774      7400
  5775              	.LASF67:
+ARM GAS  /tmp/ccclVq7k.s 			page 121
+
+
  5776 0986 55534152 		.ascii	"USART3_IRQn\000"
  5776      54335F49 
  5776      52516E00 
@@ -7258,12 +7255,12 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5804      74697469 
  5804      6F6E436F 
  5804      756E7465 
-ARM GAS  /tmp/ccs5bY78.s 			page 122
-
-
  5805              	.LASF99:
  5806 0a0d 4A445233 		.ascii	"JDR3\000"
  5806      00
+ARM GAS  /tmp/ccclVq7k.s 			page 122
+
+
  5807              	.LASF100:
  5808 0a12 4A445234 		.ascii	"JDR4\000"
  5808      00
@@ -7318,53 +7315,50 @@ ARM GAS  /tmp/ccs5bY78.s 			page 1
  5831              	.LASF35:
  5832 0a8e 45585449 		.ascii	"EXTI1_IRQn\000"
  5832      315F4952 
-ARM GAS  /tmp/ccs5bY78.s 			page 123
-
-
  5832      516E00
  5833              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  /tmp/ccs5bY78.s 			page 124
+ARM GAS  /tmp/ccclVq7k.s 			page 123
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 main.c
-     /tmp/ccs5bY78.s:78     .text:0000000000000000 $t
-     /tmp/ccs5bY78.s:83     .text:0000000000000000 task4
-     /tmp/ccs5bY78.s:106    .text:0000000000000002 task2
-     /tmp/ccs5bY78.s:163    .text:000000000000002c $d
-     /tmp/ccs5bY78.s:172    .text:0000000000000034 $t
-     /tmp/ccs5bY78.s:177    .text:0000000000000034 task1
-     /tmp/ccs5bY78.s:281    .text:00000000000000bc $d
-     /tmp/ccs5bY78.s:289    .text:00000000000000d0 $t
-     /tmp/ccs5bY78.s:295    .text:00000000000000d0 ADC1_configure
-     /tmp/ccs5bY78.s:423    .text:0000000000000150 $d
-     /tmp/ccs5bY78.s:429    .text:000000000000015c $t
-     /tmp/ccs5bY78.s:435    .text:000000000000015c set_system_clock_to_72Mhz
-     /tmp/ccs5bY78.s:543    .text:00000000000001cc $d
-     /tmp/ccs5bY78.s:547    .text:00000000000001d0 $t
-     /tmp/ccs5bY78.s:553    .text:00000000000001d0 Delay
-     /tmp/ccs5bY78.s:624    .text:00000000000001fc $d
-     /tmp/ccs5bY78.s:628    .text:0000000000000200 $t
-     /tmp/ccs5bY78.s:634    .text:0000000000000200 enable_TIM3_delay
-     /tmp/ccs5bY78.s:672    .text:0000000000000224 $d
-     /tmp/ccs5bY78.s:676    .text:0000000000000228 $t
-     /tmp/ccs5bY78.s:682    .text:0000000000000228 enable_interrupt
-     /tmp/ccs5bY78.s:714    .text:000000000000023c $d
-     /tmp/ccs5bY78.s:718    .text:0000000000000240 $t
-     /tmp/ccs5bY78.s:724    .text:0000000000000240 disable_interrupt
-     /tmp/ccs5bY78.s:757    .text:0000000000000258 $d
-     /tmp/ccs5bY78.s:761    .text:000000000000025c $t
-     /tmp/ccs5bY78.s:767    .text:000000000000025c DHT11_init
-     /tmp/ccs5bY78.s:878    .text:00000000000002aa DHT11_read
-     /tmp/ccs5bY78.s:1212   .text:00000000000003c8 $d
-     /tmp/ccs5bY78.s:1226   .text:00000000000003cc $t
-     /tmp/ccs5bY78.s:1232   .text:00000000000003cc task3
-     /tmp/ccs5bY78.s:1363   .text:000000000000044c $d
-     /tmp/ccs5bY78.s:1383   .text.startup:0000000000000000 $t
-     /tmp/ccs5bY78.s:1389   .text.startup:0000000000000000 main
-     /tmp/ccs5bY78.s:1468   .text.startup:0000000000000060 $d
-     /tmp/ccs5bY78.s:1485   .bss:0000000000000000 $d
-     /tmp/ccs5bY78.s:1489   .bss:0000000000000000 LCD_DHT_queue
+     /tmp/ccclVq7k.s:78     .text:0000000000000000 $t
+     /tmp/ccclVq7k.s:83     .text:0000000000000000 task4
+     /tmp/ccclVq7k.s:106    .text:0000000000000002 task2
+     /tmp/ccclVq7k.s:163    .text:000000000000002c $d
+     /tmp/ccclVq7k.s:172    .text:0000000000000034 $t
+     /tmp/ccclVq7k.s:177    .text:0000000000000034 task1
+     /tmp/ccclVq7k.s:281    .text:00000000000000bc $d
+     /tmp/ccclVq7k.s:289    .text:00000000000000d0 $t
+     /tmp/ccclVq7k.s:295    .text:00000000000000d0 ADC1_configure
+     /tmp/ccclVq7k.s:423    .text:0000000000000150 $d
+     /tmp/ccclVq7k.s:429    .text:000000000000015c $t
+     /tmp/ccclVq7k.s:435    .text:000000000000015c set_system_clock_to_72Mhz
+     /tmp/ccclVq7k.s:543    .text:00000000000001cc $d
+     /tmp/ccclVq7k.s:547    .text:00000000000001d0 $t
+     /tmp/ccclVq7k.s:553    .text:00000000000001d0 Delay
+     /tmp/ccclVq7k.s:624    .text:00000000000001fc $d
+     /tmp/ccclVq7k.s:628    .text:0000000000000200 $t
+     /tmp/ccclVq7k.s:634    .text:0000000000000200 enable_TIM3_delay
+     /tmp/ccclVq7k.s:672    .text:0000000000000224 $d
+     /tmp/ccclVq7k.s:676    .text:0000000000000228 $t
+     /tmp/ccclVq7k.s:682    .text:0000000000000228 enable_interrupt
+     /tmp/ccclVq7k.s:714    .text:000000000000023c $d
+     /tmp/ccclVq7k.s:718    .text:0000000000000240 $t
+     /tmp/ccclVq7k.s:724    .text:0000000000000240 disable_interrupt
+     /tmp/ccclVq7k.s:757    .text:0000000000000258 $d
+     /tmp/ccclVq7k.s:761    .text:000000000000025c $t
+     /tmp/ccclVq7k.s:767    .text:000000000000025c DHT11_init
+     /tmp/ccclVq7k.s:878    .text:00000000000002aa DHT11_read
+     /tmp/ccclVq7k.s:1212   .text:00000000000003c8 $d
+     /tmp/ccclVq7k.s:1226   .text:00000000000003cc $t
+     /tmp/ccclVq7k.s:1232   .text:00000000000003cc task3
+     /tmp/ccclVq7k.s:1363   .text:000000000000044c $d
+     /tmp/ccclVq7k.s:1383   .text.startup:0000000000000000 $t
+     /tmp/ccclVq7k.s:1389   .text.startup:0000000000000000 main
+     /tmp/ccclVq7k.s:1468   .text.startup:0000000000000060 $d
+     /tmp/ccclVq7k.s:1485   .bss:0000000000000000 $d
+     /tmp/ccclVq7k.s:1489   .bss:0000000000000000 LCD_DHT_queue
 
 UNDEFINED SYMBOLS
 vTaskDelay
@@ -7383,7 +7377,7 @@ TIM_GetCounter
 itoa
 strcpy
 strcat
-ARM GAS  /tmp/ccs5bY78.s 			page 125
+ARM GAS  /tmp/ccclVq7k.s 			page 124
 
 
 xQueueGenericSend
