@@ -42,6 +42,41 @@
 
 static QueueHandle_t LCD_DHT_queue; 
 
+
+/*
+static void LCD_TESTE (void *args __attribute((unused))) {
+
+	RCC->APB2ENR |= (1<<2);
+	GPIOA->CRL	 = 0x33333300; // Hab PA(2-7) out PP
+
+  set_bit(IO,RS);   set_bit(IO,RS);
+  set_bit(IO,EN);   set_bit(IO,D4);
+  set_bit(IO,D5);   set_bit(IO,D6);
+  set_bit(IO,D7);   disp_init();
+
+  disp_cmd(0x0C);
+
+  disp_text("abcdABCDEF012",0,0);
+  u8 cont = 0;
+
+  disp_text("Iniciando 12345",0,0);
+  disp_text("0123456789ABCDEF: ",1,0);
+  __delay_ms(5000);
+
+  disp_text("Temperatura: ",0,0);
+
+  char msg_buf_rev[16];
+
+	while(1){
+
+		__delay_ms(1000);
+		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+
+		disp_text(msg_buf_rev, 1, 0);
+	}
+}
+*/
+
 static void task1(void *args __attribute((unused))) {
 
 	/* [2---]
@@ -53,25 +88,34 @@ static void task1(void *args __attribute((unused))) {
 	 * */
 
 	RCC->APB2ENR |= (1<<2);
-	GPIOA->CRL	 |= 0x33333300; // Hab PA(2-7) out PP
+	GPIOA->CRL	 = 0x33333300; // Hab PA(2-7) out PP
 
-	set_bit(IO,RS); 	set_bit(IO,RS);
-	set_bit(IO,EN); 	set_bit(IO,D4);
-	set_bit(IO,D5); 	set_bit(IO,D6);
+	set_bit(IO,RS);   set_bit(IO,RS);
+	set_bit(IO,EN);   set_bit(IO,D4);
+	set_bit(IO,D5);   set_bit(IO,D6);
 	set_bit(IO,D7);   disp_init();
 
-  disp_cmd(0x0C);
-/*============================================================*/
+	disp_cmd(0x0C);
 
-  disp_text("Temperatura: ",0,0);
+	disp_text("abcdABCDEF012",0,0);
 
-  char msg_buf_rev[16];
+	disp_text("Iniciando 12345",0,0);
+	disp_text("0123456789ABCDEF: ",1,0);
+	__delay_ms(5000);
+
+	disp_text("Temperatura: ",0,0);
+
+	char msg_buf_rev[16];
+
+	u8 status;
 	while(1){
-		//
-		// testar para ver se recebe !!!
-		__delay_ms(1000);
-		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
 
+		__delay_ms(1000);
+		status = xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+
+
+		itoa(status, msg_buf_rev, HEX);
+		disp_text("                ", 0, 0);
 		disp_text(msg_buf_rev, 1, 0);
 	}
 }
@@ -158,10 +202,11 @@ int main(void) {
 	
 	set_system_clock_to_72Mhz();
 
-	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
+	// xTaskCreate(LCD_TESTE,"LCD_16x2", 400 ,NULL, 4 ,NULL);
+	xTaskCreate(task1,"LCD_16x2", 400 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
 	xTaskCreate(task3, "DHT_read", 100 , NULL, 4 , NULL);
-	xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
+	// xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
 
