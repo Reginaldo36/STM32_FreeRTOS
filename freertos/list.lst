@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccthSsoF.s 			page 1
+ARM GAS  /tmp/ccsGqwPY.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
   55              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
   56              	@ -fsection-anchors -fsemantic-interposition -fshow-column
   57              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
-ARM GAS  /tmp/ccthSsoF.s 			page 2
+ARM GAS  /tmp/ccsGqwPY.s 			page 2
 
 
   58              	@ -fsplit-wide-types -fssa-backprop -fssa-phiopt -fstdarg-opt
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
   26:../freertos/list.c ****  */
   27:../freertos/list.c **** 
   28:../freertos/list.c **** 
-ARM GAS  /tmp/ccthSsoF.s 			page 3
+ARM GAS  /tmp/ccsGqwPY.s 			page 3
 
 
   29:../freertos/list.c **** #include <stdlib.h>
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  113 0010 0023     		movs	r3, #0	@ tmp116,
  114 0012 0360     		str	r3, [r0]	@ tmp116, pxList_2(D)->uxNumberOfItems
   54:../freertos/list.c **** 
-ARM GAS  /tmp/ccthSsoF.s 			page 4
+ARM GAS  /tmp/ccsGqwPY.s 			page 4
 
 
   55:../freertos/list.c **** 	/* Write known values into the list if
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  152              		.syntax unified
  153              		.thumb
  154              		.thumb_func
-ARM GAS  /tmp/ccthSsoF.s 			page 5
+ARM GAS  /tmp/ccsGqwPY.s 			page 5
 
 
  155              		.type	vListInsertEnd, %function
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  186 0024 9A68     		ldr	r2, [r3, #8]	@ pxIndex_7->pxPrevious, pxIndex_7->pxPrevious
  187 0026 5160     		str	r1, [r2, #4]	@ pxNewListItem, _2->pxNext
   94:../freertos/list.c **** 	pxIndex->pxPrevious = pxNewListItem;
-ARM GAS  /tmp/ccthSsoF.s 			page 6
+ARM GAS  /tmp/ccsGqwPY.s 			page 6
 
 
  188              		.loc 1 94 2 is_stmt 1 view .LVU33
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  228 0034 30B5     		push	{r4, r5, lr}	@
  229              	.LCFI0:
  230              		.cfi_def_cfa_offset 12
-ARM GAS  /tmp/ccthSsoF.s 			page 7
+ARM GAS  /tmp/ccsGqwPY.s 			page 7
 
 
  231              		.cfi_offset 4, -12
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  141:../freertos/list.c **** 			   https://www.freertos.org/a00110.html
  142:../freertos/list.c **** 			3) Calling an API function from within a critical section or when
  143:../freertos/list.c **** 			   the scheduler is suspended, or calling an API function that does
-ARM GAS  /tmp/ccthSsoF.s 			page 8
+ARM GAS  /tmp/ccsGqwPY.s 			page 8
 
 
  144:../freertos/list.c **** 			   not end in "FromISR" from an interrupt.
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  281 004c 0133     		adds	r3, r3, #1	@ _5, _4,
  282 004e 0360     		str	r3, [r0]	@ _5, pxList_11(D)->uxNumberOfItems
  283              	@ ../freertos/list.c:167: }
-ARM GAS  /tmp/ccthSsoF.s 			page 9
+ARM GAS  /tmp/ccsGqwPY.s 			page 9
 
 
  167:../freertos/list.c **** }
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  325              		.loc 1 174 16 is_stmt 0 view .LVU74
  326 0062 0369     		ldr	r3, [r0, #16]	@ pxList, pxItemToRemove_8(D)->pvContainer
  327              	.LVL13:
-ARM GAS  /tmp/ccthSsoF.s 			page 10
+ARM GAS  /tmp/ccsGqwPY.s 			page 10
 
 
  175:../freertos/list.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  363 007c 1A60     		str	r2, [r3]	@ _5, pxList_9->uxNumberOfItems
  194:../freertos/list.c **** 
  195:../freertos/list.c **** 	return pxList->uxNumberOfItems;
-ARM GAS  /tmp/ccthSsoF.s 			page 11
+ARM GAS  /tmp/ccsGqwPY.s 			page 11
 
 
  364              		.loc 1 195 2 is_stmt 1 view .LVU91
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  417 004b 99000000 		.4byte	.LASF4
  418 004f 02       		.uleb128 0x2
  419 0050 02       		.byte	0x2
-ARM GAS  /tmp/ccthSsoF.s 			page 12
+ARM GAS  /tmp/ccsGqwPY.s 			page 12
 
 
  420 0051 05       		.byte	0x5
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  474 00ba 14       		.byte	0x14
  475 00bb 05       		.byte	0x5
  476 00bc 8C       		.byte	0x8c
-ARM GAS  /tmp/ccthSsoF.s 			page 13
+ARM GAS  /tmp/ccsGqwPY.s 			page 13
 
 
  477 00bd 08       		.byte	0x8
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  531 011a 05       		.byte	0x5
  532 011b A4       		.byte	0xa4
  533 011c 10       		.byte	0x10
-ARM GAS  /tmp/ccthSsoF.s 			page 14
+ARM GAS  /tmp/ccsGqwPY.s 			page 14
 
 
  534 011d 4F010000 		.4byte	0x14f
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  588 017d 09       		.uleb128 0x9
  589 017e 20010000 		.4byte	.LASF16
  590 0182 05       		.byte	0x5
-ARM GAS  /tmp/ccthSsoF.s 			page 15
+ARM GAS  /tmp/ccsGqwPY.s 			page 15
 
 
  591 0183 9C       		.byte	0x9c
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  645 01e9 04000000 		.4byte	.LLST4
  646 01ed 00000000 		.4byte	.LVUS4
  647 01f1 0D       		.uleb128 0xd
-ARM GAS  /tmp/ccthSsoF.s 			page 16
+ARM GAS  /tmp/ccsGqwPY.s 			page 16
 
 
  648 01f2 80020000 		.4byte	.LASF29
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  702 0264 B0000000 		.4byte	0xb0
  703 0268 99000000 		.4byte	.LLST3
  704 026c 97000000 		.4byte	.LVUS3
-ARM GAS  /tmp/ccthSsoF.s 			page 17
+ARM GAS  /tmp/ccsGqwPY.s 			page 17
 
 
  705 0270 00       		.byte	0
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  759 02d6 0F       		.uleb128 0xf
  760 02d7 ED010000 		.4byte	.LASF36
  761 02db 01       		.byte	0x1
-ARM GAS  /tmp/ccthSsoF.s 			page 18
+ARM GAS  /tmp/ccsGqwPY.s 			page 18
 
 
  762 02dc 3E       		.byte	0x3e
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  816 0017 0B       		.uleb128 0xb
  817 0018 3E       		.uleb128 0x3e
  818 0019 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccthSsoF.s 			page 19
+ARM GAS  /tmp/ccsGqwPY.s 			page 19
 
 
  819 001a 03       		.uleb128 0x3
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  873 0050 03       		.uleb128 0x3
  874 0051 0E       		.uleb128 0xe
  875 0052 0B       		.uleb128 0xb
-ARM GAS  /tmp/ccthSsoF.s 			page 20
+ARM GAS  /tmp/ccsGqwPY.s 			page 20
 
 
  876 0053 0B       		.uleb128 0xb
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  930 0089 11       		.uleb128 0x11
  931 008a 01       		.uleb128 0x1
  932 008b 12       		.uleb128 0x12
-ARM GAS  /tmp/ccthSsoF.s 			page 21
+ARM GAS  /tmp/ccsGqwPY.s 			page 21
 
 
  933 008c 01       		.uleb128 0x1
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  987 00c5 3A       		.uleb128 0x3a
  988 00c6 0B       		.uleb128 0xb
  989 00c7 3B       		.uleb128 0x3b
-ARM GAS  /tmp/ccthSsoF.s 			page 22
+ARM GAS  /tmp/ccsGqwPY.s 			page 22
 
 
  990 00c8 0B       		.uleb128 0xb
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1044 00ff 0A       		.uleb128 0xa
  1045 0100 9742     		.uleb128 0x2117
  1046 0102 0C       		.uleb128 0xc
-ARM GAS  /tmp/ccthSsoF.s 			page 23
+ARM GAS  /tmp/ccsGqwPY.s 			page 23
 
 
  1047 0103 01       		.uleb128 0x1
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1101              	.LLST5:
  1102 0027 64000000 		.4byte	.LVL13-.Ltext0
  1103 002b 82000000 		.4byte	.LFE9-.Ltext0
-ARM GAS  /tmp/ccthSsoF.s 			page 24
+ARM GAS  /tmp/ccsGqwPY.s 			page 24
 
 
  1104 002f 0100     		.2byte	0x1
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1158 00a4 00000000 		.4byte	0
  1159 00a8 00000000 		.4byte	0
  1160              	.LVUS0:
-ARM GAS  /tmp/ccthSsoF.s 			page 25
+ARM GAS  /tmp/ccsGqwPY.s 			page 25
 
 
  1161 00ac 00       		.uleb128 .LVU23
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1200              	.LASF15:
  1201 0039 78497465 		.ascii	"xItemValue\000"
  1201      6D56616C 
-ARM GAS  /tmp/ccthSsoF.s 			page 26
+ARM GAS  /tmp/ccsGqwPY.s 			page 26
 
 
  1201      756500
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1224      5F7400
  1225              	.LASF22:
  1226 0101 75784E75 		.ascii	"uxNumberOfItems\000"
-ARM GAS  /tmp/ccthSsoF.s 			page 27
+ARM GAS  /tmp/ccsGqwPY.s 			page 27
 
 
  1226      6D626572 
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1246      65547970 
  1246      655F7400 
  1247              	.LASF25:
-ARM GAS  /tmp/ccthSsoF.s 			page 28
+ARM GAS  /tmp/ccsGqwPY.s 			page 28
 
 
  1248 0200 4C697374 		.ascii	"ListItem_t\000"
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1276 028d 75784C69 		.ascii	"uxListRemove\000"
  1276      73745265 
  1276      6D6F7665 
-ARM GAS  /tmp/ccthSsoF.s 			page 29
+ARM GAS  /tmp/ccsGqwPY.s 			page 29
 
 
  1276      00
@@ -1692,16 +1692,16 @@ ARM GAS  /tmp/ccthSsoF.s 			page 1
  1280      74496E73 
  1280      65727400 
  1281              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  /tmp/ccthSsoF.s 			page 30
+ARM GAS  /tmp/ccsGqwPY.s 			page 30
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 list.c
-     /tmp/ccthSsoF.s:77     .text:0000000000000000 $t
-     /tmp/ccthSsoF.s:83     .text:0000000000000000 vListInitialise
-     /tmp/ccthSsoF.s:129    .text:0000000000000016 vListInitialiseItem
-     /tmp/ccthSsoF.s:156    .text:000000000000001c vListInsertEnd
-     /tmp/ccthSsoF.s:217    .text:0000000000000034 vListInsert
-     /tmp/ccthSsoF.s:315    .text:0000000000000062 uxListRemove
+     /tmp/ccsGqwPY.s:77     .text:0000000000000000 $t
+     /tmp/ccsGqwPY.s:83     .text:0000000000000000 vListInitialise
+     /tmp/ccsGqwPY.s:129    .text:0000000000000016 vListInitialiseItem
+     /tmp/ccsGqwPY.s:156    .text:000000000000001c vListInsertEnd
+     /tmp/ccsGqwPY.s:217    .text:0000000000000034 vListInsert
+     /tmp/ccsGqwPY.s:315    .text:0000000000000062 uxListRemove
 
 NO UNDEFINED SYMBOLS

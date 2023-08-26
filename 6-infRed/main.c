@@ -22,6 +22,9 @@
 #define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO ))
 #define __delay( TEMPO ) vTaskDelay( TEMPO )
 
+#include <string.h>
+#include <stdlib.h>
+
 // LCD 16x2
 #include "stm32f10x.h"
 #include "Me.h"
@@ -68,14 +71,27 @@ static void task2(void *args __attribute ((unused))){
 		GPIOC->ODR	^= (1<<13);
 		__delay_ms(50);
 	}
+	USARTSend("Tarefa2 ** \n\r");
 }
 
 static void task3(void *args __attribute ((unused))){
 	USART_init();
-
 	IR_Init();
 
+	char word_IR[8];
+
+	u32 code_ir;
+
+		USARTSend("\n\r-Transmitindo!! \r\n");
 	while(1){
+		USARTSend("\n\rEsperando sinal\n");
+		
+		code_ir = IR_Read();
+
+		USARTSend("\r\nCodigo: ");
+		itoa (code_ir, word_IR, 10);
+		USARTSend(word_IR);
+
 	}
 }
 
@@ -88,7 +104,7 @@ int main(void) {
 
 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
-	//xTaskCreate(task3, "3", 100 , NULL, 4 , NULL);
+	xTaskCreate(task3, "3", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); // inicia o escalonador de
 								  // processos.
