@@ -31,52 +31,22 @@
 
 // LCD 16x2
 #include "myLcd.h"
-// #include "Serial.h"
+#include "Serial.h"
 // #include "PWM.h"
-#include "dht11.h"
+// #include "dht11.h"
+#include "DHT11.h"
 
 #define BIN 2
 #define OCT 8
 #define DEC 10
 #define HEX 16
 
+
+
+#define CKSUM_FAIL_DHT11 -2 	
+#define TMOUT_DHT11 -1
+
 static QueueHandle_t LCD_DHT_queue; 
-
-
-/*
-static void LCD_TESTE (void *args __attribute((unused))) {
-
-	RCC->APB2ENR |= (1<<2);
-	GPIOA->CRL	 = 0x33333300; // Hab PA(2-7) out PP
-
-  set_bit(IO,RS);   set_bit(IO,RS);
-  set_bit(IO,EN);   set_bit(IO,D4);
-  set_bit(IO,D5);   set_bit(IO,D6);
-  set_bit(IO,D7);   disp_init();
-
-  disp_cmd(0x0C);
-
-  disp_text("abcdABCDEF012",0,0);
-  u8 cont = 0;
-
-  disp_text("Iniciando 12345",0,0);
-  disp_text("0123456789ABCDEF: ",1,0);
-  __delay_ms(5000);
-
-  disp_text("Temperatura: ",0,0);
-
-  char msg_buf_rev[16];
-
-	while(1){
-
-		__delay_ms(1000);
-		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
-
-		disp_text(msg_buf_rev, 1, 0);
-	}
-}
-*/
-
 static void task1(void *args __attribute((unused))) {
 
 	/* [2---]
@@ -97,26 +67,69 @@ static void task1(void *args __attribute((unused))) {
 
 	disp_cmd(0x0C);
 
-	disp_text("abcdABCDEF012",0,0);
 
+	/*
 	disp_text("Iniciando 12345",0,0);
 	disp_text("0123456789ABCDEF: ",1,0);
 	__delay_ms(5000);
+*/
 
-	disp_text("Temperatura: ",0,0);
+	disp_text("                ", 0, 0);
+	disp_text("                ", 1, 0);
+	__delay_ms(500); 
 
-	char msg_buf_rev[16];
-
+	int msg_buf_rev;
 	u8 status;
-	while(1){
 
-		__delay_ms(1000);
+	char DISP_SHOW[16]; 
+
+	char  Humidade[4];
+	char 	Temperatura[4];
+
+	GPIOB->CRL	|= (1<<8);
+
+	u8 i=0;
+	while(1){
 		status = xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
 
 
-		itoa(status, msg_buf_rev, HEX);
-		disp_text("                ", 0, 0);
-		disp_text(msg_buf_rev, 1, 0);
+		if (i <=1 ){
+				if( msg_buf_rev == TMOUT_DHT11 ) {
+					// Mostar error e o erro!!
+				}
+
+				else if(msg_buf_rev == CKSUM_FAIL_DHT11 ){
+					// Mostar error e o erro!!
+				}
+				
+				else { // Deu certo a leitura
+						 
+					if (i == 0 && msg_buf_rev > 0){
+						
+						// Converte em string 
+						itoa(msg_buf_rev, Temperatura , DEC);
+						strcpy(DISP_SHOW, "T: ");
+						strcat(DISP_SHOW, Temperatura );
+						disp_text(DISP_SHOW, i , 0);
+					} 
+
+					if (i == 1 && msg_buf_rev > 0){
+						itoa(msg_buf_rev, Humidade, DEC);
+						strcpy(DISP_SHOW, "H: ");
+						strcat(DISP_SHOW, Humidade );
+						disp_text(DISP_SHOW, i , 0);
+					}
+			}
+			__delay_ms(500);
+			i++;
+		}
+		else {
+			i=0;
+		}
+
+
+		// disp_text("                ", 0, 0);
+		// disp_text(msg_buf_rev, 1, 0);
 	}
 }
 
@@ -150,38 +163,69 @@ static void task2(void *args __attribute ((unused))){
 	 *
 	 * */
 
-	struct DHT11_Dev dev;
-	DHT11_init(&dev, GPIOB, GPIO_Pin_6);
+	USART_init();
 
-	char msg_buf_env[16];
-	char  Humidade[4];
-	char 	Temperatura[4];
+	u16 dados_leitura=0;
 
+	int j = 0; 
+
+	j++;
+	xQueueSend(LCD_DHT_queue, &j, 0);
+
+	char t[4], h[4], env[20];
+
+	USARTSend("\r\nINICIANDO....\r\n");
 	while(1){
-		__delay_ms(500); // << Rever isso !!
 
-		int leitura_DHT = DHT11_read( &dev );
+		dados_leitura = DHT11_read();
 
-		if(leitura_DHT == DHT11_SUCCESS) {
-			
-			// Converte em string 
-			itoa(dev.temparature, Temperatura , DEC);
-			itoa(dev.humidity, Humidade, DEC);
+		itoa(dados_leitura & (0xFF << 8), t, DEC);
+		itoa(dados_leitura & (0xFF << 0), h, DEC);
 
-			// Concatena  a variável "msg_buf_env"
-			strcpy(msg_buf_env, "T: ");
-			strcat(msg_buf_env, Temperatura );
-			strcat(msg_buf_env, "H: " );
-			strcat(msg_buf_env, Humidade );
-		}
-
-		else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) 
-			strcpy(msg_buf_env, "ERR_checksum"); 
+	  itoa((GPIOB->IDR), env, BIN);
 		
-		else 
-			strcpy(msg_buf_env, "TIMOUT"); 
+		strcat(env, t);
+		strcat(env, " <-t h-> ");
+		strcat(env, h);
+		USARTSend(env);
 
-		xQueueSend(LCD_DHT_queue, &msg_buf_env, 0);
+		strcpy(env, "\r\n");
+	/*
+			if(leitura_DHT == DHT11_SUCCESS) {
+
+				USARTSend("\r\n ------- OK");
+				xQueueSend(LCD_DHT_queue, &dev.temparature, 0);
+				__delay_ms(500);
+				xQueueSend(LCD_DHT_queue, &dev.humidity, 0);
+				__delay_ms(500);
+
+			}
+
+			else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) {
+				USARTSend("\r\n ------- ERR CHECKSUM");
+				status = CKSUM_FAIL_DHT11;
+				xQueueSend(LCD_DHT_queue, &status, 0);
+				__delay_ms(500);
+				xQueueSend(LCD_DHT_queue, &status, 0);
+				__delay_ms(500);
+			}
+			
+			else { // TIMOUT	
+
+				USARTSend("\r\n ------- ERR TMOUT");
+
+				status = TMOUT_DHT11; 
+				xQueueSend(LCD_DHT_queue, &status, 0);
+				__delay_ms(500);
+				xQueueSend(LCD_DHT_queue, &status, 0);
+				__delay_ms(500);
+			
+			}
+
+				j++;
+				xQueueSend(LCD_DHT_queue, &j, 0);
+		*/
+				__delay_ms(500);
 	}
 }
 
@@ -198,14 +242,13 @@ static void task4(void *args __attribute ((unused))){
 
 int main(void) {
 
-	LCD_DHT_queue = xQueueCreate(2, sizeof(char));
+	LCD_DHT_queue = xQueueCreate(17, sizeof(int));
 	
 	set_system_clock_to_72Mhz();
 
-	// xTaskCreate(LCD_TESTE,"LCD_16x2", 400 ,NULL, 4 ,NULL);
-	xTaskCreate(task1,"LCD_16x2", 400 ,NULL, 4 ,NULL);
+	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
-	xTaskCreate(task3, "DHT_read", 100 , NULL, 4 , NULL);
+	xTaskCreate(task3, "DHT_read", 300 , NULL, 4 , NULL);
 	// xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
