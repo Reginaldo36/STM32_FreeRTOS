@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc2V71tP.s 			page 1
+ARM GAS  /tmp/ccIq1VWv.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -18,7 +18,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   15              	@	compiled by GNU C version 4.8.4, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl ve
   16              	
   17              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
-  18              	@ options passed:  -I . -I ../5-PWM_LCD_SERIAL
+  18              	@ options passed:  -I . -I ../6-infRed
   19              	@ -I ../stm32f10x_lib/CMSIS/CM3/CoreSupport
   20              	@ -I ../stm32f10x_lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x
   21              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/inc
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   55              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
   56              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
   57              	@ -fsection-anchors -fsemantic-interposition -fshow-column
-ARM GAS  /tmp/cc2V71tP.s 			page 2
+ARM GAS  /tmp/ccIq1VWv.s 			page 2
 
 
   58              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   27:../freertos/portable/GCC/ARM_CM3/port.c **** 
   28:../freertos/portable/GCC/ARM_CM3/port.c **** /*-----------------------------------------------------------
   29:../freertos/portable/GCC/ARM_CM3/port.c ****  * Implementation of functions defined in portable.h for the ARM CM3 port.
-ARM GAS  /tmp/cc2V71tP.s 			page 3
+ARM GAS  /tmp/ccIq1VWv.s 			page 3
 
 
   30:../freertos/portable/GCC/ARM_CM3/port.c ****  *----------------------------------------------------------*/
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   84:../freertos/portable/GCC/ARM_CM3/port.c **** /* The systick is a 24-bit counter. */
   85:../freertos/portable/GCC/ARM_CM3/port.c **** #define portMAX_24_BIT_NUMBER				( 0xffffffUL )
   86:../freertos/portable/GCC/ARM_CM3/port.c **** 
-ARM GAS  /tmp/cc2V71tP.s 			page 4
+ARM GAS  /tmp/ccIq1VWv.s 			page 4
 
 
   87:../freertos/portable/GCC/ARM_CM3/port.c **** /* A fiddle factor to estimate the number of SysTick counts that would have
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  141:../freertos/portable/GCC/ARM_CM3/port.c **** 
  142:../freertos/portable/GCC/ARM_CM3/port.c **** /*
  143:../freertos/portable/GCC/ARM_CM3/port.c ****  * The maximum number of tick periods that can be suppressed is limited by the
-ARM GAS  /tmp/cc2V71tP.s 			page 5
+ARM GAS  /tmp/ccIq1VWv.s 			page 5
 
 
  144:../freertos/portable/GCC/ARM_CM3/port.c ****  * 24 bit resolution of the SysTick timer.
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   90              		@ link register save eliminated.
  194:../freertos/portable/GCC/ARM_CM3/port.c **** volatile uint32_t ulDummy = 0UL;
   91              		.loc 1 194 1 view .LVU1
-ARM GAS  /tmp/cc2V71tP.s 			page 6
+ARM GAS  /tmp/ccIq1VWv.s 			page 6
 
 
   92              	@ ../freertos/portable/GCC/ARM_CM3/port.c:194: volatile uint32_t ulDummy = 0UL;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   29:../freertos/portable/GCC/ARM_CM3/portmacro.h **** #ifndef PORTMACRO_H
   30:../freertos/portable/GCC/ARM_CM3/portmacro.h **** #define PORTMACRO_H
   31:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 
-ARM GAS  /tmp/cc2V71tP.s 			page 7
+ARM GAS  /tmp/ccIq1VWv.s 			page 7
 
 
   32:../freertos/portable/GCC/ARM_CM3/portmacro.h **** #ifdef __cplusplus
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
   86:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 	__asm volatile( "dsb" ::: "memory" );										\
   87:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 	__asm volatile( "isb" );													\
   88:../freertos/portable/GCC/ARM_CM3/portmacro.h **** }
-ARM GAS  /tmp/cc2V71tP.s 			page 8
+ARM GAS  /tmp/ccIq1VWv.s 			page 8
 
 
   89:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  143:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 	/* Store/clear the ready priorities in a bit map. */
  144:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 	#define portRECORD_READY_PRIORITY( uxPriority, uxReadyPriorities ) ( uxReadyPriorities ) |= ( 1UL 
  145:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 	#define portRESET_READY_PRIORITY( uxPriority, uxReadyPriorities ) ( uxReadyPriorities ) &= ~( 1UL 
-ARM GAS  /tmp/cc2V71tP.s 			page 9
+ARM GAS  /tmp/ccIq1VWv.s 			page 9
 
 
  146:../freertos/portable/GCC/ARM_CM3/portmacro.h **** 
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  112              		.syntax unified
  113              	@ 195 "../freertos/portable/GCC/ARM_CM3/portmacro.h" 1
  114 0006 4FF01003 			mov r3, #16													@ ulNewBASEPRI,
-ARM GAS  /tmp/cc2V71tP.s 			page 10
+ARM GAS  /tmp/ccIq1VWv.s 			page 10
 
 
  115 000a 83F31188 		msr basepri, r3												@ ulNewBASEPRI
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  217:../freertos/portable/GCC/ARM_CM3/port.c **** void vPortSVCHandler( void )
  218:../freertos/portable/GCC/ARM_CM3/port.c **** {
  219:../freertos/portable/GCC/ARM_CM3/port.c **** 	__asm volatile (
-ARM GAS  /tmp/cc2V71tP.s 			page 11
+ARM GAS  /tmp/ccIq1VWv.s 			page 11
 
 
  220:../freertos/portable/GCC/ARM_CM3/port.c **** 					"	ldr	r3, pxCurrentTCBConst2		\n" /* Restore the context. */
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  175              		.thumb
  176              		.syntax unified
  177              		.cfi_endproc
-ARM GAS  /tmp/cc2V71tP.s 			page 12
+ARM GAS  /tmp/ccIq1VWv.s 			page 12
 
 
  178              	.LFE8:
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  219              		.loc 1 184 2 is_stmt 1 view .LVU31
  220              	.LVL5:
  185:../freertos/portable/GCC/ARM_CM3/port.c **** 	pxTopOfStack -= 8;	/* R11, R10, R9, R8, R7, R6, R5 and R4. */
-ARM GAS  /tmp/cc2V71tP.s 			page 13
+ARM GAS  /tmp/ccIq1VWv.s 			page 13
 
 
  221              		.loc 1 185 2 view .LVU32
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  268 007c AFF30080 		.align 4						
  269 0080 00000000 	pxCurrentTCBConst2: .word pxCurrentTCB				
  270              	
-ARM GAS  /tmp/cc2V71tP.s 			page 14
+ARM GAS  /tmp/ccIq1VWv.s 			page 14
 
 
  271              	@ 0 "" 2
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  289:../freertos/portable/GCC/ARM_CM3/port.c **** 		ulMaxPRIGROUPValue = portMAX_PRIGROUP_BITS;
  290:../freertos/portable/GCC/ARM_CM3/port.c **** 		while( ( ucMaxPriorityValue & portTOP_BIT_OF_BYTE ) == portTOP_BIT_OF_BYTE )
  291:../freertos/portable/GCC/ARM_CM3/port.c **** 		{
-ARM GAS  /tmp/cc2V71tP.s 			page 15
+ARM GAS  /tmp/ccIq1VWv.s 			page 15
 
 
  292:../freertos/portable/GCC/ARM_CM3/port.c **** 			ulMaxPRIGROUPValue--;
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  346:../freertos/portable/GCC/ARM_CM3/port.c **** 	prvTaskExitError();
  347:../freertos/portable/GCC/ARM_CM3/port.c **** 
  348:../freertos/portable/GCC/ARM_CM3/port.c **** 	/* Should not get here! */
-ARM GAS  /tmp/cc2V71tP.s 			page 16
+ARM GAS  /tmp/ccIq1VWv.s 			page 16
 
 
  349:../freertos/portable/GCC/ARM_CM3/port.c **** 	return 0;
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  324 0092 BFF34F8F 		dsb														
  325              	
  326              	@ 0 "" 2
-ARM GAS  /tmp/cc2V71tP.s 			page 17
+ARM GAS  /tmp/ccIq1VWv.s 			page 17
 
 
  327              		.thumb
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  381:../freertos/portable/GCC/ARM_CM3/port.c **** 	uxCriticalNesting--;
  364              		.loc 1 381 2 view .LVU56
  365              	@ ../freertos/portable/GCC/ARM_CM3/port.c:381: 	uxCriticalNesting--;
-ARM GAS  /tmp/cc2V71tP.s 			page 18
+ARM GAS  /tmp/ccIq1VWv.s 			page 18
 
 
  366              		.loc 1 381 19 is_stmt 0 view .LVU57
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  383              	@ 229 "../freertos/portable/GCC/ARM_CM3/portmacro.h" 1
  384 00ae 83F31188 			msr basepri, r3		@ _2
  385              	@ 0 "" 2
-ARM GAS  /tmp/cc2V71tP.s 			page 19
+ARM GAS  /tmp/ccIq1VWv.s 			page 19
 
 
  386              	.LVL9:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  431 00d6 FFF7FEFF 		bl vTaskSwitchContext				
  432 00da 4FF00000 		mov r0, #0							
  433 00de 80F31188 		msr basepri, r0						
-ARM GAS  /tmp/cc2V71tP.s 			page 20
+ARM GAS  /tmp/ccIq1VWv.s 			page 20
 
 
  434 00e2 BDE80840 		ldmia sp!, {r3, r14}				
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  457              		.thumb
  458              		.thumb_func
  459              		.type	SysTick_Handler, %function
-ARM GAS  /tmp/cc2V71tP.s 			page 21
+ARM GAS  /tmp/ccIq1VWv.s 			page 21
 
 
  460              	SysTick_Handler:
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  435:../freertos/portable/GCC/ARM_CM3/port.c **** 		if( xTaskIncrementTick() != pdFALSE )
  498              		.loc 1 435 3 is_stmt 1 view .LVU75
  499              	@ ../freertos/portable/GCC/ARM_CM3/port.c:435: 		if( xTaskIncrementTick() != pdFALSE )
-ARM GAS  /tmp/cc2V71tP.s 			page 22
+ARM GAS  /tmp/ccIq1VWv.s 			page 22
 
 
  500              		.loc 1 435 7 is_stmt 0 view .LVU76
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  444:../freertos/portable/GCC/ARM_CM3/port.c **** /*-----------------------------------------------------------*/
  445:../freertos/portable/GCC/ARM_CM3/port.c **** 
  446:../freertos/portable/GCC/ARM_CM3/port.c **** #if( configUSE_TICKLESS_IDLE == 1 )
-ARM GAS  /tmp/cc2V71tP.s 			page 23
+ARM GAS  /tmp/ccIq1VWv.s 			page 23
 
 
  447:../freertos/portable/GCC/ARM_CM3/port.c **** 
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  501:../freertos/portable/GCC/ARM_CM3/port.c **** 			/* Set the new reload value. */
  502:../freertos/portable/GCC/ARM_CM3/port.c **** 			portNVIC_SYSTICK_LOAD_REG = ulReloadValue;
  503:../freertos/portable/GCC/ARM_CM3/port.c **** 
-ARM GAS  /tmp/cc2V71tP.s 			page 24
+ARM GAS  /tmp/ccIq1VWv.s 			page 24
 
 
  504:../freertos/portable/GCC/ARM_CM3/port.c **** 			/* Clear the SysTick count flag and set the count value back to
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  558:../freertos/portable/GCC/ARM_CM3/port.c **** 
  559:../freertos/portable/GCC/ARM_CM3/port.c **** 				/* The tick interrupt is already pending, and the SysTick count
  560:../freertos/portable/GCC/ARM_CM3/port.c **** 				reloaded with ulReloadValue.  Reset the
-ARM GAS  /tmp/cc2V71tP.s 			page 25
+ARM GAS  /tmp/ccIq1VWv.s 			page 25
 
 
  561:../freertos/portable/GCC/ARM_CM3/port.c **** 				portNVIC_SYSTICK_LOAD_REG with whatever remains of this tick
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  615:../freertos/portable/GCC/ARM_CM3/port.c ****  * frequency.
  616:../freertos/portable/GCC/ARM_CM3/port.c ****  */
  617:../freertos/portable/GCC/ARM_CM3/port.c **** __attribute__(( weak )) void vPortSetupTimerInterrupt( void )
-ARM GAS  /tmp/cc2V71tP.s 			page 26
+ARM GAS  /tmp/ccIq1VWv.s 			page 26
 
 
  618:../freertos/portable/GCC/ARM_CM3/port.c **** {
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  581              		.type	xPortStartScheduler, %function
  582              	xPortStartScheduler:
  583              	.LFB9:
-ARM GAS  /tmp/cc2V71tP.s 			page 27
+ARM GAS  /tmp/ccIq1VWv.s 			page 27
 
 
  258:../freertos/portable/GCC/ARM_CM3/port.c **** 	/* configMAX_SYSCALL_INTERRUPT_PRIORITY must not be set to 0.
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  345:../freertos/portable/GCC/ARM_CM3/port.c **** 	prvTaskExitError();
  625              		.loc 1 345 2 view .LVU108
  626 0172 FFF7FEFF 		bl	vTaskSwitchContext		@
-ARM GAS  /tmp/cc2V71tP.s 			page 28
+ARM GAS  /tmp/ccIq1VWv.s 			page 28
 
 
  627              	.LVL15:
@@ -1660,10 +1660,10 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  660 0006 00000000 		.4byte	.Ldebug_abbrev0
  661 000a 04       		.byte	0x4
  662 000b 01       		.uleb128 0x1
- 663 000c AE010000 		.4byte	.LASF35
+ 663 000c CE010000 		.4byte	.LASF35
  664 0010 0C       		.byte	0xc
  665 0011 7F000000 		.4byte	.LASF36
- 666 0015 2E020000 		.4byte	.LASF37
+ 666 0015 C7000000 		.4byte	.LASF37
  667 0019 00000000 		.4byte	.Ltext0
  668 001d 84010000 		.4byte	.Letext0
  669 0021 00000000 		.4byte	.Ldebug_line0
@@ -1674,26 +1674,26 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  674 002c 03       		.uleb128 0x3
  675 002d 04       		.byte	0x4
  676 002e 07       		.byte	0x7
- 677 002f 78010000 		.4byte	.LASF0
+ 677 002f 98010000 		.4byte	.LASF0
  678 0033 03       		.uleb128 0x3
  679 0034 08       		.byte	0x8
  680 0035 05       		.byte	0x5
-ARM GAS  /tmp/cc2V71tP.s 			page 29
+ARM GAS  /tmp/ccIq1VWv.s 			page 29
 
 
- 681 0036 6F020000 		.4byte	.LASF1
+ 681 0036 67020000 		.4byte	.LASF1
  682 003a 03       		.uleb128 0x3
  683 003b 08       		.byte	0x8
  684 003c 04       		.byte	0x4
- 685 003d F7020000 		.4byte	.LASF2
+ 685 003d EF020000 		.4byte	.LASF2
  686 0041 03       		.uleb128 0x3
  687 0042 01       		.byte	0x1
  688 0043 06       		.byte	0x6
- 689 0044 03030000 		.4byte	.LASF3
+ 689 0044 FB020000 		.4byte	.LASF3
  690 0048 03       		.uleb128 0x3
  691 0049 01       		.byte	0x1
  692 004a 08       		.byte	0x8
- 693 004b CF000000 		.4byte	.LASF4
+ 693 004b 08010000 		.4byte	.LASF4
  694 004f 03       		.uleb128 0x3
  695 0050 02       		.byte	0x2
  696 0051 05       		.byte	0x5
@@ -1701,13 +1701,13 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  698 0056 03       		.uleb128 0x3
  699 0057 02       		.byte	0x2
  700 0058 07       		.byte	0x7
- 701 0059 EF000000 		.4byte	.LASF6
+ 701 0059 28010000 		.4byte	.LASF6
  702 005d 03       		.uleb128 0x3
  703 005e 04       		.byte	0x4
  704 005f 05       		.byte	0x5
  705 0060 6C000000 		.4byte	.LASF7
  706 0064 04       		.uleb128 0x4
- 707 0065 02010000 		.4byte	.LASF10
+ 707 0065 3B010000 		.4byte	.LASF10
  708 0069 03       		.byte	0x3
  709 006a 4F       		.byte	0x4f
  710 006b 19       		.byte	0x19
@@ -1715,13 +1715,13 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  712 0070 03       		.uleb128 0x3
  713 0071 04       		.byte	0x4
  714 0072 07       		.byte	0x7
- 715 0073 DD000000 		.4byte	.LASF8
+ 715 0073 16010000 		.4byte	.LASF8
  716 0077 03       		.uleb128 0x3
  717 0078 08       		.byte	0x8
  718 0079 07       		.byte	0x7
- 719 007a 85010000 		.4byte	.LASF9
+ 719 007a A5010000 		.4byte	.LASF9
  720 007e 04       		.uleb128 0x4
- 721 007f C4020000 		.4byte	.LASF11
+ 721 007f BC020000 		.4byte	.LASF11
  722 0083 04       		.byte	0x4
  723 0084 30       		.byte	0x30
  724 0085 14       		.byte	0x14
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  735 009c 04       		.byte	0x4
  736 009d A1000000 		.4byte	0xa1
  737 00a1 07       		.uleb128 0x7
-ARM GAS  /tmp/cc2V71tP.s 			page 30
+ARM GAS  /tmp/ccIq1VWv.s 			page 30
 
 
  738 00a2 01       		.byte	0x1
@@ -1749,19 +1749,19 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  743 00ad 09       		.uleb128 0x9
  744 00ae 04       		.byte	0x4
  745 00af 04       		.uleb128 0x4
- 746 00b0 6C010000 		.4byte	.LASF13
+ 746 00b0 8C010000 		.4byte	.LASF13
  747 00b4 02       		.byte	0x2
  748 00b5 37       		.byte	0x37
  749 00b6 18       		.byte	0x18
  750 00b7 7E000000 		.4byte	0x7e
  751 00bb 04       		.uleb128 0x4
- 752 00bc 2F030000 		.4byte	.LASF14
+ 752 00bc 27030000 		.4byte	.LASF14
  753 00c0 02       		.byte	0x2
  754 00c1 38       		.byte	0x38
  755 00c2 0E       		.byte	0xe
  756 00c3 5D000000 		.4byte	0x5d
  757 00c7 04       		.uleb128 0x4
- 758 00c8 23030000 		.4byte	.LASF15
+ 758 00c8 1B030000 		.4byte	.LASF15
  759 00cc 02       		.byte	0x2
  760 00cd 39       		.byte	0x39
  761 00ce 17       		.byte	0x17
@@ -1775,7 +1775,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  769 00df 03       		.uleb128 0x3
  770 00e0 01       		.byte	0x1
  771 00e1 08       		.byte	0x8
- 772 00e2 DC020000 		.4byte	.LASF17
+ 772 00e2 D4020000 		.4byte	.LASF17
  773 00e6 06       		.uleb128 0x6
  774 00e7 04       		.byte	0x4
  775 00e8 AF000000 		.4byte	0xaf
@@ -1790,7 +1790,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  784 00fa 00000000 		.4byte	uxCriticalNesting
  785 00fe 0B       		.uleb128 0xb
  786 00ff 01       		.byte	0x1
- 787 0100 43010000 		.4byte	.LASF18
+ 787 0100 4E020000 		.4byte	.LASF18
  788 0104 01       		.byte	0x1
  789 0105 6902     		.2byte	0x269
  790 0107 1E       		.byte	0x1e
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  792 0109 30010000 		.4byte	.LFB15
  793 010d 46010000 		.4byte	.LFE15
  794 0111 02       		.byte	0x2
-ARM GAS  /tmp/cc2V71tP.s 			page 31
+ARM GAS  /tmp/ccIq1VWv.s 			page 31
 
 
  795 0112 7D       		.byte	0x7d
@@ -1852,13 +1852,13 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  843 0184 00       		.byte	0
  844 0185 0B       		.uleb128 0xb
  845 0186 01       		.byte	0x1
- 846 0187 A3020000 		.4byte	.LASF19
+ 846 0187 9B020000 		.4byte	.LASF19
  847 018b 01       		.byte	0x1
  848 018c 8501     		.2byte	0x185
  849 018e 06       		.byte	0x6
  850 018f 01       		.byte	0x1
  851 0190 B8000000 		.4byte	.LFB13
-ARM GAS  /tmp/cc2V71tP.s 			page 32
+ARM GAS  /tmp/ccIq1VWv.s 			page 32
 
 
  852 0194 04010000 		.4byte	.LFE13
@@ -1868,7 +1868,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  856 019b 01       		.byte	0x1
  857 019c 13       		.uleb128 0x13
  858 019d 01       		.byte	0x1
- 859 019e B2020000 		.4byte	.LASF21
+ 859 019e AA020000 		.4byte	.LASF21
  860 01a2 01       		.byte	0x1
  861 01a3 7A01     		.2byte	0x17a
  862 01a5 06       		.byte	0x6
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  906 0209 01       		.byte	0x1
  907 020a 6B01     		.2byte	0x16b
  908 020c 02       		.byte	0x2
-ARM GAS  /tmp/cc2V71tP.s 			page 33
+ARM GAS  /tmp/ccIq1VWv.s 			page 33
 
 
  909 020d 0F       		.uleb128 0xf
@@ -1940,7 +1940,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  925 022a 01       		.byte	0x1
  926 022b 15       		.uleb128 0x15
  927 022c 01       		.byte	0x1
- 928 022d 0F030000 		.4byte	.LASF27
+ 928 022d 07030000 		.4byte	.LASF27
  929 0231 01       		.byte	0x1
  930 0232 0101     		.2byte	0x101
  931 0234 0C       		.byte	0xc
@@ -1965,7 +1965,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  950 026b 9B020000 		.4byte	0x29b
  951 026f 00       		.byte	0
  952 0270 16       		.uleb128 0x16
- 953 0271 E1020000 		.4byte	.LASF38
+ 953 0271 D9020000 		.4byte	.LASF38
  954 0275 01       		.byte	0x1
  955 0276 ED       		.byte	0xed
  956 0277 0D       		.byte	0xd
@@ -1978,10 +1978,10 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  963 0284 01       		.byte	0x1
  964 0285 17       		.uleb128 0x17
  965 0286 01       		.byte	0x1
-ARM GAS  /tmp/cc2V71tP.s 			page 34
+ARM GAS  /tmp/ccIq1VWv.s 			page 34
 
 
- 966 0287 7D020000 		.4byte	.LASF24
+ 966 0287 75020000 		.4byte	.LASF24
  967 028b 01       		.byte	0x1
  968 028c D9       		.byte	0xd9
  969 028d 06       		.byte	0x6
@@ -2004,7 +2004,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  986 02b0 01       		.byte	0x1
  987 02b1 E0020000 		.4byte	0x2e0
  988 02b5 0A       		.uleb128 0xa
- 989 02b6 C7000000 		.4byte	.LASF26
+ 989 02b6 00010000 		.4byte	.LASF26
  990 02ba 01       		.byte	0x1
  991 02bb C2       		.byte	0xc2
  992 02bc 13       		.byte	0x13
@@ -2027,7 +2027,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1009 02df 00       		.byte	0
  1010 02e0 1A       		.uleb128 0x1a
  1011 02e1 01       		.byte	0x1
- 1012 02e2 1A010000 		.4byte	.LASF28
+ 1012 02e2 53010000 		.4byte	.LASF28
  1013 02e6 01       		.byte	0x1
  1014 02e7 AE       		.byte	0xae
  1015 02e8 0E       		.byte	0xe
@@ -2038,13 +2038,13 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1020 02f6 02       		.byte	0x2
  1021 02f7 7D       		.byte	0x7d
  1022 02f8 00       		.sleb128 0
-ARM GAS  /tmp/cc2V71tP.s 			page 35
+ARM GAS  /tmp/ccIq1VWv.s 			page 35
 
 
  1023 02f9 01       		.byte	0x1
  1024 02fa 35030000 		.4byte	0x335
  1025 02fe 1B       		.uleb128 0x1b
- 1026 02ff 96020000 		.4byte	.LASF29
+ 1026 02ff 8E020000 		.4byte	.LASF29
  1027 0303 01       		.byte	0x1
  1028 0304 AE       		.byte	0xae
  1029 0305 32       		.byte	0x32
@@ -2060,7 +2060,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1039 031e 09010000 		.4byte	.LLST2
  1040 0322 05010000 		.4byte	.LVUS2
  1041 0326 1C       		.uleb128 0x1c
- 1042 0327 89020000 		.4byte	.LASF40
+ 1042 0327 81020000 		.4byte	.LASF40
  1043 032b 01       		.byte	0x1
  1044 032c AE       		.byte	0xae
  1045 032d 5D       		.byte	0x5d
@@ -2069,7 +2069,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1048 0333 52       		.byte	0x52
  1049 0334 00       		.byte	0
  1050 0335 1D       		.uleb128 0x1d
- 1051 0336 5C010000 		.4byte	.LASF31
+ 1051 0336 7C010000 		.4byte	.LASF31
  1052 033a 02       		.byte	0x2
  1053 033b E3       		.byte	0xe3
  1054 033c 1E       		.byte	0x1e
@@ -2077,14 +2077,14 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1056 033e 03       		.byte	0x3
  1057 033f 50030000 		.4byte	0x350
  1058 0343 1E       		.uleb128 0x1e
- 1059 0344 CD020000 		.4byte	.LASF41
+ 1059 0344 C5020000 		.4byte	.LASF41
  1060 0348 02       		.byte	0x2
  1061 0349 E3       		.byte	0xe3
  1062 034a 38       		.byte	0x38
  1063 034b 7E000000 		.4byte	0x7e
  1064 034f 00       		.byte	0
  1065 0350 1D       		.uleb128 0x1d
- 1066 0351 9C010000 		.4byte	.LASF32
+ 1066 0351 BC010000 		.4byte	.LASF32
  1067 0355 02       		.byte	0x2
  1068 0356 BF       		.byte	0xbf
  1069 0357 1E       		.byte	0x1e
@@ -2092,20 +2092,20 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1071 0359 03       		.byte	0x3
  1072 035a 6B030000 		.4byte	0x36b
  1073 035e 1F       		.uleb128 0x1f
- 1074 035f 0D010000 		.4byte	.LASF42
+ 1074 035f 46010000 		.4byte	.LASF42
  1075 0363 02       		.byte	0x2
  1076 0364 C1       		.byte	0xc1
  1077 0365 0A       		.byte	0xa
  1078 0366 7E000000 		.4byte	0x7e
  1079 036a 00       		.byte	0
-ARM GAS  /tmp/cc2V71tP.s 			page 36
+ARM GAS  /tmp/ccIq1VWv.s 			page 36
 
 
  1080 036b 20       		.uleb128 0x20
  1081 036c 01       		.byte	0x1
  1082 036d 01       		.byte	0x1
- 1083 036e 30010000 		.4byte	.LASF33
- 1084 0372 30010000 		.4byte	.LASF33
+ 1083 036e 69010000 		.4byte	.LASF33
+ 1084 0372 69010000 		.4byte	.LASF33
  1085 0376 06       		.byte	0x6
  1086 0377 AF08     		.2byte	0x8af
  1087 0379 0C       		.byte	0xc
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1134 0023 3E       		.uleb128 0x3e
  1135 0024 0B       		.uleb128 0xb
  1136 0025 03       		.uleb128 0x3
-ARM GAS  /tmp/cc2V71tP.s 			page 37
+ARM GAS  /tmp/ccIq1VWv.s 			page 37
 
 
  1137 0026 0E       		.uleb128 0xe
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1191 005c 0B       		.uleb128 0xb
  1192 005d 00       		.byte	0
  1193 005e 00       		.byte	0
-ARM GAS  /tmp/cc2V71tP.s 			page 38
+ARM GAS  /tmp/ccIq1VWv.s 			page 38
 
 
  1194 005f 0A       		.uleb128 0xa
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1248 0096 0B       		.uleb128 0xb
  1249 0097 27       		.uleb128 0x27
  1250 0098 0C       		.uleb128 0xc
-ARM GAS  /tmp/cc2V71tP.s 			page 39
+ARM GAS  /tmp/ccIq1VWv.s 			page 39
 
 
  1251 0099 11       		.uleb128 0x11
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1305 00d1 B842     		.uleb128 0x2138
  1306 00d3 0B       		.uleb128 0xb
  1307 00d4 11       		.uleb128 0x11
-ARM GAS  /tmp/cc2V71tP.s 			page 40
+ARM GAS  /tmp/ccIq1VWv.s 			page 40
 
 
  1308 00d5 01       		.uleb128 0x1
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1362 010e 9742     		.uleb128 0x2117
  1363 0110 0C       		.uleb128 0xc
  1364 0111 01       		.uleb128 0x1
-ARM GAS  /tmp/cc2V71tP.s 			page 41
+ARM GAS  /tmp/ccIq1VWv.s 			page 41
 
 
  1365 0112 13       		.uleb128 0x13
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1419 014a 2E       		.uleb128 0x2e
  1420 014b 00       		.byte	0
  1421 014c 03       		.uleb128 0x3
-ARM GAS  /tmp/cc2V71tP.s 			page 42
+ARM GAS  /tmp/ccIq1VWv.s 			page 42
 
 
  1422 014d 0E       		.uleb128 0xe
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1476 0185 0B       		.uleb128 0xb
  1477 0186 27       		.uleb128 0x27
  1478 0187 0C       		.uleb128 0xc
-ARM GAS  /tmp/cc2V71tP.s 			page 43
+ARM GAS  /tmp/ccIq1VWv.s 			page 43
 
 
  1479 0188 11       		.uleb128 0x11
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1533 01c0 40       		.uleb128 0x40
  1534 01c1 0A       		.uleb128 0xa
  1535 01c2 9742     		.uleb128 0x2117
-ARM GAS  /tmp/cc2V71tP.s 			page 44
+ARM GAS  /tmp/ccIq1VWv.s 			page 44
 
 
  1536 01c4 0C       		.uleb128 0xc
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1590 01fb 20       		.uleb128 0x20
  1591 01fc 0B       		.uleb128 0xb
  1592 01fd 01       		.uleb128 0x1
-ARM GAS  /tmp/cc2V71tP.s 			page 45
+ARM GAS  /tmp/ccIq1VWv.s 			page 45
 
 
  1593 01fe 13       		.uleb128 0x13
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1647              	.Ldebug_loc0:
  1648              	.LLST4:
  1649 0000 04010000 		.4byte	.LFB14-.Ltext0
-ARM GAS  /tmp/cc2V71tP.s 			page 46
+ARM GAS  /tmp/ccIq1VWv.s 			page 46
 
 
  1650 0004 06010000 		.4byte	.LCFI2-.Ltext0
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1704 0080 0200     		.2byte	0x2
  1705 0082 7D       		.byte	0x7d
  1706 0083 08       		.sleb128 8
-ARM GAS  /tmp/cc2V71tP.s 			page 47
+ARM GAS  /tmp/ccIq1VWv.s 			page 47
 
 
  1707 0084 1E000000 		.4byte	.LCFI1-.Ltext0
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1761 00ef 70       		.byte	0x70
  1762 00f0 40       		.sleb128 -64
  1763 00f1 9F       		.byte	0x9f
-ARM GAS  /tmp/cc2V71tP.s 			page 48
+ARM GAS  /tmp/ccIq1VWv.s 			page 48
 
 
  1764 00f2 56000000 		.4byte	.LVL7-.Ltext0
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1813      69746963 
  1813      616C4E65 
  1813      7374696E 
-ARM GAS  /tmp/cc2V71tP.s 			page 49
+ARM GAS  /tmp/ccIq1VWv.s 			page 49
 
 
  1813      6700
@@ -2937,218 +2937,216 @@ ARM GAS  /tmp/cc2V71tP.s 			page 1
  1835      46756E63 
  1835      74696F6E 
  1835      5F7400
- 1836              	.LASF26:
-ARM GAS  /tmp/cc2V71tP.s 			page 50
+ 1836              	.LASF37:
+ARM GAS  /tmp/ccIq1VWv.s 			page 50
 
 
- 1837 00c7 756C4475 		.ascii	"ulDummy\000"
- 1837      6D6D7900 
- 1838              	.LASF4:
- 1839 00cf 756E7369 		.ascii	"unsigned char\000"
- 1839      676E6564 
- 1839      20636861 
- 1839      7200
- 1840              	.LASF8:
- 1841 00dd 6C6F6E67 		.ascii	"long unsigned int\000"
- 1841      20756E73 
- 1841      69676E65 
- 1841      6420696E 
- 1841      7400
- 1842              	.LASF6:
- 1843 00ef 73686F72 		.ascii	"short unsigned int\000"
- 1843      7420756E 
- 1843      7369676E 
- 1843      65642069 
- 1843      6E7400
- 1844              	.LASF10:
- 1845 0102 5F5F7569 		.ascii	"__uint32_t\000"
- 1845      6E743332 
- 1845      5F7400
- 1846              	.LASF42:
- 1847 010d 756C4E65 		.ascii	"ulNewBASEPRI\000"
- 1847      77424153 
- 1847      45505249 
- 1847      00
- 1848              	.LASF28:
- 1849 011a 7078506F 		.ascii	"pxPortInitialiseStack\000"
- 1849      7274496E 
- 1849      69746961 
- 1849      6C697365 
- 1849      53746163 
- 1850              	.LASF33:
- 1851 0130 78546173 		.ascii	"xTaskIncrementTick\000"
- 1851      6B496E63 
- 1851      72656D65 
- 1851      6E745469 
- 1851      636B00
- 1852              	.LASF18:
- 1853 0143 76506F72 		.ascii	"vPortSetupTimerInterrupt\000"
- 1853      74536574 
- 1853      75705469 
- 1853      6D657249 
- 1853      6E746572 
- 1854              	.LASF31:
- 1855 015c 76506F72 		.ascii	"vPortSetBASEPRI\000"
- 1855      74536574 
- 1855      42415345 
- 1855      50524900 
- 1856              	.LASF13:
- 1857 016c 53746163 		.ascii	"StackType_t\000"
- 1857      6B547970 
- 1857      655F7400 
- 1858              	.LASF0:
- 1859 0178 756E7369 		.ascii	"unsigned int\000"
-ARM GAS  /tmp/cc2V71tP.s 			page 51
+ 1837 00c7 2F686F6D 		.ascii	"/home/junior/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/6-i"
+ 1837      652F6A75 
+ 1837      6E696F72 
+ 1837      2F436F64 
+ 1837      69676F73 
+ 1838 00fa 6E665265 		.ascii	"nfRed\000"
+ 1838      6400
+ 1839              	.LASF26:
+ 1840 0100 756C4475 		.ascii	"ulDummy\000"
+ 1840      6D6D7900 
+ 1841              	.LASF4:
+ 1842 0108 756E7369 		.ascii	"unsigned char\000"
+ 1842      676E6564 
+ 1842      20636861 
+ 1842      7200
+ 1843              	.LASF8:
+ 1844 0116 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1844      20756E73 
+ 1844      69676E65 
+ 1844      6420696E 
+ 1844      7400
+ 1845              	.LASF6:
+ 1846 0128 73686F72 		.ascii	"short unsigned int\000"
+ 1846      7420756E 
+ 1846      7369676E 
+ 1846      65642069 
+ 1846      6E7400
+ 1847              	.LASF10:
+ 1848 013b 5F5F7569 		.ascii	"__uint32_t\000"
+ 1848      6E743332 
+ 1848      5F7400
+ 1849              	.LASF42:
+ 1850 0146 756C4E65 		.ascii	"ulNewBASEPRI\000"
+ 1850      77424153 
+ 1850      45505249 
+ 1850      00
+ 1851              	.LASF28:
+ 1852 0153 7078506F 		.ascii	"pxPortInitialiseStack\000"
+ 1852      7274496E 
+ 1852      69746961 
+ 1852      6C697365 
+ 1852      53746163 
+ 1853              	.LASF33:
+ 1854 0169 78546173 		.ascii	"xTaskIncrementTick\000"
+ 1854      6B496E63 
+ 1854      72656D65 
+ 1854      6E745469 
+ 1854      636B00
+ 1855              	.LASF31:
+ 1856 017c 76506F72 		.ascii	"vPortSetBASEPRI\000"
+ 1856      74536574 
+ 1856      42415345 
+ 1856      50524900 
+ 1857              	.LASF13:
+ 1858 018c 53746163 		.ascii	"StackType_t\000"
+ 1858      6B547970 
+ 1858      655F7400 
+ARM GAS  /tmp/ccIq1VWv.s 			page 51
 
 
- 1859      676E6564 
- 1859      20696E74 
- 1859      00
- 1860              	.LASF9:
- 1861 0185 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1861      206C6F6E 
- 1861      6720756E 
- 1861      7369676E 
- 1861      65642069 
- 1862              	.LASF32:
- 1863 019c 76506F72 		.ascii	"vPortRaiseBASEPRI\000"
- 1863      74526169 
- 1863      73654241 
- 1863      53455052 
- 1863      4900
- 1864              	.LASF35:
- 1865 01ae 474E5520 		.ascii	"GNU C17 10.3.1 20210824 (release) -mcpu=cortex-m3 -"
- 1865      43313720 
- 1865      31302E33 
- 1865      2E312032 
- 1865      30323130 
- 1866 01e1 6D746875 		.ascii	"mthumb -mfloat-abi=soft -march=armv7-m -g -gdwarf-2"
- 1866      6D62202D 
- 1866      6D666C6F 
- 1866      61742D61 
- 1866      62693D73 
- 1867 0214 202D4F73 		.ascii	" -Os -fomit-frame-pointer\000"
- 1867      202D666F 
- 1867      6D69742D 
- 1867      6672616D 
- 1867      652D706F 
- 1868              	.LASF37:
- 1869 022e 2F686F6D 		.ascii	"/home/junior/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/5-P"
- 1869      652F6A75 
- 1869      6E696F72 
- 1869      2F436F64 
- 1869      69676F73 
- 1870 0261 574D5F4C 		.ascii	"WM_LCD_SERIAL\000"
- 1870      43445F53 
- 1870      45524941 
- 1870      4C00
+ 1859              	.LASF0:
+ 1860 0198 756E7369 		.ascii	"unsigned int\000"
+ 1860      676E6564 
+ 1860      20696E74 
+ 1860      00
+ 1861              	.LASF9:
+ 1862 01a5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1862      206C6F6E 
+ 1862      6720756E 
+ 1862      7369676E 
+ 1862      65642069 
+ 1863              	.LASF32:
+ 1864 01bc 76506F72 		.ascii	"vPortRaiseBASEPRI\000"
+ 1864      74526169 
+ 1864      73654241 
+ 1864      53455052 
+ 1864      4900
+ 1865              	.LASF35:
+ 1866 01ce 474E5520 		.ascii	"GNU C17 10.3.1 20210824 (release) -mcpu=cortex-m3 -"
+ 1866      43313720 
+ 1866      31302E33 
+ 1866      2E312032 
+ 1866      30323130 
+ 1867 0201 6D746875 		.ascii	"mthumb -mfloat-abi=soft -march=armv7-m -g -gdwarf-2"
+ 1867      6D62202D 
+ 1867      6D666C6F 
+ 1867      61742D61 
+ 1867      62693D73 
+ 1868 0234 202D4F73 		.ascii	" -Os -fomit-frame-pointer\000"
+ 1868      202D666F 
+ 1868      6D69742D 
+ 1868      6672616D 
+ 1868      652D706F 
+ 1869              	.LASF18:
+ 1870 024e 76506F72 		.ascii	"vPortSetupTimerInterrupt\000"
+ 1870      74536574 
+ 1870      75705469 
+ 1870      6D657249 
+ 1870      6E746572 
  1871              	.LASF1:
- 1872 026f 6C6F6E67 		.ascii	"long long int\000"
+ 1872 0267 6C6F6E67 		.ascii	"long long int\000"
  1872      206C6F6E 
  1872      6720696E 
  1872      7400
  1873              	.LASF24:
- 1874 027d 5356435F 		.ascii	"SVC_Handler\000"
+ 1874 0275 5356435F 		.ascii	"SVC_Handler\000"
  1874      48616E64 
  1874      6C657200 
  1875              	.LASF40:
- 1876 0289 70765061 		.ascii	"pvParameters\000"
+ 1876 0281 70765061 		.ascii	"pvParameters\000"
  1876      72616D65 
  1876      74657273 
  1876      00
  1877              	.LASF29:
- 1878 0296 7078546F 		.ascii	"pxTopOfStack\000"
-ARM GAS  /tmp/cc2V71tP.s 			page 52
-
-
+ 1878 028e 7078546F 		.ascii	"pxTopOfStack\000"
  1878      704F6653 
  1878      7461636B 
+ARM GAS  /tmp/ccIq1VWv.s 			page 52
+
+
  1878      00
  1879              	.LASF19:
- 1880 02a3 50656E64 		.ascii	"PendSV_Handler\000"
+ 1880 029b 50656E64 		.ascii	"PendSV_Handler\000"
  1880      53565F48 
  1880      616E646C 
  1880      657200
  1881              	.LASF21:
- 1882 02b2 76506F72 		.ascii	"vPortExitCritical\000"
+ 1882 02aa 76506F72 		.ascii	"vPortExitCritical\000"
  1882      74457869 
  1882      74437269 
  1882      74696361 
  1882      6C00
  1883              	.LASF11:
- 1884 02c4 75696E74 		.ascii	"uint32_t\000"
+ 1884 02bc 75696E74 		.ascii	"uint32_t\000"
  1884      33325F74 
  1884      00
  1885              	.LASF41:
- 1886 02cd 756C4E65 		.ascii	"ulNewMaskValue\000"
+ 1886 02c5 756C4E65 		.ascii	"ulNewMaskValue\000"
  1886      774D6173 
  1886      6B56616C 
  1886      756500
  1887              	.LASF17:
- 1888 02dc 63686172 		.ascii	"char\000"
+ 1888 02d4 63686172 		.ascii	"char\000"
  1888      00
  1889              	.LASF38:
- 1890 02e1 70727650 		.ascii	"prvPortStartFirstTask\000"
+ 1890 02d9 70727650 		.ascii	"prvPortStartFirstTask\000"
  1890      6F727453 
  1890      74617274 
  1890      46697273 
  1890      74546173 
  1891              	.LASF2:
- 1892 02f7 6C6F6E67 		.ascii	"long double\000"
+ 1892 02ef 6C6F6E67 		.ascii	"long double\000"
  1892      20646F75 
  1892      626C6500 
  1893              	.LASF3:
- 1894 0303 7369676E 		.ascii	"signed char\000"
+ 1894 02fb 7369676E 		.ascii	"signed char\000"
  1894      65642063 
  1894      68617200 
  1895              	.LASF27:
- 1896 030f 78506F72 		.ascii	"xPortStartScheduler\000"
+ 1896 0307 78506F72 		.ascii	"xPortStartScheduler\000"
  1896      74537461 
  1896      72745363 
  1896      68656475 
  1896      6C657200 
  1897              	.LASF15:
- 1898 0323 55426173 		.ascii	"UBaseType_t\000"
+ 1898 031b 55426173 		.ascii	"UBaseType_t\000"
  1898      65547970 
  1898      655F7400 
  1899              	.LASF14:
- 1900 032f 42617365 		.ascii	"BaseType_t\000"
+ 1900 0327 42617365 		.ascii	"BaseType_t\000"
  1900      54797065 
  1900      5F7400
  1901              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  /tmp/cc2V71tP.s 			page 53
+ARM GAS  /tmp/ccIq1VWv.s 			page 53
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 port.c
-     /tmp/cc2V71tP.s:78     .text:0000000000000000 $t
-     /tmp/cc2V71tP.s:83     .text:0000000000000000 prvTaskExitError
-     /tmp/cc2V71tP.s:151    .text:0000000000000020 prvPortStartFirstTask
-     /tmp/cc2V71tP.s:186    .text:000000000000003a pxPortInitialiseStack
-     /tmp/cc2V71tP.s:237    .text:0000000000000058 $d
-     /tmp/cc2V71tP.s:241    .text:000000000000005c $t
-     /tmp/cc2V71tP.s:247    .text:000000000000005c SVC_Handler
-     /tmp/cc2V71tP.s:269    .text:0000000000000080 pxCurrentTCBConst2
-     /tmp/cc2V71tP.s:269    .text:0000000000000080 $d
-     /tmp/cc2V71tP.s:279    .text:0000000000000084 $t
-     /tmp/cc2V71tP.s:285    .text:0000000000000084 vPortEndScheduler
-     /tmp/cc2V71tP.s:305    .text:0000000000000086 vPortEnterCritical
-     /tmp/cc2V71tP.s:346    .text:00000000000000a0 $d
-     /tmp/cc2V71tP.s:350    .text:00000000000000a4 $t
-     /tmp/cc2V71tP.s:356    .text:00000000000000a4 vPortExitCritical
-     /tmp/cc2V71tP.s:399    .text:00000000000000b4 $d
-     /tmp/cc2V71tP.s:403    .text:00000000000000b8 $t
-     /tmp/cc2V71tP.s:409    .text:00000000000000b8 PendSV_Handler
-     /tmp/cc2V71tP.s:444    .text:0000000000000100 pxCurrentTCBConst
-     /tmp/cc2V71tP.s:444    .text:0000000000000100 $d
-     /tmp/cc2V71tP.s:454    .text:0000000000000104 $t
-     /tmp/cc2V71tP.s:460    .text:0000000000000104 SysTick_Handler
-     /tmp/cc2V71tP.s:543    .text:0000000000000130 vPortSetupTimerInterrupt
-     /tmp/cc2V71tP.s:582    .text:0000000000000146 xPortStartScheduler
-     /tmp/cc2V71tP.s:639    .text:0000000000000180 $d
-     /tmp/cc2V71tP.s:644    .data:0000000000000000 $d
-     /tmp/cc2V71tP.s:648    .data:0000000000000000 uxCriticalNesting
-     /tmp/cc2V71tP.s:1901   .text:0000000000000184 $d
+     /tmp/ccIq1VWv.s:78     .text:0000000000000000 $t
+     /tmp/ccIq1VWv.s:83     .text:0000000000000000 prvTaskExitError
+     /tmp/ccIq1VWv.s:151    .text:0000000000000020 prvPortStartFirstTask
+     /tmp/ccIq1VWv.s:186    .text:000000000000003a pxPortInitialiseStack
+     /tmp/ccIq1VWv.s:237    .text:0000000000000058 $d
+     /tmp/ccIq1VWv.s:241    .text:000000000000005c $t
+     /tmp/ccIq1VWv.s:247    .text:000000000000005c SVC_Handler
+     /tmp/ccIq1VWv.s:269    .text:0000000000000080 pxCurrentTCBConst2
+     /tmp/ccIq1VWv.s:269    .text:0000000000000080 $d
+     /tmp/ccIq1VWv.s:279    .text:0000000000000084 $t
+     /tmp/ccIq1VWv.s:285    .text:0000000000000084 vPortEndScheduler
+     /tmp/ccIq1VWv.s:305    .text:0000000000000086 vPortEnterCritical
+     /tmp/ccIq1VWv.s:346    .text:00000000000000a0 $d
+     /tmp/ccIq1VWv.s:350    .text:00000000000000a4 $t
+     /tmp/ccIq1VWv.s:356    .text:00000000000000a4 vPortExitCritical
+     /tmp/ccIq1VWv.s:399    .text:00000000000000b4 $d
+     /tmp/ccIq1VWv.s:403    .text:00000000000000b8 $t
+     /tmp/ccIq1VWv.s:409    .text:00000000000000b8 PendSV_Handler
+     /tmp/ccIq1VWv.s:444    .text:0000000000000100 pxCurrentTCBConst
+     /tmp/ccIq1VWv.s:444    .text:0000000000000100 $d
+     /tmp/ccIq1VWv.s:454    .text:0000000000000104 $t
+     /tmp/ccIq1VWv.s:460    .text:0000000000000104 SysTick_Handler
+     /tmp/ccIq1VWv.s:543    .text:0000000000000130 vPortSetupTimerInterrupt
+     /tmp/ccIq1VWv.s:582    .text:0000000000000146 xPortStartScheduler
+     /tmp/ccIq1VWv.s:639    .text:0000000000000180 $d
+     /tmp/ccIq1VWv.s:644    .data:0000000000000000 $d
+     /tmp/ccIq1VWv.s:648    .data:0000000000000000 uxCriticalNesting
+     /tmp/ccIq1VWv.s:1901   .text:0000000000000184 $d
 
 UNDEFINED SYMBOLS
 pxCurrentTCB
