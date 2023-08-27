@@ -79,57 +79,14 @@ static void task1(void *args __attribute((unused))) {
 	__delay_ms(500); 
 
 	int msg_buf_rev;
-	u8 status;
 
-	char DISP_SHOW[16]; 
-
-	char  Humidade[4];
-	char 	Temperatura[4];
-
-	GPIOB->CRL	|= (1<<8);
-
-	u8 i=0;
 	while(1){
-		status = xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
+		xQueueReceive(LCD_DHT_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
 
+		disp_number(msg_buf_rev & (0XF << 0), 0,0);
+		disp_number(msg_buf_rev & (0XF << 8), 1,0);
 
-		if (i <=1 ){
-				if( msg_buf_rev == TMOUT_DHT11 ) {
-					// Mostar error e o erro!!
-				}
-
-				else if(msg_buf_rev == CKSUM_FAIL_DHT11 ){
-					// Mostar error e o erro!!
-				}
-				
-				else { // Deu certo a leitura
-						 
-					if (i == 0 && msg_buf_rev > 0){
-						
-						// Converte em string 
-						itoa(msg_buf_rev, Temperatura , DEC);
-						strcpy(DISP_SHOW, "T: ");
-						strcat(DISP_SHOW, Temperatura );
-						disp_text(DISP_SHOW, i , 0);
-					} 
-
-					if (i == 1 && msg_buf_rev > 0){
-						itoa(msg_buf_rev, Humidade, DEC);
-						strcpy(DISP_SHOW, "H: ");
-						strcat(DISP_SHOW, Humidade );
-						disp_text(DISP_SHOW, i , 0);
-					}
-			}
-			__delay_ms(500);
-			i++;
-		}
-		else {
-			i=0;
-		}
-
-
-		// disp_text("                ", 0, 0);
-		// disp_text(msg_buf_rev, 1, 0);
+		__delay_ms(500);
 	}
 }
 
@@ -164,68 +121,39 @@ static void task2(void *args __attribute ((unused))){
 	 * */
 
 	USART_init();
+	DHT11_start();
 
-	u16 dados_leitura=0;
+	u16 dados_leitura=0xFFFF;
 
 	int j = 0; 
 
 	j++;
-	xQueueSend(LCD_DHT_queue, &j, 0);
 
 	char t[4], h[4], env[20];
 
 	USARTSend("\r\nINICIANDO....\r\n");
+
 	while(1){
 
 		dados_leitura = DHT11_read();
+	USARTSend("\r\nINICIANDO....\r\n");
 
-		itoa(dados_leitura & (0xFF << 8), t, DEC);
-		itoa(dados_leitura & (0xFF << 0), h, DEC);
+		itoa(dados_leitura & (0xF << 8), t, 10);
+		itoa(dados_leitura & (0xF << 0), h, 10);
 
-	  itoa((GPIOB->IDR), env, BIN);
 		
+		strcpy(env, "\n\rTemperatura: ");
 		strcat(env, t);
-		strcat(env, " <-t h-> ");
+		USARTSend(env);
+
+		strcpy(env, "\n\rHumidade: ");
 		strcat(env, h);
 		USARTSend(env);
 
-		strcpy(env, "\r\n");
-	/*
-			if(leitura_DHT == DHT11_SUCCESS) {
 
-				USARTSend("\r\n ------- OK");
-				xQueueSend(LCD_DHT_queue, &dev.temparature, 0);
-				__delay_ms(500);
-				xQueueSend(LCD_DHT_queue, &dev.humidity, 0);
-				__delay_ms(500);
+		__delay_ms(500);
+		xQueueSend(LCD_DHT_queue, &dados_leitura, 0);
 
-			}
-
-			else if(leitura_DHT == DHT11_ERROR_CHECKSUM ) {
-				USARTSend("\r\n ------- ERR CHECKSUM");
-				status = CKSUM_FAIL_DHT11;
-				xQueueSend(LCD_DHT_queue, &status, 0);
-				__delay_ms(500);
-				xQueueSend(LCD_DHT_queue, &status, 0);
-				__delay_ms(500);
-			}
-			
-			else { // TIMOUT	
-
-				USARTSend("\r\n ------- ERR TMOUT");
-
-				status = TMOUT_DHT11; 
-				xQueueSend(LCD_DHT_queue, &status, 0);
-				__delay_ms(500);
-				xQueueSend(LCD_DHT_queue, &status, 0);
-				__delay_ms(500);
-			
-			}
-
-				j++;
-				xQueueSend(LCD_DHT_queue, &j, 0);
-		*/
-				__delay_ms(500);
 	}
 }
 
@@ -246,8 +174,8 @@ int main(void) {
 	
 	set_system_clock_to_72Mhz();
 
-	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
-	xTaskCreate(task2, "LED_13", 100 , NULL, 4 , NULL);
+	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 3 ,NULL);
+	xTaskCreate(task2, "LED_13", 100 , NULL, 3, NULL);
 	xTaskCreate(task3, "DHT_read", 300 , NULL, 4 , NULL);
 	// xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
 
