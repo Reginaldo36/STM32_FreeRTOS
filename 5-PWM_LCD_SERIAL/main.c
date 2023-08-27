@@ -121,7 +121,7 @@ static void task2(void *args __attribute ((unused))){
 	 * */
 
 	USART_init();
-	DHT11_start();
+	// DHT11_start();
 
 	u16 dados_leitura=0xFFFF;
 
@@ -133,13 +133,24 @@ static void task2(void *args __attribute ((unused))){
 
 	USARTSend("\r\nINICIANDO....\r\n");
 
+	GPIOA->CRH	|= (0b0100 << 0);
+		USARTSend("\r\nINICIANDO....\r\n");
+
 	while(1){
 
-		dados_leitura = DHT11_read();
-	USARTSend("\r\nINICIANDO....\r\n");
+		//dados_leitura = DHT11_read();
 
-		itoa(dados_leitura & (0xF << 8), t, 10);
-		itoa(dados_leitura & (0xF << 0), h, 10);
+		dados_leitura = 0;
+
+		for (u8 i=0 ; i<16 ; i++){
+			__delay(10);
+			if (!GPIOB->IDR & (1<<0))
+				dados_leitura = 1<< i;
+		}
+
+
+		itoa(dados_leitura & (0xFF << 8), t, 2);
+		itoa(dados_leitura & (0xFF << 0), h, 2);
 
 		
 		strcpy(env, "\n\rTemperatura: ");
@@ -162,22 +173,41 @@ static void task4(void *args __attribute ((unused))){
 	 * Tarefa dedicada a leitura de botões para controlar o
 	 * PWM -> ajuste de contraste.
 	 * */
-	
+		
+	RCC->APB2ENR |=1<<3;
+	GPIOB->CRL	|= (0b0100<<0);
+	u32 dados_leitura;
 	while(1){
+		if (GPIOB->IDR &(1<<0))
+			USARTSend("\n\r --------------Task4: Leitura 1\r\n");
+
+		else if (!(GPIOB->IDR &(1<<0)))
+			USARTSend("\n\r --------------Task4: Leitura 0\r\n");
+
+		for (u8 i=0 ; i<32 ; i++){
+			__delay(10);
+			if (!GPIOB->IDR & (1<<0))
+				dados_leitura = 1<< i;
+		}
+
+		disp_clear();
+		disp_number((u8)dados_leitura/8, 1 , 0);
+
+		__delay_ms(500);
 		
 	}
 }
 
 int main(void) {
 
-	LCD_DHT_queue = xQueueCreate(17, sizeof(int));
+	LCD_DHT_queue = xQueueCreate(2, sizeof(int));
 	
 	set_system_clock_to_72Mhz();
 
-	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 3 ,NULL);
-	xTaskCreate(task2, "LED_13", 100 , NULL, 3, NULL);
+	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 2 ,NULL);
+	xTaskCreate(task2, "LED_13", 100 , NULL, 2, NULL);
 	xTaskCreate(task3, "DHT_read", 300 , NULL, 4 , NULL);
-	// xTaskCreate(task4, "Contrast", 100 , NULL, 4 , NULL);
+	xTaskCreate(task4, "Contrast", 300 , NULL, 2 , NULL);
 
 	vTaskStartScheduler(); 
 
