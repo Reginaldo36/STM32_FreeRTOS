@@ -1,0 +1,119 @@
+// https://controllerstech.com/interface-stepper-motor-with-stm32/
+
+#define GP GPIOB
+
+#define P1 9
+#define P2 8
+#define P3 7
+#define P4 6
+#define setPin(  PIN )	GP->ODR &= ~(1<<PIN)
+#define resPin(  PIN )	GP->ODR |= (1<<PIN)
+#define stepsperrev 4096
+
+
+
+void stepper_set_rpm (int rpm);
+void stepper_drive(u8 step); 
+void stepper_step_angle (float angle, int direction, int rpm); 
+void Stepper_init();
+
+void Stepper_init(){
+	RCC->APB2ENR |= 1<<3;
+	GP->CRL |= 0x33<<24; // 7, 6
+	GP->CRH |= 0x33<<0;  // 8, 9
+}
+
+void stepper_drive(u8 step){
+
+	switch (step){
+		case 0:
+				setPin(P1);
+				resPin(P2);
+				resPin(P3);
+				resPin(P4);
+			break; 
+
+		case 1:
+				setPin(P1);
+				setPin(P2);
+				resPin(P3);
+				resPin(P4);
+			  break;
+
+		case 2:
+				resPin(P1);
+				setPin(P2);
+				resPin(P3);
+				resPin(P4);
+			  break;
+
+		case 3:
+				resPin(P1);
+				setPin(P2);
+				setPin(P3);
+				resPin(P4);
+			  break;
+
+		case 4:
+				resPin(P1);
+				resPin(P2);
+				setPin(P3);
+				resPin(P4);
+			  break;
+
+		case 5:
+				resPin(P1);
+				resPin(P2);
+				setPin(P3);
+				setPin(P4);
+			  break;
+
+		case 6:
+				resPin(P1);
+				resPin(P2);
+				resPin(P3);
+				setPin(P4);
+			  break;
+
+		case 7:
+				setPin(P1);
+				resPin(P2);
+				resPin(P3);
+				setPin(P4);
+			  break;
+
+	}
+}
+
+void stepper_step_angle (float angle, int direction, int rpm)
+{
+	float anglepersequence = 0.703125;  // 360 = 512 sequences
+	int numberofsequences = (int) (angle/anglepersequence);
+
+	for (int seq=0; seq<numberofsequences; seq++)
+	{
+		if (direction == 0)  // for clockwise
+		{
+			for (int step=7; step>=0; step--)
+			{
+				stepper_drive(step);
+				stepper_set_rpm(rpm);
+			}
+
+		}
+
+		else if (direction == 1)  // for anti-clockwise
+		{
+			for (int step=0; step<8; step++)
+			{
+				stepper_drive(step);
+				stepper_set_rpm(rpm);
+			}
+		}
+	}
+}
+
+void stepper_set_rpm (int rpm)  // Set rpm--> max 13, min 1,,,  went to 14 rev/min
+{
+	__delay(60000000/stepsperrev/rpm);
+}
