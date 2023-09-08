@@ -39,9 +39,9 @@
 #define DEC 10
 #define HEX 16
 
-
 // Vadc * 3300 (mV) / 4096 (12 bits) 
 #define ADC_Const 0.8056
+
 
 void LCD16x2_init(){
 
@@ -65,8 +65,6 @@ void LCD16x2_init(){
 	}
 	__delay_ms(500); 
 	disp_clear();
-
-	
 }
 
 static QueueHandle_t LCD_Show_queue; 
@@ -103,6 +101,7 @@ static void task2(void *args __attribute ((unused))){
 	}
 }
 
+
  void task3(void *args __attribute ((unused))){
 	/* [1---]
 	 *
@@ -127,13 +126,6 @@ static void task2(void *args __attribute ((unused))){
 	}
 }
 
-/*
-static void task4(void *args __attribute ((unused))){
-	while(1){
-		
-	}
-}
-*/
 int main(void) {
 
 	LCD_Show_queue = xQueueCreate(2, sizeof(u32));
@@ -142,8 +134,7 @@ int main(void) {
 
 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 2 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 2, NULL);
-	xTaskCreate(task3, "DHT_read", 100 , NULL, 2 , NULL);
-	// xTaskCreate(task4, "Contrast", 300 , NULL, 2 , NULL);
+	xTaskCreate(task3, "LM35_read", 100 , NULL, 2 , NULL);
 
 	vTaskStartScheduler(); 
 

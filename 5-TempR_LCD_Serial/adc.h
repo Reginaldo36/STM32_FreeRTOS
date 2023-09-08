@@ -11,7 +11,7 @@ void ADC9_Configuration()
 
     // Configurar as seguintes opções para o ADC9:
     // - Modo de operação: modo independente
-    // - Modo de conversão: único
+    // - Modo de conversão: Contínua
     // - Resolução: 12 bits
     // - Fator de divisão do clock: 4 (seleciona um clock ADC de 14 MHz)
     ADC2->CR1 &= ~(ADC_CR1_DISCEN | ADC_CR1_SCAN);
@@ -35,9 +35,7 @@ uint16_t ADC9_GetValue()
     ADC2->CR2 |= ADC_CR2_SWSTART;
 
     // Aguardar o final da conversão
-    while (!(ADC2->SR & ADC_SR_EOC))
-    {
-    }
+    while (!(ADC2->SR & ADC_SR_EOC));
 
     // Obter o valor convertido
     return ADC2->DR;

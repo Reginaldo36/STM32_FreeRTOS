@@ -1,0 +1,302 @@
+ARM GAS  /tmp/ccD0Cm5b.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.arch armv7-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1	@ Tag_ABI_FP_denormal
+   5              		.eabi_attribute 21, 1	@ Tag_ABI_FP_exceptions
+   6              		.eabi_attribute 23, 3	@ Tag_ABI_FP_number_model
+   7              		.eabi_attribute 24, 1	@ Tag_ABI_align8_needed
+   8              		.eabi_attribute 25, 1	@ Tag_ABI_align8_preserved
+   9              		.eabi_attribute 26, 1	@ Tag_ABI_enum_size
+  10              		.eabi_attribute 30, 4	@ Tag_ABI_optimization_goals
+  11              		.eabi_attribute 34, 1	@ Tag_CPU_unaligned_access
+  12              		.eabi_attribute 18, 4	@ Tag_ABI_PCS_wchar_t
+  13              		.file	"croutine.c"
+  14              	@ GNU C17 (GNU Arm Embedded Toolchain 10.3-2021.10) version 10.3.1 20210824 (release) (arm-none-eab
+  15              	@	compiled by GNU C version 4.8.4, GMP version 6.1.0, MPFR version 3.1.4, MPC version 1.0.3, isl ve
+  16              	
+  17              	@ GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+  18              	@ options passed:  -I . -I ../5-TempR_LCD_Serial
+  19              	@ -I ../stm32f10x_lib/CMSIS/CM3/CoreSupport
+  20              	@ -I ../stm32f10x_lib/CMSIS/CM3/DeviceSupport/ST/STM32F10x
+  21              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver/inc
+  22              	@ -I ../stm32f10x_lib/STM32F10x_StdPeriph_Driver -I ../freertos/include
+  23              	@ -I ../freertos/portable/GCC/ARM_CM3 -imultilib thumb/v7-m/nofp
+  24              	@ -iprefix /usr/bin/../lib/gcc/arm-none-eabi/10.3.1/
+  25              	@ -isysroot /usr/bin/../arm-none-eabi -D__USES_INITFINI__ -D STM32F10X_MD
+  26              	@ -D USE_STDPERIPH_DRIVER -D HSE_VALUE=8000000 -D RUN_FROM_FLASH=1
+  27              	@ ../freertos/croutine.c -mcpu=cortex-m3 -mthumb -mfloat-abi=soft
+  28              	@ -mlibarch=armv7-m -march=armv7-m -auxbase-strip ../freertos/croutine.o -g
+  29              	@ -gdwarf-2 -Os -Wall -fomit-frame-pointer -fverbose-asm
+  30              	@ options enabled:  -faggressive-loop-optimizations -fallocation-dce
+  31              	@ -fauto-inc-dec -fbranch-count-reg -fcaller-saves -fcode-hoisting
+  32              	@ -fcombine-stack-adjustments -fcompare-elim -fcprop-registers
+  33              	@ -fcrossjumping -fcse-follow-jumps -fdefer-pop
+  34              	@ -fdelete-null-pointer-checks -fdevirtualize -fdevirtualize-speculatively
+  35              	@ -fdwarf2-cfi-asm -fearly-inlining -feliminate-unused-debug-symbols
+  36              	@ -feliminate-unused-debug-types -fexpensive-optimizations
+  37              	@ -fforward-propagate -ffp-int-builtin-inexact -ffunction-cse -fgcse
+  38              	@ -fgcse-lm -fgnu-unique -fguess-branch-probability -fhoist-adjacent-loads
+  39              	@ -fident -fif-conversion -fif-conversion2 -findirect-inlining -finline
+  40              	@ -finline-atomics -finline-functions -finline-functions-called-once
+  41              	@ -finline-small-functions -fipa-bit-cp -fipa-cp -fipa-icf
+  42              	@ -fipa-icf-functions -fipa-icf-variables -fipa-profile -fipa-pure-const
+  43              	@ -fipa-ra -fipa-reference -fipa-reference-addressable -fipa-sra
+  44              	@ -fipa-stack-alignment -fipa-vrp -fira-hoist-pressure
+  45              	@ -fira-share-save-slots -fira-share-spill-slots
+  46              	@ -fisolate-erroneous-paths-dereference -fivopts -fkeep-static-consts
+  47              	@ -fleading-underscore -flifetime-dse -flra-remat -fmath-errno
+  48              	@ -fmerge-constants -fmerge-debug-strings -fmove-loop-invariants
+  49              	@ -fomit-frame-pointer -foptimize-sibling-calls -fpartial-inlining
+  50              	@ -fpeephole -fpeephole2 -fplt -fprefetch-loop-arrays -freg-struct-return
+  51              	@ -freorder-blocks -freorder-functions -frerun-cse-after-loop
+  52              	@ -fsched-critical-path-heuristic -fsched-dep-count-heuristic
+  53              	@ -fsched-group-heuristic -fsched-interblock -fsched-last-insn-heuristic
+  54              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
+  55              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
+  56              	@ -fsection-anchors -fsemantic-interposition -fshow-column
+  57              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
+ARM GAS  /tmp/ccD0Cm5b.s 			page 2
+
+
+  58              	@ -fsplit-wide-types -fssa-backprop -fssa-phiopt -fstdarg-opt
+  59              	@ -fstore-merging -fstrict-aliasing -fstrict-volatile-bitfields
+  60              	@ -fsync-libcalls -fthread-jumps -ftoplevel-reorder -ftrapping-math
+  61              	@ -ftree-bit-ccp -ftree-builtin-call-dce -ftree-ccp -ftree-ch
+  62              	@ -ftree-coalesce-vars -ftree-copy-prop -ftree-cselim -ftree-dce
+  63              	@ -ftree-dominator-opts -ftree-dse -ftree-forwprop -ftree-fre
+  64              	@ -ftree-loop-distribute-patterns -ftree-loop-if-convert -ftree-loop-im
+  65              	@ -ftree-loop-ivcanon -ftree-loop-optimize -ftree-parallelize-loops=
+  66              	@ -ftree-phiprop -ftree-pre -ftree-pta -ftree-reassoc -ftree-scev-cprop
+  67              	@ -ftree-sink -ftree-slsr -ftree-sra -ftree-switch-conversion
+  68              	@ -ftree-tail-merge -ftree-ter -ftree-vrp -funit-at-a-time -fvar-tracking
+  69              	@ -fvar-tracking-assignments -fverbose-asm -fzero-initialized-in-bss
+  70              	@ -masm-syntax-unified -mbe32 -mfix-cortex-m3-ldrd -mlittle-endian
+  71              	@ -mpic-data-is-text-relative -msched-prolog -mthumb -munaligned-access
+  72              	@ -mvectorize-with-neon-quad
+  73              	
+  74              		.text
+  75              	.Ltext0:
+  76              		.cfi_sections	.debug_frame
+  77              	.Letext0:
+  78              		.section	.debug_info,"",%progbits
+  79              	.Ldebug_info0:
+  80 0000 6E000000 		.4byte	0x6e
+  81 0004 0200     		.2byte	0x2
+  82 0006 00000000 		.4byte	.Ldebug_abbrev0
+  83 000a 04       		.byte	0x4
+  84 000b 01       		.uleb128 0x1
+  85 000c E1000000 		.4byte	.LASF11
+  86 0010 0C       		.byte	0xc
+  87 0011 C5000000 		.4byte	.LASF12
+  88 0015 6D000000 		.4byte	.LASF13
+  89 0019 00000000 		.4byte	.Ldebug_line0
+  90 001d 02       		.uleb128 0x2
+  91 001e 04       		.byte	0x4
+  92 001f 05       		.byte	0x5
+  93 0020 696E7400 		.ascii	"int\000"
+  94 0024 03       		.uleb128 0x3
+  95 0025 04       		.byte	0x4
+  96 0026 07       		.byte	0x7
+  97 0027 00000000 		.4byte	.LASF0
+  98 002b 03       		.uleb128 0x3
+  99 002c 08       		.byte	0x8
+ 100 002d 05       		.byte	0x5
+ 101 002e 61010000 		.4byte	.LASF1
+ 102 0032 03       		.uleb128 0x3
+ 103 0033 08       		.byte	0x8
+ 104 0034 04       		.byte	0x4
+ 105 0035 B9000000 		.4byte	.LASF2
+ 106 0039 03       		.uleb128 0x3
+ 107 003a 01       		.byte	0x1
+ 108 003b 06       		.byte	0x6
+ 109 003c 2D000000 		.4byte	.LASF3
+ 110 0040 03       		.uleb128 0x3
+ 111 0041 01       		.byte	0x1
+ 112 0042 08       		.byte	0x8
+ 113 0043 1F000000 		.4byte	.LASF4
+ 114 0047 03       		.uleb128 0x3
+ARM GAS  /tmp/ccD0Cm5b.s 			page 3
+
+
+ 115 0048 02       		.byte	0x2
+ 116 0049 05       		.byte	0x5
+ 117 004a 4C000000 		.4byte	.LASF5
+ 118 004e 03       		.uleb128 0x3
+ 119 004f 02       		.byte	0x2
+ 120 0050 07       		.byte	0x7
+ 121 0051 39000000 		.4byte	.LASF6
+ 122 0055 03       		.uleb128 0x3
+ 123 0056 04       		.byte	0x4
+ 124 0057 05       		.byte	0x5
+ 125 0058 B0000000 		.4byte	.LASF7
+ 126 005c 03       		.uleb128 0x3
+ 127 005d 04       		.byte	0x4
+ 128 005e 07       		.byte	0x7
+ 129 005f 0D000000 		.4byte	.LASF8
+ 130 0063 03       		.uleb128 0x3
+ 131 0064 08       		.byte	0x8
+ 132 0065 07       		.byte	0x7
+ 133 0066 56000000 		.4byte	.LASF9
+ 134 006a 03       		.uleb128 0x3
+ 135 006b 01       		.byte	0x1
+ 136 006c 08       		.byte	0x8
+ 137 006d DC000000 		.4byte	.LASF10
+ 138 0071 00       		.byte	0
+ 139              		.section	.debug_abbrev,"",%progbits
+ 140              	.Ldebug_abbrev0:
+ 141 0000 01       		.uleb128 0x1
+ 142 0001 11       		.uleb128 0x11
+ 143 0002 01       		.byte	0x1
+ 144 0003 25       		.uleb128 0x25
+ 145 0004 0E       		.uleb128 0xe
+ 146 0005 13       		.uleb128 0x13
+ 147 0006 0B       		.uleb128 0xb
+ 148 0007 03       		.uleb128 0x3
+ 149 0008 0E       		.uleb128 0xe
+ 150 0009 1B       		.uleb128 0x1b
+ 151 000a 0E       		.uleb128 0xe
+ 152 000b 10       		.uleb128 0x10
+ 153 000c 06       		.uleb128 0x6
+ 154 000d 00       		.byte	0
+ 155 000e 00       		.byte	0
+ 156 000f 02       		.uleb128 0x2
+ 157 0010 24       		.uleb128 0x24
+ 158 0011 00       		.byte	0
+ 159 0012 0B       		.uleb128 0xb
+ 160 0013 0B       		.uleb128 0xb
+ 161 0014 3E       		.uleb128 0x3e
+ 162 0015 0B       		.uleb128 0xb
+ 163 0016 03       		.uleb128 0x3
+ 164 0017 08       		.uleb128 0x8
+ 165 0018 00       		.byte	0
+ 166 0019 00       		.byte	0
+ 167 001a 03       		.uleb128 0x3
+ 168 001b 24       		.uleb128 0x24
+ 169 001c 00       		.byte	0
+ 170 001d 0B       		.uleb128 0xb
+ 171 001e 0B       		.uleb128 0xb
+ARM GAS  /tmp/ccD0Cm5b.s 			page 4
+
+
+ 172 001f 3E       		.uleb128 0x3e
+ 173 0020 0B       		.uleb128 0xb
+ 174 0021 03       		.uleb128 0x3
+ 175 0022 0E       		.uleb128 0xe
+ 176 0023 00       		.byte	0
+ 177 0024 00       		.byte	0
+ 178 0025 00       		.byte	0
+ 179              		.section	.debug_aranges,"",%progbits
+ 180 0000 14000000 		.4byte	0x14
+ 181 0004 0200     		.2byte	0x2
+ 182 0006 00000000 		.4byte	.Ldebug_info0
+ 183 000a 04       		.byte	0x4
+ 184 000b 00       		.byte	0
+ 185 000c 0000     		.2byte	0
+ 186 000e 0000     		.2byte	0
+ 187 0010 00000000 		.4byte	0
+ 188 0014 00000000 		.4byte	0
+ 189              		.section	.debug_line,"",%progbits
+ 190              	.Ldebug_line0:
+ 191 0000 19000000 		.section	.debug_str,"MS",%progbits,1
+ 191      03001300 
+ 191      00000201 
+ 191      FB0E0D00 
+ 191      01010101 
+ 192              	.LASF0:
+ 193 0000 756E7369 		.ascii	"unsigned int\000"
+ 193      676E6564 
+ 193      20696E74 
+ 193      00
+ 194              	.LASF8:
+ 195 000d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 195      20756E73 
+ 195      69676E65 
+ 195      6420696E 
+ 195      7400
+ 196              	.LASF4:
+ 197 001f 756E7369 		.ascii	"unsigned char\000"
+ 197      676E6564 
+ 197      20636861 
+ 197      7200
+ 198              	.LASF3:
+ 199 002d 7369676E 		.ascii	"signed char\000"
+ 199      65642063 
+ 199      68617200 
+ 200              	.LASF6:
+ 201 0039 73686F72 		.ascii	"short unsigned int\000"
+ 201      7420756E 
+ 201      7369676E 
+ 201      65642069 
+ 201      6E7400
+ 202              	.LASF5:
+ 203 004c 73686F72 		.ascii	"short int\000"
+ 203      7420696E 
+ 203      7400
+ 204              	.LASF9:
+ 205 0056 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 205      206C6F6E 
+ARM GAS  /tmp/ccD0Cm5b.s 			page 5
+
+
+ 205      6720756E 
+ 205      7369676E 
+ 205      65642069 
+ 206              	.LASF13:
+ 207 006d 2F686F6D 		.ascii	"/home/junior/Codigos/6-Stm32_GCC_FreeRTOS10.2.1/5-T"
+ 207      652F6A75 
+ 207      6E696F72 
+ 207      2F436F64 
+ 207      69676F73 
+ 208 00a0 656D7052 		.ascii	"empR_LCD_Serial\000"
+ 208      5F4C4344 
+ 208      5F536572 
+ 208      69616C00 
+ 209              	.LASF7:
+ 210 00b0 6C6F6E67 		.ascii	"long int\000"
+ 210      20696E74 
+ 210      00
+ 211              	.LASF2:
+ 212 00b9 6C6F6E67 		.ascii	"long double\000"
+ 212      20646F75 
+ 212      626C6500 
+ 213              	.LASF12:
+ 214 00c5 2E2E2F66 		.ascii	"../freertos/croutine.c\000"
+ 214      72656572 
+ 214      746F732F 
+ 214      63726F75 
+ 214      74696E65 
+ 215              	.LASF10:
+ 216 00dc 63686172 		.ascii	"char\000"
+ 216      00
+ 217              	.LASF11:
+ 218 00e1 474E5520 		.ascii	"GNU C17 10.3.1 20210824 (release) -mcpu=cortex-m3 -"
+ 218      43313720 
+ 218      31302E33 
+ 218      2E312032 
+ 218      30323130 
+ 219 0114 6D746875 		.ascii	"mthumb -mfloat-abi=soft -march=armv7-m -g -gdwarf-2"
+ 219      6D62202D 
+ 219      6D666C6F 
+ 219      61742D61 
+ 219      62693D73 
+ 220 0147 202D4F73 		.ascii	" -Os -fomit-frame-pointer\000"
+ 220      202D666F 
+ 220      6D69742D 
+ 220      6672616D 
+ 220      652D706F 
+ 221              	.LASF1:
+ 222 0161 6C6F6E67 		.ascii	"long long int\000"
+ 222      206C6F6E 
+ 222      6720696E 
+ 222      7400
+ 223              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
+ARM GAS  /tmp/ccD0Cm5b.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 croutine.c
+
+NO UNDEFINED SYMBOLS
