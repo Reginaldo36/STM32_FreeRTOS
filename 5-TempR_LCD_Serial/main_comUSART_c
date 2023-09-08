@@ -12,7 +12,7 @@
  *			#define delayMicroseconds(X)   vTaskDelay(X)
  *			#define delay(X)  vTaskDelay(X)
  * */
-
+//
 // FreeRTOS: 
 
 #include "FreeRTOS.h"
@@ -32,6 +32,8 @@
 // LCD 16x2
 #include "myLcd.h"
 #include "Serial.h"
+// #include "PWM.h"
+// #include "dht11.h"
 #include "adc.h"
 
 #define BIN 2
@@ -43,31 +45,6 @@
 // Vadc * 3300 (mV) / 4096 (12 bits) 
 #define ADC_Const 0.8056
 
-void LCD16x2_init(){
-
-	RCC->APB2ENR |= (1<<2);
-	GPIOA->CRL	 = 0x33333300; // Hab PA(2-7) out PP
-
-	set_bit(IO,RS);   set_bit(IO,RS);
-	set_bit(IO,EN);   set_bit(IO,D4);
-	set_bit(IO,D5);   set_bit(IO,D6);
-	set_bit(IO,D7);   disp_init();
-	disp_cmd(0x0C);
-
-// Animação no visor:
-	disp_text("----------------", 0 ,0);
-	disp_text("0123456789abcdef", 1, 0);
-
-	for (u8 i=0 ; i<16 ; i++){
-		__delay_ms(200);
-		disp_text("X", 0 ,i);
-		disp_text("#", 1 , 16 - i);
-	}
-	__delay_ms(500); 
-	disp_clear();
-
-	
-}
 
 static QueueHandle_t LCD_Show_queue; 
 static void task1(void *args __attribute((unused))) {
@@ -80,8 +57,28 @@ static void task1(void *args __attribute((unused))) {
 	 * 
 	 * */
 
-	LCD16x2_init();
+	RCC->APB2ENR |= (1<<2);
+	GPIOA->CRL	 = 0x33333300; // Hab PA(2-7) out PP
+
+	set_bit(IO,RS);   set_bit(IO,RS);
+	set_bit(IO,EN);   set_bit(IO,D4);
+	set_bit(IO,D5);   set_bit(IO,D6);
+	set_bit(IO,D7);   disp_init();
+
+	disp_cmd(0x0C);
+
 	int msg_buf_rev;
+
+	disp_text("----------------", 0 ,0);
+	disp_text("0123456789abcdef", 1, 0);
+
+	for (u8 i=0 ; i<16 ; i++){
+		__delay_ms(200);
+		disp_text("X", 0 ,i);
+		disp_text("#", 1 , 16 - i);
+	}
+	__delay_ms(500); 
+	disp_clear();
 
 	while(1){
 		xQueueReceive(LCD_Show_queue, &msg_buf_rev, pdMS_TO_TICKS(1));
@@ -108,6 +105,7 @@ static void task2(void *args __attribute ((unused))){
 	 *
 	 * Tarefa dedicada a leitura do sensor de temperatura
 	 * usando ADC9 -> PB1
+	 * 
 	 *
 	 * O valor amostrado deve ser transmitido a cada 500ms
 	 * usando área de memória compartilhada. -> [2---]
@@ -117,17 +115,40 @@ static void task2(void *args __attribute ((unused))){
 	ADC9_Configuration();
 	u32 Valor_ADC_normalizado; 
 
+	USART_init();
+	USARTSend("\n\n\n\r Iniciando: ");
+
+	for (u8 i=0 ; i<8 ; i++){
+		USARTSend(" - ");
+		__delay_ms(300);
+	}
+	USARTSend(".\n\r.\n\r");
+
+	char word[30];
 	while(1){
 
+		// itoa(dados_leitura & (0xFF << 8), t, 2);
+		// itoa(dados_leitura & (0xFF << 0), h, 2);
+
+		
+		// strcpy(env, "\n\rTemperatura: ");
+		// strcat(env, t);
+		// USARTSend(env);
+
+
 		Valor_ADC_normalizado = ADC2->DR;
+
+		itoa(Valor_ADC_normalizado, word, 16);
+		strcat(word, " <- Valor lido \r\n");
+		USARTSend(word);
 
 		xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, 0);
 		__delay_ms(500);
 		
 	}
 }
-
 /*
+
 static void task4(void *args __attribute ((unused))){
 	while(1){
 		
