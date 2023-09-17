@@ -19,8 +19,9 @@
 
 //Lib. Auxiliares:
 #include "stm32f10x.h"
+#include <math.h>
 #include "Me.h"
-#include <string.h>
+// #include <string.h>
 /* #include "stm32f10x_adc.h" */
 
 // FreeRTOS: 
@@ -67,39 +68,21 @@ static void task1(void *args __attribute((unused))) {
 static void task2(void *args __attribute ((unused))){
 
 	u16 dd; 
-	char info[6] ;
+	char info[10] ;
 
 	while(1){
 
 	xQueueReceive(xQueue, &dd, 0); 
 
-		 if (dd <=con*0.1) 
-			 strcpy(info , "00%") ; 
-		 if (dd > con*0.1 && dd <=con*0.2) 
-			 strcpy(info , "-10%") ; 
-		 if (dd > con*0.2 && dd <=con*0.3) 
-			 strcpy(info , "-20%") ; 
-		 if (dd > con*0.3 && dd <=con*0.4) 
-			 strcpy(info , "-30%") ; 
-		 if (dd > con*0.4 && dd <=con*0.5) 
-			 strcpy(info , "-40%") ; 
-		 if (dd > con*0.5 && dd <=con*0.6) 
-			 strcpy(info , "-50%") ; 
-		 if (dd > con*0.6 && dd <=con*0.7) 
-			 strcpy(info , "-60%") ; 
-		 if (dd > con*0.7 && dd <=con*0.8) 
-			 strcpy(info , "-70%") ; 
-		 if (dd > con*0.8 && dd <=con*0.9) 
-			 strcpy(info , "-80%") ; 
-		 if (dd > con*0.9 && dd <=con*1) 
-			 strcpy(info , "-90%") ;  
+			floatToString((float) dd/con *100, info, 4); 
 
-			USARTSend(")\r\nValor de Duty Cicle= (");
+			USARTSend("%)\r\nValor de Duty Cicle= (");
+
 			USARTSend((char * ) &info);
-					__delay(100); 
+			__delay_ms(100);
+					// __delay(100); A tarefa fica bloqueada
+					// Não ficou não 
 		}
-		
-
 }
 
 static void task3(void *args __attribute ((unused))){
@@ -138,7 +121,6 @@ int main(void) {
 	GPIOC->CRH |= 0b11 << 20;
 
 	configure_PWM_TIM2();
-	//ADC1_configure(); 
 	 usart_init();
 
 	xTaskCreate(task1,"PWM_Control", 100 ,NULL, 4 ,NULL);
@@ -248,47 +230,3 @@ void USARTSend(char *pucBuffer) {
     }
 }
 // https://github.com/avislab/STM32F103/blob/master/Example_ADC_Temperature/main.c#L74
-
-/*
-void ADC1_configure_lib(){
-	// Uso da biblioteca stm32f10x_adc
-	RCC->APB2ENR |= 1UL<<2 ; // Hab. GPIOA
-	GPIOA->CRL |= (0x04 << 4); // Float A1
-	
-	RCC->APB2ENR |= (1<<9); // Bit 9 ADC1EN: ADC 1 
-									// interface clock enable
-
-	RCC->CFGR	|= (0b10 << 14); // Bits 15:14 ADCPRE:
-										  // ADC prescaler 10:
-										  //    PCLK2 divided by 6
-
-	// Uso da Lib
-	ADC_InitTypeDef adc;
-	adc.ADC_Mode = ADC_Mode_Independent;
-	adc.ADC_ScanConvMode = DISABLE;
-	adc.ADC_ContinuousConvMode = ENABLE;	// we work in continuous sampling mode
-	adc.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
-	adc.ADC_DataAlign = ADC_DataAlign_Right;
-	adc.ADC_NbrOfChannel = 1;
-
-
-	ADC_RegularChannelConfig(ADC1,ADC_Channel_1,
-		  	1,ADC_SampleTime_28Cycles5); // define regular conversion config
-
-	ADC_Init ( ADC1, &adc);	//set config of ADC1
-
-	// enable ADC
-	ADC_Cmd (ADC1,ENABLE);	//enable ADC1
-
-	//	ADC calibration (optional, but recommended at power on)
-	ADC_ResetCalibration(ADC1);	// Reset previous calibration
-	while(ADC_GetResetCalibrationStatus(ADC1));
-	ADC_StartCalibration(ADC1);	// Start new calibration (ADC must be off at that time)
-	while(ADC_GetCalibrationStatus(ADC1));
-
-		// start conversion
-	ADC_Cmd (ADC1,ENABLE);	//enable ADC1
-	ADC_SoftwareStartConvCmd(ADC1, ENABLE);	// start conversion 
-
-}
-*/

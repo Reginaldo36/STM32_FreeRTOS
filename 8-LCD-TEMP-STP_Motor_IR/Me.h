@@ -10,6 +10,37 @@ void Delay ( __IO u32 T );
 void enable_TIM3_delay (void);
 void ADC1_configure();
 
+void configure_PWM_TIM2(){
+/* Configurado com o exemplo do datasheet pag "387 / 1136" */
+
+   RCC->APB2ENR |= 0b101 << 0 ; /*Habilita o AFIO GPIOA */
+   RCC->APB1ENR |= 1 << 0; /*Habilita o TIMER 2 - CH na GPIO_A */
+
+   GPIOA->CRL |= (0x0B << 0) ; /* AF O_PP pino PA0 */
+	AFIO->MAPR &= ~( 0b11 << 6);
+   AFIO->MAPR &= ~( 0b11 << 8); /* [bit 26:24] SWJ_CFG [nota_2]
+                 [bit 8] TIM3_REMAP[1:0]: TIM2 remapping [nota_3]*/ 
+
+	TIM2->CCMR1 |= 0b110 << 4; /*Bits 6:4 OC1M: Output compare 1 mode
+                                  110: PWM mode 1 */
+   TIM2->CCMR1 |= 1UL << 3; /* Bit 3 OC1PE: Output compare 1 preload enable**/
+
+
+   TIM2->PSC = 709; /* 249;  25/250 - 1 => 0.1KHz  */
+   TIM2->ARR = 999; /* PWM period = (999 + 1) * 100KHz = 0.01 */
+   TIM2->CR1 &= ~(1<<4);
+   TIM2->CR1 |= 1<<7;/*Bit 7 ARPE: Auto-reload preload enable */
+   TIM2->CCMR1 |= 1UL << 3; /* Bit 3 OC1PE: Output compare 1 preload enable - ---- CONSEGUIIIIIII **/
+   TIM2->EGR |=1<<0;
+
+   TIM2->CCER |= 1<<0; /*Bit 0 CC1E: Capture/Compare 1 output enable*/
+   TIM2->CCER &= ~(1<<1); /*Bit 1 CC1P: Capture/Compare 1 output polarity
+                            0: OC1 active high. */
+
+   TIM2->CR1 |= 1<<0; //Habilita o clock
+   TIM2->CCR1 = 00;
+}
+
 void ADC1_configure(){
 	RCC->APB2ENR |= 1UL<<2 ; // Hab. GPIOA
 	GPIOA->CRL &= ~(0x0F << 4); // Define A1 Input Analogic
@@ -124,6 +155,15 @@ void disable_interrupt(IRQn_Type IRQn)
    NVIC->ICER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));
 }
 
+/* Exemplo: 
+ 		    float num = 123.456789;
+			 char str[20];
+			 // num -> ponto flutuante
+			 // str -> Var String 
+			 // 4 -> Precisão do de casas decimais
+			 floatToString(num, str, 4);
+ 
+ * */
 void floatToString(float num, char *str, int precision) {
     // Lida com números negativos
     if (num < 0) {
@@ -178,6 +218,48 @@ void intToStr(int num, char *str) {
         num /= 10;
     }
 }
+
+
+// Defina os pinos GPIO que estão conectados às bobinas do motor de passo
+#define MOTOR_COIL_1_PIN   GPIO_PIN_12
+#define MOTOR_COIL_2_PIN   GPIO_PIN_13
+#define MOTOR_COIL_3_PIN   GPIO_PIN_14
+#define MOTOR_COIL_4_PIN   GPIO_PIN_15
+#define MOTOR_PORT          GPIOB
+
+
+// Função para controlar o motor de passo
+void controlarMotorPasso(int passo) {
+    // Desativa todas as bobinas
+	  GPIOB->ODR &= ~(0xF << 12);
+	  passo = passo % 7;
+
+    switch (passo) {
+
+        case 0:
+			  GPIOB->ODR |= (0x1<<12);
+            break;
+        case 1:
+			  GPIOB->ODR |= (0x3<<12);
+            break;
+        case 2:
+			  GPIOB->ODR |= (0x2<<12);
+            break;
+        case 3:
+			  GPIOB->ODR |= (0x6<<12);
+            break;
+		  case 4:
+			  GPIOB->ODR |= (0x4<<12);
+            break;
+		  case 5:
+			  GPIOB->ODR |= (0xB<<12);
+            break;
+		  case 6:
+			  GPIOB->ODR |= (0x9<<12);
+            break;
+    }
+}
+
 
 
 /* Definições de bits "CFG" e "Mode" da configuração das GPIOs.

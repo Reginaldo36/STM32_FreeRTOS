@@ -1,3 +1,4 @@
+#include <math.h>
 #define __IO volatile
 
 void SystemInit (void);
@@ -8,8 +9,6 @@ void set_system_clock_to_72Mhz(void);
 void Delay ( __IO u32 T );
 void enable_TIM3_delay (void);
 void ADC1_configure();
-
-#define DelayUs(X) Delay(X)
 
 void ADC1_configure(){
 	RCC->APB2ENR |= 1UL<<2 ; // Hab. GPIOA
@@ -104,8 +103,7 @@ void enable_TIM3_delay (void) {
    RCC->APB1ENR |= 1<<1 ;
    TIM3->CR1 = 0x0000;
    //TIM3->ARR = 21699;
-   // TIM3->ARR = 250-1; // 10µs
-   TIM3->ARR = 720-1; // 10µs
+   TIM3->ARR = 250-1; // 10µs
    // para obter o período de 868µs
 /*https://www.vishay.com/docs/80071/dataform.pdf PAG 2
  * https://controllerstech.com/ir-remote-with-stm32/
@@ -124,6 +122,70 @@ void enable_interrupt(IRQn_Type IRQn)
 void disable_interrupt(IRQn_Type IRQn)
 {
    NVIC->ICER[((uint32_t)(IRQn) >> 5)] = (1 << ((uint32_t)(IRQn) & 0x1F));
+}
+
+/* Exemplo: 
+ 		    float num = 123.456789;
+			 char str[20];
+			 // num -> ponto flutuante
+			 // str -> Var String 
+			 // 4 -> Precisão do de casas decimais
+			 floatToString(num, str, 4);
+ 
+ * */
+void floatToString(float num, char *str, int precision) {
+    // Lida com números negativos
+    if (num < 0) {
+        num = -num;
+        *str++ = '-';
+    }
+
+    // Extrai a parte inteira do número
+    int inteira = (int)num;
+    intToStr(inteira, str);
+    while (*str != '\0') {
+        str++;
+    }
+
+    // Adiciona o ponto decimal
+    *str++ = '.';
+
+    // Calcula e adiciona a parte fracionária
+    float fracionaria = num - inteira;
+    for (int i = 0; i < precision; i++) {
+        fracionaria *= 10;
+        int digito = (int)fracionaria;
+        *str++ = '0' + digito;
+        fracionaria -= digito;
+    }
+
+    // Adiciona o terminador nulo
+    *str = '\0';
+}
+
+void intToStr(int num, char *str) {
+    // Converte um número inteiro para uma string
+    if (num == 0) {
+        *str++ = '0';
+        *str = '\0';
+        return;
+    }
+
+    int len = 0;
+    int temp = num;
+    while (temp > 0) {
+        temp /= 10;
+        len++;
+    }
+
+    str += len;
+    *str = '\0';
+
+    while (num > 0) {
+        int digito = num % 10;
+        *(--str) = '0' + digito;
+        num /= 10;
+    }
 }
 
 

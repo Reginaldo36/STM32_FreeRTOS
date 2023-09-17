@@ -89,7 +89,7 @@ static void task3(void *args __attribute ((unused))){
 		code_ir = IR_Read();
 
 		USARTSend("\r\nCodigo: ");
-		itoa (code_ir, word_IR, 10);
+		itoa (code_ir, word_IR, 16);
 		USARTSend(word_IR);
 
 	}
