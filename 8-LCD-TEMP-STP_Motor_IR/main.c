@@ -23,6 +23,7 @@
 
 #define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO ))
 #define __delay( TEMPO ) vTaskDelay( TEMPO )
+#define TICKS_Q pdMS_TO_TICKS(10)
 
 #include "stm32f10x.h"
 #include "stm32f10x_tim.h"
@@ -44,15 +45,22 @@
 
 
 // Codigos IR - Botoes:
+#define CR_NUM_0 0xffe7feb9
 #define CR_NUM_1 0xffe7fbb9
 #define CR_NUM_4 0xffe7faf9
-#define CR_B4 0xffe7fbb9
-#define CR_B7 0xffe7fab9
-#define CR_B8 0xffe7fbf9
 
+#define CR_B4 0xffe7fbb9
+#define CR_B7 0xfc3ffe30
+#define CR_B8 0xfc3ffe30
+#define CR_B9 0xf83ffe30
+
+// Quantidade max de elementos fila:
+#define ELEMENTOS_FILA_LCD 2
+#define ELEMENTOS_FILA_SM 1
+#define ELEMENTOS_FILA_PWM 1
 
 static QueueHandle_t LCD_Show_queue; 
-static QueueHandle_t IR_Data_queue; 
+static QueueHandle_t STMotor_queue; 
 static QueueHandle_t PWM_data_queue; 
 
 void LCD16x2_init(){
@@ -107,12 +115,12 @@ static void task1(void *args __attribute((unused))) {
 	while(1){
 // ----------- FILAS
 		if (xQueueReceive(LCD_Show_queue, 
-					&msg_buf_rev, pdMS_TO_TICKS(1)))
+					&msg_buf_rev, pdMS_TO_TICKS(10)))
 			BUFF = msg_buf_rev;
 
 
 		code_ir = 0xffffff;
-		if (xQueuePeek(IR_Data_queue, &code_ir, 0))
+		if (xQueuePeek(STMotor_queue, &code_ir, pdMS_TO_TICKS(10)))
 			itoa (code_ir, word_IR, 16);
 
 // ----------- FILAS
@@ -190,7 +198,9 @@ static void task2(void *args __attribute ((unused))){
 
 		Valor_ADC_normalizado = ADC2->DR;
 
-		xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, 0);
+		if(uxQueueMessagesWaiting(LCD_Show_queue) <= ELEMENTOS_FILA_LCD){
+				xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, pdMS_TO_TICKS(10));
+		}
 		__delay_ms(500);
 		
 	}
@@ -216,7 +226,7 @@ static void task4(void *args __attribute ((unused))){
 #define STP 6
 
 	while(1){
-		if (xQueueReceive(IR_Data_queue, &code_ir, 0)) {
+		if (xQueueReceive(STMotor_queue, &code_ir, pdMS_TO_TICKS(10))) {
 
 			if (code_ir == CR_B7){
 				for (u32 i=0 ; i<=STP *360 ; i++){
@@ -224,13 +234,14 @@ static void task4(void *args __attribute ((unused))){
 					__delay(140);
 				}
 			}
-			if (code_ir == CR_B8){
+			if (code_ir == CR_B9){
 				for (u32 i=STP  *360+90 ; i>0 ; i--){
 					controlarMotorPasso(i);
 					__delay(130);
 				}
 				
 			}
+				// Stepp_end();
 		}
 	}
 
@@ -247,12 +258,15 @@ static void task5(void *args __attribute ((unused))){
 	 * forma secundária, usando o 
 	 *		xQueuePeek para inspecionar a fila sem remover os
 	 *		dados
+	 *
+	 *	Para facilitar a idendificação dos códigos, será
+	 *	enviado pela USART
 	 * */
 
 	USART_init();
 	IR_Init();
 	char word_IR[8];
-	// char word_IR[8];
+
 	u32 code_ir;
 
 	while(1){
@@ -268,13 +282,21 @@ static void task5(void *args __attribute ((unused))){
 			itoa (code_ir, word_IR, 16);
 			USARTSend(word_IR);
 			
-			if (code_ir == CR_B7 || code_ir == CR_B8)
-				xQueueOverwrite(IR_Data_queue, &code_ir);
+			if (code_ir == CR_B7 || code_ir == CR_NUM_0){
+				// Testa se a fila está cheia
+				if( uxQueueMessagesWaiting( STMotor_queue ) <= ELEMENTOS_FILA_SM ){
+					xQueueSend(STMotor_queue, &code_ir, pdMS_TO_TICKS(10));
+				}
+			}
 
-			if (code_ir == CR_NUM_4 || code_ir == CR_NUM_1)
-				xQueueOverwrite(PWM_data_queue, &code_ir);
-				//xQueueOverwrite(IR_Data_queue, &code_ir);
-		}
+			if (code_ir == CR_NUM_4 || code_ir == CR_NUM_1){
+				// Testa se a fila está cheia
+				if( uxQueueMessagesWaiting( PWM_data_queue ) <= ELEMENTOS_FILA_PWM ){
+					xQueueSend(PWM_data_queue, &code_ir, pdMS_TO_TICKS(10));
+			}
+		 }
+	  }
+		__delay(250);
 	}
 }
 
@@ -288,7 +310,7 @@ static void task6(void *args __attribute((unused))) {
 		// TIM2->CCR1 = vpwm; 
 
    while(1){
-		if ( xQueueReceive(PWM_data_queue, &code_ir, 0)) {
+		if ( xQueueReceive(PWM_data_queue, &code_ir, pdMS_TO_TICKS(10))) {
 
 			if( code_ir == CR_NUM_4)
 				 cicle_duty +=3;
@@ -307,9 +329,10 @@ static void task6(void *args __attribute((unused))) {
 
 int main(void) {
 
-	LCD_Show_queue = xQueueCreate(2, sizeof(u32));
-	IR_Data_queue  = xQueueCreate(1, sizeof(u32));
-	PWM_data_queue  = xQueueCreate(1, sizeof(u32));
+	// O tamanho da fila é x - 1 !!
+	LCD_Show_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
+	STMotor_queue  = xQueueCreate(ELEMENTOS_FILA_SM, sizeof(u32)); 
+	PWM_data_queue = xQueueCreate(ELEMENTOS_FILA_PWM, sizeof(u32));
 	
 	set_system_clock_to_72Mhz();
 

@@ -231,33 +231,44 @@ void intToStr(int num, char *str) {
 // Função para controlar o motor de passo
 void controlarMotorPasso(int passo) {
     // Desativa todas as bobinas
-	  GPIOB->ODR &= ~(0xF << 12);
+	  // GPIOB->ODR &= ~(0xF << 12);
+	  GPIOB->ODR = (0xF << 12);
 	  passo = passo % 7;
 
     switch (passo) {
 
         case 0:
-			  GPIOB->ODR |= (0x1<<12);
+			  GPIOB->ODR &= ~ (0x1<<12);
+			  // GPIOB->ODR |= (0x1<<12);
             break;
         case 1:
-			  GPIOB->ODR |= (0x3<<12);
+			  GPIOB->ODR &= ~ (0x3<<12);
+			  // GPIOB->ODR |= (0x3<<12);
             break;
         case 2:
-			  GPIOB->ODR |= (0x2<<12);
+			  GPIOB->ODR &= ~ (0x2<<12);
+			  // GPIOB->ODR |= (0x2<<12);
             break;
         case 3:
-			  GPIOB->ODR |= (0x6<<12);
+			  GPIOB->ODR &= ~ (0x6<<12);
+			  // GPIOB->ODR |= (0x6<<12);
             break;
 		  case 4:
-			  GPIOB->ODR |= (0x4<<12);
+			  GPIOB->ODR &= ~ (0x4<<12);
+			  // GPIOB->ODR |= (0x4<<12);
             break;
 		  case 5:
-			  GPIOB->ODR |= (0xB<<12);
+			  GPIOB->ODR &= ~ (0xB<<12);
+			  // GPIOB->ODR |= (0xB<<12);
             break;
 		  case 6:
-			  GPIOB->ODR |= (0x9<<12);
+			  GPIOB->ODR &= ~ (0x9<<12);
+			  // GPIOB->ODR |= (0x9<<12);
             break;
     }
+}
+void Stepp_end(){
+	  GPIOB->ODR &=~ (0xF << 12);
 }
 
 

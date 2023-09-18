@@ -24,14 +24,21 @@ uint32_t IR_Read(void) {
   uint32_t data = 0;
 
   // Aguarda o sinal de início (pulso LOW)
+  u8 k=0;
   while (GPIO_ReadInputDataBit(IR_PORT, IR_PIN) != 0) {}
   
   // Aguarda o sinal de início (pulso HIGH)
-  while (GPIO_ReadInputDataBit(IR_PORT, IR_PIN) == 0) {}
+  while (GPIO_ReadInputDataBit(IR_PORT, IR_PIN) == 0 && k <3 ) {
+  k++;
+  __delay(1);
+  } k=0;
   
   // Aguarda o sinal de 9 ms (pulso LOW)
-  while (GPIO_ReadInputDataBit(IR_PORT, IR_PIN) != 0) {}
-
+  while (GPIO_ReadInputDataBit(IR_PORT, IR_PIN) != 0 && k <2 ) {
+  k++;
+  __delay(1);
+  } k=0;
+  
   // Recebe o código NEC IR
   for (bit = 0; bit < 32; bit++) {
     // Aguarda o próximo bit
@@ -39,7 +46,7 @@ uint32_t IR_Read(void) {
     
     // Aguarda o próximo espaço
     // while (GPIO_ReadInputDataBit(IR_PORT, IR_PIN) != 0) {}
-	 __delay(200);
+	 __delay(60);
 
     data = GPIO_ReadInputDataBit(IR_PORT, IR_PIN);
     
@@ -48,9 +55,10 @@ uint32_t IR_Read(void) {
       code |= (1 << bit);
     }
 	// Aguarda o próximo espaço
-	 __delay(300);
+	 __delay(160);
   }
 
+  __delay(500);
   return code;
 }
 
