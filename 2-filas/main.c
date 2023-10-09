@@ -64,25 +64,19 @@ static void task1(void *args __attribute((unused))) {
 	}
 }
 
-#define con 0x3ff
+#define con 0xfff
 static void task2(void *args __attribute ((unused))){
-
 	u16 dd; 
 	char info[10] ;
 
 	while(1){
-
-	xQueueReceive(xQueue, &dd, 0); 
-
+		if(xQueueReceive(xQueue, &dd, pdMS_TO_TICKS(10))){
 			floatToString((float) dd/con *100, info, 4); 
-
 			USARTSend("%)\r\nValor de Duty Cicle= (");
-
 			USARTSend((char * ) &info);
-			__delay_ms(100);
-					// __delay(100); A tarefa fica bloqueada
-					// Não ficou não 
 		}
+
+	}
 }
 
 static void task3(void *args __attribute ((unused))){

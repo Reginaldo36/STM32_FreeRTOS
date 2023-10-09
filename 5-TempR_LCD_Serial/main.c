@@ -75,7 +75,13 @@ static void task1(void *args __attribute((unused))) {
 	 * Tarefa dedicada em mostrar informações no LCD 16x2.
 	 * Informações de temperatura, ficando aberto para mais
 	 * funcionalidades
-	 * 
+	 *
+	 *		Modificações necessárias: 
+	 *		  FreeRTOSConfig:
+	 *			 TICK_RATE_HZ definido em (100000)Hz -> 1µs
+	 *
+	 *	Clock do sistema: 
+	 *		72Mhz
 	 * */
 
 	LCD16x2_init();
