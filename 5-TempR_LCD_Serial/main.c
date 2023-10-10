@@ -111,7 +111,7 @@ static void task1(void *args __attribute((unused))) {
 		if (ent_atual == 1 ){
 				disp_text("Temperatura - C", 0, 0); 
 
-				floatToString(BUFF * ADC_Const, Float_point, 2);
+				floatToString((float)BUFF * ADC_Const, Float_point, 2);
 				disp_text(Float_point, 1, 6);
 		} 
 		if (ent_atual == 2 ){

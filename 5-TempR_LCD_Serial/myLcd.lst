@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cchzQ6Pm.s 			page 1
+ARM GAS  /tmp/cc41zOdf.s 			page 1
 
 
    1              		.cpu cortex-m3
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
   55              	@ -fsched-pressure -fsched-rank-heuristic -fsched-spec
   56              	@ -fsched-spec-insn-heuristic -fsched-stalled-insns-dep -fschedule-insns2
   57              	@ -fsection-anchors -fsemantic-interposition -fshow-column
-ARM GAS  /tmp/cchzQ6Pm.s 			page 2
+ARM GAS  /tmp/cc41zOdf.s 			page 2
 
 
   58              	@ -fshrink-wrap-separate -fsigned-zeros -fsplit-ivs-in-unroller
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
   25:../5-TempR_LCD_Serial/myLcd.c **** {
   26:../5-TempR_LCD_Serial/myLcd.c ****   char  dem, mil, cen, dez, uni;               /* variáveis para cálculo de cada dígito */
   27:../5-TempR_LCD_Serial/myLcd.c ****   short  no_zero = 0;                          /* variável local para limpeza de zeros à esquerda
-ARM GAS  /tmp/cchzQ6Pm.s 			page 3
+ARM GAS  /tmp/cc41zOdf.s 			page 3
 
 
   28:../5-TempR_LCD_Serial/myLcd.c **** 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
   82:../5-TempR_LCD_Serial/myLcd.c ****   } /* end if */
   83:../5-TempR_LCD_Serial/myLcd.c ****   else                                         /* senão... */
   84:../5-TempR_LCD_Serial/myLcd.c ****   {                                            /* linha 1 */
-ARM GAS  /tmp/cchzQ6Pm.s 			page 4
+ARM GAS  /tmp/cc41zOdf.s 			page 4
 
 
   85:../5-TempR_LCD_Serial/myLcd.c ****     disp_cmd(0xC0|col);                        /* envia comando para posicionar linha e coluna corr
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  139:../5-TempR_LCD_Serial/myLcd.c ****   send_nibble(0x30,0);                         /* protocolo de inicialização */
  140:../5-TempR_LCD_Serial/myLcd.c ****   send_nibble(0x20,0);                         /* lcd no modo de 4 bits */
  141:../5-TempR_LCD_Serial/myLcd.c ****   disp_cmd(0x28);                              /* 5x8 pontos por caractere, duas linhas */
-ARM GAS  /tmp/cchzQ6Pm.s 			page 5
+ARM GAS  /tmp/cc41zOdf.s 			page 5
 
 
  142:../5-TempR_LCD_Serial/myLcd.c ****   disp_cmd(0x0F);                              /* liga display, cursor e blink */
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  170:../5-TempR_LCD_Serial/myLcd.c **** 
  171:../5-TempR_LCD_Serial/myLcd.c ****   if((nib>>5)&0x01)                            /* envia bit 5 de comando no barramento */
  113              		.loc 1 171 3 view .LVU7
-ARM GAS  /tmp/cchzQ6Pm.s 			page 6
+ARM GAS  /tmp/cc41zOdf.s 			page 6
 
 
  114              	@ ../5-TempR_LCD_Serial/myLcd.c:172:     set_bit(reg1,D5);                          /* . */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  186:../5-TempR_LCD_Serial/myLcd.c ****   
  187:../5-TempR_LCD_Serial/myLcd.c ****   if(rsel)                                     /* se rsel for verdadeiro */
  152              		.loc 1 187 3 view .LVU22
-ARM GAS  /tmp/cchzQ6Pm.s 			page 7
+ARM GAS  /tmp/cc41zOdf.s 			page 7
 
 
  153              	@ ../5-TempR_LCD_Serial/myLcd.c:188:     set_bit(reg1,RS);                          /* envio de dad
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  193              		.cfi_restore 14
  194              		.cfi_restore 4
  195              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 8
+ARM GAS  /tmp/cc41zOdf.s 			page 8
 
 
  196              	@ ../5-TempR_LCD_Serial/myLcd.c:196:   delayMicroseconds(120);                             /* aguar
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  242              		.loc 1 111 3 is_stmt 1 view .LVU43
  112:../5-TempR_LCD_Serial/myLcd.c **** 
  243              		.loc 1 112 3 view .LVU44
-ARM GAS  /tmp/cchzQ6Pm.s 			page 9
+ARM GAS  /tmp/cc41zOdf.s 			page 9
 
 
  244              	@ ../5-TempR_LCD_Serial/myLcd.c:111:   chr <<= 4;                                   /* atualiza chr
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  290              	@ ../5-TempR_LCD_Serial/myLcd.c:122:   send_nibble(cmd, 0);                         /* envia o nibb
  122:../5-TempR_LCD_Serial/myLcd.c ****   cmd <<= 4;                                   /* atualiza chr para enviar nibble menos significati
  291              		.loc 1 122 3 view .LVU53
-ARM GAS  /tmp/cchzQ6Pm.s 			page 10
+ARM GAS  /tmp/cc41zOdf.s 			page 10
 
 
  292 009a 0021     		movs	r1, #0	@,
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  337              		.cfi_def_cfa_offset 8
  338              		.cfi_offset 4, -8
  339              		.cfi_offset 14, -4
-ARM GAS  /tmp/cchzQ6Pm.s 			page 11
+ARM GAS  /tmp/cc41zOdf.s 			page 11
 
 
  340              	@ ../5-TempR_LCD_Serial/myLcd.c:77: {
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  383 00cc F5E7     		b	.L23		@
  384              		.cfi_endproc
  385              	.LFE30:
-ARM GAS  /tmp/cchzQ6Pm.s 			page 12
+ARM GAS  /tmp/cc41zOdf.s 			page 12
 
 
  386              		.size	disp_wr_po, .-disp_wr_po
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  430              	@ ../5-TempR_LCD_Serial/myLcd.c:30:   mil = (char)(num%10000/1000);                /* calcula milha
   30:../5-TempR_LCD_Serial/myLcd.c ****   cen = (char)(num%1000/100);                  /* calcula centenas */
  431              		.loc 1 30 19 view .LVU84
-ARM GAS  /tmp/cchzQ6Pm.s 			page 13
+ARM GAS  /tmp/cc41zOdf.s 			page 13
 
 
  432 00e2 0AFB130A 		mls	r10, r10, r3, r0	@ _2, tmp136, tmp135, num
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  473              	.LVL21:
   31:../5-TempR_LCD_Serial/myLcd.c ****   dez = (char)(num%100/10);                    /* calcula dezenas */
  474              		.loc 1 31 3 is_stmt 1 view .LVU98
-ARM GAS  /tmp/cchzQ6Pm.s 			page 14
+ARM GAS  /tmp/cc41zOdf.s 			page 14
 
 
  475              	@ ../5-TempR_LCD_Serial/myLcd.c:31:   cen = (char)(num%1000/100);                  /* calcula cente
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
   59:../5-TempR_LCD_Serial/myLcd.c ****     disp_write(' ');                           /* sim, imprime um espaço em branco */
  515              		.loc 1 59 3 view .LVU113
  516 013a 0FE0     		b	.L31		@
-ARM GAS  /tmp/cchzQ6Pm.s 			page 15
+ARM GAS  /tmp/cc41zOdf.s 			page 15
 
 
  517              	.LVL28:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  559              		.loc 1 63 5 is_stmt 0 view .LVU125
  560 0166 FFF7FEFF 		bl	disp_write		@
  561              	.LVL36:
-ARM GAS  /tmp/cchzQ6Pm.s 			page 16
+ARM GAS  /tmp/cc41zOdf.s 			page 16
 
 
   64:../5-TempR_LCD_Serial/myLcd.c ****   } /* end else */
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  608              		.cfi_offset 5, -12
  609              		.cfi_offset 6, -8
  610              		.cfi_offset 14, -4
-ARM GAS  /tmp/cchzQ6Pm.s 			page 17
+ARM GAS  /tmp/cc41zOdf.s 			page 17
 
 
  611              	@ ../5-TempR_LCD_Serial/myLcd.c:96: {
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  654              		.syntax unified
  655              		.thumb
  656              		.thumb_func
-ARM GAS  /tmp/cchzQ6Pm.s 			page 18
+ARM GAS  /tmp/cc41zOdf.s 			page 18
 
 
  657              		.type	disp_clear, %function
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  703              		@ args = 0, pretend = 0, frame = 0
  704              		@ frame_needed = 0, uses_anonymous_args = 0
  134:../5-TempR_LCD_Serial/myLcd.c ****   send_nibble(0x30,0);                         /* protocolo de inicialização */
-ARM GAS  /tmp/cchzQ6Pm.s 			page 19
+ARM GAS  /tmp/cc41zOdf.s 			page 19
 
 
  705              		.loc 1 134 3 view .LVU153
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  142:../5-TempR_LCD_Serial/myLcd.c ****   disp_cmd(0x01);                              /* clear LCD */
  750              		.loc 1 142 3 view .LVU163
  751 01e2 0F20     		movs	r0, #15	@,
-ARM GAS  /tmp/cchzQ6Pm.s 			page 20
+ARM GAS  /tmp/cc41zOdf.s 			page 20
 
 
  752 01e4 FFF7FEFF 		bl	disp_cmd		@
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  801 002e 06       		.byte	0x6
  802 002f C2010000 		.4byte	.LASF1
  803 0033 02       		.uleb128 0x2
-ARM GAS  /tmp/cchzQ6Pm.s 			page 21
+ARM GAS  /tmp/cc41zOdf.s 			page 21
 
 
  804 0034 01       		.byte	0x1
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  858 0098 EB03     		.2byte	0x3eb
  859 009a 11       		.byte	0x11
  860 009b 83000000 		.4byte	0x83
-ARM GAS  /tmp/cchzQ6Pm.s 			page 22
+ARM GAS  /tmp/cc41zOdf.s 			page 22
 
 
  861 009f 02       		.byte	0x2
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  915 00ff 02       		.byte	0x2
  916 0100 23       		.byte	0x23
  917 0101 18       		.uleb128 0x18
-ARM GAS  /tmp/cchzQ6Pm.s 			page 23
+ARM GAS  /tmp/cc41zOdf.s 			page 23
 
 
  918 0102 00       		.byte	0
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  972 0178 08       		.byte	0x8
  973 0179 78       		.byte	0x78
  974 017a 00       		.byte	0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 24
+ARM GAS  /tmp/cc41zOdf.s 			page 24
 
 
  975 017b 11       		.uleb128 0x11
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1029 01db 06       		.byte	0x6
  1030 01dc 01       		.byte	0x1
  1031 01dd A8010000 		.4byte	.LFB34
-ARM GAS  /tmp/cchzQ6Pm.s 			page 25
+ARM GAS  /tmp/cc41zOdf.s 			page 25
 
 
  1032 01e1 FC010000 		.4byte	.LFE34
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1086 0247 10010000 		.4byte	0x110
  1087 024b 5B020000 		.4byte	0x25b
  1088 024f 10       		.uleb128 0x10
-ARM GAS  /tmp/cchzQ6Pm.s 			page 26
+ARM GAS  /tmp/cc41zOdf.s 			page 26
 
 
  1089 0250 01       		.byte	0x1
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1143 02a1 0F       		.uleb128 0xf
  1144 02a2 E2010000 		.4byte	.LVL55
  1145 02a6 F9020000 		.4byte	0x2f9
-ARM GAS  /tmp/cchzQ6Pm.s 			page 27
+ARM GAS  /tmp/cc41zOdf.s 			page 27
 
 
  1146 02aa B5020000 		.4byte	0x2b5
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1200 0310 52030000 		.4byte	0x352
  1201 0314 0B       		.uleb128 0xb
  1202 0315 636D6400 		.ascii	"cmd\000"
-ARM GAS  /tmp/cchzQ6Pm.s 			page 28
+ARM GAS  /tmp/cc41zOdf.s 			page 28
 
 
  1203 0319 01       		.byte	0x1
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1257 0382 86000000 		.4byte	.LVL5
  1258 0386 10010000 		.4byte	0x110
  1259 038a 9A030000 		.4byte	0x39a
-ARM GAS  /tmp/cchzQ6Pm.s 			page 29
+ARM GAS  /tmp/cc41zOdf.s 			page 29
 
 
  1260 038e 10       		.uleb128 0x10
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1314 03f4 5F       		.byte	0x5f
  1315 03f5 2A       		.byte	0x2a
  1316 03f6 8D010000 		.4byte	0x18d
-ARM GAS  /tmp/cchzQ6Pm.s 			page 30
+ARM GAS  /tmp/cc41zOdf.s 			page 30
 
 
  1317 03fa 28020000 		.4byte	.LLST27
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1371 045e 4C       		.byte	0x4c
  1372 045f 33       		.byte	0x33
  1373 0460 8D010000 		.4byte	0x18d
-ARM GAS  /tmp/cchzQ6Pm.s 			page 31
+ARM GAS  /tmp/cc41zOdf.s 			page 31
 
 
  1374 0464 00       		.byte	0
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1428 04e5 63656E00 		.ascii	"cen\000"
  1429 04e9 01       		.byte	0x1
  1430 04ea 1A       		.byte	0x1a
-ARM GAS  /tmp/cchzQ6Pm.s 			page 32
+ARM GAS  /tmp/cc41zOdf.s 			page 32
 
 
  1431 04eb 13       		.byte	0x13
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1485 0569 10       		.uleb128 0x10
  1486 056a 01       		.byte	0x1
  1487 056b 50       		.byte	0x50
-ARM GAS  /tmp/cchzQ6Pm.s 			page 33
+ARM GAS  /tmp/cc41zOdf.s 			page 33
 
 
  1488 056c 02       		.byte	0x2
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1542 05c1 52030000 		.4byte	0x352
  1543 05c5 11       		.uleb128 0x11
  1544 05c6 78010000 		.4byte	.LVL38
-ARM GAS  /tmp/cchzQ6Pm.s 			page 34
+ARM GAS  /tmp/cc41zOdf.s 			page 34
 
 
  1545 05ca 01       		.byte	0x1
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1599 0636 BA000000 		.4byte	.LBE4
  1600 063a 01       		.byte	0x1
  1601 063b 4C       		.byte	0x4c
-ARM GAS  /tmp/cchzQ6Pm.s 			page 35
+ARM GAS  /tmp/cc41zOdf.s 			page 35
 
 
  1602 063c 06       		.byte	0x6
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1656 0014 24       		.uleb128 0x24
  1657 0015 00       		.byte	0
  1658 0016 0B       		.uleb128 0xb
-ARM GAS  /tmp/cchzQ6Pm.s 			page 36
+ARM GAS  /tmp/cc41zOdf.s 			page 36
 
 
  1659 0017 0B       		.uleb128 0xb
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1713 004d 00       		.byte	0
  1714 004e 07       		.uleb128 0x7
  1715 004f 0D       		.uleb128 0xd
-ARM GAS  /tmp/cchzQ6Pm.s 			page 37
+ARM GAS  /tmp/cc41zOdf.s 			page 37
 
 
  1716 0050 00       		.byte	0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1770 0086 3A       		.uleb128 0x3a
  1771 0087 0B       		.uleb128 0xb
  1772 0088 3B       		.uleb128 0x3b
-ARM GAS  /tmp/cchzQ6Pm.s 			page 38
+ARM GAS  /tmp/cc41zOdf.s 			page 38
 
 
  1773 0089 0B       		.uleb128 0xb
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1827 00c2 00       		.byte	0
  1828 00c3 0D       		.uleb128 0xd
  1829 00c4 2E       		.uleb128 0x2e
-ARM GAS  /tmp/cchzQ6Pm.s 			page 39
+ARM GAS  /tmp/cc41zOdf.s 			page 39
 
 
  1830 00c5 01       		.byte	0x1
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1884 0103 00       		.byte	0
  1885 0104 12       		.uleb128 0x12
  1886 0105 898201   		.uleb128 0x4109
-ARM GAS  /tmp/cchzQ6Pm.s 			page 40
+ARM GAS  /tmp/cc41zOdf.s 			page 40
 
 
  1887 0108 00       		.byte	0
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1941 0142 0B       		.uleb128 0xb
  1942 0143 3B       		.uleb128 0x3b
  1943 0144 0B       		.uleb128 0xb
-ARM GAS  /tmp/cchzQ6Pm.s 			page 41
+ARM GAS  /tmp/cc41zOdf.s 			page 41
 
 
  1944 0145 39       		.uleb128 0x39
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  1998 017e 2E       		.uleb128 0x2e
  1999 017f 01       		.byte	0x1
  2000 0180 31       		.uleb128 0x31
-ARM GAS  /tmp/cchzQ6Pm.s 			page 42
+ARM GAS  /tmp/cc41zOdf.s 			page 42
 
 
  2001 0181 13       		.uleb128 0x13
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2055 01ba 8740     		.uleb128 0x2007
  2056 01bc 0E       		.uleb128 0xe
  2057 01bd 03       		.uleb128 0x3
-ARM GAS  /tmp/cchzQ6Pm.s 			page 43
+ARM GAS  /tmp/cc41zOdf.s 			page 43
 
 
  2058 01be 0E       		.uleb128 0xe
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2112 0057 70000000 		.4byte	.LVL3-.Ltext0
  2113 005b 7C000000 		.4byte	.LFE36-.Ltext0
  2114 005f 0100     		.2byte	0x1
-ARM GAS  /tmp/cchzQ6Pm.s 			page 44
+ARM GAS  /tmp/cc41zOdf.s 			page 44
 
 
  2115 0061 50       		.byte	0x50
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2169 00dc 0200     		.2byte	0x2
  2170 00de 7D       		.byte	0x7d
  2171 00df 08       		.sleb128 8
-ARM GAS  /tmp/cchzQ6Pm.s 			page 45
+ARM GAS  /tmp/cc41zOdf.s 			page 45
 
 
  2172 00e0 F8010000 		.4byte	.LCFI16-.Ltext0
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2226              	.LLST3:
  2227 0156 7C000000 		.4byte	.LFB32-.Ltext0
  2228 015a 7E000000 		.4byte	.LCFI3-.Ltext0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 46
+ARM GAS  /tmp/cc41zOdf.s 			page 46
 
 
  2229 015e 0200     		.2byte	0x2
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2283 01cf 10       		.sleb128 16
  2284 01d0 00000000 		.4byte	0
  2285 01d4 00000000 		.4byte	0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 47
+ARM GAS  /tmp/cc41zOdf.s 			page 47
 
 
  2286              	.LVUS25:
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2340 023e 94010000 		.4byte	.LVL45-.Ltext0
  2341 0242 96010000 		.4byte	.LFE31-.Ltext0
  2342 0246 0100     		.2byte	0x1
-ARM GAS  /tmp/cchzQ6Pm.s 			page 48
+ARM GAS  /tmp/cc41zOdf.s 			page 48
 
 
  2343 0248 54       		.byte	0x54
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2397              	.LLST14:
  2398 02a4 CE000000 		.4byte	.LFB29-.Ltext0
  2399 02a8 D2000000 		.4byte	.LCFI10-.Ltext0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 49
+ARM GAS  /tmp/cc41zOdf.s 			page 49
 
 
  2400 02ac 0200     		.2byte	0x2
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2454 0315 9F       		.byte	0x9f
  2455 0316 3C010000 		.4byte	.LVL28-.Ltext0
  2456 031a 43010000 		.4byte	.LVL29-1-.Ltext0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 50
+ARM GAS  /tmp/cc41zOdf.s 			page 50
 
 
  2457 031e 0100     		.2byte	0x1
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2511              	.LLST18:
  2512 0381 DE000000 		.4byte	.LVL19-.Ltext0
  2513 0385 1D010000 		.4byte	.LVL24-1-.Ltext0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 51
+ARM GAS  /tmp/cc41zOdf.s 			page 51
 
 
  2514 0389 0100     		.2byte	0x1
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2568 03e9 01       		.uleb128 0x1
  2569 03ea 50       		.byte	0x50
  2570 03eb F3       		.byte	0xf3
-ARM GAS  /tmp/cchzQ6Pm.s 			page 52
+ARM GAS  /tmp/cc41zOdf.s 			page 52
 
 
  2571 03ec 01       		.uleb128 0x1
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2625 0438 00       		.uleb128 0
  2626 0439 0A       		.byte	0xa
  2627 043a E803     		.2byte	0x3e8
-ARM GAS  /tmp/cchzQ6Pm.s 			page 53
+ARM GAS  /tmp/cc41zOdf.s 			page 53
 
 
  2628 043c 1E       		.byte	0x1e
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2682 0484 9F       		.byte	0x9f
  2683 0485 00000000 		.4byte	0
  2684 0489 00000000 		.4byte	0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 54
+ARM GAS  /tmp/cc41zOdf.s 			page 54
 
 
  2685              	.LVUS22:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2739 04da 30       		.byte	0x30
  2740 04db 9F       		.byte	0x9f
  2741 04dc 3A010000 		.4byte	.LVL27-.Ltext0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 55
+ARM GAS  /tmp/cc41zOdf.s 			page 55
 
 
  2742 04e0 3C010000 		.4byte	.LVL28-.Ltext0
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2796 0564 0200     		.2byte	0x2
  2797 0566 7D       		.byte	0x7d
  2798 0567 08       		.sleb128 8
-ARM GAS  /tmp/cchzQ6Pm.s 			page 56
+ARM GAS  /tmp/cc41zOdf.s 			page 56
 
 
  2799 0568 00000000 		.4byte	0
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2853 05d0 9F       		.byte	0x9f
  2854 05d1 C8000000 		.4byte	.LVL16-.Ltext0
  2855 05d5 CE000000 		.4byte	.LFE30-.Ltext0
-ARM GAS  /tmp/cchzQ6Pm.s 			page 57
+ARM GAS  /tmp/cc41zOdf.s 			page 57
 
 
  2856 05d9 0100     		.2byte	0x1
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2910 0643 B6000000 		.4byte	.LVL13-.Ltext0
  2911 0647 BA000000 		.4byte	.LVL14-.Ltext0
  2912 064b 0100     		.2byte	0x1
-ARM GAS  /tmp/cchzQ6Pm.s 			page 58
+ARM GAS  /tmp/cc41zOdf.s 			page 58
 
 
  2913 064d 54       		.byte	0x54
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2947              	.LASF2:
  2948 0053 756E7369 		.ascii	"unsigned char\000"
  2948      676E6564 
-ARM GAS  /tmp/cchzQ6Pm.s 			page 59
+ARM GAS  /tmp/cc41zOdf.s 			page 59
 
 
  2948      20636861 
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2970      61742D61 
  2970      62693D73 
  2971 015c 202D4F73 		.ascii	" -Os -fomit-frame-pointer\000"
-ARM GAS  /tmp/cchzQ6Pm.s 			page 60
+ARM GAS  /tmp/cc41zOdf.s 			page 60
 
 
  2971      202D666F 
@@ -3591,22 +3591,22 @@ ARM GAS  /tmp/cchzQ6Pm.s 			page 1
  2991      43445F53 
  2991      65726961 
  2992              		.ident	"GCC: (GNU Arm Embedded Toolchain 10.3-2021.10) 10.3.1 20210824 (release)"
-ARM GAS  /tmp/cchzQ6Pm.s 			page 61
+ARM GAS  /tmp/cc41zOdf.s 			page 61
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 myLcd.c
-     /tmp/cchzQ6Pm.s:78     .text:0000000000000000 $t
-     /tmp/cchzQ6Pm.s:84     .text:0000000000000000 send_nibble
-     /tmp/cchzQ6Pm.s:209    .text:0000000000000078 $d
-     /tmp/cchzQ6Pm.s:213    .text:000000000000007c $t
-     /tmp/cchzQ6Pm.s:219    .text:000000000000007c disp_write
-     /tmp/cchzQ6Pm.s:272    .text:0000000000000096 disp_cmd
-     /tmp/cchzQ6Pm.s:325    .text:00000000000000b0 disp_wr_po
-     /tmp/cchzQ6Pm.s:393    .text:00000000000000ce disp_number
-     /tmp/cchzQ6Pm.s:593    .text:0000000000000178 disp_text
-     /tmp/cchzQ6Pm.s:658    .text:0000000000000196 disp_clear
-     /tmp/cchzQ6Pm.s:699    .text:00000000000001a8 disp_init
+     /tmp/cc41zOdf.s:78     .text:0000000000000000 $t
+     /tmp/cc41zOdf.s:84     .text:0000000000000000 send_nibble
+     /tmp/cc41zOdf.s:209    .text:0000000000000078 $d
+     /tmp/cc41zOdf.s:213    .text:000000000000007c $t
+     /tmp/cc41zOdf.s:219    .text:000000000000007c disp_write
+     /tmp/cc41zOdf.s:272    .text:0000000000000096 disp_cmd
+     /tmp/cc41zOdf.s:325    .text:00000000000000b0 disp_wr_po
+     /tmp/cc41zOdf.s:393    .text:00000000000000ce disp_number
+     /tmp/cc41zOdf.s:593    .text:0000000000000178 disp_text
+     /tmp/cc41zOdf.s:658    .text:0000000000000196 disp_clear
+     /tmp/cc41zOdf.s:699    .text:00000000000001a8 disp_init
 
 UNDEFINED SYMBOLS
 vTaskDelay
