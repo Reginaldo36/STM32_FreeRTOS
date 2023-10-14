@@ -22,8 +22,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO ))
-#define __delay( TEMPO ) vTaskDelay( TEMPO )
+#define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO )) // ms
+#define __delay( TEMPO ) vTaskDelay( TEMPO ) // µs
 
 #include "stm32f10x.h"
 #include "stm32f10x_tim.h"

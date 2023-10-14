@@ -21,8 +21,8 @@
 
 #include <stdlib.h> // funçao itoa
 
-#define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO ))
-#define __delay( TEMPO ) vTaskDelay( TEMPO )
+#define __delay_ms( TEMPO ) vTaskDelay(pdMS_TO_TICKS( TEMPO )) // ms
+#define __delay( TEMPO ) vTaskDelay( TEMPO ) // µs
 #define TICKS_Q pdMS_TO_TICKS(10)
 
 #include "stm32f10x.h"
@@ -119,10 +119,6 @@ static void task1(void *args __attribute((unused))) {
 			BUFF = msg_buf_rev;
 
 
-		code_ir = 0xffffff;
-		if (xQueuePeek(STMotor_queue, &code_ir, pdMS_TO_TICKS(10)))
-			itoa (code_ir, word_IR, 16);
-
 // ----------- FILAS
 
 		while (RD > 12){
@@ -161,10 +157,6 @@ static void task1(void *args __attribute((unused))) {
 			}
 		}
 
-		if (ent_atual == 3 ){
-			disp_text("--- IR Hex Code", 0, 0); 
-			disp_text( word_IR, 1, 4);
-			__delay_ms(100);
 		}
 	}
 }
@@ -201,7 +193,7 @@ static void task2(void *args __attribute ((unused))){
 		if(uxQueueMessagesWaiting(LCD_Show_queue) <= ELEMENTOS_FILA_LCD){
 				xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, pdMS_TO_TICKS(10));
 		}
-		__delay_ms(500);
+		__delay_ms(500); // Bloqueia por 500ms
 		
 	}
 }
