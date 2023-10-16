@@ -101,52 +101,45 @@ static void task1(void *args __attribute((unused))) {
 	RCC->APB2ENR |= 1<<3;
 	GPIOB->CRH |= 0x4<<0; // Input Pull
 	GPIOB->ODR |= 1<<8; // Pull-up
-	int msg_buf_rev, BUFF = 0;
+	int msg_buf_rev, buffer_de_fila = 0;
 
 	char Float_point[6];
-	u8 ent_atual=1;
+	u8 menu_View=1;
 
 #define MAX_MENU 3
 
-	u8 RD = 0;
-	u32 code_ir;
-	char word_IR[8];
+	// u8 RD = 0;
 
 	while(1){
-// ----------- FILAS
+
 		if (xQueueReceive(LCD_Show_queue, 
 					&msg_buf_rev, pdMS_TO_TICKS(10)))
-			BUFF = msg_buf_rev;
+			buffer_de_fila = msg_buf_rev;
 
-
-// ----------- FILAS
-
-		while (RD > 12){
-			
-		RD = 0;
-		disp_clear();
+		/*
+		while (RD > 12){ // força atualização do LCD :
+			RD = 0;
+			disp_clear();
 		} RD ++;
+		*/
 
+		// Verifica se houve atualização no botão ou 
+		// recebeu dados do infravermelho
 
+		if ((GPIOB->IDR & (1<<8))){
+			menu_View ++;
 
-		if ((GPIOB->IDR & (1<<8)) || code_ir == CR_B4){{
-			ent_atual ++;
-		}
-
-		if (ent_atual > MAX_MENU )
-			ent_atual = 1;
+		if (menu_View > MAX_MENU )
+			menu_View = 1;
 		disp_clear();
 		}
 
-
-
-		if (ent_atual == 1 ){
+		if (menu_View == 1 ){
 				disp_text("Temperatura - C", 0, 0); 
-
-				floatToString((float) BUFF * ADC_Const, Float_point, 2);
+				floatToString((float) buffer_de_fila * ADC_Const, Float_point, 2);
 				disp_text(Float_point, 1, 6);
 		} 
-		if (ent_atual == 2 ){
+		if (menu_View == 2 ){
 			disp_text("----------------", 0 ,0);
 			disp_text("================", 1, 0);
 
@@ -157,7 +150,6 @@ static void task1(void *args __attribute((unused))) {
 			}
 		}
 
-		}
 	}
 }
 
@@ -231,12 +223,9 @@ static void task4(void *args __attribute ((unused))){
 					controlarMotorPasso(i);
 					__delay(130);
 				}
-				
 			}
-				// Stepp_end();
 		}
 	}
-
 }
 
 static void task5(void *args __attribute ((unused))){
@@ -251,7 +240,7 @@ static void task5(void *args __attribute ((unused))){
 	 *		xQueuePeek para inspecionar a fila sem remover os
 	 *		dados
 	 *
-	 *	Para facilitar a idendificação dos códigos, será
+	 *	Para facilitar a idendificação dos códigos IR, será
 	 *	enviado pela USART
 	 * */
 
@@ -265,9 +254,6 @@ static void task5(void *args __attribute ((unused))){
 		code_ir = 0xFFFFFFFF;
 		code_ir = IR_Read();
 		
-		// Converte os dados numéricos para string
-		// itoa (code_ir, word_IR, 10); 
-
 		if (code_ir != 0xffffffff){
 
 			USARTSend("\r\nCodigo: 0x");
@@ -321,10 +307,10 @@ static void task6(void *args __attribute((unused))) {
 
 int main(void) {
 
-	// O tamanho da fila é x - 1 !!
+	//											↓ O tamanho da fila é x - 1 !!
 	LCD_Show_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
 	STMotor_queue  = xQueueCreate(ELEMENTOS_FILA_SM, sizeof(u32)); 
-	PWM_data_queue = xQueueCreate(ELEMENTOS_FILA_PWM, sizeof(u32));
+	// PWM_data_queue = xQueueCreate(ELEMENTOS_FILA_PWM, sizeof(u32));
 	
 	set_system_clock_to_72Mhz();
 
@@ -333,7 +319,7 @@ int main(void) {
 	xTaskCreate(task3, "LM35_read", 100 , NULL, 4 , NULL);
 	xTaskCreate(task4, "StepperMotor", 100 , NULL, 4 , NULL);
 	xTaskCreate(task5, "IR_Rev", 100 , NULL, 4 , NULL);
-	xTaskCreate(task6, "PWM_atuad", 100 , NULL, 4 , NULL);
+	// xTaskCreate(task6, "PWM_atuad", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
 
