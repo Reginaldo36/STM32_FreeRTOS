@@ -33,6 +33,7 @@
 #include "Serial.h"
 #include "adc.h"
 #include "infraRed.h"
+#include "PWM.h"
 
 #define BIN 2
 #define OCT 8
@@ -45,23 +46,15 @@
 
 
 // Codigos IR - Botoes:
-#define CR_NUM_0 0xffe7feb9
-#define CR_NUM_1 0xffe7fbb9
-#define CR_NUM_4 0xffe7faf9
-
-#define CR_B4 0xffe7fbb9
-#define CR_B7 0xfc3ffe30
-#define CR_B8 0xfc3ffe30
-#define CR_B9 0xf83ffe30
+#define PWM_No_1 0xffe7feb9
 
 // Quantidade max de elementos fila:
 #define ELEMENTOS_FILA_LCD 2
-#define ELEMENTOS_FILA_SM 1
+#define ELEMENTOS_FILA_ServoM 1
 #define ELEMENTOS_FILA_PWM 1
 
 static QueueHandle_t LCD_Show_queue; 
-static QueueHandle_t STMotor_queue; 
-static QueueHandle_t PWM_data_queue; 
+static QueueHandle_t SERVO_queue; 
 
 void LCD16x2_init(){
 
@@ -191,89 +184,58 @@ static void task2(void *args __attribute ((unused))){
 }
 
 static void task4(void *args __attribute ((unused))){
-	/* 
-	 * Tarefa dedicada a controlar um motor de passos usando
-	 * os pinos PB 15, 14, 13 e 12 
-	 *
-	 * A sequência deve ser mantida por causa da manipulação
-	 * bit a bit, definida no arquivo de cabeçalho Me.h
-	 *
-	 * Essa função receberá comandos da tarefa 5 -
-	 * decodificadora de infravermelho. 
-	 *
-	 * */
-
-	RCC->APB2ENR |= (1<<3); // En GPIOC
-	GPIOB->CRH	|= (0x3333<< 16); 
-	u32 code_ir; 
-
-#define STP 6
+	
+	PWM_PB9_config();
+	u32 code_ir = 0; 
 
 	while(1){
-		if (xQueueReceive(STMotor_queue, &code_ir, pdMS_TO_TICKS(10))) {
 
-			if (code_ir == CR_B7){
-				for (u32 i=0 ; i<=STP *360 ; i++){
-					controlarMotorPasso(i);
-					__delay(140);
-				}
-			}
-			if (code_ir == CR_B9){
-				for (u32 i=STP  *360+90 ; i>0 ; i--){
-					controlarMotorPasso(i);
-					__delay(130);
-				}
-			}
+		if (xQueueReceive(SERVO_queue, &code_ir, pdMS_TO_TICKS(10))) {
+			// TIM4->CCR4
 		}
+
 	}
 }
 
 static void task5(void *args __attribute ((unused))){
 
-	ADC8_Configuration(); // PB0 
+	USART_init();
+	IR_Init();
+	char word_IR[8];
+	u32 code_ir;
 
 	while(1){
-	/*
-	 * Usar 2 sensor para calcular a velocidade média e
-	 * mostrar no visor os dados em questão.
-	 *
-	 *
-	 * */	
+
+		code_ir = 0xFFFFFFFF;
+		code_ir = IR_Read();
+		
+		if (code_ir != 0xffffffff) {
+
+			USARTSend("\r\nCodigo: 0x");
+			itoa (code_ir, word_IR, 16);
+			USARTSend(word_IR);
+			
+			if (code_ir == PWM_No_1){
+
+				if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
+					xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
+				}
+			}
+
+
+			
+		}
+		__delay(250);
+
 	}
 }
 
-static void task6(void *args __attribute((unused))) {
-	// configure_PWM_TIM2();
-   GPIOB->CRH &= ~(0xf << 8 ); // ip analogico PA10
-
-	u32 code_ir = 0x0; 
-
-   u16 cicle_duty = 0xfff /2; 
-		// TIM2->CCR1 = vpwm; 
-
-   while(1){
-		if ( xQueueReceive(PWM_data_queue, &code_ir, pdMS_TO_TICKS(10))) {
-
-			if( code_ir == CR_NUM_4)
-				 cicle_duty +=3;
-
-			if( code_ir == CR_NUM_1)
-				 cicle_duty -=3;
-
-			if(cicle_duty >= 0xfff)
-				cicle_duty = 0;
-		}
-
-      
-      TIM2->CCR1 = cicle_duty; 
-   }
-}
 
 int main(void) {
 
 	//											↓ O tamanho da fila é x - 1 !!
 	LCD_Show_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
-	STMotor_queue  = xQueueCreate(ELEMENTOS_FILA_SM, sizeof(u32)); 
+	SERVO_queue  = xQueueCreate(ELEMENTOS_FILA_ServoM, sizeof(u32)); 
 	// PWM_data_queue = xQueueCreate(ELEMENTOS_FILA_PWM, sizeof(u32));
 	
 	set_system_clock_to_72Mhz();
@@ -281,9 +243,8 @@ int main(void) {
 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4, NULL);
 	xTaskCreate(task3, "LM35_read", 100 , NULL, 4 , NULL);
-	xTaskCreate(task4, "StepperMotor", 100 , NULL, 4 , NULL);
+	xTaskCreate(task4, "ServoMec", 100 , NULL, 4 , NULL);
 	xTaskCreate(task5, "IR_Rev", 100 , NULL, 4 , NULL);
-	// xTaskCreate(task6, "PWM_atuad", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
 

@@ -72,3 +72,29 @@ void configure_PWM_TIM4(){
 	TIM4->CCR1		= 0x0fff/2; // Inicializa com
 												 // metade da potencia
 }
+
+
+void PWM_PB9_config() {
+    // Ativar o clock para o Timer 4
+    RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+
+    // Configurar o pino PB9 como saída alternativa push-pull (PWM)
+    GPIOB->CRH &= ~GPIO_CRH_CNF9; // Limpar configurações anteriores
+    GPIOB->CRH |= GPIO_CRH_CNF9_1; // Saída alternativa push-pull
+    GPIOB->CRH |= GPIO_CRH_MODE9; // Velocidade máxima 50MHz
+
+    // Configurar o Timer 4 (TIM4)
+    TIM4->CR1 = 0; // Limpar registrador de controle
+    TIM4->PSC = 72 - 1; // Prescaler para um clock de contagem de 1MHz (ajuste conforme necessário)
+    TIM4->ARR = 20000 - 1; // Valor de contagem máximo (ajuste para o período desejado)
+    
+    // Configurar o canal de captura/comparação 4 (CCR4)
+    TIM4->CCMR2 &= ~TIM_CCMR2_CC4S; // Selecionar saída como canal de captura/comparação
+    TIM4->CCMR2 |= TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1; // Modo PWM 1
+    TIM4->CCMR2 |= TIM_CCMR2_OC4PE; // Habilitar a saída de pré-carga
+    TIM4->CCER |= TIM_CCER_CC4E; // Habilitar o canal de captura/comparação 4
+
+    // Iniciar o Timer 4
+    TIM4->CR1 |= TIM_CR1_CEN;
+}
+
