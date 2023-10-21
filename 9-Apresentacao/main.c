@@ -46,7 +46,13 @@
 
 
 // Codigos IR - Botoes:
-#define PWM_No_1 0xffe7feb9
+#define PWM_No_2 0xf70ffe30
+#define PWM_No_4 0xf80ffe30
+#define PWM_No_5 0xf07ffe30
+#define PWM_No_6 0xc26ffe30
+#define PWM_No_9 0xc4affe30
+
+u32 CONTROLE_IR[] = {0xf70ffe30 }; 
 
 // Quantidade max de elementos fila:
 #define ELEMENTOS_FILA_LCD 2
@@ -101,7 +107,7 @@ static void task1(void *args __attribute((unused))) {
 
 #define MAX_MENU 3
 
-	// u8 RD = 0;
+	u8 RD = 0;
 
 	while(1){
 
@@ -109,12 +115,10 @@ static void task1(void *args __attribute((unused))) {
 					&msg_buf_rev, pdMS_TO_TICKS(10)))
 			buffer_de_fila = msg_buf_rev;
 
-		/*
 		while (RD > 12){ // força atualização do LCD :
 			RD = 0;
 			disp_clear();
 		} RD ++;
-		*/
 
 		// Verifica se houve atualização no botão ou 
 		// recebeu dados do infravermelho
@@ -187,13 +191,25 @@ static void task4(void *args __attribute ((unused))){
 	
 	PWM_PB9_config();
 	u32 code_ir = 0; 
+	u16 atua_PWM = 1000;
 
 	while(1){
 
 		if (xQueueReceive(SERVO_queue, &code_ir, pdMS_TO_TICKS(10))) {
-			// TIM4->CCR4
-		}
+			if ( PWM_No_6 == code_ir )
+				atua_PWM -=75;
 
+			else if ( PWM_No_4 == code_ir )
+				atua_PWM +=75;
+
+			else if ( PWM_No_5 == code_ir )
+				atua_PWM =1500;
+		}
+		
+	atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
+	atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
+
+	TIM4->CCR4 = atua_PWM ; 
 	}
 }
 
@@ -209,17 +225,14 @@ static void task5(void *args __attribute ((unused))){
 		code_ir = 0xFFFFFFFF;
 		code_ir = IR_Read();
 		
-		if (code_ir != 0xffffffff) {
+		if (code_ir != (0xFFFFFF << 1)) {
 
 			USARTSend("\r\nCodigo: 0x");
 			itoa (code_ir, word_IR, 16);
 			USARTSend(word_IR);
 			
-			if (code_ir == PWM_No_1){
-
-				if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
-					xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
-				}
+			if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
+				xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
 			}
 
 
