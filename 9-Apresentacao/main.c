@@ -52,14 +52,15 @@
 #define PWM_No_6 0xc26ffe30
 #define PWM_No_9 0xc4affe30
 
-u32 CONTROLE_IR[] = {0xf70ffe30 }; 
+// u32 CONTROLE_IR[] = {0xf70ffe30 }; 
 
 // Quantidade max de elementos fila:
 #define ELEMENTOS_FILA_LCD 2
 #define ELEMENTOS_FILA_ServoM 1
-#define ELEMENTOS_FILA_PWM 1
+#define ELEMENTOS_FILA_disp_menu 1
 
 static QueueHandle_t LCD_Show_queue; 
+static QueueHandle_t Display_menu_select_queue; 
 static QueueHandle_t SERVO_queue; 
 
 void LCD16x2_init(){
@@ -73,7 +74,7 @@ void LCD16x2_init(){
 	set_bit(IO,D7);   disp_init();
 	disp_cmd(0x0C);
 
-// Animação no visor:
+	// Animação no visor:
 	disp_text("----------------", 0 ,0);
 	disp_text("================", 1, 0);
 
@@ -108,6 +109,7 @@ static void task1(void *args __attribute((unused))) {
 #define MAX_MENU 3
 
 	u8 RD = 0;
+	u8 Menu_Atualiza =0;
 
 	while(1){
 
@@ -122,19 +124,24 @@ static void task1(void *args __attribute((unused))) {
 
 		// Verifica se houve atualização no botão ou 
 		// recebeu dados do infravermelho
+		if (xQueueReceive(Display_menu_select_queue, 
+					&Menu_Atualiza, pdMS_TO_TICKS(10)))
+			Menu_Atualiza = 1; 
+		else 
+			Menu_Atualiza = 0 ;
 
-		if ((GPIOB->IDR & (1<<8))){
+		if (( Menu_Atualiza )){
 			menu_View ++;
 
-		if (menu_View > MAX_MENU )
-			menu_View = 1;
-		disp_clear();
+			if (menu_View > MAX_MENU )
+				menu_View = 1;
+			disp_clear();
 		}
 
 		if (menu_View == 1 ){
-				disp_text("Temperatura - C", 0, 0); 
-				floatToString((float) buffer_de_fila * ADC_Const, Float_point, 2);
-				disp_text(Float_point, 1, 6);
+			disp_text("Temperatura - C", 0, 0); 
+			floatToString((float) buffer_de_fila * ADC_Const, Float_point, 2);
+			disp_text(Float_point, 1, 6);
 		} 
 		if (menu_View == 2 ){
 			disp_text("----------------", 0 ,0);
@@ -206,8 +213,11 @@ static void task4(void *args __attribute ((unused))){
 				atua_PWM =1500;
 		}
 		
-	atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
-	atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
+	// atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
+	// atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
+
+	atua_PWM = (!(atua_PWM <= 1000)) ? atua_PWM : 1000 ;
+	atua_PWM = (!(atua_PWM >= 2000)) ? atua_PWM : 2000 ;
 
 	TIM4->CCR4 = atua_PWM ; 
 	}
@@ -235,21 +245,48 @@ static void task5(void *args __attribute ((unused))){
 				xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
 			}
 
-
-			
 		}
 		__delay(250);
-
 	}
 }
 
+#define MIC_PIN (1 << 14)
+u8 MIC_READER (u8 periodo , u16 taxa_de_atualizacao ){
+	u8 tmout=0;
+
+	while (GPIOB->IDR & MIC_PIN){
+	}
+
+	while (GPIOB->IDR & MIC_PIN && tmout < periodo){
+		tmout ++;
+		__delay_ms( taxa_de_atualizacao ); 
+	}
+	return (tmout != periodo) ? 1 : 0; // True /
+												  // False
+}
+
+void task6_MIC(void *args __attribute ((unused))){
+	GPIOB->CRH	|= 0x04 << 24; // PB14 In Float	
+	u8 MenuSelect = 0;
+
+	while(1){
+
+		MenuSelect = MIC_READER( 100, 3 );
+		
+		// Verifica se a fila está cheia
+		if( uxQueueMessagesWaiting(Display_menu_select_queue) <= ELEMENTOS_FILA_disp_menu ){ 
+			xQueueSend(Display_menu_select_queue, &MenuSelect, pdMS_TO_TICKS(10));
+		}
+
+	}
+}
 
 int main(void) {
 
 	//											↓ O tamanho da fila é x - 1 !!
 	LCD_Show_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
 	SERVO_queue  = xQueueCreate(ELEMENTOS_FILA_ServoM, sizeof(u32)); 
-	// PWM_data_queue = xQueueCreate(ELEMENTOS_FILA_PWM, sizeof(u32));
+	Display_menu_select_queue  = xQueueCreate(ELEMENTOS_FILA_disp_menu, sizeof(u8)); 
 	
 	set_system_clock_to_72Mhz();
 
@@ -258,6 +295,7 @@ int main(void) {
 	xTaskCreate(task3, "LM35_read", 100 , NULL, 4 , NULL);
 	xTaskCreate(task4, "ServoMec", 100 , NULL, 4 , NULL);
 	xTaskCreate(task5, "IR_Rev", 100 , NULL, 4 , NULL);
+	xTaskCreate(task6_MIC, "MIC_READER", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
 
