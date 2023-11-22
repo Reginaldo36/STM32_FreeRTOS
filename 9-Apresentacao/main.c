@@ -49,7 +49,7 @@
 #define PWM_No_2 0xf70ffe30
 #define PWM_No_4 0xf80ffe30
 #define PWM_No_5 0xf07ffe30
-#define PWM_No_6 0xc26ffe30
+#define PWM_No_6 0xc27ffe30
 #define PWM_No_9 0xc4affe30
 
 // u32 CONTROLE_IR[] = {0xf70ffe30 }; 
@@ -124,11 +124,13 @@ static void task1(void *args __attribute((unused))) {
 
 		// Verifica se houve atualização no botão ou 
 		// recebeu dados do infravermelho
+		/*
 		if (xQueueReceive(Display_menu_select_queue, 
 					&Menu_Atualiza, pdMS_TO_TICKS(10)))
 			Menu_Atualiza = 1; 
 		else 
 			Menu_Atualiza = 0 ;
+		*/
 
 		if (( Menu_Atualiza )){
 			menu_View ++;
@@ -198,7 +200,9 @@ static void task4(void *args __attribute ((unused))){
 	
 	PWM_PB9_config();
 	u32 code_ir = 0; 
-	u16 atua_PWM = 1000;
+	u16 atua_PWM = 1500;
+
+	char word_IR[30];
 
 	while(1){
 
@@ -211,15 +215,24 @@ static void task4(void *args __attribute ((unused))){
 
 			else if ( PWM_No_5 == code_ir )
 				atua_PWM =1500;
+
+			USARTSend("\r\nNa Função: 0x");
+			itoa (code_ir, word_IR, 16);
+			USARTSend(word_IR);
+
+
+			atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
+			atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
+			
+			USARTSend(", PWM Var: "); 
+			itoa(atua_PWM, word_IR, 10);
+			USARTSend(word_IR);
+
+			// atua_PWM = (!(atua_PWM <= 1000)) ? atua_PWM : 1000 ;
+			// atua_PWM = (!(atua_PWM >= 2000)) ? atua_PWM : 2000 ;
+
+			TIM4->CCR4 = atua_PWM ; 
 		}
-		
-	// atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
-	// atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
-
-	atua_PWM = (!(atua_PWM <= 1000)) ? atua_PWM : 1000 ;
-	atua_PWM = (!(atua_PWM >= 2000)) ? atua_PWM : 2000 ;
-
-	TIM4->CCR4 = atua_PWM ; 
 	}
 }
 
@@ -235,18 +248,20 @@ static void task5(void *args __attribute ((unused))){
 		code_ir = 0xFFFFFFFF;
 		code_ir = IR_Read();
 		
-		if (code_ir != (0xFFFFFF << 1)) {
+		if (code_ir != 0xffffffff || code_ir != 0xffffffd0 ) {
 
+			/*
 			USARTSend("\r\nCodigo: 0x");
 			itoa (code_ir, word_IR, 16);
 			USARTSend(word_IR);
-			
+			*/
+
 			if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
 				xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
 			}
 
 		}
-		__delay(250);
+		__delay(500);
 	}
 }
 
