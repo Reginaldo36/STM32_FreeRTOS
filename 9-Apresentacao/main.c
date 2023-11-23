@@ -41,7 +41,10 @@
 #define HEX 16
 
 // Vadc * 3.3 * 10 / 4096 (12 bits) 
-#define ADC_Const 0.008056
+// const float ADC_Const = 3.3 * 10 / 4094;
+const float ADC_Const = 3.05 * 10 / 4094;
+// #define ADC_Const 0.008056
+#define OFFSET_TEMP 0
 #define VEL_ANIMACAO 15
 
 
@@ -125,12 +128,12 @@ static void task1(void *args __attribute((unused))) {
 		// Verifica se houve atualização no botão ou 
 		// recebeu dados do infravermelho
 		/*
-		if (xQueueReceive(Display_menu_select_queue, 
-					&Menu_Atualiza, pdMS_TO_TICKS(10)))
+			if (xQueueReceive(Display_menu_select_queue, 
+			&Menu_Atualiza, pdMS_TO_TICKS(10)))
 			Menu_Atualiza = 1; 
-		else 
+			else 
 			Menu_Atualiza = 0 ;
-		*/
+			*/
 
 		if (( Menu_Atualiza )){
 			menu_View ++;
@@ -142,8 +145,9 @@ static void task1(void *args __attribute((unused))) {
 
 		if (menu_View == 1 ){
 			disp_text("Temperatura - C", 0, 0); 
-			floatToString((float) buffer_de_fila * ADC_Const, Float_point, 2);
-			disp_text(Float_point, 1, 6);
+			floatToString((float) buffer_de_fila * ADC_Const - OFFSET_TEMP , Float_point, 2);
+			disp_text(Float_point, 1, 11);
+			disp_number( buffer_de_fila , 1, 0); 
 		} 
 		if (menu_View == 2 ){
 			disp_text("----------------", 0 ,0);
@@ -170,7 +174,7 @@ static void task2(void *args __attribute ((unused))){
 }
 
 
- void task3(void *args __attribute ((unused))){
+void task3(void *args __attribute ((unused))){
 	/* [1---]
 	 *
 	 * Tarefa dedicada a leitura do sensor de temperatura
@@ -189,21 +193,22 @@ static void task2(void *args __attribute ((unused))){
 		Valor_ADC_normalizado = ADC2->DR;
 
 		if(uxQueueMessagesWaiting(LCD_Show_queue) <= ELEMENTOS_FILA_LCD){
-				xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, pdMS_TO_TICKS(10));
+			xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, pdMS_TO_TICKS(10));
 		}
 		__delay_ms(500); // Bloqueia por 500ms
-		
+
 	}
 }
 
 static void task4(void *args __attribute ((unused))){
-	
+
 	PWM_PB9_config();
 	u32 code_ir = 0; 
 	u16 atua_PWM = 1500;
 
-	char word_IR[30];
+	char word_IR[8];
 
+	TIM4->CCR4 = atua_PWM ; 
 	while(1){
 
 		if (xQueueReceive(SERVO_queue, &code_ir, pdMS_TO_TICKS(10))) {
@@ -221,15 +226,18 @@ static void task4(void *args __attribute ((unused))){
 			USARTSend(word_IR);
 
 
-			atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
-			atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
-			
+			/*
+				atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
+				atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
+				*/
+
+			atua_PWM = (!(atua_PWM <= 1000)) ? atua_PWM : 1000 ;
+			atua_PWM = (!(atua_PWM >= 2000)) ? atua_PWM : 2000 ;
+
 			USARTSend(", PWM Var: "); 
 			itoa(atua_PWM, word_IR, 10);
 			USARTSend(word_IR);
 
-			// atua_PWM = (!(atua_PWM <= 1000)) ? atua_PWM : 1000 ;
-			// atua_PWM = (!(atua_PWM >= 2000)) ? atua_PWM : 2000 ;
 
 			TIM4->CCR4 = atua_PWM ; 
 		}
@@ -247,21 +255,21 @@ static void task5(void *args __attribute ((unused))){
 
 		code_ir = 0xFFFFFFFF;
 		code_ir = IR_Read();
-		
+
 		if (code_ir != 0xffffffff || code_ir != 0xffffffd0 ) {
 
 			/*
-			USARTSend("\r\nCodigo: 0x");
-			itoa (code_ir, word_IR, 16);
-			USARTSend(word_IR);
-			*/
+				USARTSend("\r\nCodigo: 0x");
+				itoa (code_ir, word_IR, 16);
+				USARTSend(word_IR);
+				*/
 
 			if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
 				xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
 			}
 
 		}
-		__delay(500);
+		__delay(5000);
 	}
 }
 
@@ -287,7 +295,7 @@ void task6_MIC(void *args __attribute ((unused))){
 	while(1){
 
 		MenuSelect = MIC_READER( 100, 3 );
-		
+
 		// Verifica se a fila está cheia
 		if( uxQueueMessagesWaiting(Display_menu_select_queue) <= ELEMENTOS_FILA_disp_menu ){ 
 			xQueueSend(Display_menu_select_queue, &MenuSelect, pdMS_TO_TICKS(10));
@@ -302,15 +310,15 @@ int main(void) {
 	LCD_Show_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
 	SERVO_queue  = xQueueCreate(ELEMENTOS_FILA_ServoM, sizeof(u32)); 
 	Display_menu_select_queue  = xQueueCreate(ELEMENTOS_FILA_disp_menu, sizeof(u8)); 
-	
+
 	set_system_clock_to_72Mhz();
 
 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4, NULL);
 	xTaskCreate(task3, "LM35_read", 100 , NULL, 4 , NULL);
-	xTaskCreate(task4, "ServoMec", 100 , NULL, 4 , NULL);
+	xTaskCreate(task4, "ServoMec", 100 , NULL, 3 , NULL);
 	xTaskCreate(task5, "IR_Rev", 100 , NULL, 4 , NULL);
-	xTaskCreate(task6_MIC, "MIC_READER", 100 , NULL, 4 , NULL);
+	// xTaskCreate(task6_MIC, "MIC_READER", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
 
