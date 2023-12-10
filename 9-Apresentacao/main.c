@@ -40,29 +40,28 @@
 #define DEC 10
 #define HEX 16
 
-// Vadc * 3.3 * 10 / 4096 (12 bits) 
-// const float ADC_Const = 3.3 * 10 / 4094;
-const float ADC_Const = 3.05 * 10 / 4094;
-// #define ADC_Const 0.008056
+const float ADC_Const = (float) 3 * 10 / 4096;
 #define OFFSET_TEMP 0
 #define VEL_ANIMACAO 15
 
 
 // Codigos IR - Botoes:
-#define PWM_No_2 0xf70ffe30
-#define PWM_No_4 0xf80ffe30
-#define PWM_No_5 0xf07ffe30
-#define PWM_No_6 0xc27ffe30
-#define PWM_No_9 0xc4affe30
 
-// u32 CONTROLE_IR[] = {0xf70ffe30 }; 
+#define SM_horario		0x7f07fe30
+#define SM_anti_horario 0x7f3ffe30 
+#define SM_180				0x7f0ffe30
+#define SM_90				0x7f17fe30
+#define SM_0				0x7f47fe30
+
+#define LCD_b0				0x7f27fe30 // Botão info 
+#define LCD_b1				0x7f2ffe30 // botão Mute
 
 // Quantidade max de elementos fila:
-#define ELEMENTOS_FILA_LCD 2
+#define ELEMENTOS_FILA_LCD 1
 #define ELEMENTOS_FILA_ServoM 1
 #define ELEMENTOS_FILA_disp_menu 1
 
-static QueueHandle_t LCD_Show_queue; 
+static QueueHandle_t LM32_LCD_queue; 
 static QueueHandle_t Display_menu_select_queue; 
 static QueueHandle_t SERVO_queue; 
 
@@ -107,61 +106,70 @@ static void task1(void *args __attribute((unused))) {
 	int msg_buf_rev, buffer_de_fila = 0;
 
 	char Float_point[6];
-	u8 menu_View=1;
+	char * LCD_string = "---Reginaldo---";
 
-#define MAX_MENU 3
-
-	u8 RD = 0;
-	u8 Menu_Atualiza =0;
+	u32 code_ir_menu_receive;
+	u32 code_ir_menu_select =   LCD_b0;
 
 	while(1){
 
-		if (xQueueReceive(LCD_Show_queue, 
+		if (xQueueReceive(LM32_LCD_queue, 
 					&msg_buf_rev, pdMS_TO_TICKS(10)))
 			buffer_de_fila = msg_buf_rev;
 
-		while (RD > 12){ // força atualização do LCD :
-			RD = 0;
-			disp_clear();
-		} RD ++;
-
 		// Verifica se houve atualização no botão ou 
 		// recebeu dados do infravermelho
-		/*
-			if (xQueueReceive(Display_menu_select_queue, 
-			&Menu_Atualiza, pdMS_TO_TICKS(10)))
-			Menu_Atualiza = 1; 
-			else 
-			Menu_Atualiza = 0 ;
-			*/
 
-		if (( Menu_Atualiza )){
-			menu_View ++;
+		if (xQueueReceive(Display_menu_select_queue, 
+					&code_ir_menu_receive, pdMS_TO_TICKS(10))){
 
-			if (menu_View > MAX_MENU )
-				menu_View = 1;
-			disp_clear();
-		}
+			if (code_ir_menu_receive == LCD_b0 
+					|| code_ir_menu_receive == LCD_b1){
 
-		if (menu_View == 1 ){
-			disp_text("Temperatura - C", 0, 0); 
-			floatToString((float) buffer_de_fila * ADC_Const - OFFSET_TEMP , Float_point, 2);
-			disp_text(Float_point, 1, 11);
-			disp_number( buffer_de_fila , 1, 0); 
-		} 
-		if (menu_View == 2 ){
-			disp_text("----------------", 0 ,0);
-			disp_text("================", 1, 0);
-
-			for (u8 i=0 ; i<16 ; i++){
-				__delay_ms(10);
-				disp_text("=", 0 ,i);
-				disp_text("-", 1 , 15 - i);
+				code_ir_menu_select = code_ir_menu_receive; 		
+				disp_clear();
 			}
+		}
+		// code_ir_menu_select = LCD_b0; 
+
+		switch (code_ir_menu_select) {
+			case LCD_b0: 
+
+				floatToString((float) (TIM4->CCR4 - 500) / 11.11, Float_point, 1);
+
+				disp_text("Angulo:", 0, 0); 
+				disp_text(Float_point, 0, 8); 
+
+				floatToString((float) buffer_de_fila * ADC_Const - OFFSET_TEMP , Float_point, 2);
+				disp_text(Float_point, 1, 11);
+				disp_number( buffer_de_fila , 1, 0); 
+
+				break; 
+
+			case LCD_b1: 
+
+				// disp_text("----------------", 0 ,0);
+				disp_text("================", 1, 0);
+				for (u8 i=0 ; i<16 ; i++){
+					disp_text(LCD_string, 0 ,0);
+					disp_text("-", 1 , 15 - i);
+
+					__delay_ms(1);
+				}
+
+				code_ir_menu_select = LCD_b0;
+				disp_clear();
+
+				break;
+
+			default: 
+				continue; 
 		}
 
 	}
+
 }
+
 
 static void task2(void *args __attribute ((unused))){
 	RCC->APB2ENR |= (1<<4); // En GPIOC
@@ -192,8 +200,8 @@ void task3(void *args __attribute ((unused))){
 
 		Valor_ADC_normalizado = ADC2->DR;
 
-		if(uxQueueMessagesWaiting(LCD_Show_queue) <= ELEMENTOS_FILA_LCD){
-			xQueueSend(LCD_Show_queue, &Valor_ADC_normalizado, pdMS_TO_TICKS(10));
+		if(uxQueueMessagesWaiting(LM32_LCD_queue) <= ELEMENTOS_FILA_LCD){
+			xQueueSend(LM32_LCD_queue, &Valor_ADC_normalizado, pdMS_TO_TICKS(10));
 		}
 		__delay_ms(500); // Bloqueia por 500ms
 
@@ -212,14 +220,20 @@ static void task4(void *args __attribute ((unused))){
 	while(1){
 
 		if (xQueueReceive(SERVO_queue, &code_ir, pdMS_TO_TICKS(10))) {
-			if ( PWM_No_6 == code_ir )
-				atua_PWM -=75;
+			if (SM_anti_horario == code_ir)
+				atua_PWM -=30;
 
-			else if ( PWM_No_4 == code_ir )
-				atua_PWM +=75;
+			else if (SM_horario == code_ir)
+				atua_PWM +=30;
 
-			else if ( PWM_No_5 == code_ir )
+			else if (SM_90 == code_ir)
 				atua_PWM =1500;
+
+			else if (SM_0 == code_ir)
+				atua_PWM =500;
+
+			else if (SM_180 == code_ir)
+				atua_PWM =2500;
 
 			USARTSend("\r\nNa Função: 0x");
 			itoa (code_ir, word_IR, 16);
@@ -231,8 +245,8 @@ static void task4(void *args __attribute ((unused))){
 				atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
 				*/
 
-			atua_PWM = (!(atua_PWM <= 1000)) ? atua_PWM : 1000 ;
-			atua_PWM = (!(atua_PWM >= 2000)) ? atua_PWM : 2000 ;
+			atua_PWM = (!(atua_PWM <= 500)) ? atua_PWM : 500 ;
+			atua_PWM = (!(atua_PWM >= 2500)) ? atua_PWM : 2500 ;
 
 			USARTSend(", PWM Var: "); 
 			itoa(atua_PWM, word_IR, 10);
@@ -244,32 +258,43 @@ static void task4(void *args __attribute ((unused))){
 	}
 }
 
+		/*
+			USARTSend("\r\nCodigo: 0x");
+			itoa (code_ir, word_IR, 16);
+			USARTSend(word_IR);
+			*/
 static void task5(void *args __attribute ((unused))){
 
 	USART_init();
 	IR_Init();
-	char word_IR[8];
+	// char word_IR[8];
 	u32 code_ir;
+	u32 anterior;
 
 	while(1){
 
 		code_ir = 0xFFFFFFFF;
 		code_ir = IR_Read();
 
-		if (code_ir != 0xffffffff || code_ir != 0xffffffd0 ) {
 
-			/*
-				USARTSend("\r\nCodigo: 0x");
-				itoa (code_ir, word_IR, 16);
-				USARTSend(word_IR);
-				*/
+		if (code_ir == 0xffffffd0){
+			if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
+				xQueueSend(SERVO_queue, &anterior, pdMS_TO_TICKS(10));
+			}
+		}
 
+		else {
 			if( uxQueueMessagesWaiting( SERVO_queue ) <= ELEMENTOS_FILA_ServoM ){
 				xQueueSend(SERVO_queue, &code_ir, pdMS_TO_TICKS(10));
 			}
+			anterior = code_ir; 
+		}
+
+			if( uxQueueMessagesWaiting( Display_menu_select_queue ) <= ELEMENTOS_FILA_disp_menu ){
+				xQueueSend(Display_menu_select_queue, &code_ir, pdMS_TO_TICKS(10));
 
 		}
-		__delay(5000);
+
 	}
 }
 
@@ -307,16 +332,16 @@ void task6_MIC(void *args __attribute ((unused))){
 int main(void) {
 
 	//											↓ O tamanho da fila é x - 1 !!
-	LCD_Show_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
+	LM32_LCD_queue = xQueueCreate(ELEMENTOS_FILA_LCD, sizeof(u32));
 	SERVO_queue  = xQueueCreate(ELEMENTOS_FILA_ServoM, sizeof(u32)); 
-	Display_menu_select_queue  = xQueueCreate(ELEMENTOS_FILA_disp_menu, sizeof(u8)); 
+	Display_menu_select_queue  = xQueueCreate(ELEMENTOS_FILA_disp_menu, sizeof(u32)); 
 
 	set_system_clock_to_72Mhz();
 
 	xTaskCreate(task1,"LCD_16x2", 100 ,NULL, 4 ,NULL);
 	xTaskCreate(task2, "LED_13", 100 , NULL, 4, NULL);
 	xTaskCreate(task3, "LM35_read", 100 , NULL, 4 , NULL);
-	xTaskCreate(task4, "ServoMec", 100 , NULL, 3 , NULL);
+	xTaskCreate(task4, "ServoMec", 100 , NULL, 4 , NULL);
 	xTaskCreate(task5, "IR_Rev", 100 , NULL, 4 , NULL);
 	// xTaskCreate(task6_MIC, "MIC_READER", 100 , NULL, 4 , NULL);
 
