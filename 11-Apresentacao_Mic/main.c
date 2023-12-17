@@ -47,8 +47,9 @@ const float ADC_Const = (float) 3 * 10 / 4095;
 
 // Codigos IR - Botoes:
 
-#define SM_horario		0x7f07fe30
-#define SM_anti_horario 0x7f3ffe30 
+#define SM_horario	 0x7f07fe30
+#define SM_anti_horario 0x7f3ffc30 
+
 #define SM_180				0x7f0ffe30
 #define SM_90				0x7f17fe30
 #define SM_0				0x7f47fe30
@@ -60,10 +61,12 @@ const float ADC_Const = (float) 3 * 10 / 4095;
 #define ELEMENTOS_FILA_LCD 1
 #define ELEMENTOS_FILA_ServoM 1
 #define ELEMENTOS_FILA_disp_menu 1
+#define ELEMENTOS_FILA_Mic_Reader 2
 
 static QueueHandle_t LM32_LCD_queue; 
 static QueueHandle_t Display_menu_select_queue; 
 static QueueHandle_t SERVO_queue; 
+// static QueueHandle_t Mic_Reader_queue; 
 
 void LCD16x2_init(){
 
@@ -154,7 +157,7 @@ static void task1(void *args __attribute((unused))) {
 					disp_text(LCD_string, 0 ,0);
 					disp_text("-", 1 , 15 - i);
 
-					__delay_ms(1);
+					// __delay_ms(100);
 				}
 
 				code_ir_menu_select = LCD_b0;
@@ -221,10 +224,10 @@ static void task4(void *args __attribute ((unused))){
 
 		if (xQueueReceive(SERVO_queue, &code_ir, pdMS_TO_TICKS(10))) {
 			if (SM_anti_horario == code_ir)
-				atua_PWM -=30;
+				atua_PWM -=111;
 
 			else if (SM_horario == code_ir)
-				atua_PWM +=30;
+				atua_PWM +=111;
 
 			else if (SM_90 == code_ir)
 				atua_PWM =1500;
@@ -235,22 +238,21 @@ static void task4(void *args __attribute ((unused))){
 			else if (SM_180 == code_ir)
 				atua_PWM =2500;
 
-			USARTSend("\r\nNa Função: 0x");
-			itoa (code_ir, word_IR, 16);
-			USARTSend(word_IR);
+			// USARTSend("\r\nNa Função: 0x");
+			// itoa (code_ir, word_IR, 16);
+			// USARTSend(word_IR);
 
 
-			/*
-				atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
-				atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
-				*/
+				// atua_PWM = (atua_PWM >= 1000) ? atua_PWM : 1000 ;
+				// atua_PWM = (atua_PWM <= 2000) ? atua_PWM : 2000 ;
 
 			atua_PWM = (!(atua_PWM <= 500)) ? atua_PWM : 500 ;
 			atua_PWM = (!(atua_PWM >= 2500)) ? atua_PWM : 2500 ;
 
-			USARTSend(", PWM Var: "); 
-			itoa(atua_PWM, word_IR, 10);
-			USARTSend(word_IR);
+			 // USARTSend(", PWM Var: "); 
+			 // itoa(atua_PWM, word_IR, 10);
+			 // USARTSend(word_IR);
+
 
 
 			TIM4->CCR4 = atua_PWM ; 
@@ -293,46 +295,81 @@ static void task5(void *args __attribute ((unused))){
 	}
 }
 
-#define MIC_PIN (1 << 14)
-u8 MIC_READER (u8 periodo , u16 taxa_de_atualizacao ){
-	u8 tmout=0;
-
-	while (GPIOB->IDR & MIC_PIN){
-	}
-
-	while (GPIOB->IDR & MIC_PIN && tmout < periodo){
-		tmout ++;
-		__delay_ms( taxa_de_atualizacao ); 
-	}
-	return (tmout != periodo) ? 1 : 0; // True /
-												  // False
-}
-
 void task6_MIC(void *args __attribute ((unused))){
 
 	ADC8_Configuration(); // PB0  One conversion mode
 
 	u32 ADC8_data = 0;
 	char str_ADC[2]; 
+
+	u32 conta_ciclo = 0;
+	u8 inicio_fim = 0 ; 
+	GPIOB->CRH |= (0x03 << (4*4)) | (0x03 << (4*5)); 
+	GPIOB->ODR ^= 1<<12;
+
 	while(1){
 
 		// ADC8_data = ADC8_GetValue();
 		ADC8_data = ADC1->DR;
+		
+		itoa(ADC8_data, str_ADC, 10);
+		// itoa(conta_ciclo, str_ADC, 10);
 
-		USARTSend("\n\rADC_MIC 0b"); 
-		itoa(ADC8_data, str_ADC, 2);
-		USARTSend(str_ADC);
-		USARTSend("\n\r"); 
+		 USARTSend(str_ADC);
+		 USARTSend("\n\r"); 
 
 
 		// Verifica se a fila está cheia
-		// if( uxQueueMessagesWaiting(Display_menu_select_queue) <= ELEMENTOS_FILA_disp_menu ){ 
-			// xQueueSend(Display_menu_select_queue, &MenuSelect, pdMS_TO_TICKS(10));
+		// if( uxQueueMessagesWaiting(Mic_Reader_queue) <= ELEMENTOS_FILA_Mic_Reader ){ 
+		// xQueueSend(Mic_Reader_queue, &ADC8_data, pdMS_TO_TICKS(10));
 		// }
 
-		__delay_ms(1000);
+		// __delay(10);
+
+#define VALOR_ADC_COMANDO 3600 // Nível da entrada
+#define comando_1 15 // 500 ms
+#define TMOUT 2500 // valor co conta_ciclo
+#define PB13_set  (GPIOB->ODR &= ~(1<<13))
+#define PB13_reset	(GPIOB->ODR |= 1<<13) 
+
+#define PB12_set  (GPIOB->ODR &= ~(1<<12))
+#define PB12_reset	(GPIOB->ODR |= 1<<12) 
+								 
+		if (ADC8_data  > VALOR_ADC_COMANDO ){
+
+			if (inicio_fim == 1 && conta_ciclo >= comando_1){
+				inicio_fim = 0 ; 
+				// executar o comando
+				PB12_set;
+			}
+			else if (inicio_fim == 1 && conta_ciclo < comando_1){
+				inicio_fim = 0;
+				// executar o comando
+
+				PB12_reset;
+			}
+			else {
+				inicio_fim = 1;
+				conta_ciclo = 0;
+			}
+		} 
+
+
+		if (inicio_fim == 1 ){
+			conta_ciclo ++; 
+			PB13_set ; 
+		}
+		else 
+			PB13_reset;
+
+		if (conta_ciclo >= TMOUT){
+			conta_ciclo = 0; 
+			inicio_fim = 0 ;
+		}
+		// __delay(3);
 	}
 }
+
 
 int main(void) {
 
@@ -348,7 +385,8 @@ int main(void) {
 	xTaskCreate(task3, "LM35_read", 100 , NULL, 4 , NULL);
 	xTaskCreate(task4, "ServoMec", 100 , NULL, 4 , NULL);
 	xTaskCreate(task5, "IR_Rev", 100 , NULL, 4 , NULL);
-	xTaskCreate(task6_MIC, "MIC_READER", 100 , NULL, 4 , NULL);
+	xTaskCreate(task6_MIC, "MIC_READER", 200 , NULL, 4 , NULL);
+	// xTaskCreate(task7_M_acao, "MIC_command", 100 , NULL, 4 , NULL);
 
 	vTaskStartScheduler(); 
 
