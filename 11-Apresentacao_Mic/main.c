@@ -141,11 +141,12 @@ static void task1(void *args __attribute((unused))) {
 				floatToString((float) (TIM4->CCR4 - 500) / 11.11, Float_point, 1);
 
 				disp_text("Angulo:", 0, 0); 
-				disp_text(Float_point, 0, 8); 
+				disp_text(Float_point, 0, 10); 
 
 				floatToString((float) buffer_de_fila * ADC_Const - OFFSET_TEMP , Float_point, 2);
-				disp_text(Float_point, 1, 11);
-				disp_number( buffer_de_fila , 1, 0); 
+				disp_text(Float_point, 1, 10);
+				disp_text("Temp. C:" , 1, 0); 
+				// disp_number( buffer_de_fila , 1, 0); 
 
 				break; 
 
